@@ -540,6 +540,30 @@ body {
 }
 
 /* ══════════════════════════════════
+   贊助說明 金光特效（全站共用）
+══════════════════════════════════ */
+@keyframes sponsor-glow {
+  0%, 100% { text-shadow: 0 0 6px rgba(255,224,96,0.4), 0 0 12px rgba(212,168,32,0.2); }
+  50% { text-shadow: 0 0 14px rgba(255,224,96,0.8), 0 0 28px rgba(212,168,32,0.5), 0 0 40px rgba(255,200,0,0.3); }
+}
+@keyframes coin-orbit  { 0% { transform:rotate(0deg) translateX(18px) rotate(0deg); } 100% { transform:rotate(360deg) translateX(18px) rotate(-360deg); } }
+@keyframes coin-orbit2 { 0% { transform:rotate(120deg) translateX(22px) rotate(-120deg); } 100% { transform:rotate(480deg) translateX(22px) rotate(-480deg); } }
+@keyframes coin-orbit3 { 0% { transform:rotate(240deg) translateX(16px) rotate(-240deg); } 100% { transform:rotate(600deg) translateX(16px) rotate(-600deg); } }
+@keyframes sparkle-burst { 0%,100% { opacity:0; transform:scale(0.5); } 50% { opacity:1; transform:scale(1.2); } }
+
+.nav-sponsor-wrap { position:relative; display:inline-flex; align-items:center; }
+.nav-sponsor-wrap .nav-btn { animation:sponsor-glow 2s ease-in-out infinite; color:#ffe060 !important; font-weight:700; }
+.nav-sponsor-coin { position:absolute; font-size:0.6rem; pointer-events:none; top:50%; left:50%; margin-top:-5px; margin-left:-5px; }
+.nav-sponsor-coin:nth-child(2) { animation:coin-orbit 3s linear infinite; }
+.nav-sponsor-coin:nth-child(3) { animation:coin-orbit2 4s linear infinite; }
+.nav-sponsor-coin:nth-child(4) { animation:coin-orbit3 3.5s linear infinite; }
+.nav-sponsor-sparkle { position:absolute; font-size:0.5rem; pointer-events:none; color:#ffe060; }
+.nav-sponsor-sparkle:nth-child(5) { top:-4px; right:-8px; animation:sparkle-burst 1.5s ease infinite 0s; }
+.nav-sponsor-sparkle:nth-child(6) { bottom:-2px; left:-6px; animation:sparkle-burst 1.8s ease infinite 0.4s; }
+.nav-sponsor-sparkle:nth-child(7) { top:-2px; left:10px; animation:sparkle-burst 2s ease infinite 0.8s; }
+.nav-sponsor-sparkle:nth-child(8) { bottom:-4px; right:4px; animation:sparkle-burst 1.6s ease infinite 1.2s; }
+
+/* ══════════════════════════════════
    HERO
 ══════════════════════════════════ */
 #hero {
