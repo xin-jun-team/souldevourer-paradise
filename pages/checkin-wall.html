@@ -168,6 +168,58 @@
       text-align: right;
     }
 
+    /* ── 驗證碼 ── */
+    .wall-form__captcha {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      background: #0a0610;
+      border: 1px solid #2a1f40;
+    }
+    .wall-captcha__label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      color: var(--soul-bright, #b040ff);
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+    .wall-captcha__question {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    .wall-captcha__input {
+      width: 60px;
+      background: #120e24;
+      border: 1px solid #2a1f40;
+      color: #ffe060;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 6px 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .wall-captcha__input:focus { border-color: var(--soul); }
+    .wall-captcha__refresh {
+      background: none;
+      border: 1px solid #2a1f40;
+      color: #a07840;
+      font-size: 0.8rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .wall-captcha__refresh:hover { color: var(--gold); }
+    /* 蜜罐（隱藏欄位抓機器人） */
+    .wall-form__hp { position: absolute; left: -9999px; opacity: 0; height: 0; }
+
     /* ── 便利貼牆 - 佈告欄風格 ── */
     .wall-board-wrap {
       max-width: 1100px;
@@ -731,12 +783,22 @@
 
   <!-- ═══════════════════════ 留言表單 ═══════════════════════ -->
   <div class="wall-form-wrap">
-    <form class="wall-form" id="wallForm">
+    <form class="wall-form" id="wallForm" autocomplete="off">
       <div class="wall-form__row">
         <input type="text" class="wall-form__input wall-form__input--id" id="wallId" placeholder="遊戲 ID" maxlength="20" required>
         <input type="text" class="wall-form__input wall-form__input--msg" id="wallMsg" placeholder="留下你的靈魂印記..." maxlength="100" required>
-        <button type="submit" class="wall-form__btn" id="wallBtn">◆ 刻印</button>
       </div>
+      <!-- 蜜罐：機器人會填這個，真人看不到 -->
+      <input type="text" class="wall-form__hp" id="wallHp" tabindex="-1" autocomplete="off">
+      <!-- 驗證碼 -->
+      <div class="wall-form__captcha">
+        <span class="wall-captcha__label">靈魂試煉</span>
+        <span class="wall-captcha__question" id="captchaQ"></span>
+        <span style="color:#5a4020;">=</span>
+        <input type="text" class="wall-captcha__input" id="captchaA" placeholder="?" maxlength="3" required>
+        <button type="button" class="wall-captcha__refresh" id="captchaRefresh" title="換一題">↻</button>
+      </div>
+      <button type="submit" class="wall-form__btn" id="wallBtn">◆ 刻印</button>
       <div class="wall-form__hint">每人限 3 次 · 最多 100 字 · 請勿張貼廣告或不當內容</div>
     </form>
   </div>
@@ -957,14 +1019,55 @@
       return false;
     }
 
+    // ── 驗證碼 ──
+    var captchaA1, captchaA2, captchaAnswer;
+    function newCaptcha() {
+      captchaA1 = Math.floor(Math.random() * 20) + 1;
+      captchaA2 = Math.floor(Math.random() * 15) + 1;
+      captchaAnswer = captchaA1 + captchaA2;
+      document.getElementById('captchaQ').textContent = captchaA1 + ' + ' + captchaA2;
+      document.getElementById('captchaA').value = '';
+    }
+    newCaptcha();
+    document.getElementById('captchaRefresh').addEventListener('click', newCaptcha);
+
+    // ── 冷卻時間（30 秒內不能連續發言）──
+    var COOLDOWN = 30000;
+    function canPost() {
+      var last = parseInt(localStorage.getItem('wall_last_post') || '0');
+      var diff = Date.now() - last;
+      if (diff < COOLDOWN) {
+        var sec = Math.ceil((COOLDOWN - diff) / 1000);
+        alert('發言冷卻中，請等待 ' + sec + ' 秒後再試。');
+        return false;
+      }
+      return true;
+    }
+    function markPosted() { localStorage.setItem('wall_last_post', String(Date.now())); }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var gameId = document.getElementById('wallId').value.trim();
       var message = document.getElementById('wallMsg').value.trim();
       if (!gameId || !message) return;
 
+      // 蜜罐檢查（機器人會填這個欄位）
+      if (document.getElementById('wallHp').value) return;
+
+      // 驗證碼檢查
+      var userAns = parseInt(document.getElementById('captchaA').value);
+      if (userAns !== captchaAnswer) {
+        alert('靈魂試煉答錯了，請重新回答！');
+        newCaptcha();
+        return;
+      }
+
+      // 冷卻時間
+      if (!canPost()) return;
+
       if (hasBanned(message) || hasBanned(gameId)) {
         alert('留言含有不當言論，已被系統攔截。再犯將永久禁止參與活動。');
+        newCaptcha();
         return;
       }
 
@@ -976,11 +1079,14 @@
         return;
       }
 
+      // 樂觀更新
       cachedMessages.push({ time: new Date().toISOString(), gameId: gameId, message: message });
       renderNotes(cachedMessages);
       document.getElementById('wallId').value = '';
       document.getElementById('wallMsg').value = '';
       btn.textContent = '◆ 刻印';
+      markPosted();
+      newCaptcha();
 
       fetch(API_URL, {
         method: 'POST',
