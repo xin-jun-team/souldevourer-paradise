@@ -216,6 +216,8 @@ body {
   align-items: center;
   justify-content: space-between;
   height: var(--header-h);
+  max-width: 1440px;
+  padding: 0 16px;
 }
 
 /* Logo */
