@@ -31,6 +31,103 @@
     .promo-buff-box { background:#100c1e; padding:14px; border-radius:8px; border:1px solid rgba(100,181,246,.2); margin-bottom:20px; }
     .promo-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:16px; margin-bottom:24px; }
     @media (max-width:680px) { .promo-grid { grid-template-columns:1fr; } }
+
+    /* ── 頁內目錄 ── */
+    .promo-toc {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      max-width: 900px;
+      margin: 0 auto 32px;
+      padding: 16px 20px;
+      background: linear-gradient(160deg, #120e24 0%, #0c0818 100%);
+      border: 1px solid #1e1630;
+      border-top: 2px solid var(--gold);
+      position: sticky;
+      top: 60px;
+      z-index: 50;
+    }
+    .promo-toc__link {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #e8d090;
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid #2a1f40;
+      background: #0a0610;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .promo-toc__link:hover {
+      color: var(--gold-bright, #ffe060);
+      border-color: var(--gold);
+      background: rgba(212,168,32,0.08);
+    }
+    @media (max-width:600px) {
+      .promo-toc { gap: 6px; padding: 12px 14px; }
+      .promo-toc__link { font-size: 0.7rem; padding: 5px 10px; }
+    }
+
+    /* ── 贊助說明金光特效 ── */
+    @keyframes sponsor-glow {
+      0%, 100% { text-shadow: 0 0 6px rgba(255,224,96,0.4), 0 0 12px rgba(212,168,32,0.2); }
+      50% { text-shadow: 0 0 14px rgba(255,224,96,0.8), 0 0 28px rgba(212,168,32,0.5), 0 0 40px rgba(255,200,0,0.3); }
+    }
+    @keyframes coin-orbit {
+      0% { transform: rotate(0deg) translateX(18px) rotate(0deg) scale(1); opacity: 1; }
+      25% { transform: rotate(90deg) translateX(18px) rotate(-90deg) scale(0.8); opacity: 0.8; }
+      50% { transform: rotate(180deg) translateX(18px) rotate(-180deg) scale(1); opacity: 1; }
+      75% { transform: rotate(270deg) translateX(18px) rotate(-270deg) scale(0.8); opacity: 0.8; }
+      100% { transform: rotate(360deg) translateX(18px) rotate(-360deg) scale(1); opacity: 1; }
+    }
+    @keyframes coin-orbit2 {
+      0% { transform: rotate(120deg) translateX(22px) rotate(-120deg) scale(0.7); opacity: 0.7; }
+      50% { transform: rotate(300deg) translateX(22px) rotate(-300deg) scale(1); opacity: 1; }
+      100% { transform: rotate(480deg) translateX(22px) rotate(-480deg) scale(0.7); opacity: 0.7; }
+    }
+    @keyframes coin-orbit3 {
+      0% { transform: rotate(240deg) translateX(16px) rotate(-240deg) scale(0.9); opacity: 0.9; }
+      50% { transform: rotate(420deg) translateX(16px) rotate(-420deg) scale(0.6); opacity: 0.6; }
+      100% { transform: rotate(600deg) translateX(16px) rotate(-600deg) scale(0.9); opacity: 0.9; }
+    }
+    @keyframes sparkle-burst {
+      0%, 100% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    .nav-sponsor-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-sponsor-wrap .nav-btn {
+      animation: sponsor-glow 2s ease-in-out infinite;
+      color: #ffe060 !important;
+      font-weight: 700;
+    }
+    .nav-sponsor-coin {
+      position: absolute;
+      font-size: 0.6rem;
+      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      margin-top: -5px;
+      margin-left: -5px;
+    }
+    .nav-sponsor-coin:nth-child(2) { animation: coin-orbit 3s linear infinite; }
+    .nav-sponsor-coin:nth-child(3) { animation: coin-orbit2 4s linear infinite; }
+    .nav-sponsor-coin:nth-child(4) { animation: coin-orbit3 3.5s linear infinite; }
+    .nav-sponsor-sparkle {
+      position: absolute;
+      font-size: 0.5rem;
+      pointer-events: none;
+      color: #ffe060;
+    }
+    .nav-sponsor-sparkle:nth-child(5) { top: -4px; right: -8px; animation: sparkle-burst 1.5s ease infinite 0s; }
+    .nav-sponsor-sparkle:nth-child(6) { bottom: -2px; left: -6px; animation: sparkle-burst 1.8s ease infinite 0.4s; }
+    .nav-sponsor-sparkle:nth-child(7) { top: -2px; left: 10px; animation: sparkle-burst 2s ease infinite 0.8s; }
+    .nav-sponsor-sparkle:nth-child(8) { bottom: -4px; right: 4px; animation: sparkle-burst 1.6s ease infinite 1.2s; }
   </style>
 </head>
 <body>
@@ -47,7 +144,7 @@
       <nav class="site-nav">
         <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
         <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
-        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><span class="nav-sponsor-wrap"><a href="sponsor.html" class="nav-btn">贊助說明</a><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-coin">💰</span><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✧</span><span class="nav-sponsor-sparkle">✦</span></span><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
       </nav>
       <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
     </div>
@@ -65,8 +162,20 @@
 
   <main class="fp-wrap">
 
+    <!-- ══ 頁內目錄 ══ -->
+    <nav class="promo-toc">
+      <a href="#sec-pre" class="promo-toc__link">◈ 事前推廣</a>
+      <a href="#sec-rules" class="promo-toc__link">◆ 推文規定</a>
+      <a href="#sec-copy" class="promo-toc__link">◈ 推廣文案</a>
+      <a href="#sec-groups" class="promo-toc__link">◆ 社團列表</a>
+      <a href="#sec-shop" class="promo-toc__link">◈ 兌換清單</a>
+      <a href="#sec-badge" class="promo-toc__link">◆ 獎勵能力</a>
+      <a href="#sec-live" class="promo-toc__link">◆ 直播說明</a>
+      <a href="#sec-live-badge" class="promo-toc__link">◆ 直播大使</a>
+    </nav>
+
     <!-- ══ 事前推廣 ══ -->
-    <div style="background:linear-gradient(135deg,#1a1400,#2a1e00);border:2px solid var(--gold-dim);border-radius:2px;padding:20px;margin-bottom:28px;">
+    <div id="sec-pre" style="background:linear-gradient(135deg,#1a1400,#2a1e00);border:2px solid var(--gold-dim);border-radius:2px;padding:20px;margin-bottom:28px;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
         <span style="font-size:1.2rem;color:#ffe060;">◈</span>
         <strong style="color:#ffe060;font-size:1.1rem;letter-spacing:0.1em;">開服事前推廣 — 雙倍推廣幣</strong>
@@ -82,7 +191,7 @@
     </div>
 
     <!-- ══ 推文規定 ══ -->
-    <p class="fp-heading">◆ 推文規定</p>
+    <p class="fp-heading" id="sec-rules">◆ 推文規定</p>
 
     <!-- 重要時程 -->
     <div class="promo-alert">
@@ -131,7 +240,7 @@
     </div>
 
     <!-- ══ FB 官方推廣文案 ══ -->
-    <p class="fp-heading">◈ FB 官方推廣文案</p>
+    <p class="fp-heading" id="sec-copy">◈ FB 官方推廣文案</p>
     <div class="fp-intro">請完整複製下方內容，貼至社團推文中。</div>
 
     <div class="promo-fb-copy">━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -166,7 +275,7 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
 
     <!-- ══ 社團推薦列表 ══ -->
-    <p class="fp-heading" style="margin-top:36px">◆ 社團推薦列表</p>
+    <p class="fp-heading" id="sec-groups" style="margin-top:36px">◆ 社團推薦列表</p>
     <div class="promo-box" style="font-size:.92em;line-height:2">
       • <a href="https://www.facebook.com/groups/1479500612362554/" target="_blank" style="color:var(--gold)">TW天堂私服列表網</a><br>
       • <a href="https://www.facebook.com/groups/335046453597856/" target="_blank" style="color:var(--gold)">天堂私服分享區</a><br>
@@ -178,7 +287,7 @@
     <hr style="border:0;border-top:1px solid #2a1f40;margin:28px 0">
 
     <!-- ══ 推廣商人兌換清單 ══ -->
-    <p class="fp-heading">◈ 推廣商人「艾莉莉」兌換清單</p>
+    <p class="fp-heading" id="sec-shop">◈ 推廣商人「艾莉莉」兌換清單</p>
     <div style="overflow-x:auto;border:1px solid #2a1f40;border-radius:8px;margin-bottom:24px">
       <table class="promo-table">
         <thead><tr><th>兌換項目</th><th style="text-align:center;width:18%">所需推廣幣</th><th>兌換項目</th><th style="text-align:center;width:18%">所需推廣幣</th></tr></thead>
@@ -194,7 +303,7 @@
     </div>
 
     <!-- ══ 推廣大使能力介紹 ══ -->
-    <p class="fp-heading">◆ 推廣獎勵物品能力介紹</p>
+    <p class="fp-heading" id="sec-badge">◆ 推廣獎勵物品能力介紹</p>
     <div class="promo-badge-box" style="margin-bottom:16px">
       <div class="promo-badge-item">
         <strong style="color:#64b5f6">🏅 推廣大使 LV.1 ~ LV.3</strong>
@@ -222,7 +331,7 @@
     <hr style="border:0;border-top:1px solid #2a1f40;margin:28px 0">
 
     <!-- ══ 直播說明 ══ -->
-    <p class="fp-heading">◆ 直播說明</p>
+    <p class="fp-heading" id="sec-live">◆ 直播說明</p>
 
     <!-- 行為規範 -->
     <div class="promo-box" style="border:1px solid rgba(249,168,37,.25);background:#1a1028">
@@ -295,7 +404,7 @@
     </div>
 
     <!-- 直播推廣大使屬性說明 -->
-    <p class="fp-heading">◆ 直播推廣大使屬性說明 (限時 7 日)</p>
+    <p class="fp-heading" id="sec-live-badge">◆ 直播推廣大使屬性說明 (限時 7 日)</p>
     <div class="promo-badge-box" style="margin-bottom:16px">
       <div class="promo-badge-item">
         <strong style="color:#64b5f6">🏅 推廣大使 LV.1 ~ LV.3</strong>
@@ -347,5 +456,18 @@
       </div>
     </footer>
   <script src="../assets/js/main.js"></script>
+  <script>
+    // 平滑滾動 + offset（避免被 sticky header 擋住）
+    document.querySelectorAll('.promo-toc__link').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          var top = target.getBoundingClientRect().top + window.pageYOffset - 130;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
