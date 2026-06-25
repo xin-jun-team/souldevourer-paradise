@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="噬魂天堂 — 玩家打卡牆，留下你的靈魂印記">
+  <title>打卡牆 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* ── Hero ── */
+    .wall-hero {
+      background: linear-gradient(180deg, #0a0514 0%, #04030a 100%);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+    .wall-hero__eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+    }
+    .wall-hero__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--text-bright);
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
+    .wall-hero__title span { color: var(--gold); }
+    .wall-hero__sub {
+      font-size: 0.85rem;
+      color: #a07840;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── 活動規則 ── */
+    .wall-rules-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px 0;
+    }
+    .wall-rules {
+      background: linear-gradient(160deg, #120e24 0%, #0c0818 100%);
+      border: 1px solid #1e1630;
+      border-left: 3px solid var(--gold);
+      padding: 24px 24px 20px;
+    }
+    .wall-rules__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    .wall-rules__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .wall-rules__list li {
+      font-size: 0.82rem;
+      color: #e8d090;
+      line-height: 1.85;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .wall-rules__list li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      color: var(--soul);
+      font-size: 0.55rem;
+      top: 4px;
+    }
+    .wall-rules__list li strong { color: #90caf9; }
+    .wall-rules__list li em {
+      color: var(--red, #cc0000);
+      font-style: normal;
+      font-weight: 700;
+    }
+    .wall-rules__warn {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: rgba(204, 0, 0, 0.08);
+      border: 1px solid rgba(204, 0, 0, 0.2);
+      border-left: 3px solid var(--red);
+      font-size: 0.78rem;
+      color: #ff8a80;
+      line-height: 1.7;
+    }
+    .wall-rules__footer {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #1e1630;
+      font-size: 0.72rem;
+      color: #a07840;
+      line-height: 1.6;
+    }
+
+    /* ── 發言表單 ── */
+    .wall-form-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 32px 24px 40px;
+    }
+    .wall-form {
+      background: linear-gradient(160deg, #120e24 0%, #0c0818 100%);
+      border: 1px solid #1e1630;
+      border-top: 3px solid var(--gold);
+      padding: 28px 24px;
+    }
+    .wall-form__row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .wall-form__input {
+      flex: 1;
+      background: #0a0610;
+      border: 1px solid #2a1f40;
+      color: #e8d090;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.9rem;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .wall-form__input::placeholder { color: #5a4020; }
+    .wall-form__input:focus { border-color: var(--gold); }
+    .wall-form__input--id { max-width: 160px; }
+    .wall-form__input--msg { flex: 2; }
+    .wall-form__btn {
+      background: linear-gradient(135deg, #d4a820, #a07818);
+      color: #0a0610;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      padding: 12px 28px;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+      transition: filter 0.2s;
+    }
+    .wall-form__btn:hover { filter: brightness(1.15); }
+    .wall-form__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .wall-form__hint {
+      font-size: 0.75rem;
+      color: #5a4020;
+      margin-top: 8px;
+      text-align: right;
+    }
+
+    /* ── 便利貼牆 - 佈告欄風格 ── */
+    .wall-board-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .wall-board-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1e1630;
+    }
+    .wall-board-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .wall-board-count {
+      font-size: 0.78rem;
+      color: #a07840;
+    }
+
+    /* 佈告欄背景 */
+    .wall-board {
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(122, 0, 204, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(204, 0, 0, 0.04) 0%, transparent 70%),
+        linear-gradient(160deg, #0e0a1e 0%, #08061a 50%, #0a0814 100%);
+      border: 1px solid #1e1630;
+      border-top: 2px solid var(--soul);
+      min-height: 400px;
+      padding: 40px 30px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* 頂部裝飾條 */
+    .wall-board::before {
+      content: '◆ 靈 魂 佈 告 欄 ◆';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      color: var(--soul);
+      padding: 6px;
+      background: linear-gradient(90deg, transparent, rgba(122,0,204,0.1), transparent);
+    }
+
+    /* 便利貼網格 */
+    .wall-notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px 20px;
+      perspective: 800px;
+    }
+
+    /* ── 單張便利貼 ── */
+    .wall-note {
+      position: relative;
+      padding: 28px 16px 14px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+      animation: wall-note-in 0.5s ease forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+      cursor: default;
+      z-index: 1;
+    }
+    .wall-note:hover {
+      transform: rotate(0deg) translateY(-8px) scale(1.05) !important;
+      z-index: 10;
+    }
+
+    /* 便利貼配色：5 種循環 */
+    .wall-note--0 {
+      background: linear-gradient(145deg, #1a1040 0%, #120c30 100%);
+      border: 1px solid #2a1f50;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(122,0,204,0.15);
+    }
+    .wall-note--0:hover { box-shadow: 6px 8px 24px rgba(122,0,204,0.25), inset 0 1px 0 rgba(122,0,204,0.2); }
+
+    .wall-note--1 {
+      background: linear-gradient(145deg, #1a0a10 0%, #140818 100%);
+      border: 1px solid #3a1020;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(204,0,0,0.12);
+    }
+    .wall-note--1:hover { box-shadow: 6px 8px 24px rgba(204,0,0,0.2), inset 0 1px 0 rgba(204,0,0,0.15); }
+
+    .wall-note--2 {
+      background: linear-gradient(145deg, #18140a 0%, #120e08 100%);
+      border: 1px solid #2a2010;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,168,32,0.12);
+    }
+    .wall-note--2:hover { box-shadow: 6px 8px 24px rgba(212,168,32,0.2), inset 0 1px 0 rgba(212,168,32,0.15); }
+
+    .wall-note--3 {
+      background: linear-gradient(145deg, #0a1418 0%, #081018 100%);
+      border: 1px solid #102030;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(100,180,255,0.1);
+    }
+    .wall-note--3:hover { box-shadow: 6px 8px 24px rgba(100,180,255,0.15), inset 0 1px 0 rgba(100,180,255,0.12); }
+
+    .wall-note--4 {
+      background: linear-gradient(145deg, #0a1810 0%, #081410 100%);
+      border: 1px solid #103020;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(0,200,100,0.1);
+    }
+    .wall-note--4:hover { box-shadow: 6px 8px 24px rgba(0,200,100,0.15), inset 0 1px 0 rgba(0,200,100,0.12); }
+
+    /* 圖釘 */
+    .wall-note__pin {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    .wall-note--0 .wall-note__pin { background: radial-gradient(circle at 40% 35%, #b040ff, #7a00cc); box-shadow: 0 2px 6px rgba(122,0,204,0.5); }
+    .wall-note--1 .wall-note__pin { background: radial-gradient(circle at 40% 35%, #ff4040, #cc0000); box-shadow: 0 2px 6px rgba(204,0,0,0.5); }
+    .wall-note--2 .wall-note__pin { background: radial-gradient(circle at 40% 35%, #ffe060, #d4a820); box-shadow: 0 2px 6px rgba(212,168,32,0.5); }
+    .wall-note--3 .wall-note__pin { background: radial-gradient(circle at 40% 35%, #64b5f6, #2196f3); box-shadow: 0 2px 6px rgba(33,150,243,0.4); }
+    .wall-note--4 .wall-note__pin { background: radial-gradient(circle at 40% 35%, #66ff99, #00c853); box-shadow: 0 2px 6px rgba(0,200,83,0.4); }
+
+    /* 圖釘光點 */
+    .wall-note__pin::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+    }
+
+    .wall-note__msg {
+      font-size: 0.88rem;
+      color: #e8d090;
+      line-height: 1.75;
+      margin-bottom: 12px;
+      word-break: break-word;
+      flex: 1;
+    }
+    .wall-note__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .wall-note__id {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+    .wall-note--0 .wall-note__id { color: #b040ff; }
+    .wall-note--1 .wall-note__id { color: #ff6060; }
+    .wall-note--2 .wall-note__id { color: var(--gold); }
+    .wall-note--3 .wall-note__id { color: #64b5f6; }
+    .wall-note--4 .wall-note__id { color: #66ff99; }
+    .wall-note__time {
+      font-size: 0.65rem;
+      color: #5a4020;
+    }
+
+    /* 入場動畫 */
+    @keyframes wall-note-in {
+      0% { opacity: 0; transform: translateY(30px) scale(0.9) rotate(0deg); }
+      60% { opacity: 1; }
+      100% { opacity: 1; transform: translateY(0) scale(1) var(--note-rotate, rotate(0deg)); }
+    }
+
+    /* 新便利貼閃光 */
+    .wall-note--new {
+      animation: wall-note-new 0.8s ease forwards;
+    }
+    @keyframes wall-note-new {
+      0% { opacity: 0; transform: translateY(-40px) scale(0.5) rotate(0deg); }
+      40% { opacity: 1; transform: translateY(8px) scale(1.08); }
+      70% { transform: translateY(-3px) scale(1.02); }
+      100% { opacity: 1; transform: translateY(0) scale(1) var(--note-rotate, rotate(0deg)); }
+    }
+    .wall-note--new::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border: 1px solid rgba(212,168,32,0.4);
+      animation: wall-glow-fade 2s ease forwards;
+      pointer-events: none;
+    }
+    @keyframes wall-glow-fade {
+      0% { box-shadow: 0 0 20px rgba(212,168,32,0.3); border-color: rgba(212,168,32,0.5); }
+      100% { box-shadow: 0 0 0 transparent; border-color: transparent; }
+    }
+
+    /* 載入 / 空 */
+    .wall-loading {
+      text-align: center;
+      padding: 80px 0;
+      color: #a07840;
+      font-size: 0.9rem;
+      grid-column: 1 / -1;
+    }
+    .wall-loading::before {
+      content: '◆';
+      display: block;
+      font-size: 1.5rem;
+      color: var(--soul);
+      animation: wall-pulse 1.2s infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes wall-pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    .wall-empty {
+      text-align: center;
+      padding: 80px 0;
+      color: #5a4020;
+      font-size: 0.9rem;
+      grid-column: 1 / -1;
+    }
+
+    /* ── 梯次分隔 ── */
+    .wall-batch-divider {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 0 10px;
+      margin-top: 8px;
+    }
+    .wall-batch-divider:first-child { margin-top: 0; padding-top: 0; }
+    .wall-batch-divider__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold-dim, #7a6018), transparent);
+    }
+    .wall-batch-divider__line--r {
+      background: linear-gradient(270deg, var(--gold-dim, #7a6018), transparent);
+    }
+    .wall-batch-divider__label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      white-space: nowrap;
+      text-align: center;
+    }
+    .wall-batch-divider__sub {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.65rem;
+      color: #a07840;
+      letter-spacing: 0.05em;
+    }
+    .wall-batch-divider--active .wall-batch-divider__label {
+      color: var(--soul-bright, #b040ff);
+      text-shadow: 0 0 8px rgba(122,0,204,0.4);
+    }
+    .wall-batch-divider--active .wall-batch-divider__line {
+      background: linear-gradient(90deg, var(--soul, #7a00cc), transparent);
+    }
+    .wall-batch-divider--active .wall-batch-divider__line--r {
+      background: linear-gradient(270deg, var(--soul, #7a00cc), transparent);
+    }
+    .wall-batch-tag {
+      display: inline-block;
+      font-size: 0.55rem;
+      padding: 1px 8px;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .wall-batch-tag--active {
+      background: rgba(122,0,204,0.2);
+      border: 1px solid rgba(122,0,204,0.4);
+      color: var(--soul-bright, #b040ff);
+    }
+    .wall-batch-tag--done {
+      background: rgba(212,168,32,0.1);
+      border: 1px solid rgba(212,168,32,0.2);
+      color: var(--gold-dim);
+    }
+
+    /* ── 歡迎公告橫幅 ── */
+    .wall-banner-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px 0;
+    }
+    .wall-banner {
+      background: linear-gradient(135deg, #1a0a2e 0%, #0e0620 50%, #180828 100%);
+      border: 1px solid #2a1850;
+      border-left: 4px solid var(--soul);
+      padding: 24px 24px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .wall-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(122,0,204,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .wall-banner__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--soul-bright, #b040ff);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .wall-banner__text {
+      font-size: 0.85rem;
+      color: #e8d090;
+      line-height: 1.8;
+    }
+    .wall-banner__text strong { color: #90caf9; }
+    .wall-banner__text .wall-banner__fun {
+      display: block;
+      margin-top: 8px;
+      color: #a07840;
+      font-size: 0.78rem;
+    }
+
+    /* ── 得獎公告 ── */
+    .wall-winners-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 20px 24px 0;
+    }
+    .wall-winners {
+      background: linear-gradient(160deg, #1a1408 0%, #120e04 100%);
+      border: 1px solid #2a2010;
+      border-left: 4px solid var(--gold);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .wall-winners::before {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, rgba(212,168,32,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .wall-winners__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .wall-winners__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+    }
+    .wall-winners__round {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      color: #a07840;
+      letter-spacing: 0.15em;
+    }
+    .wall-winners__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .wall-winners__item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      margin-bottom: 6px;
+      background: rgba(212,168,32,0.04);
+      border: 1px solid rgba(212,168,32,0.1);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .wall-winners__item:hover {
+      border-color: rgba(212,168,32,0.25);
+      background: rgba(212,168,32,0.08);
+    }
+    .wall-winners__rank {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      color: #0a0610;
+      background: linear-gradient(135deg, #ffe060, #d4a820);
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+    .wall-winners__id {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: #ffe060;
+      letter-spacing: 0.08em;
+      flex: 1;
+    }
+    .wall-winners__prize {
+      font-size: 0.78rem;
+      color: #90caf9;
+      font-weight: 700;
+    }
+    .wall-winners__date {
+      font-size: 0.65rem;
+      color: #5a4020;
+    }
+    .wall-winners__empty {
+      text-align: center;
+      padding: 20px 0;
+      color: #5a4020;
+      font-size: 0.82rem;
+    }
+    .wall-winners__note {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(212,168,32,0.1);
+      font-size: 0.72rem;
+      color: #a07840;
+      line-height: 1.6;
+    }
+
+    /* ── 手機 ── */
+    @media (max-width: 600px) {
+      .wall-form__row { flex-direction: column; }
+      .wall-form__input--id { max-width: 100%; }
+      .wall-notes-grid { grid-template-columns: 1fr 1fr; gap: 16px 12px; }
+      .wall-board { padding: 36px 16px 20px; }
+      .wall-note { min-height: 100px; padding: 24px 12px 10px; }
+      .wall-note__msg { font-size: 0.8rem; }
+    }
+    @media (max-width: 400px) {
+      .wall-notes-grid { grid-template-columns: 1fr; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ FLOATING SIDEBAR ═══════════════════════ -->
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-icon">✤</span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-icon">↓</span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a>
+        <a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a><a href="checkin-wall.html">打卡牆</a></div></div>
+        <a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a>
+      <a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a>
+      <span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="checkin-wall.html" class="mobile-sub">打卡牆</a>
+      <a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ PAGE HERO ═══════════════════════ -->
+  <div class="wall-hero">
+    <p class="wall-hero__eyebrow">SOUL DEVOURER · LINEAGE — CHECK-IN WALL</p>
+    <h1 class="wall-hero__title">靈魂<span>打卡牆</span></h1>
+    <p class="wall-hero__sub">留下你的靈魂印記 ◆ 讓世界知道你來過</p>
+  </div>
+
+  <!-- ═══════════════════════ 歡迎公告 ═══════════════════════ -->
+  <div class="wall-banner-wrap">
+    <div class="wall-banner">
+      <div class="wall-banner__title">◈ 歡迎來到靈魂打卡牆</div>
+      <div class="wall-banner__text">
+        歡迎在底下留言唷～官方會<strong>定期自動抽出幸運玩家</strong>，獎勵可能是藍鑽，依抽獎結果而定。<br>
+        獎池由官方依據遊戲進度與狀況決定，<strong>每次獎品都不一樣</strong> —— 當然有好也會有爛，盡量期待吧～ㄎㄎ
+        <span class="wall-banner__fun">想抽好獎？先留個言再說，沒留言的人是不會中獎的 ^^</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ 得獎公告 ═══════════════════════ -->
+  <div class="wall-winners-wrap">
+    <div class="wall-winners" id="wallWinners">
+      <div class="wall-winners__header">
+        <div class="wall-winners__title">◆ 得獎公告</div>
+        <div class="wall-winners__round" id="winnersRound"></div>
+      </div>
+      <div id="winnersList">
+        <div class="wall-winners__empty">尚未開獎，敬請期待下一期抽獎！</div>
+      </div>
+      <div class="wall-winners__note">
+        ※ 得獎者請於公告後 7 日內透過官方 LINE 領獎，逾期視同放棄。<br>
+        ※ 領獎時須驗證遊戲 ID 與 LINE 帳號一致性。
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ 活動規則 ═══════════════════════ -->
+  <div class="wall-rules-wrap">
+    <div class="wall-rules">
+      <div class="wall-rules__title">◈ 打卡抽獎活動辦法</div>
+      <ul class="wall-rules__list">
+        <li>在打卡牆留下你的靈魂印記，官方定期從中抽出幸運勇者</li>
+        <li>獎勵可能是<strong>藍鑽</strong>，依抽獎結果而定</li>
+        <li>每人最多留言 <strong>3 次</strong>（是「每人」不是「每隻帳號」）</li>
+        <li>領獎資格：須加入<strong>官方 LINE</strong> 並已申請 <strong>LINE 禮包</strong></li>
+        <li>每次抽獎每人僅限領取一次，重複者依序順延下一位</li>
+        <li>如有<em>辱罵、詆毀、髒話</em>等不當言論，<em>直接刪除並永久禁止參與</em></li>
+      </ul>
+      <div class="wall-rules__warn">
+        不要說那是你朋友的、不要說你換手機了 —— 查到就是查到。<br>
+        超過 3 次留言者，<strong>直接取消該期抽獎資格</strong>，不另行通知。<br>
+        辱罵 GM、詆毀伺服器、發表不當言論？直接刪除 + 終身禁止，不解釋。<br>
+        這是福利牆，搗亂我就收掉，感謝配合 ^^
+      </div>
+      <div class="wall-rules__footer">
+        ※ 本活動旨在維護 GM、小編與玩家之間的社群情誼，請珍惜每一次交流的機會。<br>
+        ※ 官方保留活動調整與最終解釋權。
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ 留言表單 ═══════════════════════ -->
+  <div class="wall-form-wrap">
+    <form class="wall-form" id="wallForm">
+      <div class="wall-form__row">
+        <input type="text" class="wall-form__input wall-form__input--id" id="wallId" placeholder="遊戲 ID" maxlength="20" required>
+        <input type="text" class="wall-form__input wall-form__input--msg" id="wallMsg" placeholder="留下你的靈魂印記..." maxlength="100" required>
+        <button type="submit" class="wall-form__btn" id="wallBtn">◆ 刻印</button>
+      </div>
+      <div class="wall-form__hint">每人限 3 次 · 最多 100 字 · 請勿張貼廣告或不當內容</div>
+    </form>
+  </div>
+
+  <!-- ═══════════════════════ 便利貼佈告欄 ═══════════════════════ -->
+  <div class="wall-board-wrap">
+    <div class="wall-board-header">
+      <div class="wall-board-title">◆ 靈魂刻印</div>
+      <div class="wall-board-count" id="wallCount"></div>
+    </div>
+    <div class="wall-board">
+      <div class="wall-notes-grid" id="wallGrid">
+        <div class="wall-loading">靈魂感應中...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text">
+            <span class="logo-text">噬魂天堂</span>
+          </div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a>
+          <span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a>
+          <span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a>
+          <span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a>
+          <span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy">
+        <div class="footer-copy__line"></div>
+        <p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    var API_URL = 'https://script.google.com/macros/s/AKfycbw-nvppHR9rHIKpwAtLIYecgLVeQjDJtOdJnA8btf8j4Yxr8rJTqpLU7qEek3Lkla4Efw/exec';
+    var grid = document.getElementById('wallGrid');
+    var form = document.getElementById('wallForm');
+    var btn = document.getElementById('wallBtn');
+    var countEl = document.getElementById('wallCount');
+    var cachedMessages = [];
+    var rotations = [-3.5, 1.8, -1.2, 2.5, -2.8, 0.8, -1.5, 3.2, -0.5, 2.0, -2.2, 1.0, -3.0, 0.5, 2.8, -1.8];
+
+    function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+    function fmtTime(raw) {
+      try {
+        var d = new Date(raw);
+        if (isNaN(d)) return '';
+        return String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+      } catch(e) { return ''; }
+    }
+
+    // 計算某日期所屬的週日~週六梯次
+    function getBatch(dateStr) {
+      var d = new Date(dateStr);
+      if (isNaN(d)) return null;
+      var day = d.getDay(); // 0=Sun
+      var sun = new Date(d); sun.setDate(d.getDate() - day);
+      var sat = new Date(sun); sat.setDate(sun.getDate() + 6);
+      var fmt = function(dt) {
+        return String(dt.getMonth()+1).padStart(2,'0') + '/' + String(dt.getDate()).padStart(2,'0');
+      };
+      return { key: fmt(sun) + '-' + fmt(sat), start: sun.getTime(), label: fmt(sun) + ' — ' + fmt(sat) };
+    }
+
+    // 取得當前梯次 key
+    function currentBatchKey() {
+      var b = getBatch(new Date().toISOString());
+      return b ? b.key : '';
+    }
+
+    function renderNotes(messages) {
+      cachedMessages = Array.isArray(messages) ? messages : [];
+      if (!messages || messages.length === 0) {
+        grid.innerHTML = '<div class="wall-empty">尚無靈魂刻印，成為第一位留下印記的勇者吧！</div>';
+        countEl.textContent = '';
+        return;
+      }
+      countEl.textContent = '共 ' + messages.length + ' 則靈魂印記';
+
+      // 依梯次分組
+      var batches = {};
+      var batchOrder = [];
+      messages.forEach(function(n) {
+        var b = getBatch(n.time);
+        var key = b ? b.key : 'unknown';
+        if (!batches[key]) {
+          batches[key] = { label: b ? b.label : '未知梯次', start: b ? b.start : 0, notes: [] };
+          batchOrder.push(key);
+        }
+        batches[key].notes.push(n);
+      });
+
+      // 按梯次時間倒序
+      batchOrder.sort(function(a, b) { return batches[b].start - batches[a].start; });
+
+      var curKey = currentBatchKey();
+      var html = '';
+      var noteIdx = 0;
+
+      batchOrder.forEach(function(key) {
+        var batch = batches[key];
+        var isActive = key === curKey;
+
+        // 梯次分隔線
+        html += '<div class="wall-batch-divider' + (isActive ? ' wall-batch-divider--active' : '') + '">' +
+          '<div class="wall-batch-divider__line"></div>' +
+          '<div class="wall-batch-divider__label">' +
+            '◆ ' + batch.label +
+            '<span class="wall-batch-tag ' + (isActive ? 'wall-batch-tag--active' : 'wall-batch-tag--done') + '">' +
+              (isActive ? '本期進行中' : '已結算') +
+            '</span>' +
+          '</div>' +
+          '<div class="wall-batch-divider__line wall-batch-divider__line--r"></div>' +
+        '</div>';
+
+        // 該梯次的便利貼（新的在前）
+        var sorted = batch.notes.slice().reverse();
+        sorted.forEach(function(n) {
+          var colorIdx = noteIdx % 5;
+          var rot = rotations[noteIdx % rotations.length];
+          var delay = Math.min(noteIdx * 0.06, 1.5);
+          html += '<div class="wall-note wall-note--' + colorIdx + '" style="--note-rotate:rotate(' + rot + 'deg);animation-delay:' + delay + 's;transform:rotate(' + rot + 'deg);">' +
+            '<div class="wall-note__pin"></div>' +
+            '<div class="wall-note__msg">' + esc(n.message || '') + '</div>' +
+            '<div class="wall-note__footer">' +
+              '<span class="wall-note__id">' + esc(n.gameId || '') + '</span>' +
+              '<span class="wall-note__time">' + fmtTime(n.time) + '</span>' +
+            '</div>' +
+          '</div>';
+          noteIdx++;
+        });
+      });
+
+      grid.innerHTML = html;
+    }
+
+    function renderWinners(winners) {
+      var listEl = document.getElementById('winnersList');
+      var roundEl = document.getElementById('winnersRound');
+      if (!winners || !winners.length) {
+        listEl.innerHTML = '<div class="wall-winners__empty">尚未開獎，敬請期待下一期抽獎！</div>';
+        roundEl.textContent = '';
+        return;
+      }
+      var latestRound = winners[winners.length - 1].round || '';
+      var latestWinners = winners.filter(function(w) { return w.round === latestRound; });
+      roundEl.textContent = latestRound;
+      listEl.innerHTML = latestWinners.map(function(w, i) {
+        return '<div class="wall-winners__item">' +
+          '<span class="wall-winners__rank">' + (i + 1) + '</span>' +
+          '<span class="wall-winners__id">' + esc(w.gameId || '') + '</span>' +
+          '<span class="wall-winners__prize">' + esc(w.prize || '') + '</span>' +
+          '<span class="wall-winners__date">' + fmtTime(w.time) + '</span>' +
+        '</div>';
+      }).join('');
+    }
+
+    function loadMessages() {
+      grid.innerHTML = '<div class="wall-loading">靈魂感應中...</div>';
+      fetch(API_URL)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.messages) {
+            renderNotes(data.messages);
+            renderWinners(data.winners);
+          } else {
+            renderNotes(data);
+          }
+        })
+        .catch(function() {
+          grid.innerHTML = '<div class="wall-empty">靈魂連線中斷，請稍後再試</div>';
+        });
+    }
+
+    // 違禁詞過濾
+    var BANNED = ['垃圾私服','破伺服器','白癡','腦殘','破gm','爛gm','廢物gm','智障','幹你','操你','靠北','他媽','去死','廢物','低能','賤','婊','屎','糞','狗屎','媽的','幹','靠','廢服','爛服','詐騙','騙錢','黑心','噁心','滾','廢','爛','垃圾','傻逼','你媽','雞掰','機掰','肏','fuck','shit','damn','bitch','asshole','trash server','garbage'];
+
+    function hasBanned(text) {
+      var t = text.toLowerCase().replace(/\s+/g, '');
+      for (var i = 0; i < BANNED.length; i++) {
+        if (t.indexOf(BANNED[i].toLowerCase()) !== -1) return true;
+      }
+      return false;
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var gameId = document.getElementById('wallId').value.trim();
+      var message = document.getElementById('wallMsg').value.trim();
+      if (!gameId || !message) return;
+
+      if (hasBanned(message) || hasBanned(gameId)) {
+        alert('留言含有不當言論，已被系統攔截。再犯將永久禁止參與活動。');
+        return;
+      }
+
+      var idCount = cachedMessages.filter(function(n) {
+        return n.gameId && n.gameId.toLowerCase() === gameId.toLowerCase();
+      }).length;
+      if (idCount >= 3) {
+        alert('此 ID 已留言 3 次，已達上限！嚴禁使用其他帳號繼續留言，查獲終身禁止參與活動～嘿嘿');
+        return;
+      }
+
+      cachedMessages.push({ time: new Date().toISOString(), gameId: gameId, message: message });
+      renderNotes(cachedMessages);
+      document.getElementById('wallId').value = '';
+      document.getElementById('wallMsg').value = '';
+      btn.textContent = '◆ 刻印';
+
+      fetch(API_URL, {
+        method: 'POST',
+        body: JSON.stringify({ gameId: gameId, message: message }),
+        headers: { 'Content-Type': 'text/plain' }
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res.status === 'limit') {
+          alert('此 ID 已留言 3 次，已達上限！嚴禁使用其他帳號繼續留言，查獲終身禁止參與活動～嘿嘿');
+          loadMessages();
+        }
+      })
+      .catch(function() {
+        alert('刻印失敗，請稍後再試');
+        loadMessages();
+      });
+    });
+
+    loadMessages();
+  </script>
+</body>
+</html>

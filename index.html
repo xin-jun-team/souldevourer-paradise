@@ -9,6 +9,140 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ── 首頁打卡牆卡片 ── */
+    .idx-wall-card {
+      background: linear-gradient(160deg, #120e24 0%, #0c0818 100%);
+      border: 1px solid #1e1630;
+      border-top: 3px solid var(--soul);
+      padding: 24px 20px 20px;
+    }
+    .idx-wall-card__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .idx-wall-card__icon {
+      font-size: 1.4rem;
+      color: var(--soul-bright, #b040ff);
+    }
+    .idx-wall-card__title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff4b8;
+      letter-spacing: 0.1em;
+    }
+    .idx-wall-card__sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      color: #a07840;
+      letter-spacing: 0.2em;
+    }
+
+    /* ── 表單 ── */
+    .idx-wall-form { margin-bottom: 16px; }
+    .idx-wall-form__row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .idx-wall-form__input {
+      background: #0a0610;
+      border: 1px solid #2a1f40;
+      color: #e8d090;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.82rem;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .idx-wall-form__input::placeholder { color: #5a4020; }
+    .idx-wall-form__input:focus { border-color: var(--soul); }
+    .idx-wall-form__input--id { max-width: 120px; }
+    .idx-wall-form__btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--soul), #5a00a0);
+      color: #fff;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, 100% 0, 97% 100%, 3% 100%);
+      transition: filter 0.2s;
+    }
+    .idx-wall-form__btn:hover { filter: brightness(1.2); }
+    .idx-wall-form__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── 留言列表 ── */
+    .idx-wall-notes {
+      max-height: 320px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: #2a1f40 #0a0610;
+    }
+    .idx-wall-note {
+      background: #0e0a1e;
+      border-left: 2px solid var(--soul);
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+    .idx-wall-note__msg {
+      font-size: 0.82rem;
+      color: #e8d090;
+      line-height: 1.6;
+      margin-bottom: 6px;
+      word-break: break-word;
+    }
+    .idx-wall-note__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .idx-wall-note__id {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      color: var(--gold);
+    }
+    .idx-wall-note__time {
+      font-size: 0.65rem;
+      color: #5a4020;
+    }
+    .idx-wall-loading {
+      text-align: center;
+      padding: 30px 0;
+      color: #a07840;
+      font-size: 0.82rem;
+    }
+    .idx-wall-empty {
+      text-align: center;
+      padding: 30px 0;
+      color: #5a4020;
+      font-size: 0.82rem;
+    }
+    .idx-wall-more {
+      display: block;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--soul-bright, #b040ff);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .idx-wall-more:hover { color: var(--gold); }
+
+    @media (max-width: 600px) {
+      .idx-wall-form__row { flex-direction: column; }
+      .idx-wall-form__input--id { max-width: 100%; }
+      .idx-wall-notes { max-height: 240px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -24,7 +158,7 @@
         <a href="pages/download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
         <a href="pages/news.html" class="nav-btn">最新公告</a>
         <a href="pages/events.html" class="nav-btn">活動資訊</a><a href="pages/features-overview.html" class="nav-btn">遊戲特色</a><a href="pages/version.html" class="nav-btn">版本設定</a><a href="pages/items-overview.html" class="nav-btn">裝備道具</a><a href="pages/boss-guide.html" class="nav-btn">BOSS介紹</a>
-        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="pages/disclaimer.html">免責聲明</a><a href="pages/rules.html">遊戲規章</a><a href="pages/class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div>        <a href="pages/promote.html" class="nav-btn">推文推廣</a><a href="pages/sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="pages/disclaimer.html">免責聲明</a><a href="pages/rules.html">遊戲規章</a><a href="pages/class-change.html">轉職介紹</a><a href="#">旅遊產品</a><a href="pages/checkin-wall.html">打卡牆</a></div></div>        <a href="pages/promote.html" class="nav-btn">推文推廣</a><a href="pages/sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
       </nav>
       <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單">
         <span></span><span></span><span></span>
@@ -34,7 +168,7 @@
       <a href="pages/download.html">遊戲下載</a>
       <a href="pages/news.html">最新公告</a>
       <a href="pages/events.html">活動資訊</a><a href="pages/features-overview.html">遊戲特色</a><a href="pages/version.html">版本設定</a><a href="pages/items-overview.html">裝備道具</a><a href="pages/boss-guide.html">BOSS介紹</a>
-      <span class="mobile-group-label">▸ 服務專區</span><a href="pages/disclaimer.html" class="mobile-sub">免責聲明</a><a href="pages/rules.html" class="mobile-sub">遊戲規章</a><a href="pages/class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a>      <a href="pages/promote.html">推文推廣</a><a href="pages/sponsor.html">贊助說明</a>
+      <span class="mobile-group-label">▸ 服務專區</span><a href="pages/disclaimer.html" class="mobile-sub">免責聲明</a><a href="pages/rules.html" class="mobile-sub">遊戲規章</a><a href="pages/class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="pages/checkin-wall.html" class="mobile-sub">打卡牆</a>      <a href="pages/promote.html">推文推廣</a><a href="pages/sponsor.html">贊助說明</a>
     </div>
   </header>
 
@@ -328,40 +462,32 @@
 
         </div>
 
-        <!-- 右側：每日打卡牆 -->
+        <!-- 右側：靈魂打卡牆 -->
         <div class="newbie-right">
-          <div class="checkin-card">
-            <div class="checkin-card__header">
-              <span class="checkin-card__icon">◈</span>
+          <div class="idx-wall-card">
+            <div class="idx-wall-card__header">
+              <span class="idx-wall-card__icon">◈</span>
               <div>
-                <div class="checkin-card__title">每日打卡牆</div>
-                <div class="checkin-card__sub">DAILY CHECK-IN</div>
+                <div class="idx-wall-card__title">靈魂打卡牆</div>
+                <div class="idx-wall-card__sub">SOUL CHECK-IN WALL</div>
               </div>
             </div>
 
-            <div class="checkin-card__body">
-              <p class="checkin-desc">每天到打卡牆留言打卡，累積天數兌換專屬獎勵。連續打卡天數越多，獎勵越豐厚！</p>
-
-              <div class="checkin-rewards">
-                <div class="checkin-reward-item">
-                  <span class="reward-day">第 7 天</span>
-                  <span class="reward-name">初心者禮包</span>
-                </div>
-                <div class="checkin-reward-item">
-                  <span class="reward-day">第 14 天</span>
-                  <span class="reward-name">強化石 ×5</span>
-                </div>
-                <div class="checkin-reward-item reward-special">
-                  <span class="reward-day">第 30 天</span>
-                  <span class="reward-name">★ 專屬稱號</span>
-                </div>
+            <!-- 發言表單 -->
+            <form class="idx-wall-form" id="idxWallForm">
+              <div class="idx-wall-form__row">
+                <input type="text" class="idx-wall-form__input idx-wall-form__input--id" id="idxWallId" placeholder="遊戲 ID" maxlength="20" required>
+                <input type="text" class="idx-wall-form__input idx-wall-form__input--msg" id="idxWallMsg" placeholder="留下靈魂印記..." maxlength="100" required>
               </div>
+              <button type="submit" class="idx-wall-form__btn" id="idxWallBtn">◆ 刻印</button>
+            </form>
+
+            <!-- 留言牆 -->
+            <div class="idx-wall-notes" id="idxWallNotes">
+              <div class="idx-wall-loading">靈魂感應中...</div>
             </div>
 
-            <a href="pages/checkin.html" class="checkin-btn">
-              <span>前往打卡領獎</span>
-              <span class="checkin-btn__arrow">→</span>
-            </a>
+            <a href="pages/checkin-wall.html" class="idx-wall-more">查看全部留言 →</a>
           </div>
         </div>
 
@@ -370,24 +496,6 @@
   </section>
 
 
-  <!-- ═══════════════════════ PATCH NOTES ═══════════════════════ -->
-  <section id="patch-notes" class="section section--alt">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-header__left">
-          <div class="eyebrow">PATCH NOTES</div>
-          <h2 class="section-title">更新歷程</h2>
-        </div>
-        <div class="section-header__right">
-          <a href="pages/updates.html" class="section-link">查看完整歷程 →</a>
-          <div class="section-line"></div>
-        </div>
-      </div>
-      <div id="update-list" class="update-list">
-        <div class="data-loading">載入中⋯</div>
-      </div>
-    </div>
-  </section>
 
   <!-- ═══════════════════════ CLASS CAROUSEL ═══════════════════════ -->
   <section id="class-section" class="section">
@@ -541,5 +649,73 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+  (function() {
+    var API = 'https://script.google.com/macros/s/AKfycbw-nvppHR9rHIKpwAtLIYecgLVeQjDJtOdJnA8btf8j4Yxr8rJTqpLU7qEek3Lkla4Efw/exec';
+    var box = document.getElementById('idxWallNotes');
+    var form = document.getElementById('idxWallForm');
+    var btn = document.getElementById('idxWallBtn');
+    var cached = [];
+
+    function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    function fmtTime(raw) {
+      try { var d = new Date(raw); if (isNaN(d)) return '';
+        return String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+      } catch(e) { return ''; }
+    }
+
+    function render(msgs) {
+      cached = Array.isArray(msgs) ? msgs : [];
+      if (!msgs || !msgs.length) { box.innerHTML = '<div class="idx-wall-empty">尚無靈魂刻印，成為第一位！</div>'; return; }
+      var sorted = msgs.slice().reverse().slice(0, 20);
+      box.innerHTML = sorted.map(function(n) {
+        return '<div class="idx-wall-note">' +
+          '<div class="idx-wall-note__msg">' + esc(n.message || '') + '</div>' +
+          '<div class="idx-wall-note__footer">' +
+            '<span class="idx-wall-note__id">' + esc(n.gameId || '') + '</span>' +
+            '<span class="idx-wall-note__time">' + fmtTime(n.time) + '</span>' +
+          '</div></div>';
+      }).join('');
+    }
+
+    function load() {
+      box.innerHTML = '<div class="idx-wall-loading">靈魂感應中...</div>';
+      fetch(API).then(function(r){return r.json();}).then(function(data) {
+        render(data.messages || data);
+      }).catch(function(){ box.innerHTML = '<div class="idx-wall-empty">連線中斷，稍後再試</div>'; });
+    }
+
+    var BANNED = ['垃圾私服','破伺服器','白癡','腦殘','破gm','爛gm','廢物gm','智障','幹你','操你','靠北','他媽','去死','廢物','低能','賤','婊','屎','糞','狗屎','媽的','幹','靠','廢服','爛服','詐騙','騙錢','黑心','噁心','滾','廢','爛','垃圾','傻逼','你媽','雞掰','機掰','肏','fuck','shit','damn','bitch','asshole','trash server','garbage'];
+    function hasBanned(t) { t = t.toLowerCase().replace(/\s+/g,''); for (var i=0;i<BANNED.length;i++) { if (t.indexOf(BANNED[i].toLowerCase())!==-1) return true; } return false; }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var id = document.getElementById('idxWallId').value.trim();
+      var msg = document.getElementById('idxWallMsg').value.trim();
+      if (!id || !msg) return;
+
+      if (hasBanned(msg) || hasBanned(id)) { alert('留言含有不當言論，已被系統攔截。再犯將永久禁止參與活動。'); return; }
+
+      var idCount = cached.filter(function(n) { return n.gameId && n.gameId.toLowerCase() === id.toLowerCase(); }).length;
+      if (idCount >= 3) { alert('此 ID 已留言 3 次，已達上限！嚴禁使用其他帳號繼續留言，查獲終身禁止參與活動～嘿嘿'); return; }
+
+      // 樂觀更新
+      cached.push({ time: new Date().toISOString(), gameId: id, message: msg });
+      render(cached);
+      document.getElementById('idxWallId').value = '';
+      document.getElementById('idxWallMsg').value = '';
+      btn.textContent = '◆ 刻印';
+
+      fetch(API, { method: 'POST', body: JSON.stringify({gameId: id, message: msg}), headers: {'Content-Type':'text/plain'} })
+        .then(function(r){return r.json();})
+        .then(function(res) {
+          if (res.status === 'limit') { alert('此 ID 已留言 3 次，已達上限！嚴禁使用其他帳號繼續留言，查獲終身禁止參與活動～嘿嘿'); load(); }
+        })
+        .catch(function() { load(); });
+    });
+
+    load();
+  })();
+  </script>
 </body>
 </html>
