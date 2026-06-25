@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王族專屬裝備 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .royal-showcase {
+      background: linear-gradient(160deg, #120e24 0%, #0c0818 55%, #100820 100%);
+      border: 1px solid #2a1f40;
+      border-radius: 2px;
+      padding: 32px 28px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .royal-img-wrap {
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .royal-img-box {
+      width: 120px; height: 120px;
+      background: linear-gradient(135deg, #1e1040, #150e28);
+      border: 1px solid rgba(212,168,32,0.35);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 24px rgba(122,0,204,0.25), inset 0 1px 0 rgba(212,168,32,0.1);
+      overflow: hidden;
+    }
+    .royal-img-box img {
+      width: 80px; height: 80px;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+    .royal-img-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.12em;
+      margin-top: 8px;
+    }
+    .royal-info { flex: 1; min-width: 220px; }
+    .royal-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--text-bright);
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .royal-restrict {
+      font-size: 0.78rem;
+      color: #ff8080;
+      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    .royal-stats {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 20px;
+    }
+    .royal-stat {
+      padding: 5px 14px;
+      border-radius: 2px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .royal-stat--neg { background: rgba(220,60,60,0.12); border: 1px solid rgba(220,60,60,0.3); color: #ff8080; }
+    .royal-stat--def { background: rgba(100,180,255,0.1); border: 1px solid rgba(100,180,255,0.25); color: #90caf9; }
+    .royal-stat--dmg { background: rgba(122,0,204,0.15); border: 1px solid rgba(122,0,204,0.35); color: #ce93d8; }
+    .royal-stat--hp  { background: rgba(0,200,100,0.1); border: 1px solid rgba(0,200,100,0.25); color: #80cbc4; }
+    .royal-stat--atk { background: rgba(212,168,32,0.12); border: 1px solid rgba(212,168,32,0.3); color: #ffe060; }
+
+    .royal-note {
+      background: rgba(212,168,32,0.05);
+      border-left: 3px solid var(--gold-dim);
+      padding: 12px 16px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .royal-note strong { color: var(--gold-dim); }
+
+    @media (max-width: 600px) {
+      .royal-showcase { flex-direction: column; align-items: center; text-align: center; }
+      .royal-stats { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — ROYAL EXCLUSIVE</p>
+    <h1 class="page-hero__title">王族<span>專屬裝備</span></h1>
+    <p class="page-hero__sub">王者之證，唯有王族方能配戴</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">👑 裝備介紹</p>
+    <div class="fp-intro">
+      王族專屬裝備「魅力王族」為王族職業限定配戴的特殊裝備，提供綜合戰力提升。<br>
+      能力數值會依據<strong>伺服器進度</strong>進行動態調整，確保各階段遊戲平衡。
+    </div>
+
+    <div class="royal-showcase">
+      <div class="royal-img-wrap">
+        <div class="royal-img-box">
+          <img src="../assets/images/item-17723.png" alt="魅力王族">
+        </div>
+        <div class="royal-img-label">ROYAL EXCLUSIVE</div>
+      </div>
+
+      <div class="royal-info">
+        <div class="royal-name">魅力王族</div>
+        <div class="royal-restrict">⚠ 限定王族專屬配戴</div>
+
+        <div class="royal-stats">
+          <span class="royal-stat royal-stat--neg">防禦 -1</span>
+          <span class="royal-stat royal-stat--def">魔法防禦 +1</span>
+          <span class="royal-stat royal-stat--dmg">傷害減免 -2</span>
+          <span class="royal-stat royal-stat--hp">HP +300</span>
+          <span class="royal-stat royal-stat--atk">近距離攻擊 +3</span>
+        </div>
+
+        <div class="royal-note">
+          ⚠️ 能力強度會依據<strong>伺服器進度</strong>進行動態調整，實際數值以遊戲內為準。
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text">
+            <span class="logo-text">噬魂天堂</span>
+            
+          </div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a>
+          <span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a>
+          <span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a>
+          <span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a>
+          <span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy">
+        <div class="footer-copy__line"></div>
+        <p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

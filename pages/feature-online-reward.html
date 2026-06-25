@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在線禮包 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .req-row { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:32px; }
+    .req-badge { background: linear-gradient(135deg, #1c1030 0%, #180e28 100%); border: 1px solid rgba(212,168,32,0.25); border-radius:2px; padding:12px 20px; }
+    .req-badge__label { font-size:0.7rem; color:#7a6030; display:block; margin-bottom:4px; letter-spacing:0.08em; }
+    .req-badge__val { font-family:'Cinzel',serif; font-size:1.1rem; font-weight:700; color:#ffe060; }
+
+    .reward-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+    .reward-table th { background: linear-gradient(90deg, rgba(212,168,32,0.2) 0%, rgba(212,168,32,0.08) 100%); color:var(--gold-dim); font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.12em; padding:10px 16px; border:1px solid #2a1f40; text-align:left; }
+    .reward-table td { background:#0e0a1c; padding:10px 16px; border:1px solid #1e1630; color:var(--text-dim); }
+    .reward-table tr:nth-child(even) td { background:#100c1e; }
+    .reward-table tr:hover td { background:#16102a; }
+    .reward-table td:first-child { color:var(--text-bright); }
+    .reward-rate { color:#ffe060; font-family:'Cinzel',serif; font-weight:700; font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — ONLINE REWARD</p>
+    <h1 class="page-hero__title">在線<span>禮包</span></h1>
+    <p class="page-hero__sub">掛線即有收穫，補給自動到手</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 系統說明</p>
+    <div class="fp-intro">
+      理解手動刷怪的辛苦，<strong>在線禮包</strong>作為遊戲過程中的額外補給。<br>
+      累積在線時間達到門檻後，系統將自動將禮包派送至背包，<strong>無需手動領取</strong>。
+    </div>
+
+    <div class="req-row">
+      <div class="req-badge"><span class="req-badge__label">需求等級</span><span class="req-badge__val">LV 58+</span></div>
+      <div class="req-badge"><span class="req-badge__label">累積時間</span><span class="req-badge__val">50 分鐘</span></div>
+      <div class="req-badge"><span class="req-badge__label">派送方式</span><span class="req-badge__val">自動入包</span></div>
+    </div>
+
+    <p class="fp-heading">◈ 獎勵清單</p>
+    <table class="reward-table">
+      <thead><tr><th>獎勵道具</th><th>數量</th><th>機率</th></tr></thead>
+      <tbody>
+        <tr><td>一般變身卡寶箱</td><td>1 ~ 3</td><td><span class="reward-rate">25%</span></td></tr>
+        <tr><td>一般娃娃卡寶箱</td><td>1 ~ 3</td><td><span class="reward-rate">25%</span></td></tr>
+        <tr><td>150% 經驗藥水</td><td>1 ~ 2</td><td><span class="reward-rate">15%</span></td></tr>
+        <tr><td>150% 經驗藥水（二階）</td><td>1 ~ 2</td><td><span class="reward-rate">15%</span></td></tr>
+        <tr><td>噬魂魔核碎片</td><td>1 ~ 2</td><td><span class="reward-rate">12%</span></td></tr>
+        <tr><td>噬魂鑽</td><td>1 ~ 10</td><td><span class="reward-rate">6%</span></td></tr>
+        <tr><td>噬魂魔核</td><td>1</td><td><span class="reward-rate">1%</span></td></tr>
+        <tr><td>神龍錢包</td><td>1</td><td><span class="reward-rate">1%</span></td></tr>
+      </tbody>
+    </table>
+
+    <!-- 上下頁導覽 -->
+    <div class="fp-pager">
+      <a href="feature-prestige.html" class="fp-pager__btn">
+        <span class="fp-pager__arrow">←</span>
+        <div><span class="fp-pager__dir">PREV</span><span class="fp-pager__name">威望系統</span></div>
+      </a>
+      <div class="fp-pager__center"><a href="features-overview.html" class="fp-pager__back">▲ 返回系統列表</a></div>
+      <a href="feature-maps.html" class="fp-pager__btn fp-pager__btn--next">
+        <div><span class="fp-pager__dir">NEXT</span><span class="fp-pager__name">地圖介紹</span></div>
+        <span class="fp-pager__arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

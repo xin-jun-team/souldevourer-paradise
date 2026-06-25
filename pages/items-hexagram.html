@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>威力彩選號 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .reward-table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+    .reward-table th { background:linear-gradient(90deg,rgba(212,168,32,0.2),rgba(212,168,32,0.08)); color:var(--gold-dim); font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.12em; padding:10px 16px; border:1px solid #2a1f40; text-align:left; }
+    .reward-table td { background:#0e0a1c; padding:10px 16px; border:1px solid #1e1630; color:var(--text-dim); }
+    .reward-table tr:nth-child(even) td { background:#100c1e; }
+    .reward-table tr:hover td { background:#16102a; }
+    .reward-table td:first-child { color:var(--text-bright); }
+
+    .info-grid { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:28px; }
+    .info-card { background:linear-gradient(135deg,#1c1030,#180e28); border:1px solid rgba(212,168,32,0.25); border-radius:2px; padding:12px 20px; flex:1; min-width:160px; }
+    .info-card__label { font-size:0.7rem; color:#7a6030; display:block; margin-bottom:4px; letter-spacing:0.08em; }
+    .info-card__val { font-family:'Cinzel',serif; font-size:1rem; font-weight:700; color:#ffe060; }
+
+    .success-badge { display:inline-block; background:rgba(0,200,100,0.12); color:#00c864; padding:5px 16px; border-radius:20px; font-size:0.85em; font-weight:700; border:1px solid rgba(0,200,100,0.25); margin-top:4px; }
+
+    .tier-star { color:#9334e6; font-weight:700; }
+    .tier-max { color:#c9a96e; font-weight:700; }
+    .stat-purple { color:#b39ddb; }
+    .stat-gold { color:#c9a96e; font-weight:700; }
+    .rate-high { color:#66bb6a; font-family:'Cinzel',serif; font-weight:700; }
+    .rate-mid { color:#64b5f6; font-family:'Cinzel',serif; font-weight:700; }
+    .rate-low { color:#9334e6; font-family:'Cinzel',serif; font-weight:700; }
+    .rate-rare { color:#c9a96e; font-family:'Cinzel',serif; font-weight:700; }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — HEXAGRAM BADGE</p>
+    <h1 class="page-hero__title">威力彩<span>選號</span></h1>
+    <p class="page-hero__sub">強力徽章系統，多層屬性強化，提升全角色基礎戰力</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">🔯 系統說明</p>
+    <div class="fp-intro">
+      <strong>威力彩選號</strong>是可裝備的強化道具，透過升階石逐步提升徽章等級，解鎖更多屬性加成。<br>
+      從 Lv.7 起將額外獲得力量、敏捷、智力屬性加成，是提升全角色基礎戰力的關鍵裝備。
+    </div>
+
+    <p class="fp-heading">🛠️ 升級資訊</p>
+    <div class="info-grid">
+      <div class="info-card"><span class="info-card__label">升級道具</span><span class="info-card__val">威力彩中獎升階石</span></div>
+      <div class="info-card"><span class="info-card__label">每次消耗</span><span class="info-card__val">30,000 天幣</span></div>
+      <div class="info-card"><span class="info-card__label">取得方式</span><span class="info-card__val">地底湖或藍鑽商城</span></div>
+      <div class="info-card"><span class="info-card__label">失敗機制</span><span class="info-card__val"><span class="success-badge">✔ 失敗不退階</span></span></div>
+    </div>
+
+    <p class="fp-heading">📊 徽章等級能力表</p>
+    <table class="reward-table">
+      <thead>
+        <tr>
+          <th>等級</th>
+          <th>能力加成（完整累加數值）</th>
+          <th>升階機率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lv.1</td>
+          <td>防禦-1, 近/遠命中+1, HP+30, MP+10</td>
+          <td><span class="rate-high">30%</span></td>
+        </tr>
+        <tr>
+          <td>Lv.2</td>
+          <td>防禦-2, 魔防+1, 近/遠命中+1, 近/遠傷+1, HP+70, MP+15</td>
+          <td><span class="rate-high">20%</span></td>
+        </tr>
+        <tr>
+          <td>Lv.3</td>
+          <td>防禦-2, 魔防+2, 近/遠命中+2, 近/遠傷+2, HP+90, MP+20</td>
+          <td><span class="rate-high">20%</span></td>
+        </tr>
+        <tr>
+          <td>Lv.4</td>
+          <td>防禦-2, 魔防+3, 近/遠命中+3, 近/遠傷+3, HP+110, MP+25</td>
+          <td><span class="rate-mid">10%</span></td>
+        </tr>
+        <tr>
+          <td>Lv.5</td>
+          <td>防禦-2, 魔防+4, 近/遠命中+4, 近/遠傷+4, 魔攻+1, HP+130, MP+30</td>
+          <td><span class="rate-mid">8%</span></td>
+        </tr>
+        <tr>
+          <td>Lv.6</td>
+          <td>防禦-2, 魔防+5, 近/遠命中+5, 近/遠傷+5, 魔攻+2, HP+150, MP+35</td>
+          <td><span class="rate-mid">5%</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier-star">★ Lv.7</span></td>
+          <td><span class="stat-purple">力敏智+1,</span> 防禦-2, 魔防+6, 近/遠命中+5, 近/遠傷+5, 魔攻+2, HP+170, MP+40</td>
+          <td><span class="rate-low">3%</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier-star">★ Lv.8</span></td>
+          <td><span class="stat-purple">力敏智+2,</span> 防禦-3, 魔防+7, 近/遠命中+5, 近/遠傷+5, 魔攻+3, HP+200, MP+50</td>
+          <td><span class="rate-low">2%</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier-star">★ Lv.9</span></td>
+          <td><span class="stat-purple">力敏智+3,</span> 防禦-4, 魔防+8, 近/遠命中+6, 近/遠傷+6, 魔攻+3, HP+250, MP+80</td>
+          <td><span class="rate-low">1%</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier-max">★ 威力彩頭獎</span></td>
+          <td><span class="stat-gold">力敏智+4, 防禦-5, 魔防+10, 近/遠命中+8, 近/遠傷+8, 魔攻+4, HP+300, MP+100</span></td>
+          <td><span class="rate-rare">0.5%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="color:#5a4a70;font-size:0.78rem;margin-top:10px;text-align:center">★ Lv.7 起獲得力敏智屬性加成，可見顯著戰力提升</p>
+
+    <!-- 上下頁導覽 -->
+    <div class="fp-pager">
+      <a href="items-armor.html" class="fp-pager__btn">
+        <span class="fp-pager__arrow">←</span>
+        <div><span class="fp-pager__dir">PREV</span><span class="fp-pager__name">防具介紹</span></div>
+      </a>
+      <div class="fp-pager__center"><a href="items-overview.html" class="fp-pager__back">▲ 返回裝備道具列表</a></div>
+      <a href="items-horse.html" class="fp-pager__btn fp-pager__btn--next">
+        <div><span class="fp-pager__dir">NEXT</span><span class="fp-pager__name">神獸之卵</span></div>
+        <span class="fp-pager__arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

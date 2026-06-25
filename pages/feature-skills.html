@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>職業特殊技能 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .skill-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; margin-bottom:16px; }
+    .skill-card {
+      background:linear-gradient(135deg,#100c20,#0c0818 60%,#120a1e);
+      border:1px solid #1e1630; border-radius:2px; overflow:hidden;
+      transition:border-color 0.2s,transform 0.2s;
+    }
+    .skill-card:hover { border-color:var(--gold-dim); transform:translateY(-3px); }
+    .skill-card__head {
+      padding:16px 18px; border-bottom:1px solid #1e1630;
+      display:flex; align-items:center; gap:12px;
+    }
+    .skill-card__icons { display:flex; gap:4px; }
+    .skill-card__icons img { width:36px; height:36px; border-radius:2px; border:1px solid #2a1f40; }
+    .skill-card__name { font-family:'Noto Serif TC',serif; font-size:1rem; font-weight:700; color:var(--text-bright); }
+    .skill-card__class { font-size:0.7rem; color:var(--gold-dim); font-family:'Cinzel',serif; margin-top:2px; }
+    .skill-card__body { padding:14px 18px; }
+    .skill-stat { display:flex; justify-content:space-between; font-size:0.82rem; padding:5px 0; border-bottom:1px solid #1a1228; }
+    .skill-stat:last-of-type { border-bottom:none; }
+    .skill-stat__k { color:var(--text-dim); }
+    .skill-stat__v { font-weight:700; color:var(--text-bright); }
+    .skill-stat__v--red { color:#ff8080; }
+    .skill-stat__v--gold { color:#ffe060; }
+    .skill-stat__v--green { color:#80cbc4; }
+
+    .class-sec { margin-bottom:32px; }
+    .class-sec__head {
+      display:flex; align-items:center; gap:12px;
+      padding:12px 18px; margin-bottom:14px;
+      border-left:4px solid; border-radius:0 2px 2px 0;
+    }
+    .class-sec__head--royal { background:linear-gradient(90deg,rgba(212,168,32,0.1),transparent); border-color:var(--gold); }
+    .class-sec__head--knight { background:linear-gradient(90deg,rgba(200,0,0,0.1),transparent); border-color:#c62828; }
+    .class-sec__head--elf { background:linear-gradient(90deg,rgba(0,200,100,0.1),transparent); border-color:#2e7d32; }
+    .class-sec__head--wizard { background:linear-gradient(90deg,rgba(100,180,255,0.1),transparent); border-color:#1565c0; }
+    .class-sec__head--darkelf { background:linear-gradient(90deg,rgba(122,0,204,0.1),transparent); border-color:#7a00cc; }
+    .class-sec__title { font-family:'Noto Serif TC',serif; font-size:1.05rem; font-weight:700; color:var(--text-bright); }
+
+    @media(max-width:600px) { .skill-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header"><div class="header-inner container"><a href="../index.html" class="site-logo"><img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂"><span class="logo-text">噬魂天堂</span></a><nav class="site-nav"><a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a><a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a><div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button></nav><button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button></div><div class="mobile-nav" id="mobile-nav"><a href="download.html">遊戲下載</a><a href="news.html">最新公告</a><a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a></div></header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — CLASS SKILLS</p>
+    <h1 class="page-hero__title">職業<span>特殊技能</span></h1>
+    <p class="page-hero__sub">各職業專屬強力技能，掌握戰場主導權</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 系統說明</p>
+    <div class="fp-intro">
+      本伺服器針對各職業設計了專屬的強大技能，獲取對應技能書後即可學習。<br>
+      <strong style="color:#ff8080;">獲取管道：噬魂棒棒糖每日兌換站</strong>
+    </div>
+
+    <!-- ═══ 王族 ═══ -->
+    <div class="class-sec">
+      <div class="class-sec__head class-sec__head--royal">
+        <div class="class-sec__title">王族</div>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-card__head">
+            <div class="skill-card__icons">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICf2mFNbUGBxu5OoiC5yo1bLNCVGJJAAJIDWsbRXEwVPZif_LulbBpAQADAgADbQADOAQ.png" alt="">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICgGmFNdcULUp73HaXc3P5sD4kp366AAJJDWsbRXEwVBsiWcJkHtk9AQADAgADbQADOAQ.png" alt="">
+            </div>
+            <div>
+              <div class="skill-card__name">王者之劍（衝暈）</div>
+              <div class="skill-card__class">ROYAL · LV.54</div>
+            </div>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-stat"><span class="skill-stat__k">技能效果</span><span class="skill-stat__v">五格距離衝暈，<span class="skill-stat__v--red">不限定武器</span></span></div>
+            <div class="skill-stat"><span class="skill-stat__k">持續時間</span><span class="skill-stat__v skill-stat__v--gold">2 ~ 5 秒</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">消耗</span><span class="skill-stat__v">MP 45</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">冷卻時間</span><span class="skill-stat__v skill-stat__v--green">10 秒</span></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card__head">
+            <div class="skill-card__icons">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICf2mFNbUGBxu5OoiC5yo1bLNCVGJJAAJIDWsbRXEwVPZif_LulbBpAQADAgADbQADOAQ.png" alt="">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICemmFNWot2QnsbCefg9L0L5rcjmr5AAJCDWsbRXEwVFMln5UeZLcbAQADAgADbQADOAQ.png" alt="">
+            </div>
+            <div>
+              <div class="skill-card__name">霸體</div>
+              <div class="skill-card__class">ROYAL · LV.58</div>
+            </div>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-stat"><span class="skill-stat__k">技能效果</span><span class="skill-stat__v">短時間內增加大量傷害減免</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">持續時間</span><span class="skill-stat__v skill-stat__v--gold">63 秒</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">冷卻時間</span><span class="skill-stat__v skill-stat__v--green">6 秒</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 騎士 ═══ -->
+    <div class="class-sec">
+      <div class="class-sec__head class-sec__head--knight">
+        <div class="class-sec__title">騎士</div>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-card__head">
+            <div class="skill-card__icons">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICe2mFNYHLi61SJsEwtWsX05_ONI5gAAJDDWsbRXEwVNARXjbpjxbrAQADAgADbQADOAQ.png" alt="">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICdmmFNS9pMbRIv103BunhWd2E0D6gAAI-DWsbRXEwVC_dNWAfG78zAQADAgADbQADOAQ.png" alt="">
+            </div>
+            <div>
+              <div class="skill-card__name">狂襲</div>
+              <div class="skill-card__class">KNIGHT · LV.58</div>
+            </div>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-stat"><span class="skill-stat__k">技能效果</span><span class="skill-stat__v">釋放體內火焰，短時間傷害提升</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">持續時間</span><span class="skill-stat__v skill-stat__v--gold">32 秒</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">冷卻時間</span><span class="skill-stat__v skill-stat__v--green">10 秒</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 妖精 ═══ -->
+    <div class="class-sec">
+      <div class="class-sec__head class-sec__head--elf">
+        <div class="class-sec__title">妖精</div>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-card__head">
+            <div class="skill-card__icons">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICfmmFNaiDh-XT2vyDwdyVT_uZFvgkAAJGDWsbRXEwVMNeZhfiHuq6AQADAgADbQADOAQ.png" alt="">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICeWmFNVnGFVI0ib6RzTWWNlOEWhwCAAJBDWsbRXEwVJ2dcX1QsdNHAQADAgADbQADOAQ.png" alt="">
+            </div>
+            <div>
+              <div class="skill-card__name">精靈之暈</div>
+              <div class="skill-card__class">ELF · LV.58</div>
+            </div>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-stat"><span class="skill-stat__k">技能效果</span><span class="skill-stat__v">十格距離衝暈，<span class="skill-stat__v--red">限定弓箭</span></span></div>
+            <div class="skill-stat"><span class="skill-stat__k">持續時間</span><span class="skill-stat__v skill-stat__v--gold">1 ~ 2 秒</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">消耗</span><span class="skill-stat__v">MP 50</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">冷卻時間</span><span class="skill-stat__v skill-stat__v--green">5 秒</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 法師 ═══ -->
+    <div class="class-sec">
+      <div class="class-sec__head class-sec__head--wizard">
+        <div class="class-sec__title">法師</div>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-card__head">
+            <div class="skill-card__icons">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICfGmFNYzK0JnJ00yR3vMr9NlKslsbAAJEDWsbRXEwVOLBBEgfbpUjAQADAgADbQADOAQ.png" alt="">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICd2mFNT5yiAuV1PmyKdZlHkfj-feZAAI_DWsbRXEwVB2C9tnCUV8WAQADAgADbQADOAQ.png" alt="">
+            </div>
+            <div>
+              <div class="skill-card__name">力場</div>
+              <div class="skill-card__class">WIZARD · LV.58</div>
+            </div>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-stat"><span class="skill-stat__k">技能效果</span><span class="skill-stat__v">控制結界，目標<span class="skill-stat__v--red">無法瞬移</span></span></div>
+            <div class="skill-stat"><span class="skill-stat__k">持續時間</span><span class="skill-stat__v skill-stat__v--gold">2 ~ 5 秒</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">冷卻時間</span><span class="skill-stat__v skill-stat__v--green">6 秒</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 黑暗妖精 ═══ -->
+    <div class="class-sec">
+      <div class="class-sec__head class-sec__head--darkelf">
+        <div class="class-sec__title">黑暗妖精</div>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-card__head">
+            <div class="skill-card__icons">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICfWmFNZu619aH2hkjDwJOn4QrmiW1AAJFDWsbRXEwVBYZVJdlqGXaAQADAgADbQADOAQ.png" alt="">
+              <img src="https://telegraph-image-1n0.pages.dev/file/AgACAgUAAyEGAAS3SV8sAAICeGmFNUqPQZXk3D2jHP-CS9GoZgABogACQA1rG0VxMFSf14PlhimosAEAAwIAA20AAzgE.png" alt="">
+            </div>
+            <div>
+              <div class="skill-card__name">復仇</div>
+              <div class="skill-card__class">DARK ELF · LV.58</div>
+            </div>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-stat"><span class="skill-stat__k">技能效果</span><span class="skill-stat__v">給予對手致命一擊</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">消耗</span><span class="skill-stat__v"><span class="skill-stat__v--red">HP 400</span> / MP 100</span></div>
+            <div class="skill-stat"><span class="skill-stat__k">冷卻時間</span><span class="skill-stat__v skill-stat__v--green">12 秒</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

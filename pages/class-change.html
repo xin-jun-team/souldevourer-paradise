@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轉職服務 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .cc-plan { background:#120e24; border:1px solid #2a1f40; border-radius:2px; padding:24px; margin-bottom:20px; }
+    .cc-plan--recommend { border-color:var(--gold-dim); box-shadow:0 0 20px rgba(212,168,32,0.08); }
+    .cc-plan__tag { display:inline-block; font-size:0.7rem; font-weight:700; padding:3px 10px; border-radius:2px; margin-bottom:12px; }
+    .cc-plan__tag--basic { background:#1a0a2a; color:#ce93d8; border:1px solid rgba(206,147,216,0.3); }
+    .cc-plan__tag--full { background:#1a1400; color:#ffe060; border:1px solid rgba(212,168,32,0.3); }
+    .cc-plan__title { font-family:'Noto Serif TC',serif; font-size:1.1rem; font-weight:700; color:var(--text-bright); margin-bottom:8px; }
+    .cc-plan__price { font-family:'Cinzel',serif; font-size:1.6rem; font-weight:700; color:#ffe060; margin-bottom:6px; }
+    .cc-plan__note { font-size:0.8rem; color:var(--text-dim); margin-bottom:14px; }
+    .cc-plan__list { font-size:0.85rem; color:var(--text-dim); line-height:1.9; list-style:none; padding:0; }
+    .cc-plan__list li { padding:3px 0; }
+    .cc-plan__list li::before { content:"▸ "; color:var(--gold-dim); }
+    .cc-plan__example { font-size:0.8rem; color:var(--text-dim); line-height:1.8; margin-top:10px; padding:12px; background:#0e0a1c; border:1px solid #1e1630; border-radius:2px; }
+    .cc-plan__example strong { color:var(--text-bright); }
+    .cc-warn { background:#1a0a10; border:2px solid rgba(239,83,80,0.5); border-radius:2px; padding:20px; margin-top:28px; }
+    .cc-warn__title { color:#ef5350; font-size:1rem; font-weight:700; margin-bottom:10px; }
+    .cc-warn__list { font-size:0.85rem; color:var(--text-dim); line-height:1.9; list-style:none; padding:0; }
+    .cc-warn__list li { padding:4px 0; }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — CLASS CHANGE</p>
+    <h1 class="page-hero__title">轉職<span>服務</span></h1>
+    <p class="page-hero__sub">預約客服，由工程師協助完成轉職</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 服務說明</p>
+    <div class="fp-intro">
+      團隊提供完善的轉職服務，轉職需提前與客服預約時間！<br>
+      預約後會安排工程師時間進行轉職，<strong>請勿催促</strong>！
+    </div>
+
+    <p class="fp-heading">◈ 轉職方案內容</p>
+
+    <!-- 方案一 -->
+    <div class="cc-plan">
+      <span class="cc-plan__tag cc-plan__tag--basic">方案一</span>
+      <div class="cc-plan__title">簡易轉職</div>
+      <div class="cc-plan__price">$3,000</div>
+      <div class="cc-plan__note">贊助將算計於當期活動累計贊助中，回收贊助幣。</div>
+      <ul class="cc-plan__list">
+        <li>純粹轉職業</li>
+        <li>等級不變</li>
+        <li>經驗歸零</li>
+        <li>技能清空</li>
+        <li>裝備不變</li>
+      </ul>
+    </div>
+
+    <!-- 方案二 -->
+    <div class="cc-plan cc-plan--recommend">
+      <span class="cc-plan__tag cc-plan__tag--full">方案二 · 推薦</span>
+      <div class="cc-plan__title">完整轉職</div>
+      <div class="cc-plan__price">$5,000</div>
+      <div class="cc-plan__note">贊助將算計於當期活動累計贊助中，回收贊助幣。</div>
+      <ul class="cc-plan__list">
+        <li>等級不變、經驗歸零</li>
+        <li>技能對應變更</li>
+        <li>裝備對應變更</li>
+      </ul>
+      <div class="cc-plan__example">
+        <strong>技能範例：</strong>黑妖轉妖精，身上技能有雙重破壞 → 妖精轉職後習得三重矢（非水晶）<br>
+        <strong>裝備範例：</strong>黑妖轉妖精，身上武器為 +7 雙刀 → 妖精轉職後獲得 +7 弓<br>
+        <strong>特殊裝備：</strong>如力量裝備，可將力量轉為敏捷等
+      </div>
+    </div>
+
+    <!-- 警告 -->
+    <div class="cc-warn">
+      <div class="cc-warn__title">⚠ 警告與最終裁決</div>
+      <ul class="cc-warn__list">
+        <li>◆ 請勿投機取巧幫盟友轉取，若經查發現，將直接移除代轉內容。</li>
+        <li>◆ 不要跟我說什麼他賣你、你用不習慣還他之類的，GM 不是白痴。</li>
+        <li>◆ 若相對裝備及技能有轉換問題時，由 GM 與玩家討論結案！</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:28px;text-align:center;">
+      <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" style="display:inline-block;background:#06C755;color:#fff;padding:12px 28px;border-radius:2px;font-size:0.95rem;font-weight:700;text-decoration:none;">LINE 聯繫客服預約轉職</a>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

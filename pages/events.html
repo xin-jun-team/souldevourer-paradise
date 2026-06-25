@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活動資訊 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .ev-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-bottom:32px; }
+    .ev-link {
+      background:linear-gradient(160deg,#14102a,#0c0818 50%,#10081e);
+      border:1px solid #2a1f40; border-radius:2px; overflow:hidden;
+      text-decoration:none; display:block;
+      transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
+    }
+    .ev-link:hover { border-color:var(--gold-dim); transform:translateY(-4px); box-shadow:0 8px 24px rgba(122,0,204,0.12); }
+    .ev-link__head {
+      padding:16px 20px; border-bottom:1px solid #1e1630;
+      display:flex; align-items:center; gap:12px;
+    }
+    .ev-link__tag {
+      font-size:0.65rem; font-weight:700; padding:3px 10px; border-radius:2px; flex-shrink:0;
+      font-family:'Cinzel',serif;
+    }
+    .ev-link__tag--active { background:rgba(0,200,100,0.15); border:1px solid rgba(0,200,100,0.3); color:#80cbc4; }
+    .ev-link__tag--permanent { background:rgba(212,168,32,0.12); border:1px solid rgba(212,168,32,0.3); color:#ffe060; }
+    .ev-link__tag--coming { background:rgba(100,180,255,0.1); border:1px solid rgba(100,180,255,0.25); color:#90caf9; }
+    .ev-link__title { font-family:'Noto Serif TC',serif; font-size:1rem; font-weight:700; color:var(--text-bright); letter-spacing:0.08em; }
+    .ev-link__body { padding:14px 20px; }
+    .ev-link__desc { font-size:0.82rem; color:var(--text-dim); line-height:1.7; margin-bottom:10px; }
+    .ev-link__arrow { font-family:'Cinzel',serif; font-size:0.72rem; color:var(--gold-dim); display:flex; align-items:center; gap:6px; }
+    .ev-link__arrow::after { content:'→'; color:var(--gold); }
+    .ev-link:hover .ev-link__arrow { color:var(--gold); }
+    .ev-link:hover .ev-link__arrow::after { color:var(--gold-bright); }
+    .ev-link__date { font-size:0.7rem; color:var(--gold-dim); font-family:'Cinzel',serif; margin-top:4px; }
+
+    .ev-cat-title {
+      font-family:'Noto Serif TC',serif; font-size:1rem; font-weight:700;
+      color:var(--gold); letter-spacing:0.15em; margin-bottom:16px;
+      display:flex; align-items:center; gap:10px;
+      padding:10px 16px;
+      background:linear-gradient(90deg,rgba(212,168,32,0.09) 0%,transparent 100%);
+      border-left:3px solid var(--gold-dim);
+    }
+    .ev-cat-title::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--gold-dim),transparent); }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header"><div class="header-inner container"><a href="../index.html" class="site-logo"><img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂"><span class="logo-text">噬魂天堂</span></a><nav class="site-nav"><a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a><a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a><div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button></nav><button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button></div><div class="mobile-nav" id="mobile-nav"><a href="download.html">遊戲下載</a><a href="news.html">最新公告</a><a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a></div></header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — EVENTS</p>
+    <h1 class="page-hero__title">活動<span>資訊</span></h1>
+    <p class="page-hero__sub">參與活動獲取豐厚獎勵</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <!-- ═══ 進行中活動 ═══ -->
+    <p class="ev-cat-title">◆ 進行中活動</p>
+    <div class="ev-grid">
+
+      <a href="event-line-gift.html" class="ev-link">
+        <div class="ev-link__head">
+          <span class="ev-link__tag ev-link__tag--permanent">長期活動</span>
+          <div class="ev-link__title">LINE 社群新手禮包</div>
+        </div>
+        <div class="ev-link__body">
+          <div class="ev-link__desc">加入 LINE 社群，截圖官網並提供帳號即可領取名譽貨幣、巧克力蛋糕、象牙塔治癒藥水等豐厚獎勵。</div>
+          <div class="ev-link__date">即日起 · 每帳號限領一次</div>
+          <div class="ev-link__arrow">查看詳情</div>
+        </div>
+      </a>
+
+      <a href="event-daily-boss.html" class="ev-link">
+        <div class="ev-link__head">
+          <span class="ev-link__tag ev-link__tag--active">每日活動</span>
+          <div class="ev-link__title">每日 BOSS 挑戰</div>
+        </div>
+        <div class="ev-link__body">
+          <div class="ev-link__desc">每日四個時段各出現一隻強力 BOSS，擊殺獲得 BOSS 裝備專屬材料與大量稀有道具。</div>
+          <div class="ev-link__date">10:00 / 14:00 / 19:00 / 21:00</div>
+          <div class="ev-link__arrow">查看詳情</div>
+        </div>
+      </a>
+
+      <div class="ev-link" style="cursor:default;">
+        <div class="ev-link__head">
+          <span class="ev-link__tag ev-link__tag--permanent">長期活動</span>
+          <div class="ev-link__title">首儲贈送</div>
+        </div>
+        <div class="ev-link__body">
+          <div class="ev-link__desc">首次贊助即贈送<strong style="color:#ffe060;">英雄製作秘笈 ×1</strong> + <strong style="color:#ce93d8;">噬魂魔核 ×1</strong>，助你快速踏上強化之路！</div>
+          <div class="ev-link__date">即日起 · 每帳號限領一次</div>
+        </div>
+      </div>
+
+      <a href="event-sponsor-gift.html" class="ev-link">
+        <div class="ev-link__head">
+          <span class="ev-link__tag ev-link__tag--permanent">長期活動</span>
+          <div class="ev-link__title">累計贊助禮包</div>
+        </div>
+        <div class="ev-link__body">
+          <div class="ev-link__desc">贊助累計達標即可領取豐厚禮包，共 6 階段（$1,000 ~ $30,000），含變身卡、製作秘笈、升階石等稀有道具。</div>
+          <div class="ev-link__date">即日起 · 每階段限領一次</div>
+          <div class="ev-link__arrow">查看詳情</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ═══ 即將推出 ═══ -->
+    <p class="ev-cat-title">◈ 即將推出</p>
+    <div class="ev-grid">
+
+      <div class="ev-link" style="opacity:0.6;cursor:default;">
+        <div class="ev-link__head">
+          <span class="ev-link__tag ev-link__tag--coming">敬請期待</span>
+          <div class="ev-link__title">更多精彩活動籌備中...</div>
+        </div>
+        <div class="ev-link__body">
+          <div class="ev-link__desc">噬魂天堂持續為你準備全新活動內容，敬請關注官網與 LINE 社群公告。</div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

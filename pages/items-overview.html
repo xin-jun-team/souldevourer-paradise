@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="噬魂天堂 — 裝備與道具介紹">
+  <title>裝備與道具 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(180deg, #0a0514 0%, #04030a 100%);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+    .page-hero__eyebrow { font-family:'Cinzel',serif; font-size:0.78rem; letter-spacing:0.35em; color:var(--gold-dim); margin-bottom:14px; }
+    .page-hero__title   { font-family:'Noto Serif TC',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; color:var(--text-bright); letter-spacing:0.15em; margin-bottom:10px; }
+    .page-hero__title span { color:var(--gold); }
+    .page-hero__sub     { font-size:0.85rem; color:var(--text-dim); letter-spacing:0.1em; }
+
+    .item-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .item-section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px;
+      background: linear-gradient(90deg, rgba(212,168,32,0.09) 0%, transparent 100%);
+      border-left: 3px solid var(--gold-dim);
+    }
+    .item-section-title::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, var(--gold-dim), transparent); }
+
+    /* 道具卡片網格 */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .item-card {
+      background: linear-gradient(160deg, #120e24 0%, #0c0818 55%, #100820 100%);
+      border: 1px solid #1e1630;
+      border-radius: 2px;
+      padding: 24px 20px 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .item-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(122,0,204,0.18), 0 2px 8px rgba(204,0,0,0.12), 0 0 0 1px rgba(212,168,32,0.08);
+    }
+
+    .item-card__icon {
+      font-size: 1.8rem;
+      width: 50px; height: 50px;
+      background: linear-gradient(135deg, #1e1040 0%, #150e28 100%);
+      border: 1px solid #3a2a50;
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(212,168,32,0.08);
+    }
+
+    .item-card__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--text-bright); letter-spacing: 0.08em;
+    }
+
+    .item-card__desc {
+      font-size: 0.8rem; color: var(--text-dim); line-height: 1.7;
+      flex: 1;
+    }
+    .item-card__desc strong { color: #ffe060; }
+
+    .item-card__arrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; color: var(--gold-dim);
+      letter-spacing: 0.12em;
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 4px;
+    }
+    .item-card__arrow::after { content: '→'; color: var(--gold); }
+    .item-card:hover .item-card__arrow { color: var(--gold); }
+    .item-card:hover .item-card__arrow::after { color: var(--gold-bright); }
+  </style>
+</head>
+<body>
+
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-icon">✤</span><span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-icon">↓</span><span class="float-label">下載</span>
+    </a>
+  </div>
+
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+        
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a>
+        <a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div>
+        <a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a>
+      <a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a>
+      <span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a>
+      <a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — ITEMS &amp; EQUIPMENT</p>
+    <h1 class="page-hero__title">裝備<span>道具</span></h1>
+    <p class="page-hero__sub">選擇分類深入了解各項裝備與特殊道具</p>
+  </div>
+
+  <main class="item-wrap">
+
+    <!-- 裝備類 -->
+    <p class="item-section-title">◆ 裝備類</p>
+    <div class="item-grid">
+
+      <a href="items-weapons.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-6229.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">武器介紹</div>
+        <div class="item-card__desc">各職業專屬武器一覽，含<strong>屬性加成與取得方式</strong>。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+      <a href="items-armor.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-1896.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">防具介紹</div>
+        <div class="item-card__desc">套裝防具系統，<strong>套裝加成效果</strong>與製作材料說明。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+    </div>
+
+    <!-- 飾品 / 徽章 -->
+    <p class="item-section-title" style="margin-top:36px;">◈ 特殊裝備能力裝備</p>
+    <div class="item-grid">
+
+      <a href="items-hexagram.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-7770.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">威力彩選號</div>
+        <div class="item-card__desc">強力徽章系統，<strong>多層屬性強化</strong>，提升全角色基礎戰力。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+      <a href="items-horse.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-9136.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">神獸之卵</div>
+        <div class="item-card__desc">重要戰力陪伴，<strong>孵化神獸強化屬性</strong>加成說明。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+      <a href="items-quest-medal.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-20597.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">主線指南書</div>
+        <div class="item-card__desc">踏上主線旅程逐步升階，解鎖<strong>HP、MP 及永久屬性</strong>加成效果。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+
+    </div>
+
+    <!-- 特殊系統 -->
+    <p class="item-section-title" style="margin-top:36px;">☠ 特殊系統</p>
+    <div class="item-grid">
+
+      <a href="feature-job-power.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-7870.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">職業之力</div>
+        <div class="item-card__desc">各職業專屬強化被動，逐階升級後<strong>大幅提升核心戰力</strong>。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+<a href="items-relic.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-8228.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">聖物系統介紹</div>
+        <div class="item-card__desc">收集並升階聖物，<strong>解鎖全帳號永久被動</strong>屬性加成。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+      <a href="items-vip.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-20669.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">貴賓通行證介紹</div>
+        <div class="item-card__desc">VIP 卡各級別的<strong>專屬特權與地圖開放</strong>說明。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+      <a href="items-gacha.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-16016.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">神奇扭蛋</div>
+        <div class="item-card__desc">限時扭蛋池道具一覽，<strong>機率公示與保底機制</strong>說明。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+      <a href="items-candle.html" class="item-card">
+        <div class="item-card__icon"><img src="../assets/images/item-2923.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">回憶蠟燭與洗血</div>
+        <div class="item-card__desc">透過蠟燭道具重置血型，<strong>自由調整角色屬性分配</strong>。</div>
+        <div class="item-card__arrow">查看詳細介紹</div>
+      </a>
+
+      <div class="item-card" style="opacity:0.45;cursor:default;pointer-events:none;">
+        <div class="item-card__icon"><img src="../assets/images/item-3663.png" style="width:32px;height:32px;image-rendering:pixelated;"></div>
+        <div class="item-card__title">四龍之魔眼</div>
+        <div class="item-card__desc">尚未開放，敬請期待。</div>
+      </div>
+
+      <div class="item-card" style="opacity:0.45;cursor:default;pointer-events:none;">
+        <div class="item-card__icon" style="font-size:1.8rem;display:flex;align-items:center;justify-content:center;">⚑</div>
+        <div class="item-card__title">戰場徽章系統</div>
+        <div class="item-card__desc">尚未開放，敬請期待。</div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text">
+            <span class="logo-text">噬魂天堂</span>
+            
+          </div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a>
+          <span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a>
+          <span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a>
+          <span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a>
+          <span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy">
+        <div class="footer-copy__line"></div>
+        <p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

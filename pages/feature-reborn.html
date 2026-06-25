@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轉生系統 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .rb-tier { margin-bottom:48px; }
+    .rb-tier__head {
+      display:flex; align-items:center; gap:14px;
+      padding:14px 20px; margin-bottom:16px;
+      border-left:4px solid; border-radius:0 2px 2px 0;
+    }
+    .rb-tier__head--t1 { background:linear-gradient(90deg,rgba(0,200,100,0.1),transparent); border-color:#66bb6a; }
+    .rb-tier__head--t2 { background:linear-gradient(90deg,rgba(100,180,255,0.1),transparent); border-color:#64b5f6; }
+    .rb-tier__head--t3 { background:linear-gradient(90deg,rgba(212,168,32,0.12),transparent); border-color:var(--gold); }
+    .rb-tier__head--t4 { background:linear-gradient(90deg,rgba(122,0,204,0.12),transparent); border-color:#b040ff; }
+    .rb-tier__head--t5 { background:linear-gradient(90deg,rgba(220,60,60,0.12),transparent); border-color:#ff2424; }
+    .rb-tier__title { font-family:'Noto Serif TC',serif; font-size:1.1rem; font-weight:700; color:var(--text-bright); letter-spacing:0.1em; }
+    .rb-tier__sub { font-size:0.78rem; color:var(--text-dim); }
+    .rb-tier__locked { font-size:0.78rem; color:#ff8080; font-style:italic; }
+
+    .rb-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
+    .rb-card {
+      background:linear-gradient(135deg,#100c20,#0c0818 60%,#120a1e);
+      border:1px solid #1e1630; border-radius:2px; overflow:hidden;
+      transition:border-color 0.2s,transform 0.2s;
+    }
+    .rb-card:hover { border-color:var(--gold-dim); transform:translateY(-3px); }
+    .rb-card__head {
+      padding:14px 18px; border-bottom:1px solid #1e1630;
+      display:flex; align-items:center; gap:12px;
+    }
+    .rb-card__img { width:32px; height:32px; image-rendering:pixelated; }
+    .rb-card__name { font-family:'Noto Serif TC',serif; font-size:0.95rem; font-weight:700; color:var(--text-bright); }
+    .rb-card__type { font-size:0.7rem; color:var(--gold-dim); font-family:'Cinzel',serif; margin-top:2px; }
+    .rb-card__body { padding:12px 18px; }
+    .rb-stat { display:flex; justify-content:space-between; font-size:0.82rem; padding:4px 0; border-bottom:1px solid #1a1228; }
+    .rb-stat:last-of-type { border-bottom:none; }
+    .rb-stat__k { color:var(--text-dim); }
+    .rb-stat__v { font-family:'Cinzel',serif; font-weight:700; }
+    .rb-stat__v--pos { color:#ffe060; }
+    .rb-stat__v--neg { color:#ff8080; }
+    .rb-stat__v--blue { color:#90caf9; }
+    .rb-stat__v--purple { color:#ce93d8; }
+    .rb-stat__v--green { color:#80cbc4; }
+    .rb-stat__v--skill { color:#b040ff; }
+
+    /* 合成材料 */
+    .rb-craft { margin-top:10px; padding-top:10px; border-top:1px solid #1e1630; }
+    .rb-craft__title { font-size:0.7rem; color:var(--gold-dim); font-family:'Cinzel',serif; letter-spacing:0.1em; margin-bottom:8px; }
+    .rb-craft__list { font-size:0.78rem; color:var(--text-dim); line-height:1.8; }
+    .rb-craft__list strong { color:var(--text-bright); }
+
+    /* 轉生地圖 */
+    .rb-map-card {
+      background:linear-gradient(160deg,#14102a,#0c0818 50%,#1a0a1a);
+      border:1px solid #2a1f40; border-radius:2px; padding:20px 24px; margin-bottom:14px;
+    }
+    .rb-map-card__name { font-family:'Noto Serif TC',serif; font-size:1rem; font-weight:700; color:var(--text-bright); margin-bottom:4px; }
+    .rb-map-card__info { font-size:0.8rem; color:var(--text-dim); margin-bottom:10px; }
+    .rb-map-card__mobs { display:flex; flex-wrap:wrap; gap:8px; }
+    .rb-mob-tag { background:rgba(212,168,32,0.08); border:1px solid rgba(212,168,32,0.2); color:var(--gold); padding:4px 12px; border-radius:2px; font-size:0.78rem; }
+
+    @media(max-width:600px) { .rb-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header"><div class="header-inner container"><a href="../index.html" class="site-logo"><img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂"><span class="logo-text">噬魂天堂</span></a><nav class="site-nav"><a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a><a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a><div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button></nav><button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button></div><div class="mobile-nav" id="mobile-nav"><a href="download.html">遊戲下載</a><a href="news.html">最新公告</a><a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a></div></header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — REBIRTH</p>
+    <h1 class="page-hero__title">轉生<span>系統</span></h1>
+    <p class="page-hero__sub">突破極限，蛻變重生</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 系統說明</p>
+    <div class="fp-intro">
+      達到指定等級後，可至「異世界轉生師」NPC 消耗材料進行轉生，獲得<strong>專屬強化裝備</strong>。<br>
+      每次轉生需要對應的轉生證明、噬魂魔核、製作秘笈與金幣。轉生裝備不可交易，綁定角色。
+    </div>
+
+    <!-- ═══ 1轉 ═══ -->
+    <div class="rb-tier">
+      <div class="rb-tier__head rb-tier__head--t1">
+        <img src="../assets/images/item-2626.png" alt="1轉證明" style="width:28px;height:28px;image-rendering:pixelated;">
+        <div>
+          <div class="rb-tier__title">1 轉 — LV.60 轉生</div>
+          <div class="rb-tier__sub">轉生地圖：可疑的天谷</div>
+        </div>
+      </div>
+      <div class="rb-grid">
+        <div class="rb-card">
+          <div class="rb-card__head">
+            <img src="../assets/images/item-1483.png" alt="劍術領域" class="rb-card__img">
+            <div><div class="rb-card__name">劍術領域</div><div class="rb-card__type">MELEE · 1ST REBIRTH</div></div>
+          </div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+100 / +50</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">近距離傷害</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-craft">
+              <div class="rb-craft__title">CRAFT MATERIALS</div>
+              <div class="rb-craft__list">60等轉生證明 ×1、<strong>1轉菜蟲證明 ×10</strong>、噬魂魔核 ×7、英雄製作秘笈 ×2、金幣 6,666,666</div>
+            </div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head">
+            <img src="../assets/images/item-1482.png" alt="魔幻深淵" class="rb-card__img">
+            <div><div class="rb-card__name">魔幻深淵</div><div class="rb-card__type">MAGIC · 1ST REBIRTH</div></div>
+          </div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+100 / +50</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">魔法攻擊</span><span class="rb-stat__v rb-stat__v--purple">+2</span></div>
+            <div class="rb-craft">
+              <div class="rb-craft__title">CRAFT MATERIALS</div>
+              <div class="rb-craft__list">60等轉生證明 ×1、<strong>1轉菜蟲證明 ×10</strong>、噬魂魔核 ×7、英雄製作秘笈 ×2、金幣 6,666,666</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 2轉 ═══ -->
+    <div class="rb-tier">
+      <div class="rb-tier__head rb-tier__head--t2">
+        <img src="../assets/images/item-8819.png" alt="2轉證明" style="width:28px;height:28px;image-rendering:pixelated;">
+        <div>
+          <div class="rb-tier__title">2 轉 — LV.70 轉生</div>
+          <div class="rb-tier__sub">轉生地圖：天空之城 ｜ 需要 1 轉裝備作為材料</div>
+        </div>
+      </div>
+      <div class="rb-grid">
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-7754.png" alt="海王" class="rb-card__img"><div><div class="rb-card__name">海王</div><div class="rb-card__type">MAGIC · 2ND REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">智 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+200 / +150</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">魔法攻擊</span><span class="rb-stat__v rb-stat__v--purple">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">生命的祝福</span><span class="rb-stat__v rb-stat__v--skill">係數+30</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">70等轉生證明 ×1、<strong>遊俠光輝-1轉 ×1</strong>、2轉嫩逼證明 ×20、噬魂魔核 ×18、英雄製作秘笈 ×4、金幣 66,666,666</div></div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-3731.png" alt="神射手" class="rb-card__img"><div><div class="rb-card__name">神射手</div><div class="rb-card__type">RANGE · 2ND REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">敏 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+200 / +150</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">遠距離傷害</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">三重矢</span><span class="rb-stat__v rb-stat__v--skill">+3</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">70等轉生證明 ×1、<strong>遊俠光輝-1轉 ×1</strong>、2轉嫩逼證明 ×20、噬魂魔核 ×18、英雄製作秘笈 ×4、金幣 66,666,666</div></div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-8591.png" alt="魔導師" class="rb-card__img"><div><div class="rb-card__name">魔導師</div><div class="rb-card__type">MAGIC · 2ND REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">智 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+200 / +150</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">魔法攻擊</span><span class="rb-stat__v rb-stat__v--purple">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">烈炎術</span><span class="rb-stat__v rb-stat__v--skill">+5</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">70等轉生證明 ×1、<strong>魔幻深淵-1轉 ×1</strong>、2轉嫩逼證明 ×20、噬魂魔核 ×18、英雄製作秘笈 ×4、金幣 66,666,666</div></div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-16039.png" alt="劍盾師" class="rb-card__img"><div><div class="rb-card__name">劍盾師</div><div class="rb-card__type">TANK · 2ND REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">體 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+300 / +150</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">近距離傷害</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">傷害減免</span><span class="rb-stat__v rb-stat__v--blue">+3</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">70等轉生證明 ×1、<strong>劍術領域-1轉 ×1</strong>、2轉嫩逼證明 ×20、噬魂魔核 ×18、英雄製作秘笈 ×4、金幣 66,666,666</div></div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-3431.png" alt="魔劍師" class="rb-card__img"><div><div class="rb-card__name">魔劍師</div><div class="rb-card__type">MELEE · 2ND REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">力 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+200 / +150</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">近距離傷害</span><span class="rb-stat__v rb-stat__v--pos">+5</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">70等轉生證明 ×1、<strong>劍術領域-1轉 ×1</strong>、2轉嫩逼證明 ×20、噬魂魔核 ×18、英雄製作秘笈 ×4、金幣 66,666,666</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 3轉 ═══ -->
+    <div class="rb-tier">
+      <div class="rb-tier__head rb-tier__head--t3">
+        <img src="../assets/images/item-2642.png" alt="3轉證明" style="width:28px;height:28px;image-rendering:pixelated;">
+        <div>
+          <div class="rb-tier__title">3 轉 — LV.80 轉生</div>
+          <div class="rb-tier__sub">轉生地圖：台灣特色地圖 ｜ 需要 2 轉裝備作為材料 ｜ 附加 PVP 屬性</div>
+        </div>
+      </div>
+      <div class="rb-grid">
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-7754.png" alt="波賽頓原力" class="rb-card__img"><div><div class="rb-card__name">波賽頓原力</div><div class="rb-card__type">MAGIC · 3RD REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">智 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">體</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+350 / +200</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">魔法攻擊</span><span class="rb-stat__v rb-stat__v--purple">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">生命的祝福</span><span class="rb-stat__v rb-stat__v--skill">係數+100</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">PVP 減免</span><span class="rb-stat__v rb-stat__v--blue">+1</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">80等轉生證明 ×1、<strong>海王-2轉 ×1</strong>、3轉精銳勳章 ×30、噬魂魔核 ×30、英雄製作秘笈 ×6、傳說製作秘笈 ×1、金幣 100,000,000</div></div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-3731.png" alt="精靈祝福" class="rb-card__img"><div><div class="rb-card__name">精靈祝福</div><div class="rb-card__type">RANGE · 3RD REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">智 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">體</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+350 / +200</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">遠距傷害</span><span class="rb-stat__v rb-stat__v--pos">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">三重矢</span><span class="rb-stat__v rb-stat__v--skill">+10</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">PVP 傷害</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">80等轉生證明 ×1、<strong>神射手-2轉 ×1</strong>、3轉精銳勳章 ×30、噬魂魔核 ×30、英雄製作秘笈 ×6、傳說製作秘笈 ×1、金幣 100,000,000</div></div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-8591.png" alt="源力動能" class="rb-card__img"><div><div class="rb-card__name">源力動能</div><div class="rb-card__type">MAGIC · 3RD REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">智 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">體</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+350 / +200</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">魔法攻擊</span><span class="rb-stat__v rb-stat__v--purple">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">烈炎術</span><span class="rb-stat__v rb-stat__v--skill">+15</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">PVP 傷害</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">80等轉生證明 ×1、<strong>魔導師-2轉 ×1</strong>、3轉精銳勳章 ×30、噬魂魔核 ×30、英雄製作秘笈 ×6、傳說製作秘笈 ×1、金幣 100,000,000</div></div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-16039.png" alt="金剛不壞之身" class="rb-card__img"><div><div class="rb-card__name">金剛不壞之身</div><div class="rb-card__type">TANK · 3RD REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">體 / 精</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+450 / +200</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">近距離傷害</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">傷害減免</span><span class="rb-stat__v rb-stat__v--blue">+3</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">PVP 減免</span><span class="rb-stat__v rb-stat__v--blue">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">暈眩命中</span><span class="rb-stat__v rb-stat__v--pos">+3</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">80等轉生證明 ×1、<strong>劍盾師-2轉 ×1</strong>、3轉精銳勳章 ×30、噬魂魔核 ×30、英雄製作秘笈 ×6、傳說製作秘笈 ×1、金幣 100,000,000</div></div>
+          </div>
+        </div>
+        <div class="rb-card">
+          <div class="rb-card__head"><img src="../assets/images/item-3431.png" alt="逍遙劍仙" class="rb-card__img"><div><div class="rb-card__name">逍遙劍仙</div><div class="rb-card__type">MELEE · 3RD REBIRTH</div></div></div>
+          <div class="rb-card__body">
+            <div class="rb-stat"><span class="rb-stat__k">力 / 精</span><span class="rb-stat__v rb-stat__v--pos">+1</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">體</span><span class="rb-stat__v rb-stat__v--pos">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">HP / MP</span><span class="rb-stat__v rb-stat__v--pos">+350 / +200</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">防禦</span><span class="rb-stat__v rb-stat__v--neg">-5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">抗魔</span><span class="rb-stat__v rb-stat__v--blue">+5</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">藥水恢復量</span><span class="rb-stat__v rb-stat__v--green">+2</span></div>
+            <div class="rb-stat"><span class="rb-stat__k">近距離傷害</span><span class="rb-stat__v rb-stat__v--pos">+10</span></div>
+            <div class="rb-craft"><div class="rb-craft__title">CRAFT MATERIALS</div><div class="rb-craft__list">80等轉生證明 ×1、<strong>魔劍師-2轉 ×1</strong>、3轉精銳勳章 ×30、噬魂魔核 ×30、英雄製作秘笈 ×6、傳說製作秘笈 ×1、金幣 100,000,000</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 4轉 ═══ -->
+    <div class="rb-tier">
+      <div class="rb-tier__head rb-tier__head--t4">
+        <img src="../assets/images/item-2642.png" alt="4轉證明" style="width:28px;height:28px;image-rendering:pixelated;">
+        <div>
+          <div class="rb-tier__title">4 轉 — LV.100 轉生</div>
+          <div class="rb-tier__locked">⚠ 尚未開放，敬請期待</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 5轉 ═══ -->
+    <div class="rb-tier">
+      <div class="rb-tier__head rb-tier__head--t5">
+        <img src="../assets/images/item-2641.png" alt="5轉證明" style="width:28px;height:28px;image-rendering:pixelated;">
+        <div>
+          <div class="rb-tier__title">5 轉 — LV.120+ 轉生</div>
+          <div class="rb-tier__locked">⚠ 尚未開放，敬請期待</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 轉生地圖 ═══ -->
+    <p class="fp-heading">⚑ 轉生地圖</p>
+    <div style="background:rgba(212,168,32,0.05);border-left:3px solid var(--gold-dim);padding:12px 16px;font-size:0.8rem;color:var(--text-bright);line-height:1.7;margin-bottom:16px;">
+      ◆ 點擊背包中的<strong style="color:var(--gold);">轉生證明</strong>即可傳送至對應轉生地圖。
+    </div>
+    <div class="rb-map-card">
+      <div class="rb-map-card__name">可疑的天谷 3區域</div>
+      <div class="rb-map-card__info">1 轉練功區 ｜ 限定手動</div>
+      <div class="rb-map-card__mobs">
+        <span class="rb-mob-tag">菜雞訓練官</span>
+        <span class="rb-mob-tag">菜雞護衛隊</span>
+      </div>
+    </div>
+    <div class="rb-map-card">
+      <div class="rb-map-card__name">天空之城</div>
+      <div class="rb-map-card__info">2 轉練功區 ｜ 限定手動</div>
+      <div class="rb-map-card__mobs">
+        <span class="rb-mob-tag">美猴王</span>
+        <span class="rb-mob-tag">歐金工</span>
+      </div>
+    </div>
+    <div class="rb-map-card">
+      <div class="rb-map-card__name">台灣特色地圖</div>
+      <div class="rb-map-card__info">3 轉練功區 ｜ 限定手動</div>
+      <div class="rb-map-card__mobs">
+        <span class="rb-mob-tag">黃金右腳</span>
+        <span class="rb-mob-tag">鐵頭功傳人</span>
+        <span class="rb-mob-tag">踢假球</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

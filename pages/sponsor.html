@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="噬魂天堂 — 贊助說明">
+  <title>贊助說明 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(180deg, #0a0514 0%, #04030a 100%);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+    .page-hero__eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+    }
+    .page-hero__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--text-bright);
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
+    .page-hero__title span { color: var(--gold); }
+    .page-hero__sub {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    .sponsor-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* ── 贊助說明橫幅 ── */
+    .sponsor-notice {
+      background: linear-gradient(135deg, #0d0a1a 0%, #08050f 100%);
+      border: 1px solid var(--gold-dim);
+      border-left: 4px solid var(--gold);
+      padding: 18px 22px;
+      margin-bottom: 52px;
+      border-radius: 2px;
+      font-size: 0.87rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+    .sponsor-notice strong { color: var(--gold); }
+
+    /* ── 區塊標題 ── */
+    .sponsor-section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sponsor-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold-dim), transparent);
+    }
+
+    /* ── 藍鑽方案卡片 ── */
+    .diamond-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+    .diamond-card {
+      background: #0c0818;
+      border: 1px solid #2a1f40;
+      border-radius: 2px;
+      padding: 24px 16px 20px;
+      text-align: center;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .diamond-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-3px);
+    }
+    .diamond-card.is-best {
+      border-color: var(--gold);
+      background: linear-gradient(180deg, #160e28 0%, #0c0818 100%);
+    }
+    .diamond-card.is-best::before {
+      content: '最划算';
+      position: absolute;
+      top: -1px; right: -1px;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+    }
+    .diamond-card__gem {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .diamond-card__amount {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #60c0ff;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .diamond-card__unit {
+      font-size: 0.75rem;
+      color: #4090c0;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    .diamond-card__price {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .diamond-card__bonus {
+      font-size: 0.75rem;
+      color: #80e080;
+      letter-spacing: 0.05em;
+      min-height: 18px;
+    }
+    .diamond-card__divider {
+      height: 1px;
+      background: #2a1f40;
+      margin: 14px 0;
+    }
+    .diamond-card__note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── 贊助步驟 ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 52px;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 28px;
+      bottom: 28px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--gold-dim), transparent);
+    }
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 18px 0;
+    }
+    .step__num {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      background: #150e28;
+      border: 1px solid var(--gold-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      position: relative;
+      z-index: 1;
+    }
+    .step__body { flex: 1; padding-top: 8px; }
+    .step__title {
+      font-weight: 700;
+      color: var(--text-bright);
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+    .step__desc {
+      font-size: 0.83rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+    .step__desc a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .step__desc a:hover { color: var(--gold-bright); }
+
+    /* ── 付款方式 ── */
+    .pay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 52px;
+    }
+    .pay-card {
+      background: #0c0818;
+      border: 1px solid #1e1630;
+      border-radius: 2px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .pay-card__icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      width: 40px;
+      text-align: center;
+    }
+    .pay-card__name {
+      font-weight: 700;
+      color: var(--text-bright);
+      font-size: 0.9rem;
+      margin-bottom: 3px;
+    }
+    .pay-card__desc {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* ── 注意事項 ── */
+    .sponsor-rules {
+      background: #0c0818;
+      border: 1px solid #1e1630;
+      border-left: 3px solid var(--red-dim);
+      border-radius: 2px;
+      padding: 20px 22px;
+      margin-bottom: 48px;
+    }
+    .sponsor-rules ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .sponsor-rules li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .sponsor-rules li::before {
+      content: '◆';
+      color: var(--red-dim);
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      margin-top: 3px;
+    }
+    .sponsor-rules li strong { color: var(--text-bright); }
+
+    /* ── 比值階梯表 ── */
+    .tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-bottom: 52px;
+    }
+    .tier-table th {
+      background: #150e28;
+      color: var(--gold-dim);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      padding: 11px 14px;
+      text-align: left;
+      border: 1px solid #2a1f40;
+    }
+    .tier-table td {
+      background: #0c0818;
+      color: var(--text);
+      padding: 11px 14px;
+      border: 1px solid #1e1630;
+      line-height: 1.5;
+      vertical-align: middle;
+    }
+    .tier-table tr:hover td { background: #100e20; }
+    .tier-table td:first-child { color: var(--text-bright); font-weight: 600; }
+    .tier-table .tier-ratio { color: #60e060; font-family: 'Cinzel', serif; font-weight: 700; }
+    .tier-table .tier-bonus { color: #60c0ff; }
+    .tier-table .tier-title { color: var(--gold); font-size: 0.8rem; }
+    .tier-table tr.is-highlight td { background: #160e28; border-color: #3a2a50; }
+
+    /* ── 紅利幣 & 一番賞 ── */
+    .bonus-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .bonus-flow__step {
+      background: #0c0818;
+      border: 1px solid #2a1f40;
+      border-radius: 2px;
+      padding: 18px 22px;
+      text-align: center;
+      min-width: 140px;
+    }
+    .bonus-flow__icon { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+    .bonus-flow__label {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .bonus-flow__label strong { color: var(--gold); display: block; font-size: 1rem; }
+    .bonus-flow__arrow {
+      color: var(--gold-dim);
+      font-size: 1.4rem;
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+
+    .ichiban-wrap {
+      background: linear-gradient(135deg, #0e0a1e 0%, #0c0818 100%);
+      border: 1px solid #3a2a50;
+      border-top: 3px solid var(--soul-bright, #b040ff);
+      border-radius: 2px;
+      padding: 28px 24px;
+      margin-bottom: 52px;
+    }
+    .ichiban-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .ichiban-badge {
+      background: linear-gradient(135deg, #4a0080, #8000cc);
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      padding: 4px 12px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .ichiban-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #c080ff;
+      letter-spacing: 0.12em;
+    }
+    .ichiban-prizes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .prize-tier {
+      background: #08050f;
+      border: 1px solid #2a1f40;
+      border-radius: 2px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+    .prize-tier--s { border-color: #6000cc; }
+    .prize-tier--a { border-color: var(--gold-dim); }
+    .prize-tier--b { border-color: #2a3a5a; }
+    .prize-tier__rank {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .prize-tier--s .prize-tier__rank { color: #c080ff; }
+    .prize-tier--a .prize-tier__rank { color: var(--gold); }
+    .prize-tier--b .prize-tier__rank { color: #6090c0; }
+    .prize-tier__stars { font-size: 0.75rem; margin-bottom: 8px; letter-spacing: 0.05em; }
+    .prize-tier--s .prize-tier__stars { color: #9040ff; }
+    .prize-tier--a .prize-tier__stars { color: var(--gold-dim); }
+    .prize-tier--b .prize-tier__stars { color: #405070; }
+    .prize-tier__items {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .ichiban-rules {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .ichiban-rules li {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      display: flex;
+      gap: 8px;
+      line-height: 1.6;
+    }
+    .ichiban-rules li::before {
+      content: '◈';
+      color: #6000cc;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      margin-top: 3px;
+    }
+    .ichiban-rules li strong { color: var(--text-bright); }
+
+    @media (max-width: 600px) {
+      .ichiban-prizes { grid-template-columns: 1fr; }
+      .bonus-flow { flex-direction: column; }
+      .bonus-flow__arrow { transform: rotate(90deg); }
+    }
+
+    /* ── CTA ── */
+    .sponsor-cta {
+      text-align: center;
+      padding: 36px 24px;
+      background: linear-gradient(135deg, #0d0a1a 0%, #08050f 100%);
+      border: 1px solid var(--gold-dim);
+      border-radius: 2px;
+    }
+    .sponsor-cta__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .sponsor-cta__sub {
+      font-size: 0.83rem;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+    .sponsor-cta__btn {
+      display: inline-block;
+      padding: 13px 36px;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s;
+    }
+    .sponsor-cta__btn:hover { background: var(--gold-bright); }
+
+    /* ── LINE 聯絡按鈕 ── */
+    .line-contact {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .line-contact__id {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0d1a0d;
+      border: 1px solid #1a4020;
+      padding: 8px 14px;
+      border-radius: 2px;
+      font-size: 0.83rem;
+      color: #a0d0a0;
+    }
+    .line-contact__id strong { color: #4cd964; letter-spacing: 0.05em; }
+    .line-contact__icon {
+      color: #4cd964;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .line-contact__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #06c755;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      padding: 9px 20px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .line-contact__btn:hover {
+      background: #04a844;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+      .diamond-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+        
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a>
+        <a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div>
+        <a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a>
+      <a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a>
+      <span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a>
+      <a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ PAGE HERO ═══════════════════════ -->
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — SPONSOR</p>
+    <h1 class="page-hero__title">贊助<span>說明</span></h1>
+    <p class="page-hero__sub">您的支持是噬魂天堂持續運行的動力</p>
+  </div>
+
+  <!-- ═══════════════════════ FLOATING SIDEBAR ═══════════════════════ -->
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-icon">✤</span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-icon">↓</span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════ SPONSOR BODY ═══════════════════════ -->
+  <main class="sponsor-wrap">
+
+    <div class="sponsor-notice">
+      所有贊助均屬<strong>自願性質</strong>，用於維持伺服器主機、頻寬等運作成本，非商業營利行為。
+      贊助後將獲得等值<strong>藍鑽</strong>，可於遊戲內兌換道具與服務。
+      贊助一旦完成，<strong>不接受退款</strong>，請確認金額後再行操作。
+    </div>
+
+    <!-- ── 藍鑽方案 ── -->
+    <div id="sec-diamond" class="sponsor-section-title">💎 藍鑽儲值方案</div>
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>單筆金額</th>
+          <th>換率</th>
+          <th>實得藍鑽</th>
+          <th>贈送藍鑽</th>
+          <th>贊助稱號</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NT$ 1,000 – 2,999</td>
+          <td><span class="tier-ratio">1 : 1.00</span></td>
+          <td>1,000 起</td>
+          <td class="tier-bonus">—</td>
+          <td class="tier-title">入門冒險者</td>
+        </tr>
+        <tr>
+          <td>NT$ 3,000 – 5,999</td>
+          <td><span class="tier-ratio">1 : 1.05</span></td>
+          <td>3,150 起</td>
+          <td class="tier-bonus">+ 5%</td>
+          <td class="tier-title">銀盃贊助者</td>
+        </tr>
+        <tr>
+          <td>NT$ 6,000 – 9,999</td>
+          <td><span class="tier-ratio">1 : 1.10</span></td>
+          <td>6,600 起</td>
+          <td class="tier-bonus">+ 10%</td>
+          <td class="tier-title">金盃贊助者</td>
+        </tr>
+        <tr class="is-highlight">
+          <td>NT$ 10,000 – 19,999</td>
+          <td><span class="tier-ratio">1 : 1.15</span></td>
+          <td>11,500 起</td>
+          <td class="tier-bonus">+ 15%</td>
+          <td class="tier-title">白金大老</td>
+        </tr>
+        <tr>
+          <td>NT$ 20,000 – 29,999</td>
+          <td><span class="tier-ratio">1 : 1.20</span></td>
+          <td>24,000 起</td>
+          <td class="tier-bonus">+ 20%</td>
+          <td class="tier-title">鑽石貴賓</td>
+        </tr>
+        <tr>
+          <td>NT$ 30,000 – 39,999</td>
+          <td><span class="tier-ratio">1 : 1.30</span></td>
+          <td>39,000 起</td>
+          <td class="tier-bonus">+ 30%</td>
+          <td class="tier-title">翡翠尊爵</td>
+        </tr>
+        <tr>
+          <td>NT$ 40,000 – 49,999</td>
+          <td><span class="tier-ratio">1 : 1.40</span></td>
+          <td>56,000 起</td>
+          <td class="tier-bonus">+ 40%</td>
+          <td class="tier-title">紅寶尊主</td>
+        </tr>
+        <tr>
+          <td>NT$ 50,000 以上</td>
+          <td><span class="tier-ratio">1 : 1.50</span></td>
+          <td>75,000 起</td>
+          <td class="tier-bonus">+ 50%</td>
+          <td class="tier-title">至尊大爺</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ── 紅利幣 & 一番賞 ── -->
+    <div id="sec-ichiban" class="sponsor-section-title">🎴 紅利幣 × 一番賞</div>
+
+    <!-- 流程圖 -->
+    <div class="bonus-flow">
+      <div class="bonus-flow__step">
+        <span class="bonus-flow__icon">💎</span>
+        <div class="bonus-flow__label">
+          <strong>消費藍鑽</strong>
+          在藍鑽商城消費
+        </div>
+      </div>
+      <div class="bonus-flow__arrow">→</div>
+      <div class="bonus-flow__step">
+        <span class="bonus-flow__icon">🪙</span>
+        <div class="bonus-flow__label">
+          <strong>獲得紅利幣</strong>
+          每消費 1 藍鑽<br>= 1 紅利幣
+        </div>
+      </div>
+      <div class="bonus-flow__arrow">→</div>
+      <div class="bonus-flow__step">
+        <span class="bonus-flow__icon">🎴</span>
+        <div class="bonus-flow__label">
+          <strong>抽取一番賞</strong>
+          累積 5,000 紅利幣<br>= 抽 1 次
+        </div>
+      </div>
+      <div class="bonus-flow__arrow">→</div>
+      <div class="bonus-flow__step">
+        <span class="bonus-flow__icon">🎁</span>
+        <div class="bonus-flow__label">
+          <strong>獲得獎品</strong>
+          GM 確認後<br>郵寄至角色
+        </div>
+      </div>
+    </div>
+
+    <!-- 一番賞獎池 -->
+    <div class="ichiban-wrap">
+      <div class="ichiban-header">
+        <span class="ichiban-badge">ICHIBAN KUJI</span>
+        <span class="ichiban-title">本期一番賞獎品池</span>
+      </div>
+      <div class="ichiban-prizes">
+        <div class="prize-tier prize-tier--s">
+          <div class="prize-tier__rank">S 賞</div>
+          <div class="prize-tier__stars">★ ★ ★</div>
+          <div class="prize-tier__items">
+            限定神話武器<br>
+            限定坐騎外觀<br>
+            限定角色稱號
+          </div>
+        </div>
+        <div class="prize-tier prize-tier--a">
+          <div class="prize-tier__rank">A 賞</div>
+          <div class="prize-tier__stars">★ ★</div>
+          <div class="prize-tier__items">
+            傳說裝備組合包<br>
+            強化保護符 × 5<br>
+            稀有變身卷軸
+          </div>
+        </div>
+        <div class="prize-tier prize-tier--b">
+          <div class="prize-tier__rank">B 賞</div>
+          <div class="prize-tier__stars">★</div>
+          <div class="prize-tier__items">
+            強化石禮包<br>
+            藥水補給組合<br>
+            元素石 × 10
+          </div>
+        </div>
+      </div>
+      <ul class="ichiban-rules">
+        <li>每期<strong>獎品數量固定公告</strong>，抽完即結束，不補貨。</li>
+        <li>申請抽獎請聯絡 GM，告知<strong>角色名稱＋紅利幣數量</strong>，GM 核對後確認可抽次數。</li>
+        <li>紅利幣<strong>不可轉讓、不可折現</strong>，僅限原帳號使用。</li>
+        <li>每期一番賞<strong>開放日期與獎品內容</strong>將提前於公告欄發布，請定期關注。</li>
+        <li>管理團隊保有調整獎品內容與期數之權利，以最新公告為準。</li>
+      </ul>
+    </div>
+
+    <!-- ── 付款方式 ── -->
+    <div id="sec-payment" class="sponsor-section-title">💳 付款方式</div>
+    <div class="pay-grid">
+      <div class="pay-card">
+        <span class="pay-card__icon">🏦</span>
+        <div>
+          <div class="pay-card__name">金流平台付款</div>
+          <div class="pay-card__desc">系統產生付款連結，支援信用卡、ATM 等多種方式</div>
+        </div>
+      </div>
+      <div class="pay-card">
+        <span class="pay-card__icon">💬</span>
+        <div>
+          <div class="pay-card__name">其他贊助管道</div>
+          <div class="pay-card__desc">如有特殊需求，請聯絡官方 GM 洽詢</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 贊助步驟 ── -->
+    <div id="sec-steps" class="sponsor-section-title">📋 贊助流程</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">1</div>
+        <div class="step__body">
+          <div class="step__title">進入贊助頁面 或 私訊官方專人</div>
+          <div class="step__desc">直接在本頁操作，或透過官方 LINE 聯絡專人服務。</div>
+          <div class="line-contact">
+            <div class="line-contact__id">
+              <span class="line-contact__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+              </span>
+              <span>LINE ID：<strong>@056uzjuy</strong></span>
+            </div>
+            <a href="https://lin.ee/p8o1unp" target="_blank" rel="noopener" class="line-contact__btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+              加入官方 LINE
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <div class="step__body">
+          <div class="step__title">選擇支付方式</div>
+          <div class="step__desc">依頁面提示選擇適合的付款方式（信用卡、ATM 等），如有疑問請洽官方。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <div class="step__body">
+          <div class="step__title">輸入遊戲帳號</div>
+          <div class="step__desc">請確認輸入正確的遊戲帳號，藍鑽將依帳號發送，<strong style="color:var(--text-bright)">輸入錯誤恕不補發</strong>。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">4</div>
+        <div class="step__body">
+          <div class="step__title">獲取繳費帳號並完成付款</div>
+          <div class="step__desc">系統產生繳費代碼，依指示完成付款並保留收據截圖備用。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">5</div>
+        <div class="step__body">
+          <div class="step__title">回傳繳費證明</div>
+          <div class="step__desc">將付款截圖或收據傳送至官方 LINE，方便核對確認。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">6</div>
+        <div class="step__body">
+          <div class="step__title">前往主城贊助 NPC 領取獎勵</div>
+          <div class="step__desc">確認完成後，至遊戲主城找贊助 NPC 領取藍鑽及紅利幣，即可使用。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 注意事項 ── -->
+    <div id="sec-rules" class="sponsor-section-title">⚠️ 注意事項</div>
+    <div class="sponsor-rules">
+      <ul>
+        <li>贊助屬<strong>自願性質</strong>，非購買商品，完成後<strong>不接受退款或爭議申請</strong>。</li>
+        <li>藍鑽一旦發放，<strong>不可退回、不可轉讓</strong>至其他帳號。</li>
+        <li>請勿將贊助款項匯至非官方指定帳號，官方 GM 不會主動要求私下轉帳。</li>
+        <li>如遇伺服器停機、版本重置，<strong>藍鑽不予補償</strong>，請量力贊助。</li>
+        <li>管理團隊保有調整藍鑽方案與贈送比例之權利，以公告為準。</li>
+        <li>贊助者享有遊戲內回饋，<strong>不代表具有任何特殊權限或影響規章執行</strong>。</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text">
+            <span class="logo-text">噬魂天堂</span>
+            
+          </div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link">
+            <span class="footer-link__icon">⚔</span>特色介紹
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link">
+            <span class="footer-link__icon">◆</span>遊戲規章
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link">
+            <span class="footer-link__icon">✤</span>贊助須知
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link">
+            <span class="footer-link__icon">†</span>免責聲明
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link">
+            <span class="footer-link__icon">✉</span>聯絡我們
+          </a>
+        </nav>
+      </div>
+      <div class="footer-copy">
+        <div class="footer-copy__line"></div>
+        <p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

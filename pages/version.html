@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>版本設定 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .ver-section { margin-bottom: 36px; }
+
+    .ver-heading {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px;
+      background: linear-gradient(90deg, rgba(212,168,32,0.09) 0%, transparent 100%);
+      border-left: 3px solid var(--gold-dim);
+    }
+    .ver-heading::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, var(--gold-dim), transparent); }
+
+    .ver-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .ver-badge {
+      background: linear-gradient(135deg, #1c1030 0%, #180e28 100%);
+      border: 1px solid rgba(212,168,32,0.2);
+      border-radius: 2px;
+      padding: 14px 18px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .ver-badge__label {
+      font-size: 0.7rem; color: #7a6030;
+      letter-spacing: 0.08em;
+    }
+    .ver-badge__val {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem; font-weight: 700;
+      color: #ffe060;
+    }
+    .ver-badge__note {
+      font-size: 0.72rem; color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    .ver-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+    .ver-table th { background:linear-gradient(90deg,rgba(212,168,32,0.2),rgba(212,168,32,0.08)); color:var(--gold-dim); font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.12em; padding:10px 16px; border:1px solid #2a1f40; text-align:left; }
+    .ver-table td { background:#0e0a1c; padding:10px 16px; border:1px solid #1e1630; color:var(--text-dim); }
+    .ver-table tr:nth-child(even) td { background:#100c1e; }
+    .ver-table tr:hover td { background:#16102a; }
+    .ver-table td:first-child { color:var(--text-bright); }
+    .ver-table .val-gold { color:#ffe060; font-family:'Cinzel',serif; font-weight:700; }
+
+    .ver-restrict-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .ver-restrict {
+      background: #0e0a1c;
+      border: 1px solid #1e1630;
+      border-radius: 2px;
+      padding: 14px 18px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .ver-restrict__icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1.4; }
+    .ver-restrict__body {}
+    .ver-restrict__title { font-size: 0.78rem; color: #7a6030; margin-bottom: 3px; letter-spacing: 0.06em; }
+    .ver-restrict__val { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700; color: #ffe060; }
+    .ver-restrict__sub { font-size: 0.72rem; color: var(--text-dim); margin-top: 3px; }
+
+    .ver-notice {
+      background: linear-gradient(135deg, #0e0a1c, #100c1e);
+      border: 1px solid rgba(212,168,32,0.15);
+      border-left: 3px solid var(--gold-dim);
+      border-radius: 0 2px 2px 0;
+      padding: 14px 18px;
+      font-size: 0.83rem; color: var(--text-dim); line-height: 1.8;
+      margin-top: 16px;
+    }
+    .ver-notice strong { color: #ffe060; }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — SERVER SETTINGS</p>
+    <h1 class="page-hero__title">版本<span>設定</span></h1>
+    <p class="page-hero__sub">伺服器詳細設定一覽</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <!-- 基礎倍率與版本 -->
+    <div class="ver-section">
+      <p class="ver-heading">💎 基礎倍率與版本</p>
+      <div class="ver-grid">
+        <div class="ver-badge">
+          <span class="ver-badge__label">遊戲版本</span>
+          <span class="ver-badge__val">3.81 內掛版</span>
+        </div>
+        <div class="ver-badge">
+          <span class="ver-badge__label">經驗倍率</span>
+          <span class="ver-badge__val">3 倍</span>
+          <span class="ver-badge__note">內掛倍率：1 倍</span>
+        </div>
+        <div class="ver-badge">
+          <span class="ver-badge__label">金幣倍率</span>
+          <span class="ver-badge__val">1 倍</span>
+        </div>
+        <div class="ver-badge">
+          <span class="ver-badge__label">掉落倍率</span>
+          <span class="ver-badge__val">1 倍</span>
+        </div>
+        <div class="ver-badge">
+          <span class="ver-badge__label">武防強化</span>
+          <span class="ver-badge__val">2 倍</span>
+        </div>
+        <div class="ver-badge">
+          <span class="ver-badge__label">正義倍率</span>
+          <span class="ver-badge__val">3 倍</span>
+        </div>
+        <div class="ver-badge">
+          <span class="ver-badge__label">負重倍率</span>
+          <span class="ver-badge__val">4 倍</span>
+        </div>
+        <div class="ver-badge">
+          <span class="ver-badge__label">寵物經驗</span>
+          <span class="ver-badge__val">3 倍</span>
+        </div>
+      </div>
+      <div class="ver-notice">💡 <strong>經驗／掉落倍率依伺服器狀況動態開放</strong>，實際倍率以公告為準。</div>
+    </div>
+
+    <!-- 角色素質與等級限制 -->
+    <div class="ver-section">
+      <p class="ver-heading">📊 角色素質與等級限制</p>
+      <table class="ver-table">
+        <thead>
+          <tr><th>項目</th><th>數值</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>玩家等級上限</td><td><span class="val-gold">56 級</span></td></tr>
+          <tr><td>手點能力上限</td><td><span class="val-gold">25 點</span></td></tr>
+          <tr><td>萬能藥限制</td><td><span class="val-gold">10 瓶</span><span style="color:var(--text-dim);font-size:0.8em;margin-left:8px">（夢島 BOSS 掉落）</span></td></tr>
+          <tr><td>素質總上限</td><td><span class="val-gold">35 點</span><span style="color:var(--text-dim);font-size:0.8em;margin-left:8px">（含萬能藥）</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 帳號與發話限制 -->
+    <div class="ver-section">
+      <p class="ver-heading">🛡️ 帳號與發話限制</p>
+      <div class="ver-restrict-grid">
+        <div class="ver-restrict">
+          <span class="ver-restrict__icon">🚫</span>
+          <div class="ver-restrict__body">
+            <div class="ver-restrict__title">多開限制</div>
+            <div class="ver-restrict__val">IP 限制 3 開</div>
+          </div>
+        </div>
+        <div class="ver-restrict">
+          <span class="ver-restrict__icon">👤</span>
+          <div class="ver-restrict__body">
+            <div class="ver-restrict__title">角色限制</div>
+            <div class="ver-restrict__val">每帳號可創 4 隻</div>
+          </div>
+        </div>
+        <div class="ver-restrict">
+          <span class="ver-restrict__icon">🗣️</span>
+          <div class="ver-restrict__body">
+            <div class="ver-restrict__title">公頻發話</div>
+            <div class="ver-restrict__val">Lv.10 以上</div>
+          </div>
+        </div>
+        <div class="ver-restrict">
+          <span class="ver-restrict__icon">🤫</span>
+          <div class="ver-restrict__body">
+            <div class="ver-restrict__title">密語發話</div>
+            <div class="ver-restrict__val">Lv.5 以上</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

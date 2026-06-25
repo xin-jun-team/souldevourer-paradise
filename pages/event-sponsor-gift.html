@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>累計贊助禮包 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .spgift-section { max-width: 1100px; margin: 0 auto 48px; }
+    .spgift-intro {
+      background: #120e22;
+      border: 1px solid rgba(212,168,32,0.2);
+      border-radius: 2px;
+      padding: 28px 32px;
+      color: #e0d8c8;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .spgift-intro strong { color: #ffe060; }
+
+    .spgift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    .spgift-card {
+      background: linear-gradient(160deg, #14102a 0%, #0e0a1c 100%);
+      border: 1px solid rgba(212,168,32,0.3);
+      border-radius: 4px;
+      padding: 0;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      overflow: hidden;
+    }
+    .spgift-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(212,168,32,0.15);
+      border-color: rgba(212,168,32,0.6);
+    }
+    .spgift-card--elite {
+      border-color: rgba(212,168,32,0.5);
+      box-shadow: 0 0 20px rgba(212,168,32,0.1);
+    }
+    .spgift-card--elite:hover {
+      box-shadow: 0 0 40px rgba(212,168,32,0.25), 0 8px 32px rgba(212,168,32,0.2);
+      border-color: #d4a820;
+    }
+
+    .spgift-card__header {
+      background: linear-gradient(135deg, #1c1030 0%, #241840 100%);
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(212,168,32,0.2);
+      text-align: center;
+    }
+    .spgift-card--elite .spgift-card__header {
+      background: linear-gradient(135deg, #2a1a10 0%, #1c1030 100%);
+      border-bottom-color: rgba(212,168,32,0.4);
+    }
+    .spgift-card__amount {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffe060;
+      display: block;
+      margin-bottom: 4px;
+      text-shadow: 0 0 12px rgba(255,224,96,0.3);
+    }
+    .spgift-card--elite .spgift-card__amount {
+      text-shadow: 0 0 20px rgba(255,224,96,0.5);
+    }
+    .spgift-card__name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff4b8;
+      letter-spacing: 0.05em;
+    }
+
+    .spgift-card__body {
+      padding: 20px 24px 24px;
+    }
+    .spgift-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .spgift-item:last-child { border-bottom: none; }
+    .spgift-item__name { flex: 1; }
+    .spgift-item__qty {
+      color: #ffe060;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-left: 12px;
+      white-space: nowrap;
+    }
+
+    /* item color categories */
+    .spgift-cat-card { color: #64b5f6; }
+    .spgift-cat-exp { color: #4db6ac; }
+    .spgift-cat-craft { color: #ce93d8; }
+    .spgift-cat-craft-hero { color: #ff5252; }
+    .spgift-cat-upgrade { color: #ffb74d; }
+    .spgift-cat-equip { color: #e0d8c8; }
+
+    .spgift-notes {
+      background: #120e22;
+      border: 1px solid rgba(212,168,32,0.15);
+      border-radius: 2px;
+      padding: 24px 32px;
+      margin-top: 48px;
+    }
+    .spgift-notes__title {
+      font-family: 'Cinzel', serif;
+      color: #ffe060;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .spgift-notes ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .spgift-notes li {
+      color: #b0a890;
+      font-size: 0.85rem;
+      padding: 4px 0;
+      line-height: 1.6;
+    }
+    .spgift-notes li::before {
+      content: "· ";
+      color: #7a6030;
+    }
+
+    .spgift-line-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 14px 32px;
+      background: #06C755;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .spgift-line-btn:hover {
+      background: #05b34c;
+      transform: translateY(-2px);
+    }
+    .spgift-line-btn span {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .spgift-back {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      padding: 14px;
+      color: #ffe060;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid rgba(212,168,32,0.2);
+      border-radius: 2px;
+      transition: background 0.2s ease;
+    }
+    .spgift-back:hover {
+      background: rgba(212,168,32,0.08);
+    }
+
+    @media (max-width: 720px) {
+      .spgift-grid { grid-template-columns: 1fr; }
+      .spgift-intro, .spgift-notes { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — SPONSOR GIFT</p>
+    <h1 class="page-hero__title">累計贊助<span>禮包</span></h1>
+    <p class="page-hero__sub">贊助累計達標即可領取豐厚禮包</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 系統說明</p>
+    <div class="spgift-intro">
+      贊助金額自動累計，達到各階段門檻後即可領取對應禮包。<br>
+      贈送皆計入當期 <strong>VIP 紅利</strong>。每個階段限領一次。
+    </div>
+
+    <p class="fp-heading">◈ 禮包內容</p>
+
+    <div class="spgift-grid">
+
+      <!-- $1,000 -->
+      <div class="spgift-card">
+        <div class="spgift-card__header">
+          <span class="spgift-card__amount">$1,000</span>
+          <span class="spgift-card__name">噬魂同歡慶</span>
+        </div>
+        <div class="spgift-card__body">
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">一般變身卡寶箱</span><span class="spgift-item__qty">x5</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">一般娃娃卡寶箱</span><span class="spgift-item__qty">x5</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">高級變身卡寶箱</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">高級娃娃卡寶箱</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">稀有變身卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">稀有娃娃卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">200% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">300% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">高級製作秘笈</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">稀有製作秘笈</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">稀有武器箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">高級防具箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">高級飾品箱</span><span class="spgift-item__qty">x1</span></div>
+        </div>
+      </div>
+
+      <!-- $3,000 -->
+      <div class="spgift-card">
+        <div class="spgift-card__header">
+          <span class="spgift-card__amount">$3,000</span>
+          <span class="spgift-card__name">噬魂崛起</span>
+        </div>
+        <div class="spgift-card__body">
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">高級變身卡寶箱</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">稀有變身卡寶箱</span><span class="spgift-item__qty">x2</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">高級娃娃卡寶箱</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">稀有娃娃卡寶箱</span><span class="spgift-item__qty">x2</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">200% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">300% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">高級製作秘笈</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">稀有製作秘笈</span><span class="spgift-item__qty">x2</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">稀有武器箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">稀有防具箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">稀有飾品箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">六芒星升階石</span><span class="spgift-item__qty">x5</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">戰馬雕像升級石</span><span class="spgift-item__qty">x5</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">聖物成長藥劑</span><span class="spgift-item__qty">x5</span></div>
+        </div>
+      </div>
+
+      <!-- $5,000 -->
+      <div class="spgift-card">
+        <div class="spgift-card__header">
+          <span class="spgift-card__amount">$5,000</span>
+          <span class="spgift-card__name">噬魂征途</span>
+        </div>
+        <div class="spgift-card__body">
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">稀有變身卡寶箱</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">英雄變身卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">稀有娃娃卡寶箱</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">英雄娃娃卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">200% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">300% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">高級製作秘笈</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">稀有製作秘笈</span><span class="spgift-item__qty">x2</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">稀有武器箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">稀有防具箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">稀有飾品箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">六芒星升階石</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">戰馬雕像升級石</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">聖物成長藥劑</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">自選屬性卷軸</span><span class="spgift-item__qty">x1</span></div>
+        </div>
+      </div>
+
+      <!-- $10,000 -->
+      <div class="spgift-card spgift-card--elite">
+        <div class="spgift-card__header">
+          <span class="spgift-card__amount">$10,000</span>
+          <span class="spgift-card__name">噬魂霸主</span>
+        </div>
+        <div class="spgift-card__body">
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">英雄變身卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">傳說變身卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">英雄娃娃卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">200% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">300% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">稀有製作秘笈</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft-hero">英雄製作秘笈</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄武器箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄防具箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄飾品箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">六芒星升階石</span><span class="spgift-item__qty">x15</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">戰馬雕像升級石</span><span class="spgift-item__qty">x15</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">聖物成長藥劑</span><span class="spgift-item__qty">x15</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">自選屬性卷軸</span><span class="spgift-item__qty">x1</span></div>
+        </div>
+      </div>
+
+      <!-- $20,000 -->
+      <div class="spgift-card spgift-card--elite">
+        <div class="spgift-card__header">
+          <span class="spgift-card__amount">$20,000</span>
+          <span class="spgift-card__name">噬魂之父</span>
+        </div>
+        <div class="spgift-card__body">
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">英雄變身卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">英雄娃娃卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">傳說娃娃卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">200% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">300% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">稀有製作秘笈</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft-hero">英雄製作秘笈</span><span class="spgift-item__qty">x2</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄武器箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄防具箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄飾品箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">六芒星升階石</span><span class="spgift-item__qty">x20</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">戰馬雕像升級石</span><span class="spgift-item__qty">x20</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">聖物成長藥劑</span><span class="spgift-item__qty">x20</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">自選屬性卷軸</span><span class="spgift-item__qty">x1</span></div>
+        </div>
+      </div>
+
+      <!-- $30,000 -->
+      <div class="spgift-card spgift-card--elite">
+        <div class="spgift-card__header">
+          <span class="spgift-card__amount">$30,000</span>
+          <span class="spgift-card__name">噬魂至尊</span>
+        </div>
+        <div class="spgift-card__body">
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">英雄變身卡寶箱</span><span class="spgift-item__qty">x2</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">傳說變身卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">英雄娃娃卡寶箱</span><span class="spgift-item__qty">x2</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-card">傳說娃娃卡寶箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">200% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-exp">300% 經驗藥水</span><span class="spgift-item__qty">x10</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft">稀有製作秘笈</span><span class="spgift-item__qty">x5</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-craft-hero">英雄製作秘笈</span><span class="spgift-item__qty">x3</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄武器箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄防具箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-equip">英雄飾品箱</span><span class="spgift-item__qty">x1</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">六芒星升階石</span><span class="spgift-item__qty">x30</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">戰馬雕像升級石</span><span class="spgift-item__qty">x30</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">聖物成長藥劑</span><span class="spgift-item__qty">x30</span></div>
+          <div class="spgift-item"><span class="spgift-item__name spgift-cat-upgrade">自選屬性卷軸</span><span class="spgift-item__qty">x2</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="spgift-notes">
+      <p class="spgift-notes__title">NOTICE</p>
+      <ul>
+        <li>禮包為累計制，達標後請聯繫 LINE 客服領取</li>
+        <li>贊助金額同時計入 VIP 紅利</li>
+        <li>每階段限領一次，不可重複領取</li>
+      </ul>
+      <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="spgift-line-btn">
+        <span>LINE</span> 聯繫客服領取禮包
+      </a>
+    </div>
+
+    <a href="events.html" class="spgift-back">&#9650; 返回活動列表</a>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

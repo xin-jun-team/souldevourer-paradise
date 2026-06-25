@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>寵物系統 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 進化流程 */
+    .evo-flow { display:flex; align-items:center; gap:0; margin-bottom:32px; flex-wrap:wrap; }
+    .evo-step { background:#100c1e; border:1px solid #2a1f40; border-radius:2px; padding:16px 20px; text-align:center; flex:1; min-width:130px; }
+    .evo-step__num { font-family:'Cinzel',serif; font-size:0.65rem; color:var(--gold-dim); letter-spacing:0.15em; display:block; margin-bottom:6px; }
+    .evo-step__name { font-family:'Noto Serif TC',serif; font-size:0.95rem; font-weight:700; color:var(--text-bright); margin-bottom:5px; }
+    .evo-step__req { font-size:0.78rem; color:var(--text-dim); }
+    .evo-step__req strong { color:#c8a860; }
+    .evo-arrow { color:var(--gold-dim); font-size:1.4rem; padding:0 10px; flex-shrink:0; }
+
+    /* 飼料表 */
+    .feed-table { width:100%; border-collapse:collapse; font-size:0.83rem; margin-bottom:32px; }
+    .feed-table th { background:#150e28; color:var(--gold-dim); font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.12em; padding:10px 16px; border:1px solid #2a1f40; text-align:left; }
+    .feed-table td { background:#0e0a1c; padding:10px 16px; border:1px solid #1e1630; color:var(--text-dim); }
+    .feed-table tr:nth-child(even) td { background:#100c1e; }
+    .feed-table tr:hover td { background:#16102a; }
+    .feed-table td:first-child { color:var(--text-bright); font-weight:600; }
+
+    /* 族群卡片 */
+    .tribe-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; margin-bottom:36px; }
+    .tribe-card { background: linear-gradient(135deg, #100c20 0%, #0c0818 60%, #120a1e 100%); border:1px solid #1e1630; border-radius:2px; overflow:hidden; }
+    .tribe-card__head { background: linear-gradient(90deg, rgba(212,168,32,0.11) 0%, rgba(212,168,32,0.03) 50%, transparent 100%); border-bottom: 1px solid rgba(212,168,32,0.15); padding:12px 16px; display:flex; align-items:center; gap:10px; }
+    .tribe-card__emoji { font-size:1.5rem; flex-shrink:0; }
+    .tribe-card__name { font-family:'Noto Serif TC',serif; font-size:0.92rem; font-weight:700; color:var(--gold); }
+    .tribe-card__stats { font-size:0.72rem; color:#7a6a50; margin-top:2px; }
+    .tribe-card__body { padding:12px 14px; }
+    .tribe-tier { display:flex; align-items:baseline; gap:8px; padding:5px 0; border-bottom:1px solid #16102a; }
+    .tribe-tier:last-child { border-bottom:none; }
+    .tribe-tier__badge { font-family:'Cinzel',serif; font-size:0.65rem; font-weight:700; border-radius:2px; padding:1px 6px; flex-shrink:0; min-width:32px; text-align:center; }
+    .tribe-tier__badge--1 { background:rgba(255,255,255,0.05); color:#9a8f85; }
+    .tribe-tier__badge--2 { background:rgba(0,229,255,0.08); color:#00e5ff; }
+    .tribe-tier__badge--3 { background:rgba(255,107,107,0.1); color:#ff6b6b; }
+    .tribe-tier__pname { font-size:0.84rem; font-weight:600; }
+    .tribe-tier--1 .tribe-tier__pname { color:#c8c0b0; }
+    .tribe-tier--2 .tribe-tier__pname { color:#00e5ff; }
+    .tribe-tier--3 .tribe-tier__pname { color:#ff6b6b; }
+    .tribe-tier__skill { font-size:0.75rem; color:#6a6a7a; margin-left:2px; }
+
+    /* 裝備卡片 */
+    .equip-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-bottom:32px; }
+    .equip-card { background:#0c0818; border:1px solid #1e1630; border-radius:2px; overflow:hidden; transition:border-color 0.2s,transform 0.2s; }
+    .equip-card:hover { border-color:var(--gold-dim); transform:translateY(-3px); }
+    .equip-card__head { padding:14px 16px; border-bottom:1px solid #1e1630; display:flex; align-items:center; gap:10px; }
+    .equip-card--weapon .equip-card__head { background: linear-gradient(90deg, rgba(212,120,0,0.2) 0%, rgba(212,120,0,0.06) 100%); }
+    .equip-card--armor  .equip-card__head { background: linear-gradient(90deg, rgba(0,96,212,0.2) 0%, rgba(0,96,212,0.06) 100%); }
+    .equip-card__icon { font-size:1.3rem; }
+    .equip-card__name { font-family:'Noto Serif TC',serif; font-size:0.9rem; font-weight:700; }
+    .equip-card--weapon .equip-card__name { color:#e8a020; }
+    .equip-card--armor  .equip-card__name { color:#60a0ff; }
+    .equip-card__type { font-size:0.7rem; color:#6a6a6a; margin-left:auto; }
+    .equip-card__body { padding:14px 16px; }
+    .equip-stat { display:flex; justify-content:space-between; font-size:0.82rem; padding:6px 0; border-bottom:1px solid #1a1228; }
+    .equip-stat:last-of-type { border-bottom:none; }
+    .equip-stat__key { color:var(--text-dim); }
+    .equip-stat__val { color:#ffe060; font-family:'Cinzel',serif; font-weight:700; }
+    .equip-stat__val--neg { color:#ff8080; }
+    .equip-card__cost { margin-top:12px; padding-top:12px; border-top:1px solid #1e1630; font-size:0.75rem; color:#7a6030; line-height:1.7; }
+    .equip-card__cost strong { color:#c8a860; }
+  </style>
+</head>
+<body>
+
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a>
+        <a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div>
+        <a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — PET SYSTEM</p>
+    <h1 class="page-hero__title">寵物<span>系統</span></h1>
+    <p class="page-hero__sub">捕捉、進化、並肩征戰</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">🐾 捕捉與進化</p>
+    <div class="fp-intro">
+      前往 <strong>寵物之島</strong> 捕捉野生寵物，需角色魅力達 <strong>6 以上</strong>。<br>
+      寵物等級達 <strong>Lv.30</strong> 後即可進化，三階進擊寵物將解鎖強力特技與爪痕暴擊屬性。
+    </div>
+
+    <div class="evo-flow">
+      <div class="evo-step">
+        <span class="evo-step__num">STAGE 1</span>
+        <div class="evo-step__name">一階（基礎）</div>
+        <div class="evo-step__req">野外捕捉</div>
+      </div>
+      <span class="evo-arrow">→</span>
+      <div class="evo-step">
+        <span class="evo-step__num">STAGE 2</span>
+        <div class="evo-step__name">二階（高等）</div>
+        <div class="evo-step__req">Lv.30 + <strong>進化果實</strong></div>
+      </div>
+      <span class="evo-arrow">→</span>
+      <div class="evo-step">
+        <span class="evo-step__num">STAGE 3</span>
+        <div class="evo-step__name">三階（進擊）</div>
+        <div class="evo-step__req">Lv.30 + <strong>勝利果實</strong></div>
+      </div>
+    </div>
+
+    <p class="fp-heading">🦴 飼料指南</p>
+    <table class="feed-table">
+      <thead><tr><th>寵物族群</th><th>專用飼料</th><th>購買地點</th></tr></thead>
+      <tbody>
+        <tr><td>暴走兔族</td><td>胡蘿蔔</td><td>主城道具商 NPC</td></tr>
+        <tr><td>虎男族</td><td>虎男飼料</td><td>主城道具商 NPC</td></tr>
+        <tr><td>熊貓族</td><td>熊貓食物</td><td>主城道具商 NPC</td></tr>
+        <tr><td>袋鼠族</td><td>袋鼠飼料</td><td>主城道具商 NPC</td></tr>
+        <tr><td>其他族群</td><td>對應專屬飼料</td><td>主城道具商 NPC</td></tr>
+      </tbody>
+    </table>
+
+    <p class="fp-heading">🐕 寵物族群一覽（共 17 族）</p>
+    <div class="tribe-grid">
+
+      <!-- 熊族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐻</span>
+          <div><div class="tribe-card__name">熊族</div><div class="tribe-card__stats">極高攻 · 極高血 · 極慢速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">熊</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等熊</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的熊</span><span class="tribe-tier__skill">— 爪痕暴擊（水）</span></div>
+        </div>
+      </div>
+
+      <!-- 狼族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐺</span>
+          <div><div class="tribe-card__name">狼族</div><div class="tribe-card__stats">稍低攻 · 中血 · 快速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">狼</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等狼</span><span class="tribe-tier__skill">— 兩格攻擊</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的狼</span><span class="tribe-tier__skill">— 兩格 · 爪痕暴擊（風）</span></div>
+        </div>
+      </div>
+
+      <!-- 柯利族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐕</span>
+          <div><div class="tribe-card__name">柯利族</div><div class="tribe-card__stats">中攻 · 高血 · 慢速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">柯利</span><span class="tribe-tier__skill">— 兩格攻擊</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等柯利</span><span class="tribe-tier__skill">— 兩格攻擊</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的柯利</span><span class="tribe-tier__skill">— 兩格 · 爪痕暴擊（火）</span></div>
+        </div>
+      </div>
+
+      <!-- 牧羊犬族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐩</span>
+          <div><div class="tribe-card__name">牧羊犬族</div><div class="tribe-card__stats">中攻 · 中血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">牧羊犬</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等牧羊犬</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的牧羊犬</span><span class="tribe-tier__skill">— 爪痕暴擊（火）</span></div>
+        </div>
+      </div>
+
+      <!-- 杜賓狗族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🦮</span>
+          <div><div class="tribe-card__name">杜賓狗族</div><div class="tribe-card__stats">高攻 · 少血 · 快速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">杜賓狗</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等杜賓狗</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的杜賓狗</span><span class="tribe-tier__skill">— 爪痕暴擊（地）</span></div>
+        </div>
+      </div>
+
+      <!-- 哈士奇族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐶</span>
+          <div><div class="tribe-card__name">哈士奇族</div><div class="tribe-card__stats">中攻 · 高血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">哈士奇</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等哈士奇</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的哈士奇</span><span class="tribe-tier__skill">— 爪痕暴擊（水）</span></div>
+        </div>
+      </div>
+
+      <!-- 高麗犬族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐾</span>
+          <div><div class="tribe-card__name">高麗犬族</div><div class="tribe-card__stats">高攻 · 中血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">高麗幼犬</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高麗犬</span><span class="tribe-tier__skill">— 瘋狂咬擊</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的高麗犬</span><span class="tribe-tier__skill">— 瘋狂咬擊 · 爪痕暴擊（風）</span></div>
+        </div>
+      </div>
+
+      <!-- 袋鼠族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🥊</span>
+          <div><div class="tribe-card__name">袋鼠族</div><div class="tribe-card__stats">高攻 · 高血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">袋鼠</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等袋鼠</span><span class="tribe-tier__skill">— 爆裂拳</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的袋鼠</span><span class="tribe-tier__skill">— 弱化術 · 爪痕暴擊（風）</span></div>
+        </div>
+      </div>
+
+      <!-- 虎男族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐯</span>
+          <div><div class="tribe-card__name">虎男族</div><div class="tribe-card__stats">高攻 · 高血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">虎男</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">真・虎男</span><span class="tribe-tier__skill">— 爆裂勾爪</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的虎男</span><span class="tribe-tier__skill">— 爆裂勾爪 · 爪痕暴擊（地）</span></div>
+        </div>
+      </div>
+
+      <!-- 貓族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐱</span>
+          <div><div class="tribe-card__name">貓族</div><div class="tribe-card__stats">極高攻 · 少血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">貓</span><span class="tribe-tier__skill">— 寒冷戰慄</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等貓</span><span class="tribe-tier__skill">— 寒冷戰慄</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的貓</span><span class="tribe-tier__skill">— 寒冷戰慄 · 爪痕暴擊（風）</span></div>
+        </div>
+      </div>
+
+      <!-- 暴走兔族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐇</span>
+          <div><div class="tribe-card__name">暴走兔族</div><div class="tribe-card__stats">高攻 · 中血 · 快速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">暴走兔</span><span class="tribe-tier__skill">— 冰錐</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等暴走兔</span><span class="tribe-tier__skill">— 冰錐</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的暴走兔</span><span class="tribe-tier__skill">— 冰錐 · 爪痕暴擊（水）</span></div>
+        </div>
+      </div>
+
+      <!-- 浣熊族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🦝</span>
+          <div><div class="tribe-card__name">浣熊族</div><div class="tribe-card__stats">中攻 · 高血 · 慢速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">浣熊</span><span class="tribe-tier__skill">— 緩速術</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等浣熊</span><span class="tribe-tier__skill">— 緩速 · 疾病 · 弱化</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的浣熊</span><span class="tribe-tier__skill">— 緩速/疾病/弱化 · 爪痕暴擊（火）</span></div>
+        </div>
+      </div>
+
+      <!-- 小獵犬族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐶</span>
+          <div><div class="tribe-card__name">小獵犬族</div><div class="tribe-card__stats">偏低攻 · 高血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">小獵犬</span><span class="tribe-tier__skill">— 地獄之牙</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等小獵犬</span><span class="tribe-tier__skill">— 地獄之牙</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的小獵犬</span><span class="tribe-tier__skill">— 地獄之牙 · 爪痕暴擊（地）</span></div>
+        </div>
+      </div>
+
+      <!-- 聖伯納犬族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐕</span>
+          <div><div class="tribe-card__name">聖伯納犬族</div><div class="tribe-card__stats">偏低攻 · 高血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">聖伯納犬</span><span class="tribe-tier__skill">— 風刃</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等聖伯納犬</span><span class="tribe-tier__skill">— 風刃</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的聖伯納犬</span><span class="tribe-tier__skill">— 風刃 · 爪痕暴擊（水）</span></div>
+        </div>
+      </div>
+
+      <!-- 狐狸族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🦊</span>
+          <div><div class="tribe-card__name">狐狸族</div><div class="tribe-card__stats">偏低攻 · 中血 · 中速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">狐狸</span><span class="tribe-tier__skill">— 火箭術</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等狐狸</span><span class="tribe-tier__skill">— 火箭術</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的狐狸</span><span class="tribe-tier__skill">— 火箭術 · 爪痕暴擊（火）</span></div>
+        </div>
+      </div>
+
+      <!-- 熊貓族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐼</span>
+          <div><div class="tribe-card__name">熊貓族</div><div class="tribe-card__stats">高攻 · 高血 · 慢速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">熊貓</span><span class="tribe-tier__skill">— 兩格攻擊</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等熊貓</span><span class="tribe-tier__skill">— 兩格 · 熊貓爆擊</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的熊貓</span><span class="tribe-tier__skill">— 兩格/緩速/爆擊 · 爪痕暴擊（地）</span></div>
+        </div>
+      </div>
+
+      <!-- 猴子族 -->
+      <div class="tribe-card">
+        <div class="tribe-card__head">
+          <span class="tribe-card__emoji">🐒</span>
+          <div><div class="tribe-card__name">猴子族</div><div class="tribe-card__stats">高攻 · 高血 · 慢速</div></div>
+        </div>
+        <div class="tribe-card__body">
+          <div class="tribe-tier tribe-tier--1"><span class="tribe-tier__badge tribe-tier__badge--1">基礎</span><span class="tribe-tier__pname">猴子</span></div>
+          <div class="tribe-tier tribe-tier--2"><span class="tribe-tier__badge tribe-tier__badge--2">高等</span><span class="tribe-tier__pname">高等猴子</span><span class="tribe-tier__skill">— 衝擊波</span></div>
+          <div class="tribe-tier tribe-tier--3"><span class="tribe-tier__badge tribe-tier__badge--3">進擊</span><span class="tribe-tier__pname">進擊的猴子</span><span class="tribe-tier__skill">— 衝擊波（待更新）</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="fp-heading">⚔ 寵物專屬裝備</p>
+    <div class="equip-grid">
+
+      <div class="equip-card equip-card--weapon">
+        <div class="equip-card__head">
+          <span class="equip-card__icon">⚔</span>
+          <span class="equip-card__name">紫色勳章</span>
+          <span class="equip-card__type">武器</span>
+        </div>
+        <div class="equip-card__body">
+          <div class="equip-stat"><span class="equip-stat__key">攻擊成功</span><span class="equip-stat__val">+30</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">力量</span><span class="equip-stat__val">+20</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">魔法攻擊</span><span class="equip-stat__val">+50</span></div>
+          <div class="equip-card__cost">製作：<strong>藍鑽 1,999</strong> · 進化果實×10 · 勝利果實×5 · 稀有秘笈×10 · 英雄秘笈×1</div>
+        </div>
+      </div>
+
+      <div class="equip-card equip-card--weapon">
+        <div class="equip-card__head">
+          <span class="equip-card__icon">⚔</span>
+          <span class="equip-card__name">赤色勳章</span>
+          <span class="equip-card__type">武器</span>
+        </div>
+        <div class="equip-card__body">
+          <div class="equip-stat"><span class="equip-stat__key">攻擊成功</span><span class="equip-stat__val">+30</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">智力</span><span class="equip-stat__val">+20</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">魔法攻擊</span><span class="equip-stat__val">+50</span></div>
+          <div class="equip-card__cost">製作：<strong>藍鑽 1,999</strong> · 進化果實×10 · 勝利果實×5 · 稀有秘笈×10 · 英雄秘笈×1</div>
+        </div>
+      </div>
+
+      <div class="equip-card equip-card--armor">
+        <div class="equip-card__head">
+          <span class="equip-card__icon">🛡</span>
+          <span class="equip-card__name">聖晶之鎧</span>
+          <span class="equip-card__type">防具</span>
+        </div>
+        <div class="equip-card__body">
+          <div class="equip-stat"><span class="equip-stat__key">防禦</span><span class="equip-stat__val equip-stat__val--neg">-100</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">魔法防禦</span><span class="equip-stat__val">+200</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">最大 HP</span><span class="equip-stat__val">+3,000</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">最大 MP</span><span class="equip-stat__val">+1,000</span></div>
+          <div class="equip-card__cost">製作：<strong>藍鑽 1,999</strong> · 進化果實×10 · 勝利果實×5 · 稀有秘笈×10 · 英雄秘笈×1</div>
+        </div>
+      </div>
+
+      <div class="equip-card equip-card--armor">
+        <div class="equip-card__head">
+          <span class="equip-card__icon">🛡</span>
+          <span class="equip-card__name">叢林之鎧</span>
+          <span class="equip-card__type">防具</span>
+        </div>
+        <div class="equip-card__body">
+          <div class="equip-stat"><span class="equip-stat__key">防禦</span><span class="equip-stat__val equip-stat__val--neg">-100</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">魔法防禦</span><span class="equip-stat__val">+200</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">力量</span><span class="equip-stat__val">+20</span></div>
+          <div class="equip-stat"><span class="equip-stat__key">智力</span><span class="equip-stat__val">+20</span></div>
+          <div class="equip-card__cost">製作：<strong>藍鑽 1,999</strong> · 進化果實×10 · 勝利果實×5 · 稀有秘笈×10 · 英雄秘笈×1</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 上下頁導覽 -->
+    <div class="fp-pager">
+      <a href="feature-job-power.html" class="fp-pager__btn">
+        <span class="fp-pager__arrow">←</span>
+        <div><span class="fp-pager__dir">PREV</span><span class="fp-pager__name">職業之力</span></div>
+      </a>
+      <div class="fp-pager__center"><a href="features-overview.html" class="fp-pager__back">▲ 返回系統列表</a></div>
+      <a href="feature-prestige.html" class="fp-pager__btn fp-pager__btn--next">
+        <div><span class="fp-pager__dir">NEXT</span><span class="fp-pager__name">威望系統</span></div>
+        <span class="fp-pager__arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

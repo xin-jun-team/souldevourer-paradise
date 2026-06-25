@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="噬魂天堂 — 聯絡我們">
+  <title>聯絡我們 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(180deg, #0a0514 0%, #04030a 100%);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+    .page-hero__eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+    }
+    .page-hero__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--text-bright);
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
+    .page-hero__title span { color: var(--gold); }
+    .page-hero__sub {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    .contact-wrap {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 80px 24px 100px;
+      text-align: center;
+    }
+
+    .contact-card {
+      background: linear-gradient(160deg, #0e0a1e 0%, #0a0514 100%);
+      border: 1px solid #2a1f40;
+      border-top: 3px solid #06c755;
+      border-radius: 2px;
+      padding: 48px 36px 40px;
+    }
+
+    .contact-line-icon {
+      width: 64px;
+      height: 64px;
+      background: #06c755;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .contact-line-icon svg { width: 40px; height: 40px; fill: #fff; }
+
+    .contact-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+    .contact-desc {
+      font-size: 0.87rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .contact-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0d1a0d;
+      border: 1px solid #1a4020;
+      padding: 10px 20px;
+      border-radius: 2px;
+      font-size: 0.9rem;
+      color: #a0d0a0;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+    .contact-id strong { color: #4cd964; font-size: 1rem; }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #06c755;
+      color: #fff;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      padding: 16px 48px;
+      text-decoration: none;
+      border-radius: 2px;
+      width: 100%;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .contact-btn:hover {
+      background: #04a844;
+      transform: translateY(-2px);
+    }
+    .contact-btn svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+
+    .contact-note {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .contact-note a { color: var(--gold-dim); text-decoration: none; }
+    .contact-note a:hover { color: var(--gold); }
+
+    .contact-qr {
+      margin: 0 auto 24px;
+      display: inline-block;
+    }
+    .contact-qr img {
+      width: 160px;
+      height: 160px;
+      border: 4px solid #06c755;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto 8px;
+    }
+    .contact-qr p {
+      font-size: 0.75rem;
+      color: #4cd964;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ FLOATING SIDEBAR ═══════════════════════ -->
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-icon">✤</span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-icon">↓</span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+        
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a>
+        <a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div>
+        <a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a>
+      <a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a>
+      <span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a>
+      <a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ PAGE HERO ═══════════════════════ -->
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — CONTACT</p>
+    <h1 class="page-hero__title">聯絡<span>我們</span></h1>
+    <p class="page-hero__sub">有任何問題或需求，歡迎直接聯繫官方</p>
+  </div>
+
+  <!-- ═══════════════════════ CONTACT BODY ═══════════════════════ -->
+  <main class="contact-wrap">
+
+    <div class="contact-card">
+
+      <div class="contact-line-icon">
+        <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      </div>
+
+      <div class="contact-title">官方 LINE 客服</div>
+      <div class="contact-desc">
+        贊助問題、申訴、補救申請、活動詢問<br>
+        所有事項皆可透過官方 LINE 聯繫
+      </div>
+
+      <div class="contact-qr">
+        <img src="../assets/images/line-qrcode.png" alt="噬魂天堂 LINE QR Code">
+        <p>手機掃描加入</p>
+      </div>
+
+      <div class="contact-id">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="#4cd964"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINE ID：<strong>@056uzjuy</strong>
+      </div>
+
+      <a href="https://lin.ee/p8o1unp" target="_blank" rel="noopener" class="contact-btn">
+        <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        點此加入官方 LINE
+      </a>
+
+      <p class="contact-note">
+        ※ 請勿相信非官方帳號，官方 GM 不會主動私訊索取帳號密碼或金錢。<br>
+        如遇可疑訊息，請立即回報官方。
+      </p>
+
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text">
+            <span class="logo-text">噬魂天堂</span>
+            
+          </div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link">
+            <span class="footer-link__icon">⚔</span>特色介紹
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link">
+            <span class="footer-link__icon">◆</span>遊戲規章
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link">
+            <span class="footer-link__icon">✤</span>贊助須知
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link">
+            <span class="footer-link__icon">†</span>免責聲明
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link">
+            <span class="footer-link__icon">✉</span>聯絡我們
+          </a>
+        </nav>
+      </div>
+      <div class="footer-copy">
+        <div class="footer-copy__line"></div>
+        <p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

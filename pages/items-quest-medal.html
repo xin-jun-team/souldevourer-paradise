@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主線指南書 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .reward-table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+    .reward-table th { background: linear-gradient(90deg, rgba(212,168,32,0.2) 0%, rgba(212,168,32,0.08) 100%); color:var(--gold-dim); font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.12em; padding:10px 16px; border:1px solid #2a1f40; text-align:left; }
+    .reward-table td { background:#0e0a1c; padding:10px 16px; border:1px solid #1e1630; color:var(--text-dim); }
+    .reward-table tr:nth-child(even) td { background:#100c1e; }
+    .reward-table tr:hover td { background:#16102a; }
+    .reward-table td:first-child { color:var(--text-bright); font-family:'Cinzel',serif; }
+
+    .fp-warn {
+      background:#0e0a1c;
+      border-left:4px solid #e05050;
+      border-radius:0 4px 4px 0;
+      padding:14px 18px;
+      margin-bottom:24px;
+    }
+    .fp-warn__title { color:#e05050; font-size:0.9rem; font-weight:700; margin-bottom:6px; }
+    .fp-warn__body { color:var(--text-dim); font-size:0.85rem; line-height:1.7; }
+
+    .info-box {
+      background:#0e0a1c;
+      border:1px solid rgba(212,168,32,0.2);
+      border-radius:2px;
+      padding:18px 20px;
+      margin-bottom:24px;
+    }
+    .info-box__row { display:flex; gap:8px; align-items:baseline; margin-bottom:8px; font-size:0.87rem; }
+    .info-box__row:last-child { margin-bottom:0; }
+    .info-box__label { color:#7a6030; min-width:90px; font-size:0.82rem; }
+    .info-box__val { color:var(--gold-dim); font-weight:600; }
+    .info-box__note { background:rgba(0,180,210,0.07); border:1px solid rgba(0,180,210,0.2); border-radius:2px; padding:10px 14px; font-size:0.82rem; color:var(--text-dim); margin-top:12px; }
+
+    .table-wrap { overflow-x:auto; }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — QUEST GUIDE BOOK</p>
+    <h1 class="page-hero__title">主線<span>指南書</span></h1>
+    <p class="page-hero__sub">踏上主線旅程，逐步解鎖永久屬性加成</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">📖 系統說明</p>
+    <div class="fp-intro">
+      <strong>主線指南書</strong>是貫穿整個冒險旅程的核心道具，隨著挑戰更深層的地圖，指南書等級不斷提升，解鎖 HP、MP 及各類屬性的<strong>永久加成效果</strong>。<br>
+      Lv.0 指南書於<strong>創角時自動獲得</strong>，遺失時可至奇物商城補購。
+    </div>
+
+    <div class="fp-warn">
+      <div class="fp-warn__title">⚠️ 重要注意事項</div>
+      <div class="fp-warn__body">指南書進行升階製作時，請務必先「<strong>脫下裝備</strong>」再執行製作，以確保流程正常運作。若未脫下裝備直接製作，可能導致升階失敗或異常。</div>
+    </div>
+
+    <p class="fp-heading">🛠️ 製作與取得方式</p>
+    <div class="info-box">
+      <div class="info-box__row">
+        <span class="info-box__label">製作地點</span>
+        <span class="info-box__val">村莊主線任務 NPC</span>
+      </div>
+      <div class="info-box__row">
+        <span class="info-box__label">證明獲取</span>
+        <span class="info-box__val">相關地圖獲取對應道具</span>
+      </div>
+      <div class="info-box__row">
+        <span class="info-box__label">消耗素材</span>
+        <span class="info-box__val">地圖證明 + 天幣（依等級遞增）</span>
+      </div>
+      <div class="info-box__note">💡 主線指南書 Lv.0 於創角時即可獲得。若有遺失，請至奇物商城購買。</div>
+    </div>
+
+    <p class="fp-heading">📈 主線指南書等級一覽</p>
+    <div class="table-wrap">
+      <table class="reward-table">
+        <thead>
+          <tr>
+            <th>等級</th>
+            <th>證明地點</th>
+            <th>核心能力 (HP / MP)</th>
+            <th>其他能力加成</th>
+            <th>消耗（證明 / 天幣）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Lv.0</td><td>創角獲得</td><td>HP+5 / MP+3</td><td>—</td><td>—</td></tr>
+          <tr><td>Lv.1</td><td>騎士洞窟</td><td>HP+10 / MP+5</td><td>—</td><td>30張 / 5萬</td></tr>
+          <tr><td>Lv.2</td><td>奇岩地監</td><td>HP+30 / MP+10</td><td>—</td><td>30張 / 5萬</td></tr>
+          <tr><td>Lv.3</td><td>海音地監</td><td>HP+50 / MP+20</td><td>—</td><td>30張 / 5萬</td></tr>
+          <tr><td>Lv.4</td><td>古魯丁地監</td><td>HP+70 / MP+30</td><td>經驗+1%</td><td>150張 / 50萬</td></tr>
+          <tr><td>Lv.5</td><td>象牙塔</td><td>HP+100 / MP+40</td><td>經驗+1%, 回血+2</td><td>150張 / 50萬</td></tr>
+          <tr><td>Lv.6</td><td>水晶洞窟</td><td>HP+130 / MP+50</td><td>經驗+1%, 回血+2, 回魔+2, 抗魔+1</td><td>150張 / 50萬</td></tr>
+          <tr><td>Lv.7</td><td>拉斯塔巴德</td><td>HP+160 / MP+60</td><td>經驗+2%, 回血+2, 回魔+2, 抗魔+1</td><td>300張 / 100萬</td></tr>
+          <tr><td>Lv.8</td><td>海賊島地監</td><td>HP+200 / MP+70</td><td>經驗+3%, 回血+2, 回魔+2, 抗魔+1</td><td>300張 / 100萬</td></tr>
+          <tr><td>Lv.9</td><td>龍谷地監</td><td>HP+250 / MP+80</td><td>經驗+4%, 回血+2, 回魔+2, 抗魔+1</td><td>300張 / 100萬</td></tr>
+          <tr><td>Lv.10</td><td>地底湖</td><td>HP+300 / MP+90</td><td>經驗+5%, 回血+2, 回魔+2, 抗魔+1</td><td>500張 / 300萬</td></tr>
+          <tr><td>Lv.11</td><td>精靈墓穴</td><td>HP+350 / MP+100</td><td>經驗+6%, 回血+2, 回魔+2, 防禦-1, 抗魔+2</td><td>500張 / 300萬</td></tr>
+          <tr><td>Lv.12</td><td>遺忘之島</td><td>HP+400 / MP+110</td><td>經驗+6%, 回血+2, 回魔+2, 防禦-1, 抗魔+2, 藥水回復+2</td><td>500張 / 300萬</td></tr>
+          <tr><td>Lv.13</td><td>夢幻之島</td><td>HP+450 / MP+120</td><td>經驗+6%, 回血+2, 回魔+2, 防禦-1, 抗魔+2, 藥水回復+2</td><td>500張 / 300萬</td></tr>
+          <tr><td>Lv.14</td><td>傲慢之塔 1F</td><td>HP+500 / MP+130</td><td>經驗+7%, 回血+2, 回魔+2, 防禦-2, 抗魔+4, 藥水回復+2</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.15</td><td>傲慢之塔 2F</td><td>HP+550 / MP+140</td><td>經驗+7%, 回血+2, 回魔+2, 防禦-2, 抗魔+4, 藥水回復+4</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.16</td><td>傲慢之塔 3F</td><td>HP+600 / MP+150</td><td>經驗+7%, 回血+4, 回魔+4, 防禦-2, 抗魔+4, 藥水回復+4</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.17</td><td>傲慢之塔 4F</td><td>HP+650 / MP+160</td><td>經驗+8%, 回血+4, 回魔+4, 防禦-2, 抗魔+5, 藥水回復+4</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.18</td><td>傲慢之塔 5F</td><td>HP+700 / MP+170</td><td>經驗+8%, 回血+4, 回魔+4, 防禦-2, 抗魔+5, 藥水回復+6, 所有傷害+2</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.19</td><td>傲慢之塔 6F</td><td>HP+750 / MP+180</td><td>經驗+8%, 回血+4, 回魔+4, 防禦-2, 抗魔+5, 藥水回復+6, 所有傷害+2, 進遠命中+1</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.20</td><td>傲慢之塔 7F</td><td>HP+800 / MP+190</td><td>經驗+9%, 回血+4, 回魔+4, 防禦-2, 抗魔+6, 藥水回復+6, 所有傷害+2, 進遠命中+1</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.21</td><td>傲慢之塔 8F</td><td>HP+850 / MP+200</td><td>經驗+9%, 回血+5, 回魔+5, 防禦-3, 抗魔+6, 藥水回復+8, 所有傷害+3, 進遠命中+2</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.22</td><td>傲慢之塔 9F</td><td>HP+900 / MP+210</td><td>經驗+9%, 回血+5, 回魔+5, 防禦-3, 抗魔+6, 藥水回復+8, 所有傷害+3, 進遠命中+2</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.23</td><td>傲慢之塔 10F</td><td>HP+950 / MP+220</td><td>經驗+10%, 回血+5, 回魔+5, 防禦-3, 抗魔+8, 藥水回復+10, 所有傷害+3, 進遠命中+3</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.24</td><td>古代遺忘之島</td><td>HP+1000 / MP+230</td><td>經驗+10%, 回血+5, 回魔+5, 防禦-3, 抗魔+8, 藥水回復+10, 所有傷害+5, 進遠命中+3</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.25</td><td>古代高崙</td><td>HP+1050 / MP+250</td><td>經驗+12%, 回血+6, 回魔+6, 防禦-3, 抗魔+10, 藥水回復+15, 所有傷害+5, 進遠命中+5, 魔法命中+1</td><td>500張 / 500萬</td></tr>
+          <tr><td>Lv.26</td><td>隱藏之谷</td><td>HP+1150 / MP+280</td><td>經驗+12%, 回血+6, 回魔+6, 防禦-3, 抗魔+10, 藥水回復+15, 所有傷害+5, 進遠命中+5, 魔法命中+1</td><td>700張 / 1000萬</td></tr>
+          <tr><td>Lv.27</td><td>烽火戰場</td><td>HP+1250 / MP+330</td><td>經驗+15%, 回血+8, 回魔+8, 防禦-5, 抗魔+12, 藥水回復+15, 所有傷害+7, 進遠命中+5, 魔法命中+1</td><td>700張 / 1000萬</td></tr>
+          <tr><td>Lv.28</td><td>羅馬世界</td><td>HP+1350 / MP+360</td><td>經驗+15%, 回血+8, 回魔+8, 防禦-5, 抗魔+12, 藥水回復+15, 所有傷害+7, 進遠命中+5, 魔法命中+2</td><td>700張 / 1000萬</td></tr>
+          <tr><td>Lv.29</td><td>支配之塔 1F</td><td>HP+1450 / MP+390</td><td>經驗+18%, 回血+11, 回魔+11, 防禦-5, 抗魔+14, 藥水回復+18, 所有傷害+7, 進遠命中+7, 魔法命中+2</td><td>700張 / 1000萬</td></tr>
+          <tr><td>Lv.30</td><td>支配之塔 2F</td><td>HP+1550 / MP+420</td><td>經驗+18%, 回血+11, 回魔+11, 防禦-5, 抗魔+14, 藥水回復+18, 所有傷害+7, 進遠命中+7, 魔法命中+3</td><td>700張 / 1000萬</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 上下頁導覽 -->
+    <div class="fp-pager">
+      <a href="items-overview.html" class="fp-pager__btn">
+        <span class="fp-pager__arrow">←</span>
+        <div><span class="fp-pager__dir">PREV</span><span class="fp-pager__name">裝備道具總覽</span></div>
+      </a>
+      <div class="fp-pager__center"><a href="items-overview.html" class="fp-pager__back">▲ 返回裝備道具列表</a></div>
+      <a href="items-dragon-eye.html" class="fp-pager__btn fp-pager__btn--next">
+        <div><span class="fp-pager__dir">NEXT</span><span class="fp-pager__name">四龍之魔眼</span></div>
+        <span class="fp-pager__arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

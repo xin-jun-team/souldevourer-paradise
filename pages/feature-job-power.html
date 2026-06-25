@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>職業之力 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 職業卡片 */
+    .job-card {
+      background: linear-gradient(135deg, #130a2a 0%, #0c0818 55%, #14082a 100%);
+      border:1px solid #1e1630; border-radius:2px;
+      overflow:hidden; margin-bottom:20px;
+    }
+    .job-card__head {
+      background: linear-gradient(90deg, rgba(140,0,200,0.14) 0%, rgba(140,0,200,0.05) 45%, transparent 100%);
+      border-bottom: 1px solid rgba(140,0,200,0.2);
+      padding:16px 22px; display:flex; align-items:center; gap:16px;
+    }
+    .job-card__icon { flex-shrink:0; width:64px; height:64px; background:#150e28; border:1px solid #3a2a50; border-radius:2px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .job-card__icon img { width:100%; height:100%; object-fit:contain; image-rendering:pixelated; }
+    .job-card__meta { flex:1; }
+    .job-card__name { font-family:'Noto Serif TC',serif; font-size:1rem; font-weight:900; color:var(--text-bright); letter-spacing:0.12em; margin-bottom:3px; }
+    .job-card__power { font-family:'Cinzel',serif; font-size:0.72rem; color:var(--gold); letter-spacing:0.15em; }
+    .job-card__desc { font-size:0.82rem; color:var(--text-dim); margin-left:auto; max-width:360px; line-height:1.6; text-align:right; }
+    .job-card__desc strong { color:#ffe060; }
+
+    /* 數值表 */
+    .job-table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+    .job-table th { background: linear-gradient(90deg, rgba(212,168,32,0.16) 0%, rgba(212,168,32,0.06) 100%); color:var(--gold-dim); font-family:'Cinzel',serif; font-size:0.66rem; letter-spacing:0.1em; padding:9px 14px; border:1px solid #2a1f40; text-align:center; }
+    .job-table th:first-child { text-align:left; }
+    .job-table td { background:#0e0a1c; padding:8px 14px; border:1px solid #1e1630; color:var(--text-dim); text-align:center; }
+    .job-table td:first-child { color:var(--text-bright); font-weight:700; font-family:'Cinzel',serif; font-size:0.78rem; text-align:left; }
+    .job-table tr:nth-child(even) td { background:#100c1e; }
+    .job-table tr:hover td { background:#16102a; }
+    .job-table tr:last-child td { background:#18102e; }
+    .job-table tr:last-child td:first-child { color:var(--gold); }
+    .val { color:#ffe060; font-weight:700; font-family:'Cinzel',serif; }
+
+    @media (max-width:600px) { .job-card__desc { display:none; } }
+  </style>
+</head>
+<body>
+
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a>
+        <a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div>
+        <a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — JOB POWER</p>
+    <h1 class="page-hero__title">職業<span>之力</span></h1>
+    <p class="page-hero__sub">賦予職業專屬力量，決定後期勝負關鍵</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">⚗ 職業之力介紹</p>
+
+    <div class="fp-intro">
+      每個職業都有專屬自己強大的職業之力，<strong>賦予大量的屬性與能力</strong>。<br>
+      滿級的職業之力更是後期重要的勝負關鍵——前往主城 NPC <strong>【西方失敗】</strong> 製作並逐步升階，不可忽視。
+    </div>
+
+    <!-- 王族 -->
+    <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__icon"><img src="../assets/images/job-royal.png" alt="王族"></div>
+        <div class="job-card__meta">
+          <div class="job-card__name">王族</div>
+          <div class="job-card__power">殷海薩之力</div>
+        </div>
+        <div class="job-card__desc">遭受傷害時觸發治癒，並提供 PVP 減傷與近距攻擊加成。<strong>滿級回復 350–400</strong>，生存力大幅強化。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階段</th><th>治癒機率</th><th>治癒量</th><th>PVP 減傷</th><th>近距攻擊</th></tr></thead>
+        <tbody>
+          <tr><td>初始</td><td><span class="val">4%</span></td><td>50–100</td><td>+1</td><td>+1</td></tr>
+          <tr><td>LV.1</td><td><span class="val">5%</span></td><td>100–150</td><td>+1</td><td>+1</td></tr>
+          <tr><td>LV.2</td><td><span class="val">6%</span></td><td>150–200</td><td>+2</td><td>+2</td></tr>
+          <tr><td>LV.3</td><td><span class="val">7%</span></td><td>200–250</td><td>+2</td><td>+2</td></tr>
+          <tr><td>LV.4</td><td><span class="val">8%</span></td><td>250–300</td><td>+3</td><td>+3</td></tr>
+          <tr><td>LV.5</td><td><span class="val">9%</span></td><td>300–350</td><td>+3</td><td>+3</td></tr>
+          <tr><td>MAX</td><td><span class="val">10%</span></td><td>350–400</td><td>+5</td><td>+5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 騎士 -->
+    <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__icon"><img src="../assets/images/job-knight.png" alt="騎士"></div>
+        <div class="job-card__meta">
+          <div class="job-card__name">騎士</div>
+          <div class="job-card__power">屠龍者之力</div>
+        </div>
+        <div class="job-card__desc">強化暈眩命中、魔法抵抗、最大 HP 與傷害免疫。<strong>滿級 HP +1,000、魔抵 +15</strong>，成為難以撼動的鐵壁。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階段</th><th>暈眩命中</th><th>魔法抵抗</th><th>最大 HP</th><th>傷害免疫</th></tr></thead>
+        <tbody>
+          <tr><td>初始</td><td><span class="val">+1%</span></td><td>+2</td><td>+100</td><td>+1</td></tr>
+          <tr><td>LV.1</td><td><span class="val">+2%</span></td><td>+4</td><td>+200</td><td>+2</td></tr>
+          <tr><td>LV.2</td><td><span class="val">+3%</span></td><td>+6</td><td>+300</td><td>+3</td></tr>
+          <tr><td>LV.3</td><td><span class="val">+5%</span></td><td>+8</td><td>+400</td><td>+4</td></tr>
+          <tr><td>LV.4</td><td><span class="val">+7%</span></td><td>+10</td><td>+500</td><td>+5</td></tr>
+          <tr><td>LV.5</td><td><span class="val">+9%</span></td><td>+12</td><td>+800</td><td>+6</td></tr>
+          <tr><td>MAX</td><td><span class="val">+12%</span></td><td>+15</td><td>+1,000</td><td>+8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 妖精 -->
+    <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__icon"><img src="../assets/images/job-elf.png" alt="妖精"></div>
+        <div class="job-card__meta">
+          <div class="job-card__name">妖精</div>
+          <div class="job-card__power">席琳之力</div>
+        </div>
+        <div class="job-card__desc">強化三連箭傷害與近距攻擊，並降低對手迴避率。<strong>滿級三連箭 +20、近距 +15</strong>，全面提升輸出效率。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階段</th><th>三連箭傷害</th><th>迴避降低</th><th>近距攻擊</th></tr></thead>
+        <tbody>
+          <tr><td>初始</td><td><span class="val">+5</span></td><td>+1</td><td>+1</td></tr>
+          <tr><td>LV.1</td><td><span class="val">+8</span></td><td>+2</td><td>+2</td></tr>
+          <tr><td>LV.2</td><td><span class="val">+10</span></td><td>+3</td><td>+2</td></tr>
+          <tr><td>LV.3</td><td><span class="val">+12</span></td><td>+4</td><td>+2</td></tr>
+          <tr><td>LV.4</td><td><span class="val">+14</span></td><td>+5</td><td>+10</td></tr>
+          <tr><td>LV.5</td><td><span class="val">+16</span></td><td>+6</td><td>+10</td></tr>
+          <tr><td>MAX</td><td><span class="val">+20</span></td><td>+7</td><td>+15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 法師 -->
+    <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__icon"><img src="../assets/images/job-mage.png" alt="法師"></div>
+        <div class="job-card__meta">
+          <div class="job-card__name">法師</div>
+          <div class="job-card__power">艾歐丁之力</div>
+        </div>
+        <div class="job-card__desc">大幅提升魅力、火焰魔法傷害及 MP 回復。<strong>滿級魅力 +36、火焰傷害 +100</strong>，打造毀滅級魔法輸出。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階段</th><th>魅力加成</th><th>火焰魔法傷害</th><th>MP 回復</th></tr></thead>
+        <tbody>
+          <tr><td>初始</td><td><span class="val">+9</span></td><td>+8</td><td>+2</td></tr>
+          <tr><td>LV.1</td><td><span class="val">+12</span></td><td>+15</td><td>+2</td></tr>
+          <tr><td>LV.2</td><td><span class="val">+12</span></td><td>+30</td><td>+4</td></tr>
+          <tr><td>LV.3</td><td><span class="val">+18</span></td><td>+45</td><td>+4</td></tr>
+          <tr><td>LV.4</td><td><span class="val">+21</span></td><td>+60</td><td>+6</td></tr>
+          <tr><td>LV.5</td><td><span class="val">+25</span></td><td>+75</td><td>+6</td></tr>
+          <tr><td>MAX</td><td><span class="val">+36</span></td><td>+100</td><td>+10</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 黑暗妖精 -->
+    <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__icon"><img src="../assets/images/job-darkelf.png" alt="黑暗妖精"></div>
+        <div class="job-card__meta">
+          <div class="job-card__name">黑暗妖精</div>
+          <div class="job-card__power">格蘭肯之力</div>
+        </div>
+        <div class="job-card__desc">提升近戰爆擊率、爆擊倍率與攻擊命中。<strong>滿級爆擊率 +8%、倍率 1.15×</strong>，每次暴擊都是致命打擊。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階段</th><th>爆擊率</th><th>爆擊倍率</th><th>攻擊命中</th></tr></thead>
+        <tbody>
+          <tr><td>初始</td><td><span class="val">+1%</span></td><td>1.02×</td><td>+1</td></tr>
+          <tr><td>LV.1</td><td><span class="val">+2%</span></td><td>1.04×</td><td>+1</td></tr>
+          <tr><td>LV.2</td><td><span class="val">+3%</span></td><td>1.06×</td><td>+2</td></tr>
+          <tr><td>LV.3</td><td><span class="val">+4%</span></td><td>1.08×</td><td>+2</td></tr>
+          <tr><td>LV.4</td><td><span class="val">+5%</span></td><td>1.10×</td><td>+3</td></tr>
+          <tr><td>LV.5</td><td><span class="val">+6%</span></td><td>1.12×</td><td>+3</td></tr>
+          <tr><td>MAX</td><td><span class="val">+8%</span></td><td>1.15×</td><td>+5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 上下頁導覽 -->
+    <div class="fp-pager">
+      <a href="features-overview.html" class="fp-pager__btn">
+        <span class="fp-pager__arrow">←</span>
+        <div><span class="fp-pager__dir">BACK</span><span class="fp-pager__name">特色介紹</span></div>
+      </a>
+      <div class="fp-pager__center"><a href="features-overview.html" class="fp-pager__back">▲ 返回系統列表</a></div>
+      <a href="feature-pet.html" class="fp-pager__btn fp-pager__btn--next">
+        <div><span class="fp-pager__dir">NEXT</span><span class="fp-pager__name">寵物系統</span></div>
+        <span class="fp-pager__arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

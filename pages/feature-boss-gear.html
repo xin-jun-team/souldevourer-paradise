@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOSS 裝備 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .bg-set { margin-bottom:48px; }
+    .bg-set__head {
+      display:flex; align-items:center; gap:16px;
+      padding:16px 20px; margin-bottom:16px;
+      background:linear-gradient(90deg,rgba(200,0,0,0.1),transparent);
+      border-left:4px solid var(--red); border-radius:0 2px 2px 0;
+    }
+    .bg-set__title { font-family:'Noto Serif TC',serif; font-size:1.1rem; font-weight:700; color:var(--text-bright); letter-spacing:0.1em; }
+    .bg-set__sub { font-size:0.75rem; color:var(--text-dim); margin-top:2px; }
+
+    .bg-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; margin-bottom:16px; }
+    .bg-card {
+      background:linear-gradient(135deg,#100c20,#0c0818 60%,#120a1e);
+      border:1px solid #1e1630; border-radius:2px; overflow:hidden;
+      transition:border-color 0.2s,transform 0.2s;
+    }
+    .bg-card:hover { border-color:var(--gold-dim); transform:translateY(-3px); }
+    .bg-card__head {
+      padding:14px 18px; border-bottom:1px solid #1e1630;
+      display:flex; align-items:center; gap:12px;
+    }
+    .bg-card__img { width:32px; height:32px; image-rendering:pixelated; }
+    .bg-card__name { font-family:'Noto Serif TC',serif; font-size:0.95rem; font-weight:700; color:var(--text-bright); }
+    .bg-card__body { padding:12px 18px; }
+    .bg-stat { display:flex; justify-content:space-between; font-size:0.82rem; padding:4px 0; border-bottom:1px solid #1a1228; }
+    .bg-stat:last-of-type { border-bottom:none; }
+    .bg-stat__k { color:var(--text-dim); }
+    .bg-stat__v { font-family:'Cinzel',serif; font-weight:700; }
+    .bg-stat__v--pos { color:#ffe060; }
+    .bg-stat__v--neg { color:#ff8080; }
+    .bg-stat__v--blue { color:#90caf9; }
+    .bg-stat__v--purple { color:#ce93d8; }
+    .bg-stat__v--green { color:#80cbc4; }
+
+    /* 套裝效果 */
+    .bg-setfx {
+      background:linear-gradient(160deg,#14102a,#0c0818 50%,#1a0a2a);
+      border:1px solid rgba(122,0,204,0.3); border-radius:2px;
+      padding:18px 20px; margin-bottom:16px;
+    }
+    .bg-setfx__title { font-family:'Noto Serif TC',serif; font-size:0.9rem; font-weight:700; color:#ce93d8; margin-bottom:10px; letter-spacing:0.08em; }
+    .bg-setfx__stats { display:flex; flex-wrap:wrap; gap:8px; }
+    .bg-setfx__tag { padding:4px 12px; border-radius:2px; font-size:0.78rem; font-family:'Cinzel',serif; font-weight:700; background:rgba(122,0,204,0.1); border:1px solid rgba(122,0,204,0.25); color:#ce93d8; }
+    .bg-setfx__tag--special { background:rgba(220,60,60,0.1); border:1px solid rgba(220,60,60,0.25); color:#ff8080; }
+
+    /* 合成材料 */
+    .bg-craft { margin-top:10px; padding-top:10px; border-top:1px solid #1e1630; }
+    .bg-craft__title { font-size:0.7rem; color:var(--gold-dim); font-family:'Cinzel',serif; letter-spacing:0.1em; margin-bottom:6px; }
+    .bg-craft__list { font-size:0.78rem; color:var(--text-dim); line-height:1.8; }
+    .bg-craft__list strong { color:var(--text-bright); }
+
+    /* BOSS 卡片 */
+    .boss-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; margin-bottom:32px; }
+    .boss-card {
+      background:linear-gradient(160deg,#14102a,#0c0818 50%,#1a0a1a);
+      border:1px solid rgba(200,0,0,0.25); border-radius:2px; padding:20px;
+      text-align:center; transition:border-color 0.2s,transform 0.2s;
+    }
+    .boss-card:hover { border-color:rgba(200,0,0,0.5); transform:translateY(-3px); box-shadow:0 8px 24px rgba(200,0,0,0.1); }
+    .boss-card__name { font-family:'Noto Serif TC',serif; font-size:1rem; font-weight:700; color:var(--red-bright); margin-bottom:4px; text-shadow:0 0 10px rgba(200,0,0,0.3); }
+    .boss-card__time { font-family:'Cinzel',serif; font-size:0.78rem; color:var(--gold-dim); margin-bottom:10px; }
+    .boss-card__drops { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
+    .boss-drop { background:rgba(212,168,32,0.06); border:1px solid rgba(212,168,32,0.15); padding:3px 10px; border-radius:2px; font-size:0.75rem; color:var(--text-bright); display:flex; align-items:center; gap:6px; }
+    .boss-drop__img { width:20px; height:20px; image-rendering:pixelated; }
+
+    @media(max-width:600px) { .bg-grid,.boss-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header"><div class="header-inner container"><a href="../index.html" class="site-logo"><img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂"><span class="logo-text">噬魂天堂</span></a><nav class="site-nav"><a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a><a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a><div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a><a href="#">旅遊產品</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button></nav><button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button></div><div class="mobile-nav" id="mobile-nav"><a href="download.html">遊戲下載</a><a href="news.html">最新公告</a><a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="#" class="mobile-sub">旅遊產品</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a></div></header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — BOSS GEAR</p>
+    <h1 class="page-hero__title">BOSS<span>裝備</span></h1>
+    <p class="page-hero__sub">擊殺每日 BOSS，收集材料打造傳說套裝</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 系統說明</p>
+    <div class="fp-intro">
+      每日定時出現的 BOSS 會掉落專屬材料，收集後可至 NPC「防具製作．伏爾甘」合成<strong>四大套裝</strong>。<br>
+      每套裝備由兩件組成，穿齊後觸發強力套裝效果。所有合成均需噬魂魔核與製作秘笈。
+    </div>
+
+    <!-- ═══ 套裝 1：毒蟲 ═══ -->
+    <div class="bg-set">
+      <div class="bg-set__head">
+        <img src="../assets/images/item-6924.png" alt="毒蟲" style="width:32px;height:32px;image-rendering:pixelated;">
+        <div><div class="bg-set__title">毒蟲套裝</div><div class="bg-set__sub">材料來源：BOSS．哈們（每日 10:00）</div></div>
+      </div>
+      <div class="bg-grid">
+        <div class="bg-card">
+          <div class="bg-card__head"><img src="../assets/images/item-6924.png" alt="毒蟲頭盔" class="bg-card__img"><div class="bg-card__name">毒蟲頭盔</div></div>
+          <div class="bg-card__body">
+            <div class="bg-stat"><span class="bg-stat__k">力敏智</span><span class="bg-stat__v bg-stat__v--pos">+2</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">防禦</span><span class="bg-stat__v bg-stat__v--neg">-5</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">血量</span><span class="bg-stat__v bg-stat__v--pos">+50</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">魔法防禦</span><span class="bg-stat__v bg-stat__v--neg">-15</span></div>
+            <div class="bg-craft"><div class="bg-craft__title">CRAFT</div><div class="bg-craft__list"><strong>女神的眼淚</strong> ×5、毒蟲之心 ×5、毒蟲硬核 ×5、噬魂魔核 ×50、傳說秘笈 ×4、英雄秘笈 ×6、金幣 8千萬、防具粉末 ×12000</div></div>
+          </div>
+        </div>
+        <div class="bg-card">
+          <div class="bg-card__head"><img src="../assets/images/item-6855.png" alt="毒蟲斗篷" class="bg-card__img"><div class="bg-card__name">毒蟲斗篷</div></div>
+          <div class="bg-card__body">
+            <div class="bg-stat"><span class="bg-stat__k">力敏智</span><span class="bg-stat__v bg-stat__v--pos">+2</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">防禦</span><span class="bg-stat__v bg-stat__v--neg">-5</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">血量</span><span class="bg-stat__v bg-stat__v--pos">+50</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">魔法防禦</span><span class="bg-stat__v bg-stat__v--neg">-15</span></div>
+            <div class="bg-craft"><div class="bg-craft__title">CRAFT</div><div class="bg-craft__list"><strong>女神的眼淚</strong> ×5、毒蟲之心 ×5、毒蟲硬核 ×5、噬魂魔核 ×50、傳說秘笈 ×4、英雄秘笈 ×8、金幣 8千萬、防具粉末 ×12000</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-setfx">
+        <div class="bg-setfx__title">◈ 毒蟲頭盔 + 毒蟲斗篷 — 套裝效果</div>
+        <div class="bg-setfx__stats">
+          <span class="bg-setfx__tag">力敏智 +2</span>
+          <span class="bg-setfx__tag">迴避/閃避 +3%</span>
+          <span class="bg-setfx__tag">防禦 -5</span>
+          <span class="bg-setfx__tag">血量 +300</span>
+          <span class="bg-setfx__tag">魔防 +20</span>
+          <span class="bg-setfx__tag">暈眩耐性 +3</span>
+          <span class="bg-setfx__tag bg-setfx__tag--special">受擊 5% 發動緩速術</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 套裝 2：水龍 ═══ -->
+    <div class="bg-set">
+      <div class="bg-set__head">
+        <img src="../assets/images/item-29034.png" alt="水龍" style="width:32px;height:32px;image-rendering:pixelated;">
+        <div><div class="bg-set__title">水龍套裝</div><div class="bg-set__sub">材料來源：BOSS．龍王敖丙（每日 14:00）</div></div>
+      </div>
+      <div class="bg-grid">
+        <div class="bg-card">
+          <div class="bg-card__head"><img src="../assets/images/item-29034.png" alt="水龍腰" class="bg-card__img"><div class="bg-card__name">水龍腰</div></div>
+          <div class="bg-card__body">
+            <div class="bg-stat"><span class="bg-stat__k">防禦</span><span class="bg-stat__v bg-stat__v--neg">-5</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">血量</span><span class="bg-stat__v bg-stat__v--pos">+100</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">力敏智</span><span class="bg-stat__v bg-stat__v--pos">+3</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">負重</span><span class="bg-stat__v bg-stat__v--pos">+3000%</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">體力/魔力回復</span><span class="bg-stat__v bg-stat__v--green">+8</span></div>
+            <div class="bg-craft"><div class="bg-craft__title">CRAFT</div><div class="bg-craft__list"><strong>女神的眼淚</strong> ×5、水龍之羽 ×5、飛天秘密 ×5、噬魂魔核 ×50、傳說秘笈 ×4、英雄秘笈 ×8、金幣 8千萬、防具粉末 ×12000</div></div>
+          </div>
+        </div>
+        <div class="bg-card">
+          <div class="bg-card__head"><img src="../assets/images/item-8507.png" alt="扛扛的盾" class="bg-card__img"><div class="bg-card__name">扛扛的盾</div></div>
+          <div class="bg-card__body">
+            <div class="bg-stat"><span class="bg-stat__k">血量</span><span class="bg-stat__v bg-stat__v--pos">+200</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">防禦</span><span class="bg-stat__v bg-stat__v--neg">-3</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">力敏智</span><span class="bg-stat__v bg-stat__v--pos">+2</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">傷害減免</span><span class="bg-stat__v bg-stat__v--blue">+2</span></div>
+            <div class="bg-craft"><div class="bg-craft__title">CRAFT</div><div class="bg-craft__list"><strong>女神的眼淚</strong> ×5、水龍之羽 ×5、飛天秘密 ×5、噬魂魔核 ×50、傳說秘笈 ×4、英雄秘笈 ×8、金幣 8千萬、防具粉末 ×12000</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-setfx">
+        <div class="bg-setfx__title">◈ 水龍腰 + 扛扛的盾 — 套裝效果</div>
+        <div class="bg-setfx__stats">
+          <span class="bg-setfx__tag">血量 +300</span>
+          <span class="bg-setfx__tag">力敏智 +3</span>
+          <span class="bg-setfx__tag">防禦 -5</span>
+          <span class="bg-setfx__tag">體力/魔力回復 +5</span>
+          <span class="bg-setfx__tag">凍結耐性 +5</span>
+          <span class="bg-setfx__tag bg-setfx__tag--special">受擊 5% 回血 80~150</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 套裝 3：聖靈 ═══ -->
+    <div class="bg-set">
+      <div class="bg-set__head">
+        <img src="../assets/images/item-29011.png" alt="聖靈" style="width:32px;height:32px;image-rendering:pixelated;">
+        <div><div class="bg-set__title">聖靈套裝</div><div class="bg-set__sub">材料來源：BOSS．千手觀音（每日 19:00）</div></div>
+      </div>
+      <div class="bg-grid">
+        <div class="bg-card">
+          <div class="bg-card__head"><img src="../assets/images/item-29011.png" alt="聖靈護腕" class="bg-card__img"><div class="bg-card__name">聖靈護腕</div></div>
+          <div class="bg-card__body">
+            <div class="bg-stat"><span class="bg-stat__k">防禦</span><span class="bg-stat__v bg-stat__v--neg">-5</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">血量</span><span class="bg-stat__v bg-stat__v--pos">+50</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">近遠命中</span><span class="bg-stat__v bg-stat__v--pos">+3</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">近遠攻擊</span><span class="bg-stat__v bg-stat__v--pos">+3</span></div>
+            <div class="bg-craft"><div class="bg-craft__title">CRAFT</div><div class="bg-craft__list"><strong>女神的眼淚</strong> ×3、聖光之痕 ×5、奇蹟之翅 ×5、噬魂魔核 ×50、傳說秘笈 ×4、英雄秘笈 ×8、金幣 8千萬、防具粉末 ×12000</div></div>
+          </div>
+        </div>
+        <div class="bg-card">
+          <div class="bg-card__head"><img src="../assets/images/item-29012.png" alt="聖靈之靴" class="bg-card__img"><div class="bg-card__name">聖靈之靴</div></div>
+          <div class="bg-card__body">
+            <div class="bg-stat"><span class="bg-stat__k">力敏智</span><span class="bg-stat__v bg-stat__v--pos">+2</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">防禦</span><span class="bg-stat__v bg-stat__v--neg">-5</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">血量</span><span class="bg-stat__v bg-stat__v--pos">+50</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">傷害減免</span><span class="bg-stat__v bg-stat__v--neg">-2</span></div>
+            <div class="bg-craft"><div class="bg-craft__title">CRAFT</div><div class="bg-craft__list"><strong>女神的眼淚</strong> ×5、聖光之痕 ×5、奇蹟之翅 ×5、噬魂魔核 ×50、傳說秘笈 ×4、英雄秘笈 ×8、金幣 8千萬、防具粉末 ×12000</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-setfx">
+        <div class="bg-setfx__title">◈ 聖靈護腕 + 聖靈之靴 — 套裝效果</div>
+        <div class="bg-setfx__stats">
+          <span class="bg-setfx__tag">魔攻 +4</span>
+          <span class="bg-setfx__tag">力敏智 +2</span>
+          <span class="bg-setfx__tag">血量 +300</span>
+          <span class="bg-setfx__tag">傷害減免 +3</span>
+          <span class="bg-setfx__tag">魔防 +20</span>
+          <span class="bg-setfx__tag bg-setfx__tag--special">魔武發動率 +5</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 套裝 4：賊鹿 ═══ -->
+    <div class="bg-set">
+      <div class="bg-set__head">
+        <img src="../assets/images/item-1825.png" alt="賊鹿" style="width:32px;height:32px;image-rendering:pixelated;">
+        <div><div class="bg-set__title">賊鹿套裝</div><div class="bg-set__sub">材料來源：BOSS．喬巴（每日 21:00）</div></div>
+      </div>
+      <div class="bg-grid">
+        <div class="bg-card">
+          <div class="bg-card__head"><img src="../assets/images/item-1825.png" alt="賊鹿內衣" class="bg-card__img"><div class="bg-card__name">賊鹿內衣</div></div>
+          <div class="bg-card__body">
+            <div class="bg-stat"><span class="bg-stat__k">力敏智</span><span class="bg-stat__v bg-stat__v--pos">+2</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">防禦</span><span class="bg-stat__v bg-stat__v--neg">-4</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">血量</span><span class="bg-stat__v bg-stat__v--pos">+50</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">魔法防禦</span><span class="bg-stat__v bg-stat__v--neg">-15</span></div>
+            <div class="bg-craft"><div class="bg-craft__title">CRAFT</div><div class="bg-craft__list"><strong>女神的眼淚</strong> ×5、鹿心 ×5、鹿魂 ×5、噬魂魔核 ×50、傳說秘笈 ×4、英雄秘笈 ×8、金幣 8千萬、防具粉末 ×12000</div></div>
+          </div>
+        </div>
+        <div class="bg-card">
+          <div class="bg-card__head"><img src="../assets/images/item-6771.png" alt="賊鹿內褲" class="bg-card__img"><div class="bg-card__name">賊鹿內褲</div></div>
+          <div class="bg-card__body">
+            <div class="bg-stat"><span class="bg-stat__k">力敏智</span><span class="bg-stat__v bg-stat__v--pos">+2</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">防禦</span><span class="bg-stat__v bg-stat__v--neg">-5</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">血量</span><span class="bg-stat__v bg-stat__v--pos">+50</span></div>
+            <div class="bg-stat"><span class="bg-stat__k">傷害減免</span><span class="bg-stat__v bg-stat__v--neg">-2</span></div>
+            <div class="bg-craft"><div class="bg-craft__title">CRAFT</div><div class="bg-craft__list"><strong>女神的眼淚</strong> ×5、鹿心 ×5、鹿魂 ×5、噬魂魔核 ×50、傳說秘笈 ×4、英雄秘笈 ×8、金幣 8千萬、防具粉末 ×12000</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-setfx">
+        <div class="bg-setfx__title">◈ 賊鹿內衣 + 賊鹿內褲 — 套裝效果</div>
+        <div class="bg-setfx__stats">
+          <span class="bg-setfx__tag">力敏智 +3</span>
+          <span class="bg-setfx__tag">防禦 -5</span>
+          <span class="bg-setfx__tag">血量 +300</span>
+          <span class="bg-setfx__tag">魔防 +20</span>
+          <span class="bg-setfx__tag bg-setfx__tag--special">魔法命中 +5</span>
+          <span class="bg-setfx__tag bg-setfx__tag--special">普攻 30% 吸血 50~150 HP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOSS 一覽 ═══ -->
+    <p class="fp-heading">☠ 每日 BOSS 時刻表</p>
+    <div class="boss-grid">
+      <div class="boss-card">
+        <div class="boss-card__name">BOSS．哈們</div>
+        <div class="boss-card__time">每日 10:00 ｜ 1小時後消失</div>
+        <div class="boss-card__drops">
+          <span class="boss-drop"><img src="../assets/images/item-6905.png" class="boss-drop__img" alt="">毒蟲之心</span>
+          <span class="boss-drop"><img src="../assets/images/item-6862.png" class="boss-drop__img" alt="">毒蟲硬核</span>
+          <span class="boss-drop"><img src="../assets/images/item-5214.png" class="boss-drop__img" alt="">女神的眼淚</span>
+        </div>
+      </div>
+      <div class="boss-card">
+        <div class="boss-card__name">BOSS．龍王敖丙</div>
+        <div class="boss-card__time">每日 14:00 ｜ 1小時後消失</div>
+        <div class="boss-card__drops">
+          <span class="boss-drop"><img src="../assets/images/item-8259.png" class="boss-drop__img" alt="">水龍之羽</span>
+          <span class="boss-drop"><img src="../assets/images/item-8466.png" class="boss-drop__img" alt="">飛天秘密</span>
+          <span class="boss-drop"><img src="../assets/images/item-5214.png" class="boss-drop__img" alt="">女神的眼淚</span>
+        </div>
+      </div>
+      <div class="boss-card">
+        <div class="boss-card__name">BOSS．千手觀音</div>
+        <div class="boss-card__time">每日 19:00 ｜ 1小時後消失</div>
+        <div class="boss-card__drops">
+          <span class="boss-drop"><img src="../assets/images/item-7350.png" class="boss-drop__img" alt="">聖光之痕</span>
+          <span class="boss-drop"><img src="../assets/images/item-7434.png" class="boss-drop__img" alt="">奇蹟之翅</span>
+          <span class="boss-drop"><img src="../assets/images/item-5214.png" class="boss-drop__img" alt="">女神的眼淚</span>
+        </div>
+      </div>
+      <div class="boss-card">
+        <div class="boss-card__name">BOSS．喬巴</div>
+        <div class="boss-card__time">每日 21:00 ｜ 1小時後消失</div>
+        <div class="boss-card__drops">
+          <span class="boss-drop"><img src="../assets/images/item-7529.png" class="boss-drop__img" alt="">鹿心</span>
+          <span class="boss-drop"><img src="../assets/images/item-7602.png" class="boss-drop__img" alt="">鹿魂</span>
+          <span class="boss-drop"><img src="../assets/images/item-5214.png" class="boss-drop__img" alt="">女神的眼淚</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(212,168,32,0.05);border-left:3px solid var(--gold-dim);padding:12px 16px;font-size:0.8rem;color:var(--text-dim);line-height:1.7;">
+      ⚠️ 所有 BOSS 均位於<strong style="color:var(--text-bright);">專屬 BOSS 地圖</strong>，從傳送師「世界事件」進入。<br>
+      ⚠️ 四個 BOSS 均會掉落<strong style="color:var(--text-bright);">噬魂魔核、噬魂魔核碎片</strong>，以及各類武器箱、防具箱、飾品箱、製作秘笈、施法卷軸等。
+    </div>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

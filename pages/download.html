@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="噬魂天堂 — 遊戲下載">
+  <title>遊戲下載 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(180deg, #0a0514 0%, #04030a 100%);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+    .page-hero__eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+    }
+    .page-hero__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--text-bright);
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
+    .page-hero__title span { color: var(--gold); }
+    .page-hero__sub {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── WRAP ── */
+    .dl-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* ── SERVER INFO BANNER ── */
+    .dl-banner {
+      background: linear-gradient(135deg, #10091e 0%, #08050f 100%);
+      border: 1px solid var(--gold-dim);
+      border-left: 4px solid var(--gold);
+      border-radius: 2px;
+      padding: 22px 26px;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .dl-banner__icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    .dl-banner__body { flex: 1; min-width: 200px; }
+    .dl-banner__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .dl-banner__desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .dl-banner__desc strong { color: var(--text-bright); }
+    .dl-banner__ver {
+      background: #1e1530;
+      border: 1px solid var(--gold-dim);
+      border-radius: 2px;
+      padding: 10px 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .dl-banner__ver-label {
+      font-size: 0.72rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .dl-banner__ver-num {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── SERVER STATS ── */
+    .server-stats {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: #2a1f40;
+      border: 1px solid #2a1f40;
+      margin-bottom: 48px;
+    }
+    .stat-cell {
+      background: #0c0818;
+      padding: 22px 12px;
+      text-align: center;
+    }
+    .stat-cell__value {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-cell__value span { font-size: 0.95rem; color: var(--gold-dim); }
+    .stat-cell__label {
+      font-size: 0.72rem;
+      color: #a08848;
+      letter-spacing: 0.08em;
+    }
+    @media (max-width: 720px) {
+      .server-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 440px) {
+      .server-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── RATE TABLE ── */
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-bottom: 48px;
+    }
+    .rate-table th {
+      background: #150e28;
+      color: var(--gold-dim);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      padding: 11px 16px;
+      text-align: left;
+      border: 1px solid #2a1f40;
+    }
+    .rate-table td {
+      background: #0c0818;
+      color: var(--text-dim);
+      padding: 11px 16px;
+      border: 1px solid #1e1630;
+    }
+    .rate-table tr:hover td { background: #100e20; }
+    .rate-table td:first-child { color: var(--text-bright); font-weight: 600; }
+    .rate-val { color: #ffe060; font-family: 'Cinzel', serif; font-weight: 700; }
+    .rate-note { color: var(--text-dim); font-size: 0.78rem; }
+
+    /* ── STEP GUIDE ── */
+    .dl-section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dl-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold-dim), transparent);
+    }
+
+    .dl-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .dl-step {
+      background: #0c0818;
+      border: 1px solid #1e1630;
+      border-radius: 2px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .dl-step__num {
+      width: 36px;
+      height: 36px;
+      background: #1a1230;
+      border: 1px solid var(--gold-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .dl-step__body { flex: 1; }
+    .dl-step__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 6px;
+    }
+    .dl-step__desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+    .dl-step__desc code {
+      background: #1a1230;
+      border: 1px solid #2e2050;
+      padding: 2px 7px;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      color: #ffe060;
+      font-family: 'Courier New', monospace;
+    }
+    .dl-step__desc a {
+      color: var(--gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .dl-step__desc a:hover { color: var(--gold-bright); }
+
+    /* ── DOWNLOAD CARDS ── */
+    .dl-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .dl-card {
+      background: #0c0818;
+      border: 1px solid #1e1630;
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .dl-card--main { border-color: var(--gold-dim); }
+    .dl-card__head {
+      background: #110d20;
+      border-bottom: 1px solid #1e1630;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dl-card--main .dl-card__head { background: #18102e; border-bottom-color: var(--gold-dim); }
+    .dl-card__icon { font-size: 1.3rem; flex-shrink: 0; }
+    .dl-card__name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+    .dl-card--main .dl-card__name { color: var(--gold); }
+    .dl-card__badge {
+      margin-left: auto;
+      background: var(--gold);
+      color: #0a0514;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+    .dl-card__body {
+      padding: 16px 18px;
+      flex: 1;
+    }
+    .dl-card__info {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .dl-card__info dt {
+      display: inline;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+    .dl-card__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 16px;
+    }
+    .dl-meta-row {
+      display: flex;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+    .dl-meta-row__label {
+      color: #6a5a30;
+      min-width: 54px;
+      flex-shrink: 0;
+    }
+    .dl-meta-row__val { color: var(--text-dim); }
+    .dl-card__btn {
+      display: block;
+      width: 100%;
+      padding: 11px;
+      text-align: center;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .dl-card__btn--gold {
+      background: linear-gradient(135deg, #b8860b 0%, #d4a017 50%, #b8860b 100%);
+      color: #0a0514;
+      border: 1px solid #d4a017;
+    }
+    .dl-card__btn--gold:hover { opacity: 0.85; }
+    .dl-card__btn--outline {
+      background: transparent;
+      color: var(--gold-dim);
+      border: 1px solid #2e2050;
+    }
+    .dl-card__btn--outline:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+    /* ── SPEC TABLE ── */
+    .spec-block {
+      background: #0c0818;
+      border: 1px solid #1e1630;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .spec-block__head {
+      background: #110d20;
+      border-bottom: 1px solid #1e1630;
+      padding: 14px 20px;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .spec-table tr { border-bottom: 1px solid #1a1228; }
+    .spec-table tr:last-child { border-bottom: none; }
+    .spec-table td {
+      padding: 11px 18px;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .spec-table td:first-child {
+      color: #8a7040;
+      width: 110px;
+      white-space: nowrap;
+      font-size: 0.82rem;
+    }
+    .spec-table td:last-child { color: var(--text-dim); }
+    .spec-table td:last-child strong { color: var(--text-bright); }
+
+    /* ── NOTICE ── */
+    .dl-notice {
+      background: #0f0a1a;
+      border: 1px solid #2a1f40;
+      border-top: 3px solid var(--gold-dim);
+      border-radius: 2px;
+      padding: 20px 24px;
+      font-size: 0.84rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .dl-notice strong { color: var(--gold); }
+    .dl-notice ul { margin: 10px 0 0 18px; padding: 0; }
+    .dl-notice li { margin-bottom: 6px; }
+
+    @media (max-width: 600px) {
+      .dl-banner { flex-direction: column; gap: 14px; }
+      .dl-banner__ver { align-self: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span>
+        
+      </a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a>
+        <a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        
+        <a href="promote.html" class="nav-btn">推文推廣</a><a href="sponsor.html" class="nav-btn">贊助說明</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a>
+      <a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a>
+      
+      <a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ FLOATING SIDEBAR ═══════════════════════ -->
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-icon">✤</span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-icon">↓</span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════ PAGE HERO ═══════════════════════ -->
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — DOWNLOAD</p>
+    <h1 class="page-hero__title">遊戲<span>下載</span></h1>
+    <p class="page-hero__sub">版本 3.81 · 免費遊玩 · Windows 桌面端</p>
+  </div>
+
+  <!-- ═══════════════════════ MAIN ═══════════════════════ -->
+  <main class="dl-wrap">
+
+    <!-- 伺服器資訊 -->
+    <div class="dl-banner">
+      <span class="dl-banner__icon">⚔</span>
+      <div class="dl-banner__body">
+        <div class="dl-banner__title">噬魂天堂 · 開放中</div>
+        <div class="dl-banner__desc">
+          伺服器 <strong>24 小時不間斷運行</strong>，版本 3.81，<br>
+          手動 EXP ×3、自動 EXP ×1，歡迎新人加入。
+        </div>
+      </div>
+      <div class="dl-banner__ver">
+        <span class="dl-banner__ver-label">VERSION</span>
+        <span class="dl-banner__ver-num">3.81</span>
+      </div>
+    </div>
+
+    <!-- 伺服器數據 -->
+    <p class="dl-section-title">📊 伺服器數據</p>
+    <div class="server-stats">
+      <div class="stat-cell">
+        <div class="stat-cell__value">3<span>.81</span></div>
+        <div class="stat-cell__label">遊戲版本</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell__value">×<span>3</span></div>
+        <div class="stat-cell__label">手動經驗倍率</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell__value">×<span>1</span></div>
+        <div class="stat-cell__label">內掛經驗倍率</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell__value">×<span>1</span></div>
+        <div class="stat-cell__label">掉落倍率</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell__value">×<span>1</span></div>
+        <div class="stat-cell__label">金幣倍率</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell__value">24<span>hr</span></div>
+        <div class="stat-cell__label">全年無休運營</div>
+      </div>
+    </div>
+
+    <!-- 倍率設定 -->
+    <p class="dl-section-title">📈 倍率設定</p>
+    <table class="rate-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>手動操作</th>
+          <th>內掛掛機</th>
+          <th>說明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>經驗值</td>
+          <td><span class="rate-val">× 3</span></td>
+          <td><span class="rate-val">× 1</span></td>
+          <td class="rate-note">手動三倍鼓勵玩家親自操作</td>
+        </tr>
+        <tr>
+          <td>掉落率</td>
+          <td><span class="rate-val">× 1</span></td>
+          <td><span class="rate-val">× 1</span></td>
+          <td class="rate-note">維持原版掉落感</td>
+        </tr>
+        <tr>
+          <td>金幣</td>
+          <td><span class="rate-val">× 1</span></td>
+          <td><span class="rate-val">× 1</span></td>
+          <td class="rate-note">維持經濟平衡</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 安裝步驟 -->
+    <p class="dl-section-title">⬇ 安裝步驟</p>
+    <div class="dl-steps">
+      <div class="dl-step">
+        <div class="dl-step__num">1</div>
+        <div class="dl-step__body">
+          <div class="dl-step__title">下載客戶端</div>
+          <div class="dl-step__desc">
+            點選下方「完整客戶端」按鈕下載安裝包（約 1.5 GB），儲存至任意資料夾。
+          </div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step__num">2</div>
+        <div class="dl-step__body">
+          <div class="dl-step__title">解壓縮</div>
+          <div class="dl-step__desc">
+            使用 <a href="https://www.7-zip.org/" target="_blank" rel="noopener">7-Zip</a> 或 WinRAR 解壓縮，
+            請勿解壓縮至 <code>C:\Program Files</code> 或桌面，建議放置 <code>D:\Games\噬魂天堂</code>。
+          </div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step__num">3</div>
+        <div class="dl-step__body">
+          <div class="dl-step__title">執行啟動器</div>
+          <div class="dl-step__desc">
+            進入解壓縮後的資料夾，以<strong>「系統管理員身分」</strong>執行
+            <code>LineageStart.exe</code>。
+          </div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step__num">4</div>
+        <div class="dl-step__body">
+          <div class="dl-step__title">帳號註冊</div>
+          <div class="dl-step__desc">
+            首次登入請輸入您想要的帳號密碼，系統將自動完成註冊，無需事先申請。
+          </div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step__num">5</div>
+        <div class="dl-step__body">
+          <div class="dl-step__title">開始冒險</div>
+          <div class="dl-step__desc">
+            選擇職業，進入世界，即可開始遊玩。如有任何問題，請聯絡
+            <a href="contact.html">官方 LINE</a>。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 下載按鈕區 -->
+    <p class="dl-section-title">📦 客戶端下載</p>
+    <div class="dl-cards">
+
+      <!-- 完整客戶端 -->
+      <div class="dl-card dl-card--main">
+        <div class="dl-card__head">
+          <span class="dl-card__icon">💾</span>
+          <span class="dl-card__name">完整客戶端</span>
+          <span class="dl-card__badge">推薦</span>
+        </div>
+        <div class="dl-card__body">
+          <div class="dl-card__meta">
+            <div class="dl-meta-row">
+              <span class="dl-meta-row__label">版本</span>
+              <span class="dl-meta-row__val">3.81</span>
+            </div>
+            <div class="dl-meta-row">
+              <span class="dl-meta-row__label">大小</span>
+              <span class="dl-meta-row__val">約 1.5 GB</span>
+            </div>
+            <div class="dl-meta-row">
+              <span class="dl-meta-row__label">包含</span>
+              <span class="dl-meta-row__val">完整遊戲檔案 + 啟動器</span>
+            </div>
+            <div class="dl-meta-row">
+              <span class="dl-meta-row__label">適合</span>
+              <span class="dl-meta-row__val">全新安裝、無天堂客戶端</span>
+            </div>
+          </div>
+          <a href="#" class="dl-card__btn dl-card__btn--gold">⬇ 立即下載</a>
+        </div>
+      </div>
+
+      <!-- 更新補丁 -->
+      <div class="dl-card">
+        <div class="dl-card__head">
+          <span class="dl-card__icon">🔄</span>
+          <span class="dl-card__name">更新補丁</span>
+        </div>
+        <div class="dl-card__body">
+          <div class="dl-card__meta">
+            <div class="dl-meta-row">
+              <span class="dl-meta-row__label">版本</span>
+              <span class="dl-meta-row__val">3.81</span>
+            </div>
+            <div class="dl-meta-row">
+              <span class="dl-meta-row__label">大小</span>
+              <span class="dl-meta-row__val">約 80 MB</span>
+            </div>
+            <div class="dl-meta-row">
+              <span class="dl-meta-row__label">適合</span>
+              <span class="dl-meta-row__val">已有舊版客戶端者</span>
+            </div>
+            <div class="dl-meta-row">
+              <span class="dl-meta-row__label">說明</span>
+              <span class="dl-meta-row__val">覆蓋至原始資料夾即可</span>
+            </div>
+          </div>
+          <a href="#" class="dl-card__btn dl-card__btn--outline">⬇ 下載補丁</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 系統需求 -->
+    <p class="dl-section-title">🖥 系統需求</p>
+    <div class="spec-block">
+      <div class="spec-block__head">⚙ 建議規格</div>
+      <table class="spec-table">
+        <tr>
+          <td>作業系統</td>
+          <td>Windows 7 / 10 / 11（64-bit 建議）</td>
+        </tr>
+        <tr>
+          <td>處理器</td>
+          <td>Intel Core i3 或同等以上</td>
+        </tr>
+        <tr>
+          <td>記憶體</td>
+          <td>4 GB RAM 以上</td>
+        </tr>
+        <tr>
+          <td>顯示卡</td>
+          <td>支援 DirectX 9.0c 以上（內顯亦可執行）</td>
+        </tr>
+        <tr>
+          <td>儲存空間</td>
+          <td>3 GB 以上可用空間</td>
+        </tr>
+        <tr>
+          <td>網路</td>
+          <td>寬頻網路（建議 10 Mbps 以上）</td>
+        </tr>
+        <tr>
+          <td>其他</td>
+          <td><strong>以系統管理員身分執行</strong>，關閉防毒誤判白名單設定</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="dl-notice">
+      <strong>📌 下載前請注意</strong>
+      <ul>
+        <li>遊戲客戶端可能被部分防毒軟體誤判，請加入白名單或暫時關閉即時防護後再安裝。</li>
+        <li>請勿安裝於系統槽受保護路徑（如 <code style="color:#ffe060;background:#1a1230;padding:1px 5px;border-radius:2px;">C:\Program Files</code>），建議存放於 D 槽。</li>
+        <li>若遊戲無法啟動，請嘗試右鍵 → 以系統管理員身分執行。</li>
+        <li>下載連結如有問題，請透過 <a href="contact.html" style="color:var(--gold);">官方 LINE</a> 回報。</li>
+        <li>本客戶端僅供噬魂天堂私服使用，與 NC Soft 官方無關。</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text">
+            <span class="logo-text">噬魂天堂</span>
+            
+          </div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link">
+            <span class="footer-link__icon">⚔</span>特色介紹
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link">
+            <span class="footer-link__icon">◆</span>遊戲規章
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link">
+            <span class="footer-link__icon">✤</span>贊助須知
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link">
+            <span class="footer-link__icon">†</span>免責聲明
+          </a>
+          <span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link">
+            <span class="footer-link__icon">✉</span>聯絡我們
+          </a>
+        </nav>
+      </div>
+      <div class="footer-copy">
+        <div class="footer-copy__line"></div>
+        <p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
