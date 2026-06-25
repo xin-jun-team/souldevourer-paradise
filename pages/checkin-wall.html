@@ -902,7 +902,7 @@
 
     function loadMessages() {
       grid.innerHTML = '<div class="wall-loading">靈魂感應中...</div>';
-      fetch(API_URL)
+      fetch(API_URL + '?t=' + Date.now())
         .then(function(r) { return r.json(); })
         .then(function(data) {
           if (data.messages) {

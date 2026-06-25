@@ -680,7 +680,7 @@
 
     function load() {
       box.innerHTML = '<div class="idx-wall-loading">靈魂感應中...</div>';
-      fetch(API).then(function(r){return r.json();}).then(function(data) {
+      fetch(API + '?t=' + Date.now()).then(function(r){return r.json();}).then(function(data) {
         render(data.messages || data);
       }).catch(function(){ box.innerHTML = '<div class="idx-wall-empty">連線中斷，稍後再試</div>'; });
     }
