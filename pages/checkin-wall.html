@@ -10,6 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
+    /* ── 防複製 ── */
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    input, textarea { -webkit-user-select: text; user-select: text; }
+
     /* ── Hero ── */
     .wall-hero {
       background: linear-gradient(180deg, #0a0514 0%, #04030a 100%);
@@ -776,7 +785,27 @@
 
   <script src="../assets/js/main.js"></script>
   <script>
-    var API_URL = 'https://script.google.com/macros/s/AKfycby9X1nRRxov_T2IZdZ3vc8jGi8O5TrV3kSvKBQuHrR97HxSlgpq-uOjuDtAYmtnCu-9cQ/exec';
+    // ── 防護層 ──
+    !function(){
+      // 禁止右鍵
+      document.addEventListener('contextmenu',function(e){e.preventDefault();});
+      // 禁止選取文字
+      document.addEventListener('selectstart',function(e){if(e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA')e.preventDefault();});
+      // 禁止拖曳
+      document.addEventListener('dragstart',function(e){e.preventDefault();});
+      // 禁止 F12、Ctrl+U、Ctrl+Shift+I/J/C
+      document.addEventListener('keydown',function(e){
+        if(e.key==='F12')e.preventDefault();
+        if(e.ctrlKey&&e.key==='u')e.preventDefault();
+        if(e.ctrlKey&&e.shiftKey&&['i','j','c','I','J','C'].indexOf(e.key)!==-1)e.preventDefault();
+      });
+      // DevTools 偵測：開啟時清空頁面
+      var _dt=function(){var t=new Date();debugger;if(new Date()-t>50){document.body.innerHTML='<div style="text-align:center;padding:200px 20px;color:#cc0000;font-size:1.5rem;font-family:serif;">⚠ 禁止檢視原始碼 ⚠<br><br><span style="font-size:0.9rem;color:#666;">噬魂天堂官方保留一切權利</span></div>';}};
+      setInterval(_dt,3000);
+    }();
+    // API（混淆）
+    var _0x=['aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5OVgxblJSeG92X1QySVpkWjN2YzhqR2k4TzVUclYza1N2S0JRdUhyUjk3SHhTbGdwcS11T2p1RHRBWW10bkN1LTljUS9leGVj'];
+    var API_URL = atob(_0x[0]);
     var grid = document.getElementById('wallGrid');
     var form = document.getElementById('wallForm');
     var btn = document.getElementById('wallBtn');
