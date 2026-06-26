@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>最新公告 — 噬魂天堂</title>
+  <title>更新歷程 — 噬魂天堂</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
@@ -94,9 +94,9 @@
   </header>
 
   <div class="page-hero">
-    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — NEWS</p>
-    <h1 class="page-hero__title">最新<span>公告</span></h1>
-    <p class="page-hero__sub">噬魂天堂官方最新消息</p>
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — PATCH NOTES</p>
+    <h1 class="page-hero__title">更新<span>歷程</span></h1>
+    <p class="page-hero__sub">噬魂天堂版本更新與維護紀錄</p>
   </div>
 
   <main class="fp-wrap">
@@ -137,14 +137,14 @@
       try {
         var res = await fetch('../data/home.json');
         var data = await res.json();
-        var items = data.announcements || [];
+        var items = data.updates || [];
         if (!items.length) {
-          list.innerHTML = '<div class="news-empty">暫無公告</div>';
+          list.innerHTML = '<div class="news-empty">暫無更新紀錄</div>';
           return;
         }
         list.innerHTML = items.map(function(item) {
           var tagClass = item.tag === '活動' ? '活動' : '公告';
-          return '<a href="' + (item.url || '#').replace('pages/', '') + '" class="news-item">' +
+          return '<a href="' + '#' + '" class="news-item">' +
             '<div class="news-item__meta">' +
               '<span class="news-item__tag news-item__tag--' + tagClass + '">' + (item.tag || '公告') + '</span>' +
               '<span class="news-item__date">' + (item.date || '') + '</span>' +
