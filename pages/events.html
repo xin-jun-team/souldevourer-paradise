@@ -46,6 +46,24 @@
       border-left:3px solid var(--gold-dim);
     }
     .ev-cat-title::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--gold-dim),transparent); }
+
+    /* ── 可展開活動詳情 ── */
+    .ev-detail { display:none; padding:16px 20px 20px; border-top:1px solid #1e1630; background:#0a0610; }
+    .ev-detail.is-open { display:block; }
+    .ev-detail__items { display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin-bottom:14px; }
+    .ev-detail__item { display:flex; align-items:center; gap:10px; background:#120e24; border:1px solid #1e1630; padding:12px 16px; border-radius:2px; flex:1; min-width:180px; }
+    .ev-detail__item img { width:40px; height:40px; image-rendering:pixelated; flex-shrink:0; }
+    .ev-detail__item-info { }
+    .ev-detail__item-name { font-family:'Noto Serif TC',serif; font-size:0.88rem; font-weight:700; color:var(--text-bright); }
+    .ev-detail__item-desc { font-size:0.75rem; color:var(--text-dim); margin-top:2px; }
+    .ev-detail__text { font-size:0.82rem; color:var(--text-dim); line-height:1.8; }
+    .ev-detail__text strong { color:var(--text-bright); }
+    .ev-detail__text em { color:#ff8a80; font-style:normal; font-weight:700; }
+    .ev-detail__slogan { text-align:center; margin:16px 0 8px; padding:16px; background:linear-gradient(135deg,rgba(122,0,204,0.08),rgba(212,168,32,0.08)); border:1px solid #1e1630; }
+    .ev-detail__slogan-main { font-family:'Noto Serif TC',serif; font-size:1.1rem; font-weight:900; color:var(--gold); letter-spacing:0.15em; margin-bottom:6px; }
+    .ev-detail__slogan-sub { font-size:0.82rem; color:#e8d090; line-height:1.7; }
+    .ev-toggle { font-size:0.75rem; color:var(--soul-bright,#b040ff); cursor:pointer; display:flex; align-items:center; gap:4px; margin-top:6px; }
+    .ev-toggle:hover { color:var(--gold); }
   </style>
 <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
 </head>
@@ -83,14 +101,37 @@
 
       <!-- [隱藏] 每日 BOSS 挑戰 — BOSS裝備尚未開放 -->
 
-      <div class="ev-link" style="cursor:default;">
+      <div class="ev-link" style="cursor:pointer;" onclick="this.querySelector('.ev-detail').classList.toggle('is-open');var t=this.querySelector('.ev-toggle');t.textContent=t.textContent.includes('展開')?'◆ 收合詳情':'◆ 展開詳情';">
         <div class="ev-link__head">
           <span class="ev-link__tag ev-link__tag--permanent">長期活動</span>
           <div class="ev-link__title">首儲贈送</div>
         </div>
         <div class="ev-link__body">
-          <div class="ev-link__desc">首次贊助即贈送<strong style="color:#ffe060;">英雄製作秘笈 ×1</strong> + <strong style="color:#ce93d8;">噬魂核心 ×1</strong>，助你快速踏上強化之路！<br><span style="color:#ff8a80;font-size:0.78rem;">※ 每人限領一次，禁止使用其他 LINE 帳號試探官方，違者取消資格。</span></div>
+          <div class="ev-link__desc">首次贊助即贈送<strong style="color:#ffe060;">英雄製作秘笈 ×1</strong> + <strong style="color:#ce93d8;">噬魂魔核 ×1</strong>，助你快速踏上強化之路！</div>
           <div class="ev-link__date">即日起 · 每人限領一次</div>
+          <div class="ev-toggle">◆ 展開詳情</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-detail__items">
+            <div class="ev-detail__item">
+              <img src="../assets/images/item-9001.png" alt="英雄製作秘笈">
+              <div class="ev-detail__item-info">
+                <div class="ev-detail__item-name">英雄製作秘笈</div>
+                <div class="ev-detail__item-desc">英雄裝備製作的關鍵材料</div>
+              </div>
+            </div>
+            <div class="ev-detail__item">
+              <img src="../assets/images/item-2700.png" alt="噬魂魔核">
+              <div class="ev-detail__item-info">
+                <div class="ev-detail__item-name">噬魂魔核</div>
+                <div class="ev-detail__item-desc">噬魂系列強化核心素材</div>
+              </div>
+            </div>
+          </div>
+          <div class="ev-detail__text">
+            <strong>領取方式：</strong>首次贊助後透過官方 LINE 申請，經確認後直接發放至遊戲信箱。<br>
+            <em>※ 每人限領一次，禁止使用其他 LINE 帳號試探官方，違者取消資格。</em>
+          </div>
         </div>
       </div>
 
@@ -118,7 +159,7 @@
         </div>
       </a>
 
-      <div class="ev-link" style="cursor:default;">
+      <div class="ev-link" style="cursor:pointer;" onclick="this.querySelector('.ev-detail').classList.toggle('is-open');var t=this.querySelector('.ev-toggle');t.textContent=t.textContent.includes('展開')?'◆ 收合詳情':'◆ 展開詳情';">
         <div class="ev-link__head">
           <span class="ev-link__tag ev-link__tag--active">全民活動</span>
           <div class="ev-link__title">人數里程碑 ── 全服放福利</div>
@@ -126,10 +167,25 @@
         <div class="ev-link__body">
           <div class="ev-link__desc">
             伺服器人數達標，<strong style="color:#90caf9;">每位玩家</strong>都有獎！<br>
-            <strong style="color:#ffe060;">滿 50 人：每人 500 藍鑽</strong> · <strong style="color:#ff8a80;">滿 100 人：每人 1,000 藍鑽</strong><br>
-            <span style="font-size:0.78rem;color:var(--text-dim);">每人限領一次 · 歡迎介紹朋友一起加入，人多才好玩！</span>
+            <strong style="color:#ffe060;">滿 50 人：每人 500 藍鑽</strong> · <strong style="color:#ff8a80;">滿 100 人：每人 1,000 藍鑽</strong>
           </div>
-          <div class="ev-link__date">即日起 · 達標即發 · 不收團不請演員</div>
+          <div class="ev-link__date">即日起 · 達標即發 · 每人限領一次</div>
+          <div class="ev-toggle">◆ 展開詳情</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-detail__slogan">
+            <div class="ev-detail__slogan-main">創造共贏世代</div>
+            <div class="ev-detail__slogan-sub">
+              人人有責任，一起維護伺服器的未來<br>
+              <strong style="color:var(--gold);">我負責出進度！你負責爽！</strong>
+            </div>
+          </div>
+          <div class="ev-detail__text" style="margin-top:14px;">
+            <strong>活動精神：</strong>噬魂天堂秉持<strong>不收團、不請演員</strong>的原則，每一位玩家都是真實的夥伴。<br>
+            人多熱鬧才好玩，我們追求的是<strong>永續經營</strong>，不是短期收割。<br>
+            歡迎各位勇者介紹朋友加入，一起打造最熱血的噬魂世界！<br><br>
+            <strong>領獎方式：</strong>達標後官方將統一透過遊戲信箱發放，每人限領一次。
+          </div>
         </div>
       </div>
 
