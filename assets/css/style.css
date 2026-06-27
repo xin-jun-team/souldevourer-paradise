@@ -2208,3 +2208,87 @@ body {
 .v-orange { color: #ffa040; font-weight: 700; font-family: 'Cinzel', serif; }
 /* 紫色（特殊 / 魔防） */
 .v-purple { color: #c070ff; font-weight: 700; font-family: 'Cinzel', serif; }
+
+/* ══════════════════════════════════
+   手機版全站優化（2026 Best Practices）
+══════════════════════════════════ */
+
+/* ── 手機版關閉複雜動畫（省電+效能）── */
+@media (max-width: 768px) {
+  .nav-sponsor-coin,
+  .nav-sponsor-sparkle { display: none; }
+  .nav-sponsor-wrap .nav-btn { animation: none; }
+  #hero-particles { display: none; }
+  .hero-deco-text { display: none; }
+}
+
+/* ── 手機版觸控優化 ── */
+@media (max-width: 860px) {
+  /* 選單項目最小 48px 高度 */
+  .mobile-nav a,
+  .mobile-nav .mobile-sub {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+  }
+  /* header 內容加大 */
+  .header-inner { padding: 0 12px; }
+  /* page-hero 手機間距 */
+  .page-hero { padding: 60px 16px 36px; }
+  .page-hero__eyebrow { font-size: 0.65rem; letter-spacing: 0.2em; }
+  /* fp-wrap 手機間距 */
+  .fp-wrap { padding: 40px 16px 60px; }
+}
+
+/* ── 手機版字型確保可讀 ── */
+@media (max-width: 640px) {
+  body { font-size: 15px; line-height: 1.7; }
+  .fp-heading { font-size: 0.92rem; padding: 8px 12px; }
+  .sys-block__body { font-size: 0.82rem; padding: 14px 16px; }
+  .fp-intro { font-size: 0.82rem; padding: 14px 16px; }
+  /* 狀態列手機版 */
+  .hero-statusbar { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .statusbar-cells { min-width: 520px; }
+}
+
+/* ── 手機版底部按鈕替代懸浮側欄 ── */
+@media (max-width: 640px) {
+  .float-sidebar {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    right: auto;
+    left: 0;
+    top: auto;
+    width: 100%;
+    flex-direction: row;
+    gap: 0;
+    z-index: 900;
+    border-top: 1px solid var(--gold-dim);
+  }
+  .float-btn {
+    flex: 1;
+    height: 52px;
+    width: auto;
+    border: none;
+    border-right: 1px solid rgba(212,168,32,0.15);
+    border-radius: 0;
+    flex-direction: row;
+    gap: 6px;
+    font-size: 0.72rem;
+  }
+  .float-btn:last-child { border-right: none; }
+  .float-icon { font-size: 1rem; }
+  .float-label { font-size: 0.65rem; }
+  /* 底部留空間給 bottom bar */
+  footer#site-footer { padding-bottom: 60px; }
+}
+
+/* ── 減少動畫偏好支援 ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
