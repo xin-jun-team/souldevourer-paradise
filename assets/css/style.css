@@ -317,6 +317,10 @@ body {
   flex-direction: column;
   background: rgba(4, 3, 10, 0.99);
   border-top: 1px solid var(--border-red);
+  max-height: calc(100vh - var(--header-h));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 .mobile-nav.is-open { display: flex; }
 .mobile-nav a {
