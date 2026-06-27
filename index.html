@@ -480,6 +480,46 @@
                 </a>
               </div>
 
+              <div class="guide-item" style="cursor:pointer;margin-top:8px;" onclick="var d=document.getElementById('guide-depth');d.style.display=d.style.display==='none'?'block':'none';this.querySelector('.guide-arrow').textContent=d.style.display==='none'?'▼':'▲';">
+                <span class="guide-num">◆</span>
+                <div class="guide-info">
+                  <span class="guide-title">深厚的蘊底能力</span>
+                  <span class="guide-desc">變身 / 娃娃 / BOSS圖鑑 / 卡池能力，底蘊越深戰力越強</span>
+                </div>
+                <span class="guide-arrow">▼</span>
+              </div>
+              <div id="guide-depth" style="display:none;">
+                <a href="pages/feature-transform.html" class="guide-item">
+                  <span class="guide-num">01</span>
+                  <div class="guide-info">
+                    <span class="guide-title">變身系統</span>
+                    <span class="guide-desc">收集變身卡，化身強力魔物獲得額外能力加成</span>
+                  </div>
+                  <span class="guide-arrow">→</span>
+                </a>
+                <a href="pages/feature-dolls.html" class="guide-item">
+                  <span class="guide-num">02</span>
+                  <div class="guide-info">
+                    <span class="guide-title">娃娃系統</span>
+                    <span class="guide-desc">召喚戰鬥娃娃，卡池抽取多種稀有夥伴</span>
+                  </div>
+                  <span class="guide-arrow">→</span>
+                </a>
+                <a href="pages/boss-guide.html" class="guide-item">
+                  <span class="guide-num">03</span>
+                  <div class="guide-info">
+                    <span class="guide-title">BOSS 圖鑑</span>
+                    <span class="guide-desc">各地圖 BOSS 出沒位置與掉落物一覽</span>
+                  </div>
+                  <span class="guide-arrow">→</span>
+                </a>
+                <div style="display:flex;gap:8px;padding:8px 0;overflow-x:auto;">
+                  <img src="assets/images/guide-dolls.jpg" alt="娃娃卡池" style="height:120px;border:1px solid #1e1630;border-radius:2px;" loading="lazy">
+                  <img src="assets/images/guide-transform.jpg" alt="變身卡池" style="height:120px;border:1px solid #1e1630;border-radius:2px;" loading="lazy">
+                  <img src="assets/images/guide-boss.png" alt="BOSS圖鑑" style="height:120px;border:1px solid #1e1630;border-radius:2px;" loading="lazy">
+                </div>
+              </div>
+
             </div>
           </div>
 
