@@ -452,6 +452,34 @@
                   <span class="guide-arrow">→</span>
                 </a>
               </div>
+
+              <div class="guide-item" style="cursor:pointer;margin-top:8px;" onclick="var d=document.getElementById('guide-equip');d.style.display=d.style.display==='none'?'block':'none';this.querySelector('.guide-arrow').textContent=d.style.display==='none'?'▼':'▲';">
+                <span class="guide-num">◆</span>
+                <div class="guide-info">
+                  <span class="guide-title">裝備直升系統</span>
+                  <span class="guide-desc" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">新手也能直接上手 <span style="color:#ccc;">●</span><span style="color:#4caf50;">●</span><span style="color:#2196f3;">●</span><span style="color:#ff9800;">●</span><span style="color:#9c27b0;">●</span><span style="color:#ffd700;">●</span></span>
+                </div>
+                <span class="guide-arrow">▼</span>
+              </div>
+              <div id="guide-equip" style="display:none;">
+                <a href="pages/items-weapons.html" class="guide-item">
+                  <span class="guide-num">01</span>
+                  <div class="guide-info">
+                    <span class="guide-title">武器總覽</span>
+                    <span class="guide-desc">各階級武器數據與取得方式</span>
+                  </div>
+                  <span class="guide-arrow">→</span>
+                </a>
+                <a href="pages/items-armor.html" class="guide-item">
+                  <span class="guide-num">02</span>
+                  <div class="guide-info">
+                    <span class="guide-title">防具總覽</span>
+                    <span class="guide-desc">各階級防具數據與取得方式</span>
+                  </div>
+                  <span class="guide-arrow">→</span>
+                </a>
+              </div>
+
             </div>
           </div>
 
