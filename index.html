@@ -418,37 +418,40 @@
           <!-- 圖文攻略區 -->
           <div class="newbie-panel" id="tab-guide">
             <div class="guide-list">
-              <div class="guide-item" style="cursor:default;">
-                <span class="guide-num">01</span>
+              <div class="guide-item" style="cursor:pointer;" onclick="var d=document.getElementById('guide-3bao');d.style.display=d.style.display==='none'?'block':'none';this.querySelector('.guide-arrow').textContent=d.style.display==='none'?'▼':'▲';">
+                <span class="guide-num">◆</span>
                 <div class="guide-info">
-                  <span class="guide-title">提機體有三寶</span>
+                  <span class="guide-title">機體提升有三寶</span>
                   <span class="guide-desc">聖物 / 威力彩 / 獸魂 都是寶，樣樣提升能力好</span>
                 </div>
+                <span class="guide-arrow">▼</span>
               </div>
-              <a href="pages/items-relic.html" class="guide-item">
-                <span class="guide-num">02</span>
-                <div class="guide-info">
-                  <span class="guide-title">聖物系統</span>
-                  <span class="guide-desc">收集聖物碎片，合成強力聖物提升角色基礎能力</span>
-                </div>
-                <span class="guide-arrow">→</span>
-              </a>
-              <a href="pages/items-gacha.html" class="guide-item">
-                <span class="guide-num">03</span>
-                <div class="guide-info">
-                  <span class="guide-title">威力彩系統</span>
-                  <span class="guide-desc">試試手氣，開出稀有道具與強化素材</span>
-                </div>
-                <span class="guide-arrow">→</span>
-              </a>
-              <a href="pages/feature-soul-core.html" class="guide-item">
-                <span class="guide-num">04</span>
-                <div class="guide-info">
-                  <span class="guide-title">獸魂系統</span>
-                  <span class="guide-desc">注入獸魂之力，解鎖隱藏潛能與戰鬥加成</span>
-                </div>
-                <span class="guide-arrow">→</span>
-              </a>
+              <div id="guide-3bao" style="display:none;">
+                <a href="pages/items-relic.html" class="guide-item">
+                  <span class="guide-num">01</span>
+                  <div class="guide-info">
+                    <span class="guide-title">聖物系統</span>
+                    <span class="guide-desc">收集聖物碎片，合成強力聖物提升角色基礎能力</span>
+                  </div>
+                  <span class="guide-arrow">→</span>
+                </a>
+                <a href="pages/items-gacha.html" class="guide-item">
+                  <span class="guide-num">02</span>
+                  <div class="guide-info">
+                    <span class="guide-title">威力彩系統</span>
+                    <span class="guide-desc">試試手氣，開出稀有道具與強化素材</span>
+                  </div>
+                  <span class="guide-arrow">→</span>
+                </a>
+                <a href="pages/feature-soul-core.html" class="guide-item">
+                  <span class="guide-num">03</span>
+                  <div class="guide-info">
+                    <span class="guide-title">獸魂系統</span>
+                    <span class="guide-desc">注入獸魂之力，解鎖隱藏潛能與戰鬥加成</span>
+                  </div>
+                  <span class="guide-arrow">→</span>
+                </a>
+              </div>
             </div>
           </div>
 
