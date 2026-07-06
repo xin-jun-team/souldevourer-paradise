@@ -39,6 +39,18 @@
     .job-table tr:last-child td { background:#18102e; }
     .job-table tr:last-child td:first-child { color:var(--gold); }
     .val { color:#ffe060; font-weight:700; font-family:'Cinzel',serif; }
+    .rate { font-family:'Cinzel',serif; font-weight:700; font-size:0.82rem; }
+    .rate--100 { color:#4cff7c; }
+    .rate--90  { color:#7cff60; }
+    .rate--80  { color:#b0e040; }
+    .rate--70  { color:#e0c040; }
+    .rate--60  { color:#ff8040; }
+    .rate-bar { display:inline-block; height:4px; border-radius:2px; vertical-align:middle; margin-left:6px; }
+    .rate-bar--100 { width:48px; background:linear-gradient(90deg,#4cff7c,#2ecc71); }
+    .rate-bar--90  { width:43px; background:linear-gradient(90deg,#7cff60,#5cb85c); }
+    .rate-bar--80  { width:38px; background:linear-gradient(90deg,#b0e040,#9acd32); }
+    .rate-bar--70  { width:33px; background:linear-gradient(90deg,#e0c040,#d4a820); }
+    .rate-bar--60  { width:29px; background:linear-gradient(90deg,#ff8040,#e06030); }
 
     @media (max-width:600px) { .job-card__desc { display:none; } }
   </style>
@@ -98,15 +110,15 @@
         <div class="job-card__desc">遭受傷害時觸發治癒，並提供 PVP 減傷與近距攻擊加成。<strong>滿級回復 350–400</strong>，生存力大幅強化。</div>
       </div>
       <table class="job-table">
-        <thead><tr><th>階段</th><th>治癒機率</th><th>治癒量</th><th>PVP 減傷</th><th>近距攻擊</th></tr></thead>
+        <thead><tr><th>階段</th><th>升級成功率</th><th>治癒機率</th><th>治癒量</th><th>PVP 減傷</th><th>近距攻擊</th></tr></thead>
         <tbody>
-          <tr><td>初始</td><td><span class="val">4%</span></td><td>50–100</td><td>+1</td><td>+1</td></tr>
-          <tr><td>LV.1</td><td><span class="val">5%</span></td><td>100–150</td><td>+1</td><td>+1</td></tr>
-          <tr><td>LV.2</td><td><span class="val">6%</span></td><td>150–200</td><td>+2</td><td>+2</td></tr>
-          <tr><td>LV.3</td><td><span class="val">7%</span></td><td>200–250</td><td>+2</td><td>+2</td></tr>
-          <tr><td>LV.4</td><td><span class="val">8%</span></td><td>250–300</td><td>+3</td><td>+3</td></tr>
-          <tr><td>LV.5</td><td><span class="val">9%</span></td><td>300–350</td><td>+3</td><td>+3</td></tr>
-          <tr><td>MAX</td><td><span class="val">10%</span></td><td>350–400</td><td>+5</td><td>+5</td></tr>
+          <tr><td>初始</td><td><span class="rate rate--100">100%</span><span class="rate-bar rate-bar--100"></span></td><td><span class="val">4%</span></td><td>50–100</td><td>+1</td><td>+1</td></tr>
+          <tr><td>LV.1</td><td><span class="rate rate--90">90%</span><span class="rate-bar rate-bar--90"></span></td><td><span class="val">5%</span></td><td>100–150</td><td>+1</td><td>+1</td></tr>
+          <tr><td>LV.2</td><td><span class="rate rate--80">80%</span><span class="rate-bar rate-bar--80"></span></td><td><span class="val">6%</span></td><td>150–200</td><td>+2</td><td>+2</td></tr>
+          <tr><td>LV.3</td><td><span class="rate rate--70">70%</span><span class="rate-bar rate-bar--70"></span></td><td><span class="val">7%</span></td><td>200–250</td><td>+2</td><td>+2</td></tr>
+          <tr><td>LV.4</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">8%</span></td><td>250–300</td><td>+3</td><td>+3</td></tr>
+          <tr><td>LV.5</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">9%</span></td><td>300–350</td><td>+3</td><td>+3</td></tr>
+          <tr><td>MAX</td><td>—</td><td><span class="val">10%</span></td><td>350–400</td><td>+5</td><td>+5</td></tr>
         </tbody>
       </table>
     </div>
@@ -122,15 +134,15 @@
         <div class="job-card__desc">強化暈眩命中、魔法抵抗、最大 HP 與傷害免疫。<strong>滿級 HP +1,000、魔抵 +15</strong>，成為難以撼動的鐵壁。</div>
       </div>
       <table class="job-table">
-        <thead><tr><th>階段</th><th>暈眩命中</th><th>魔法抵抗</th><th>最大 HP</th><th>傷害免疫</th></tr></thead>
+        <thead><tr><th>階段</th><th>升級成功率</th><th>暈眩命中</th><th>魔法抵抗</th><th>最大 HP</th><th>傷害免疫</th></tr></thead>
         <tbody>
-          <tr><td>初始</td><td><span class="val">+1%</span></td><td>+2</td><td>+100</td><td>+1</td></tr>
-          <tr><td>LV.1</td><td><span class="val">+2%</span></td><td>+4</td><td>+200</td><td>+2</td></tr>
-          <tr><td>LV.2</td><td><span class="val">+3%</span></td><td>+6</td><td>+300</td><td>+3</td></tr>
-          <tr><td>LV.3</td><td><span class="val">+5%</span></td><td>+8</td><td>+400</td><td>+4</td></tr>
-          <tr><td>LV.4</td><td><span class="val">+7%</span></td><td>+10</td><td>+500</td><td>+5</td></tr>
-          <tr><td>LV.5</td><td><span class="val">+9%</span></td><td>+12</td><td>+800</td><td>+6</td></tr>
-          <tr><td>MAX</td><td><span class="val">+12%</span></td><td>+15</td><td>+1,000</td><td>+8</td></tr>
+          <tr><td>初始</td><td><span class="rate rate--100">100%</span><span class="rate-bar rate-bar--100"></span></td><td><span class="val">+1%</span></td><td>+2</td><td>+100</td><td>+1</td></tr>
+          <tr><td>LV.1</td><td><span class="rate rate--90">90%</span><span class="rate-bar rate-bar--90"></span></td><td><span class="val">+2%</span></td><td>+4</td><td>+200</td><td>+2</td></tr>
+          <tr><td>LV.2</td><td><span class="rate rate--80">80%</span><span class="rate-bar rate-bar--80"></span></td><td><span class="val">+3%</span></td><td>+6</td><td>+300</td><td>+3</td></tr>
+          <tr><td>LV.3</td><td><span class="rate rate--70">70%</span><span class="rate-bar rate-bar--70"></span></td><td><span class="val">+5%</span></td><td>+8</td><td>+400</td><td>+4</td></tr>
+          <tr><td>LV.4</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">+7%</span></td><td>+10</td><td>+500</td><td>+5</td></tr>
+          <tr><td>LV.5</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">+9%</span></td><td>+12</td><td>+800</td><td>+6</td></tr>
+          <tr><td>MAX</td><td>—</td><td><span class="val">+12%</span></td><td>+15</td><td>+1,000</td><td>+8</td></tr>
         </tbody>
       </table>
     </div>
@@ -146,15 +158,15 @@
         <div class="job-card__desc">強化三連箭傷害與近距攻擊，並降低對手迴避率。<strong>滿級三連箭 +20、近距 +15</strong>，全面提升輸出效率。</div>
       </div>
       <table class="job-table">
-        <thead><tr><th>階段</th><th>三連箭傷害</th><th>迴避降低</th><th>近距攻擊</th></tr></thead>
+        <thead><tr><th>階段</th><th>升級成功率</th><th>三連箭傷害</th><th>迴避降低</th><th>近距攻擊</th></tr></thead>
         <tbody>
-          <tr><td>初始</td><td><span class="val">+5</span></td><td>+1</td><td>+1</td></tr>
-          <tr><td>LV.1</td><td><span class="val">+8</span></td><td>+2</td><td>+2</td></tr>
-          <tr><td>LV.2</td><td><span class="val">+10</span></td><td>+3</td><td>+2</td></tr>
-          <tr><td>LV.3</td><td><span class="val">+12</span></td><td>+4</td><td>+2</td></tr>
-          <tr><td>LV.4</td><td><span class="val">+14</span></td><td>+5</td><td>+10</td></tr>
-          <tr><td>LV.5</td><td><span class="val">+16</span></td><td>+6</td><td>+10</td></tr>
-          <tr><td>MAX</td><td><span class="val">+20</span></td><td>+7</td><td>+15</td></tr>
+          <tr><td>初始</td><td><span class="rate rate--100">100%</span><span class="rate-bar rate-bar--100"></span></td><td><span class="val">+5</span></td><td>+1</td><td>+1</td></tr>
+          <tr><td>LV.1</td><td><span class="rate rate--90">90%</span><span class="rate-bar rate-bar--90"></span></td><td><span class="val">+8</span></td><td>+2</td><td>+2</td></tr>
+          <tr><td>LV.2</td><td><span class="rate rate--80">80%</span><span class="rate-bar rate-bar--80"></span></td><td><span class="val">+10</span></td><td>+3</td><td>+2</td></tr>
+          <tr><td>LV.3</td><td><span class="rate rate--70">70%</span><span class="rate-bar rate-bar--70"></span></td><td><span class="val">+12</span></td><td>+4</td><td>+2</td></tr>
+          <tr><td>LV.4</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">+14</span></td><td>+5</td><td>+10</td></tr>
+          <tr><td>LV.5</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">+16</span></td><td>+6</td><td>+10</td></tr>
+          <tr><td>MAX</td><td>—</td><td><span class="val">+20</span></td><td>+7</td><td>+15</td></tr>
         </tbody>
       </table>
     </div>
@@ -170,15 +182,15 @@
         <div class="job-card__desc">大幅提升魅力、火焰魔法傷害及 MP 回復。<strong>滿級魅力 +36、火焰傷害 +100</strong>，打造毀滅級魔法輸出。</div>
       </div>
       <table class="job-table">
-        <thead><tr><th>階段</th><th>魅力加成</th><th>火焰魔法傷害</th><th>MP 回復</th></tr></thead>
+        <thead><tr><th>階段</th><th>升級成功率</th><th>魅力加成</th><th>火焰魔法傷害</th><th>MP 回復</th></tr></thead>
         <tbody>
-          <tr><td>初始</td><td><span class="val">+9</span></td><td>+8</td><td>+2</td></tr>
-          <tr><td>LV.1</td><td><span class="val">+12</span></td><td>+15</td><td>+2</td></tr>
-          <tr><td>LV.2</td><td><span class="val">+12</span></td><td>+30</td><td>+4</td></tr>
-          <tr><td>LV.3</td><td><span class="val">+18</span></td><td>+45</td><td>+4</td></tr>
-          <tr><td>LV.4</td><td><span class="val">+21</span></td><td>+60</td><td>+6</td></tr>
-          <tr><td>LV.5</td><td><span class="val">+25</span></td><td>+75</td><td>+6</td></tr>
-          <tr><td>MAX</td><td><span class="val">+36</span></td><td>+100</td><td>+10</td></tr>
+          <tr><td>初始</td><td><span class="rate rate--100">100%</span><span class="rate-bar rate-bar--100"></span></td><td><span class="val">+9</span></td><td>+8</td><td>+2</td></tr>
+          <tr><td>LV.1</td><td><span class="rate rate--90">90%</span><span class="rate-bar rate-bar--90"></span></td><td><span class="val">+12</span></td><td>+15</td><td>+2</td></tr>
+          <tr><td>LV.2</td><td><span class="rate rate--80">80%</span><span class="rate-bar rate-bar--80"></span></td><td><span class="val">+12</span></td><td>+30</td><td>+4</td></tr>
+          <tr><td>LV.3</td><td><span class="rate rate--70">70%</span><span class="rate-bar rate-bar--70"></span></td><td><span class="val">+18</span></td><td>+45</td><td>+4</td></tr>
+          <tr><td>LV.4</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">+21</span></td><td>+60</td><td>+6</td></tr>
+          <tr><td>LV.5</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">+25</span></td><td>+75</td><td>+6</td></tr>
+          <tr><td>MAX</td><td>—</td><td><span class="val">+36</span></td><td>+100</td><td>+10</td></tr>
         </tbody>
       </table>
     </div>
@@ -194,15 +206,15 @@
         <div class="job-card__desc">提升近戰爆擊率、爆擊倍率與攻擊命中。<strong>滿級爆擊率 +8%、倍率 1.15×</strong>，每次暴擊都是致命打擊。</div>
       </div>
       <table class="job-table">
-        <thead><tr><th>階段</th><th>爆擊率</th><th>爆擊倍率</th><th>攻擊命中</th></tr></thead>
+        <thead><tr><th>階段</th><th>升級成功率</th><th>爆擊率</th><th>爆擊倍率</th><th>攻擊命中</th></tr></thead>
         <tbody>
-          <tr><td>初始</td><td><span class="val">+1%</span></td><td>1.02×</td><td>+1</td></tr>
-          <tr><td>LV.1</td><td><span class="val">+2%</span></td><td>1.04×</td><td>+1</td></tr>
-          <tr><td>LV.2</td><td><span class="val">+3%</span></td><td>1.06×</td><td>+2</td></tr>
-          <tr><td>LV.3</td><td><span class="val">+4%</span></td><td>1.08×</td><td>+2</td></tr>
-          <tr><td>LV.4</td><td><span class="val">+5%</span></td><td>1.10×</td><td>+3</td></tr>
-          <tr><td>LV.5</td><td><span class="val">+6%</span></td><td>1.12×</td><td>+3</td></tr>
-          <tr><td>MAX</td><td><span class="val">+8%</span></td><td>1.15×</td><td>+5</td></tr>
+          <tr><td>初始</td><td><span class="rate rate--100">100%</span><span class="rate-bar rate-bar--100"></span></td><td><span class="val">+1%</span></td><td>1.02×</td><td>+1</td></tr>
+          <tr><td>LV.1</td><td><span class="rate rate--90">90%</span><span class="rate-bar rate-bar--90"></span></td><td><span class="val">+2%</span></td><td>1.04×</td><td>+1</td></tr>
+          <tr><td>LV.2</td><td><span class="rate rate--80">80%</span><span class="rate-bar rate-bar--80"></span></td><td><span class="val">+3%</span></td><td>1.06×</td><td>+2</td></tr>
+          <tr><td>LV.3</td><td><span class="rate rate--70">70%</span><span class="rate-bar rate-bar--70"></span></td><td><span class="val">+4%</span></td><td>1.08×</td><td>+2</td></tr>
+          <tr><td>LV.4</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">+5%</span></td><td>1.10×</td><td>+3</td></tr>
+          <tr><td>LV.5</td><td><span class="rate rate--60">60%</span><span class="rate-bar rate-bar--60"></span></td><td><span class="val">+6%</span></td><td>1.12×</td><td>+3</td></tr>
+          <tr><td>MAX</td><td>—</td><td><span class="val">+8%</span></td><td>1.15×</td><td>+5</td></tr>
         </tbody>
       </table>
     </div>
@@ -237,7 +249,7 @@
           <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
         </nav>
       </div>
-      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2025-2026 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
     </div>
         <div style="max-width:1080px;margin:0 auto;padding:12px 24px 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
         <a href="https://lin.ee/UbLA1Dq" target="_blank" rel="noopener" style="color:var(--gold-dim);font-size:12px;letter-spacing:1.2px;font-weight:600;text-shadow:0 0 10px rgba(201,169,110,0.36);text-decoration:none;">阿柴美工 LINE @323rffot 美工找我~</a>
