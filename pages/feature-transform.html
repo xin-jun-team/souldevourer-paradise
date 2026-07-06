@@ -66,10 +66,10 @@
     .unique-locked { background:rgba(255,255,255,0.03); border:1px dashed rgba(64,192,192,0.25); border-radius:2px; padding:22px 18px; text-align:center; }
     .unique-locked__icon { font-size:2rem; display:block; margin-bottom:8px; filter:grayscale(1) opacity(0.4); }
     .unique-locked__text { color:#5a5080; font-family:'Cinzel',serif; font-size:0.78rem; letter-spacing:0.12em; }
-    /* 遠程可使用提示 */
-    .t-range { background:rgba(100,181,246,0.06); border:1px solid rgba(100,181,246,0.2); border-radius:2px; padding:10px 16px; margin-bottom:12px; }
-    .t-range__title { font-size:0.78rem; font-weight:700; color:#64b5f6; margin-bottom:6px; }
-    .t-range__list { font-size:0.78rem; color:var(--text-dim); line-height:1.8; }
+    /* 類型標籤 */
+    .t-type-label { width:100%; padding:6px 12px; border-radius:2px; font-size:0.8rem; font-weight:700; letter-spacing:0.08em; }
+    .t-type-label--melee { background:rgba(255,100,100,0.08); border:1px solid rgba(255,100,100,0.2); color:#ff8a80; }
+    .t-type-label--range { background:rgba(100,181,246,0.08); border:1px solid rgba(100,181,246,0.2); color:#64b5f6; }
     /* 響應式表格 */
     .t-table-wrap { overflow-x:auto; margin-bottom:8px; }
   </style>
@@ -171,6 +171,7 @@
       <span class="t-badge">一般 · 43 種</span>
     </div>
     <div class="t-grid">
+      <div class="t-type-label t-type-label--melee">⚔ 近戰通用</div>
       <span class="t-item t-gen">強盜弓箭手</span>
       <span class="t-item t-gen">狼人/萊肯</span>
       <span class="t-item t-gen">小小鬼(粉紅)</span>
@@ -220,11 +221,8 @@
       <span>🟢 高級變身</span>
       <span class="t-badge">ADVANCED · 41 種</span>
     </div>
-    <div class="t-range">
-      <div class="t-range__title">🏹 遠程可使用</div>
-      <div class="t-range__list">沙蟲士兵、巨蟻女皇士兵</div>
-    </div>
     <div class="t-grid">
+      <div class="t-type-label t-type-label--melee">⚔ 近戰通用</div>
       <span class="t-item t-adv">狂暴槍騎</span>
       <span class="t-item t-adv">狂暴將軍</span>
       <span class="t-item t-adv">桓夢</span>
@@ -245,8 +243,10 @@
       <span class="t-item t-adv">黑暗妖精</span>
       <span class="t-item t-adv">布雷哲</span>
       <span class="t-item t-adv">強盜頭目</span>
+      <div class="t-type-label t-type-label--range">🏹 遠程可使用</div>
       <span class="t-item t-adv">沙蟲士兵</span>
       <span class="t-item t-adv">巨蟻女皇士兵</span>
+      <div class="t-type-label t-type-label--melee">⚔ 近戰通用</div>
       <span class="t-item t-adv">大黃蜂殺手</span>
       <span class="t-item t-adv">石頭高崙</span>
       <span class="t-item t-adv">海馬守衛</span>
@@ -273,11 +273,8 @@
       <span>🔵 稀有變身</span>
       <span class="t-badge">RARE · 110 種</span>
     </div>
-    <div class="t-range">
-      <div class="t-range__title">🏹 遠程可使用</div>
-      <div class="t-range__list">巨蟻女皇隊長、沙蟲隊長、南瓜、紅魔法師、鬼靈、惡夢的稻草人、神聖魔法師、稻草人(藍)、魔女</div>
-    </div>
     <div class="t-grid">
+      <div class="t-type-label t-type-label--melee">⚔ 近戰通用</div>
       <span class="t-item t-rare">惡魔</span>
       <span class="t-item t-rare">炎魔</span>
       <span class="t-item t-rare">歐吉王</span>
@@ -348,8 +345,17 @@
       <span class="t-item t-rare">聖地侏儒弓手</span>
       <span class="t-item t-rare">聖地侏儒槍兵</span>
       <span class="t-item t-rare">聖地侏儒劍士</span>
+      <div class="t-type-label t-type-label--range">🏹 遠程可使用</div>
       <span class="t-item t-rare">巨蟻女皇隊長</span>
       <span class="t-item t-rare">沙蟲隊長</span>
+      <span class="t-item t-rare">南瓜</span>
+      <span class="t-item t-rare">紅魔法師</span>
+      <span class="t-item t-rare">鬼靈</span>
+      <span class="t-item t-rare">惡夢的稻草人</span>
+      <span class="t-item t-rare">神聖魔法師</span>
+      <span class="t-item t-rare">稻草人(藍)</span>
+      <span class="t-item t-rare">魔女</span>
+      <div class="t-type-label t-type-label--melee">⚔ 近戰通用</div>
       <span class="t-item t-rare">釣魚少年保羅</span>
       <span class="t-item t-rare">黑暗狂暴槍兵</span>
       <span class="t-item t-rare">銀光狂暴槍騎</span>
@@ -389,23 +395,16 @@
       <span class="t-item t-rare">佩利克</span>
       <span class="t-item t-rare">拉班</span>
       <span class="t-item t-rare">青蛙孟克</span>
-      <span class="t-item t-rare">南瓜</span>
-      <span class="t-item t-rare">紅魔法師</span>
       <span class="t-item t-rare">背叛的聖物</span>
       <span class="t-item t-rare">狼騎士</span>
-      <span class="t-item t-rare">鬼靈</span>
-      <span class="t-item t-rare">惡夢的稻草人</span>
       <span class="t-item t-rare">惡霸鯊魚</span>
       <span class="t-item t-rare">菲爾菲爾</span>
       <span class="t-item t-rare">愛爾芬(乞丐)</span>
-      <span class="t-item t-rare">神聖魔法師</span>
       <span class="t-item t-rare">瑪依奴</span>
       <span class="t-item t-rare">舞獅(金)</span>
       <span class="t-item t-rare">墮落的修道士</span>
-      <span class="t-item t-rare">稻草人(藍)</span>
       <span class="t-item t-rare">犧牲的聖職者</span>
       <span class="t-item t-rare">鐵門騎士團長</span>
-      <span class="t-item t-rare">魔女</span>
       <span class="t-item t-rare">懺悔的修女</span>
     </div>
 
@@ -414,11 +413,26 @@
       <span>🔴 英雄變身</span>
       <span class="t-badge">HERO · 86 種</span>
     </div>
-    <div class="t-range">
-      <div class="t-range__title">🏹 遠程可使用</div>
-      <div class="t-range__list">天上騎士、格鬥家男、格鬥家女、潘朵拉、素還真、莉茲、伯爵安托里歐、師團長哈波、兔子少女、葉小釵、棄天帝、伊娃守護者、Doguri、女僕安娜、天上守護騎士、地獄傑克吳燈籠、挪威海怪</div>
-    </div>
     <div class="t-grid">
+      <div class="t-type-label t-type-label--range">🏹 遠程可使用</div>
+      <span class="t-item t-hero">天上騎士</span>
+      <span class="t-item t-hero">格鬥家男</span>
+      <span class="t-item t-hero">格鬥家女</span>
+      <span class="t-item t-hero">潘朵拉</span>
+      <span class="t-item t-hero">素還真</span>
+      <span class="t-item t-hero">莉茲</span>
+      <span class="t-item t-hero">伯爵安托里歐</span>
+      <span class="t-item t-hero">師團長哈波</span>
+      <span class="t-item t-hero">兔子少女</span>
+      <span class="t-item t-hero">葉小釵</span>
+      <span class="t-item t-hero">棄天帝</span>
+      <span class="t-item t-hero">伊娃守護者</span>
+      <span class="t-item t-hero">Doguri</span>
+      <span class="t-item t-hero">女僕安娜</span>
+      <span class="t-item t-hero">天上守護騎士</span>
+      <span class="t-item t-hero">地獄傑克吳燈籠</span>
+      <span class="t-item t-hero">挪威海怪</span>
+      <div class="t-type-label t-type-label--melee">⚔ 近戰通用</div>
       <span class="t-item t-hero">巴列斯</span>
       <span class="t-item t-hero">反王肯恩</span>
       <span class="t-item t-hero">賽尼斯</span>
@@ -430,7 +444,6 @@
       <span class="t-item t-hero">死亡騎士(黃金)</span>
       <span class="t-item t-hero">覺醒炎魔</span>
       <span class="t-item t-hero">死亡騎士(焚焰)</span>
-      <span class="t-item t-hero">天上騎士</span>
       <span class="t-item t-hero">克特</span>
       <span class="t-item t-hero">巴風特</span>
       <span class="t-item t-hero">宙斯</span>
@@ -443,8 +456,6 @@
       <span class="t-item t-hero">歐瑞(藍)</span>
       <span class="t-item t-hero">歐瑞(綠)</span>
       <span class="t-item t-hero">塞巴斯蒂安</span>
-      <span class="t-item t-hero">格鬥家男</span>
-      <span class="t-item t-hero">格鬥家女</span>
       <span class="t-item t-hero">布魯迪卡</span>
       <span class="t-item t-hero">丹特斯</span>
       <span class="t-item t-hero">真死亡騎士(紅)</span>
@@ -454,21 +465,13 @@
       <span class="t-item t-hero">格立特(弓)</span>
       <span class="t-item t-hero">死神</span>
       <span class="t-item t-hero">依詩蒂(槍)</span>
-      <span class="t-item t-hero">潘朵拉</span>
       <span class="t-item t-hero">暗黑騎士莉爾利</span>
       <span class="t-item t-hero">艾依爾</span>
       <span class="t-item t-hero">狂暴將軍(紅)</span>
       <span class="t-item t-hero">狂暴將軍(藍)</span>
       <span class="t-item t-hero">刺客首領(紅)</span>
       <span class="t-item t-hero">黃金布雷哲</span>
-      <span class="t-item t-hero">素還真</span>
-      <span class="t-item t-hero">莉茲</span>
-      <span class="t-item t-hero">伯爵安托里歐</span>
-      <span class="t-item t-hero">師團長哈波</span>
-      <span class="t-item t-hero">兔子少女</span>
       <span class="t-item t-hero">傑克吳燈籠(紅)</span>
-      <span class="t-item t-hero">葉小釵</span>
-      <span class="t-item t-hero">棄天帝</span>
       <span class="t-item t-hero">優秀騎士</span>
       <span class="t-item t-hero">優秀巡守</span>
       <span class="t-item t-hero">優秀法師</span>
@@ -487,21 +490,15 @@
       <span class="t-item t-hero">格鬥家(女)(藍)</span>
       <span class="t-item t-hero">秩序煉金術師</span>
       <span class="t-item t-hero">混沌煉金術師</span>
-      <span class="t-item t-hero">伊娃守護者</span>
       <span class="t-item t-hero">沙哈守護者</span>
       <span class="t-item t-hero">帕格里奧守護者</span>
       <span class="t-item t-hero">馬普勒守護者</span>
-      <span class="t-item t-hero">Doguri</span>
-      <span class="t-item t-hero">女僕安娜</span>
-      <span class="t-item t-hero">天上守護騎士</span>
       <span class="t-item t-hero">世拉</span>
       <span class="t-item t-hero">古代企鵝</span>
       <span class="t-item t-hero">巨大墓穴守護者</span>
-      <span class="t-item t-hero">地獄傑克吳燈籠</span>
       <span class="t-item t-hero">查曼卡</span>
       <span class="t-item t-hero">姬武者</span>
       <span class="t-item t-hero">家門守護者菲莉亞</span>
-      <span class="t-item t-hero">挪威海怪</span>
       <span class="t-item t-hero">豹人</span>
       <span class="t-item t-hero">雪之蜥蜴人</span>
       <span class="t-item t-hero">凱普莉夏</span>
@@ -520,10 +517,8 @@
       <span>🟣 傳說變身</span>
       <span class="t-badge">傳說 · 39 種 — 含額外屬性加成</span>
     </div>
-    <div class="t-range">
-      <div class="t-range__title">🏹 遠程可使用</div>
-      <div class="t-range__list">屠龍者、天鵝的勞安格林、公爵馬庫斯、軍團長艾克斯特、Mr斯摩格、昔日的騎士范德、席琳的守衛、格蘭肯的逆麟、殷海薩的影子、齊天大聖</div>
-    </div>
+    <div class="t-type-label t-type-label--range" style="margin-bottom:12px">🏹 遠程可使用：屠龍者、天鵝的勞安格林、公爵馬庫斯、軍團長艾克斯特、Mr斯摩格、昔日的騎士范德、席琳的守衛、格蘭肯的逆麟、殷海薩的影子、齊天大聖</div>
+    <div class="t-type-label t-type-label--melee" style="margin-bottom:12px">⚔ 其餘皆為近戰通用</div>
     <div class="t-table-wrap">
       <table class="t-table">
         <thead>
@@ -580,10 +575,8 @@
       <span>👑 神話變身</span>
       <span class="t-badge">神話 · 16 種 — 強力複合屬性</span>
     </div>
-    <div class="t-range">
-      <div class="t-range__title">🏹 遠程可使用</div>
-      <div class="t-range__list">變形怪(神話)、妖精(神話)、槍手(神話)、狂戰士(神話)、雷神(神話)、海王波賽頓(神話)</div>
-    </div>
+    <div class="t-type-label t-type-label--range" style="margin-bottom:12px">🏹 遠程可使用：變形怪(神話)、妖精(神話)、槍手(神話)、狂戰士(神話)、雷神(神話)、海王波賽頓(神話)</div>
+    <div class="t-type-label t-type-label--melee" style="margin-bottom:12px">⚔ 其餘皆為近戰通用</div>
     <div class="t-table-wrap">
       <table class="t-table">
         <thead>
