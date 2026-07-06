@@ -66,6 +66,10 @@
     .unique-locked { background:rgba(255,255,255,0.03); border:1px dashed rgba(64,192,192,0.25); border-radius:2px; padding:22px 18px; text-align:center; }
     .unique-locked__icon { font-size:2rem; display:block; margin-bottom:8px; filter:grayscale(1) opacity(0.4); }
     .unique-locked__text { color:#5a5080; font-family:'Cinzel',serif; font-size:0.78rem; letter-spacing:0.12em; }
+    /* 遠程可使用提示 */
+    .t-range { background:rgba(100,181,246,0.06); border:1px solid rgba(100,181,246,0.2); border-radius:2px; padding:10px 16px; margin-bottom:12px; }
+    .t-range__title { font-size:0.78rem; font-weight:700; color:#64b5f6; margin-bottom:6px; }
+    .t-range__list { font-size:0.78rem; color:var(--text-dim); line-height:1.8; }
     /* 響應式表格 */
     .t-table-wrap { overflow-x:auto; margin-bottom:8px; }
   </style>
@@ -216,6 +220,10 @@
       <span>🟢 高級變身</span>
       <span class="t-badge">ADVANCED · 41 種</span>
     </div>
+    <div class="t-range">
+      <div class="t-range__title">🏹 遠程可使用</div>
+      <div class="t-range__list">沙蟲士兵、巨蟻女皇士兵</div>
+    </div>
     <div class="t-grid">
       <span class="t-item t-adv">狂暴槍騎</span>
       <span class="t-item t-adv">狂暴將軍</span>
@@ -237,8 +245,8 @@
       <span class="t-item t-adv">黑暗妖精</span>
       <span class="t-item t-adv">布雷哲</span>
       <span class="t-item t-adv">強盜頭目</span>
-      <span class="t-item t-adv">沙蟲士兵 🏹</span>
-      <span class="t-item t-adv">巨蟻女皇士兵 🏹</span>
+      <span class="t-item t-adv">沙蟲士兵</span>
+      <span class="t-item t-adv">巨蟻女皇士兵</span>
       <span class="t-item t-adv">大黃蜂殺手</span>
       <span class="t-item t-adv">石頭高崙</span>
       <span class="t-item t-adv">海馬守衛</span>
@@ -264,6 +272,10 @@
     <div class="t-sec t-sec--rare">
       <span>🔵 稀有變身</span>
       <span class="t-badge">RARE · 110 種</span>
+    </div>
+    <div class="t-range">
+      <div class="t-range__title">🏹 遠程可使用</div>
+      <div class="t-range__list">巨蟻女皇隊長、沙蟲隊長、南瓜、紅魔法師、鬼靈、惡夢的稻草人、神聖魔法師、稻草人(藍)、魔女</div>
     </div>
     <div class="t-grid">
       <span class="t-item t-rare">惡魔</span>
@@ -336,8 +348,8 @@
       <span class="t-item t-rare">聖地侏儒弓手</span>
       <span class="t-item t-rare">聖地侏儒槍兵</span>
       <span class="t-item t-rare">聖地侏儒劍士</span>
-      <span class="t-item t-rare">巨蟻女皇隊長 🏹</span>
-      <span class="t-item t-rare">沙蟲隊長 🏹</span>
+      <span class="t-item t-rare">巨蟻女皇隊長</span>
+      <span class="t-item t-rare">沙蟲隊長</span>
       <span class="t-item t-rare">釣魚少年保羅</span>
       <span class="t-item t-rare">黑暗狂暴槍兵</span>
       <span class="t-item t-rare">銀光狂暴槍騎</span>
@@ -377,23 +389,23 @@
       <span class="t-item t-rare">佩利克</span>
       <span class="t-item t-rare">拉班</span>
       <span class="t-item t-rare">青蛙孟克</span>
-      <span class="t-item t-rare">南瓜 🏹</span>
-      <span class="t-item t-rare">紅魔法師 🏹</span>
+      <span class="t-item t-rare">南瓜</span>
+      <span class="t-item t-rare">紅魔法師</span>
       <span class="t-item t-rare">背叛的聖物</span>
       <span class="t-item t-rare">狼騎士</span>
-      <span class="t-item t-rare">鬼靈 🏹</span>
-      <span class="t-item t-rare">惡夢的稻草人 🏹</span>
+      <span class="t-item t-rare">鬼靈</span>
+      <span class="t-item t-rare">惡夢的稻草人</span>
       <span class="t-item t-rare">惡霸鯊魚</span>
       <span class="t-item t-rare">菲爾菲爾</span>
       <span class="t-item t-rare">愛爾芬(乞丐)</span>
-      <span class="t-item t-rare">神聖魔法師 🏹</span>
+      <span class="t-item t-rare">神聖魔法師</span>
       <span class="t-item t-rare">瑪依奴</span>
       <span class="t-item t-rare">舞獅(金)</span>
       <span class="t-item t-rare">墮落的修道士</span>
-      <span class="t-item t-rare">稻草人(藍) 🏹</span>
+      <span class="t-item t-rare">稻草人(藍)</span>
       <span class="t-item t-rare">犧牲的聖職者</span>
       <span class="t-item t-rare">鐵門騎士團長</span>
-      <span class="t-item t-rare">魔女 🏹</span>
+      <span class="t-item t-rare">魔女</span>
       <span class="t-item t-rare">懺悔的修女</span>
     </div>
 
@@ -401,6 +413,10 @@
     <div class="t-sec t-sec--hero">
       <span>🔴 英雄變身</span>
       <span class="t-badge">HERO · 86 種</span>
+    </div>
+    <div class="t-range">
+      <div class="t-range__title">🏹 遠程可使用</div>
+      <div class="t-range__list">天上騎士、格鬥家男、格鬥家女、潘朵拉、素還真、莉茲、伯爵安托里歐、師團長哈波、兔子少女、葉小釵、棄天帝、伊娃守護者、Doguri、女僕安娜、天上守護騎士、地獄傑克吳燈籠、挪威海怪</div>
     </div>
     <div class="t-grid">
       <span class="t-item t-hero">巴列斯</span>
@@ -414,7 +430,7 @@
       <span class="t-item t-hero">死亡騎士(黃金)</span>
       <span class="t-item t-hero">覺醒炎魔</span>
       <span class="t-item t-hero">死亡騎士(焚焰)</span>
-      <span class="t-item t-hero">天上騎士 🏹</span>
+      <span class="t-item t-hero">天上騎士</span>
       <span class="t-item t-hero">克特</span>
       <span class="t-item t-hero">巴風特</span>
       <span class="t-item t-hero">宙斯</span>
@@ -427,8 +443,8 @@
       <span class="t-item t-hero">歐瑞(藍)</span>
       <span class="t-item t-hero">歐瑞(綠)</span>
       <span class="t-item t-hero">塞巴斯蒂安</span>
-      <span class="t-item t-hero">格鬥家男 🏹</span>
-      <span class="t-item t-hero">格鬥家女 🏹</span>
+      <span class="t-item t-hero">格鬥家男</span>
+      <span class="t-item t-hero">格鬥家女</span>
       <span class="t-item t-hero">布魯迪卡</span>
       <span class="t-item t-hero">丹特斯</span>
       <span class="t-item t-hero">真死亡騎士(紅)</span>
@@ -438,21 +454,21 @@
       <span class="t-item t-hero">格立特(弓)</span>
       <span class="t-item t-hero">死神</span>
       <span class="t-item t-hero">依詩蒂(槍)</span>
-      <span class="t-item t-hero">潘朵拉 🏹</span>
+      <span class="t-item t-hero">潘朵拉</span>
       <span class="t-item t-hero">暗黑騎士莉爾利</span>
       <span class="t-item t-hero">艾依爾</span>
       <span class="t-item t-hero">狂暴將軍(紅)</span>
       <span class="t-item t-hero">狂暴將軍(藍)</span>
       <span class="t-item t-hero">刺客首領(紅)</span>
       <span class="t-item t-hero">黃金布雷哲</span>
-      <span class="t-item t-hero">素還真 🏹</span>
-      <span class="t-item t-hero">莉茲 🏹</span>
-      <span class="t-item t-hero">伯爵安托里歐 🏹</span>
-      <span class="t-item t-hero">師團長哈波 🏹</span>
-      <span class="t-item t-hero">兔子少女 🏹</span>
+      <span class="t-item t-hero">素還真</span>
+      <span class="t-item t-hero">莉茲</span>
+      <span class="t-item t-hero">伯爵安托里歐</span>
+      <span class="t-item t-hero">師團長哈波</span>
+      <span class="t-item t-hero">兔子少女</span>
       <span class="t-item t-hero">傑克吳燈籠(紅)</span>
-      <span class="t-item t-hero">葉小釵 🏹</span>
-      <span class="t-item t-hero">棄天帝 🏹</span>
+      <span class="t-item t-hero">葉小釵</span>
+      <span class="t-item t-hero">棄天帝</span>
       <span class="t-item t-hero">優秀騎士</span>
       <span class="t-item t-hero">優秀巡守</span>
       <span class="t-item t-hero">優秀法師</span>
@@ -471,21 +487,21 @@
       <span class="t-item t-hero">格鬥家(女)(藍)</span>
       <span class="t-item t-hero">秩序煉金術師</span>
       <span class="t-item t-hero">混沌煉金術師</span>
-      <span class="t-item t-hero">伊娃守護者 🏹</span>
+      <span class="t-item t-hero">伊娃守護者</span>
       <span class="t-item t-hero">沙哈守護者</span>
       <span class="t-item t-hero">帕格里奧守護者</span>
       <span class="t-item t-hero">馬普勒守護者</span>
-      <span class="t-item t-hero">Doguri 🏹</span>
-      <span class="t-item t-hero">女僕安娜 🏹</span>
-      <span class="t-item t-hero">天上守護騎士 🏹</span>
+      <span class="t-item t-hero">Doguri</span>
+      <span class="t-item t-hero">女僕安娜</span>
+      <span class="t-item t-hero">天上守護騎士</span>
       <span class="t-item t-hero">世拉</span>
       <span class="t-item t-hero">古代企鵝</span>
       <span class="t-item t-hero">巨大墓穴守護者</span>
-      <span class="t-item t-hero">地獄傑克吳燈籠 🏹</span>
+      <span class="t-item t-hero">地獄傑克吳燈籠</span>
       <span class="t-item t-hero">查曼卡</span>
       <span class="t-item t-hero">姬武者</span>
       <span class="t-item t-hero">家門守護者菲莉亞</span>
-      <span class="t-item t-hero">挪威海怪 🏹</span>
+      <span class="t-item t-hero">挪威海怪</span>
       <span class="t-item t-hero">豹人</span>
       <span class="t-item t-hero">雪之蜥蜴人</span>
       <span class="t-item t-hero">凱普莉夏</span>
@@ -504,6 +520,10 @@
       <span>🟣 傳說變身</span>
       <span class="t-badge">傳說 · 39 種 — 含額外屬性加成</span>
     </div>
+    <div class="t-range">
+      <div class="t-range__title">🏹 遠程可使用</div>
+      <div class="t-range__list">屠龍者、天鵝的勞安格林、公爵馬庫斯、軍團長艾克斯特、Mr斯摩格、昔日的騎士范德、席琳的守衛、格蘭肯的逆麟、殷海薩的影子、齊天大聖</div>
+    </div>
     <div class="t-table-wrap">
       <table class="t-table">
         <thead>
@@ -516,7 +536,7 @@
           <tr><td>黑暗之星宙斯</td><td>魔攻+1、回魔+3、昏迷耐性+4%</td></tr>
           <tr><td>月之絲莉安</td><td>遠攻+3、遠爆+3%、昏迷耐性+4</td></tr>
           <tr><td>鋼鐵阿頓</td><td>近攻+3、昏迷耐性+4、藥水+3%</td></tr>
-          <tr><td>屠龍者 🏹</td><td>近/遠攻+2、減傷+1</td></tr>
+          <tr><td>屠龍者</td><td>近/遠攻+2、減傷+1</td></tr>
           <tr><td>暗夜殺戮者</td><td>近攻+3、昏迷耐性+4</td></tr>
           <tr><td>黑暗殺手</td><td>遠攻+3、遠命+1、昏迷耐性+4</td></tr>
           <tr><td>地獄死亡騎士</td><td>減傷+2、PVP 減傷+2</td></tr>
@@ -526,11 +546,11 @@
           <tr><td>警衛(矛)隊長</td><td>近攻+2、減傷+1、暈抗+4</td></tr>
           <tr><td>警衛(弓)隊長</td><td>藥水+2%、遠攻+2、暈抗+4</td></tr>
           <tr><td>帕拉丁</td><td>近攻+2、PVP 傷+1、減傷+1</td></tr>
-          <tr><td>天鵝的勞安格林 🏹</td><td>近攻+3、防禦+1、暈命+3</td></tr>
+          <tr><td>天鵝的勞安格林</td><td>近攻+3、防禦+1、暈命+3</td></tr>
           <tr><td>哈汀之魂</td><td>魔攻+2、MP+125、暈抗+4</td></tr>
           <tr><td>漆黑的死亡騎士</td><td>近攻+3、暈命+3%、藥水+3</td></tr>
-          <tr><td>公爵馬庫斯 🏹</td><td>近攻+3、暈命+3%、暈抗+3</td></tr>
-          <tr><td>軍團長艾克斯特 🏹</td><td>遠攻+3、暈抗+4、無視減傷+2</td></tr>
+          <tr><td>公爵馬庫斯</td><td>近攻+3、暈命+3%、暈抗+3</td></tr>
+          <tr><td>軍團長艾克斯特</td><td>遠攻+3、暈抗+4、無視減傷+2</td></tr>
           <tr><td>不敗的甘特</td><td>暈抗+3、暈命+3%、減傷+1</td></tr>
           <tr><td>赫發斯特斯</td><td>暈抗+3、暈命+3%、無視減傷+1</td></tr>
           <tr><td>第1代多魯嘉</td><td>近傷+3、暈命+3%、近爆+1%</td></tr>
@@ -539,16 +559,16 @@
           <tr><td>暗黑龍宙斯</td><td>魔攻+3、魔命+3</td></tr>
           <tr><td>暗黑龍阿頓</td><td>近攻+3、暈命+6%、無視減傷+3</td></tr>
           <tr><td>暗黑龍絲莉安</td><td>遠攻+3、暈命+6%、無視減傷+3</td></tr>
-          <tr><td>Mr斯摩格 🏹</td><td>遠攻+3、暈抗+4%、支撐+3%、PVP傷+3</td></tr>
-          <tr><td>昔日的騎士范德 🏹</td><td>暈抗+3%、恐怖抗+3%、暈命+4%</td></tr>
-          <tr><td>席琳的守衛 🏹</td><td>遠攻+3、暈命+3%、暈抗+4%</td></tr>
-          <tr><td>格蘭肯的逆麟 🏹</td><td>近攻+3、暈命+3%、暈抗+4%</td></tr>
-          <tr><td>殷海薩的影子 🏹</td><td>魔攻+3、暈抗+4%、支撐+2%</td></tr>
+          <tr><td>Mr斯摩格</td><td>遠攻+3、暈抗+4%、支撐+3%、PVP傷+3</td></tr>
+          <tr><td>昔日的騎士范德</td><td>暈抗+3%、恐怖抗+3%、暈命+4%</td></tr>
+          <tr><td>席琳的守衛</td><td>遠攻+3、暈命+3%、暈抗+4%</td></tr>
+          <tr><td>格蘭肯的逆麟</td><td>近攻+3、暈命+3%、暈抗+4%</td></tr>
+          <tr><td>殷海薩的影子</td><td>魔攻+3、暈抗+4%、支撐+2%</td></tr>
           <tr><td>烈焰死亡騎士</td><td>近傷+3、暈命+3%、PVP傷+2</td></tr>
           <tr><td>國王 艾歐丁</td><td>暈命+3%、暈抗+4%、無視減傷+1</td></tr>
           <tr><td>勞待碼依</td><td>暈命+3%、暈抗+4%、無視減傷+1</td></tr>
           <tr><td>暗殺的雅莉亞精靈</td><td>暈抗+4%、恐怖抗+3%、無視減傷+3</td></tr>
-          <tr><td>齊天大聖 🏹</td><td>減傷+2、近/遠傷+2、魔攻+1</td></tr>
+          <tr><td>齊天大聖</td><td>減傷+2、近/遠傷+2、魔攻+1</td></tr>
           <tr><td>龍鬥士</td><td>近攻+3、暈命+3%、暈抗+4%、恐抗+3%、無視閃避+1</td></tr>
           <tr><td>禪</td><td>近傷+3、暈命+3%、暈抗+4%、恐抗+3%、無視近閃+1</td></tr>
         </tbody>
@@ -559,6 +579,10 @@
     <div class="t-sec t-sec--myth">
       <span>👑 神話變身</span>
       <span class="t-badge">神話 · 16 種 — 強力複合屬性</span>
+    </div>
+    <div class="t-range">
+      <div class="t-range__title">🏹 遠程可使用</div>
+      <div class="t-range__list">變形怪(神話)、妖精(神話)、槍手(神話)、狂戰士(神話)、雷神(神話)、海王波賽頓(神話)</div>
     </div>
     <div class="t-table-wrap">
       <table class="t-table">
@@ -575,16 +599,16 @@
           <tr><td>龍騎士(神話)</td><td>近距離攻擊力+5、近距離命中+3、魔攻+5、魔法命中+3、昏迷命中+8%、昏迷耐性+5、支撐耐性+4、PVP傷害+2、PVP減免+3、藥水恢復量+50</td></tr>
           <tr><td>黑暗騎士(神話)</td><td>近距離攻擊力+8、昏迷命中+8%、昏迷耐性+5、近遠命中+3、PVP傷害減免+2</td></tr>
           <tr><td>死神(神話)</td><td>近距離攻擊力+5、近距離命中+10、昏迷命中+8%、昏迷耐性+8、恐懼耐性+4、PVP傷害減免+2、吸取MP+10、魔攻+12、魔法爆擊+5</td></tr>
-          <tr><td>變形怪(神話) 🏹</td><td>昏迷耐性+5、恐懼耐性+4%、PVP傷害減免+2、PVP傷害+3、三重矢攻擊力+6、近距離攻擊力+5、遠距離攻擊力+5、魔攻+3</td></tr>
+          <tr><td>變形怪(神話)</td><td>昏迷耐性+5、恐懼耐性+4%、PVP傷害減免+2、PVP傷害+3、三重矢攻擊力+6、近距離攻擊力+5、遠距離攻擊力+5、魔攻+3</td></tr>
           <tr><td>王族(神話)</td><td>近+遠距離攻擊力+5、近+遠命中+3、魔攻+5、魔法命中+3、三重矢傷害+5、昏迷命中+8%、昏迷耐性+5、支撐耐性+4、PVP傷害+2、PVP減免+2</td></tr>
           <tr><td>騎士(神話)</td><td>同王族(神話)</td></tr>
-          <tr><td>妖精(神話) 🏹</td><td>同王族(神話)</td></tr>
+          <tr><td>妖精(神話)</td><td>同王族(神話)</td></tr>
           <tr><td>法師(神話)</td><td>同王族(神話)</td></tr>
           <tr><td>黑妖(神話)</td><td>同王族(神話)</td></tr>
-          <tr><td>槍手(神話) 🏹</td><td>遠距離攻擊力+7、遠距離命中+5、昏迷耐性+5、支撐耐性+4、三重矢傷害+7</td></tr>
-          <tr><td>狂戰士(神話) 🏹</td><td>近+遠距離攻擊力+4、近+遠命中+3、魔攻+8、魔法命中+3、三重矢傷害+5、昏迷命中+8%、昏迷耐性+5、支撐耐性+4、PVP傷害+2、PVP減免+10</td></tr>
-          <tr><td>雷神(神話) 🏹</td><td>近+遠距離攻擊力+5、近+遠命中+3、魔攻+8、魔法命中+3、三重矢傷害+5、昏迷命中+8%、昏迷耐性+5、支撐耐性+4、PVP傷害+2、PVP減免+2</td></tr>
-          <tr><td>海王波賽頓(神話) 🏹</td><td>近距離攻擊力+3、遠距離攻擊力+8、遠距離命中+5、昏迷命中+8%、昏迷耐性+5、恐懼耐性+4、PVP傷害減免+2、魔攻+8</td></tr>
+          <tr><td>槍手(神話)</td><td>遠距離攻擊力+7、遠距離命中+5、昏迷耐性+5、支撐耐性+4、三重矢傷害+7</td></tr>
+          <tr><td>狂戰士(神話)</td><td>近+遠距離攻擊力+4、近+遠命中+3、魔攻+8、魔法命中+3、三重矢傷害+5、昏迷命中+8%、昏迷耐性+5、支撐耐性+4、PVP傷害+2、PVP減免+10</td></tr>
+          <tr><td>雷神(神話)</td><td>近+遠距離攻擊力+5、近+遠命中+3、魔攻+8、魔法命中+3、三重矢傷害+5、昏迷命中+8%、昏迷耐性+5、支撐耐性+4、PVP傷害+2、PVP減免+2</td></tr>
+          <tr><td>海王波賽頓(神話)</td><td>近距離攻擊力+3、遠距離攻擊力+8、遠距離命中+5、昏迷命中+8%、昏迷耐性+5、恐懼耐性+4、PVP傷害減免+2、魔攻+8</td></tr>
         </tbody>
       </table>
     </div>
