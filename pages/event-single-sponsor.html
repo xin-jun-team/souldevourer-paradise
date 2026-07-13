@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>單筆滿額贈送 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .ss-section { max-width: 960px; margin: 0 auto 48px; }
+
+    .ss-intro {
+      background: linear-gradient(160deg, #1a0e2e 0%, #0e0818 100%);
+      border: 1px solid rgba(212,168,32,0.25);
+      border-radius: 2px;
+      padding: 32px 36px;
+      color: #e0d8c8;
+      font-size: 0.95rem;
+      line-height: 2;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ss-intro::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 30% 20%, rgba(122,0,204,0.06) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 80%, rgba(212,168,32,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .ss-intro strong { color: #ffe060; }
+    .ss-intro em { color: #ff8a80; font-style: normal; }
+
+    /* ── 傳說卡片 ── */
+    .ss-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 32px; margin-bottom: 40px; }
+
+    .ss-card {
+      position: relative;
+      background: linear-gradient(160deg, #1c1235 0%, #0e0a1c 50%, #14082a 100%);
+      border: 1px solid rgba(212,168,32,0.4);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .ss-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 48px rgba(212,168,32,0.2), 0 0 60px rgba(122,0,204,0.12);
+      border-color: #d4a820;
+    }
+
+    /* 頂部光暈 */
+    .ss-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #d4a820, #ffe060, #d4a820, transparent);
+    }
+    .ss-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 120px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(212,168,32,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .ss-card__badge {
+      position: absolute;
+      top: 16px; right: 16px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 2px;
+      letter-spacing: 0.1em;
+      z-index: 2;
+      background: rgba(212,168,32,0.15);
+      border: 1px solid rgba(212,168,32,0.4);
+      color: #ffe060;
+    }
+
+    .ss-card__header {
+      text-align: center;
+      padding: 36px 28px 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .ss-card__threshold {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      color: #b0a080;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+    .ss-card__amount {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #ffe060;
+      text-shadow: 0 0 20px rgba(255,224,96,0.4), 0 2px 8px rgba(0,0,0,0.6);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .ss-card__label {
+      font-size: 0.82rem;
+      color: #c8b880;
+      letter-spacing: 0.08em;
+    }
+
+    /* 分隔線 */
+    .ss-card__divider {
+      height: 1px;
+      margin: 0 28px;
+      background: linear-gradient(90deg, transparent, rgba(212,168,32,0.3), transparent);
+    }
+
+    /* 道具展示 */
+    .ss-card__reward {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 28px 32px 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ss-card__icon-wrap {
+      position: relative;
+      width: 80px; height: 80px;
+      flex-shrink: 0;
+    }
+    .ss-card__icon-glow {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,168,32,0.2) 0%, transparent 70%);
+      animation: ss-pulse 3s ease-in-out infinite;
+    }
+    .ss-card__icon-wrap img {
+      position: relative;
+      width: 80px; height: 80px;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 0 8px rgba(212,168,32,0.3));
+      z-index: 1;
+    }
+
+    .ss-card__reward-info { flex: 1; }
+    .ss-card__reward-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 12px rgba(255,255,255,0.15);
+      margin-bottom: 6px;
+    }
+    .ss-card__reward-rarity {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #ff8a65;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .ss-card__reward-desc {
+      font-size: 0.82rem;
+      color: #b0a890;
+      line-height: 1.7;
+    }
+    .ss-card__reward-qty {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffe060;
+      margin-top: 8px;
+    }
+
+    @keyframes ss-pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+
+    /* ── 莊嚴宣言 ── */
+    .ss-oath {
+      text-align: center;
+      padding: 40px 32px;
+      margin: 40px auto;
+      max-width: 720px;
+      background: linear-gradient(160deg, #1a0e28 0%, #0c0818 100%);
+      border: 1px solid rgba(212,168,32,0.2);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ss-oath::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(122,0,204,0.5), rgba(212,168,32,0.5), rgba(122,0,204,0.5), transparent);
+    }
+    .ss-oath__icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 12px rgba(212,168,32,0.4));
+    }
+    .ss-oath__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #ffe060;
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+      text-shadow: 0 0 16px rgba(255,224,96,0.3);
+    }
+    .ss-oath__text {
+      font-size: 0.88rem;
+      color: #c8b880;
+      line-height: 2.2;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .ss-oath__text strong { color: #fff; }
+    .ss-oath__highlight {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 28px;
+      background: linear-gradient(135deg, rgba(212,168,32,0.12) 0%, rgba(122,0,204,0.08) 100%);
+      border: 1px solid rgba(212,168,32,0.3);
+      border-radius: 2px;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 900;
+      color: #ffe060;
+      letter-spacing: 0.15em;
+    }
+
+    /* ── 注意事項 ── */
+    .ss-notes {
+      background: #120e22;
+      border: 1px solid rgba(212,168,32,0.15);
+      border-radius: 2px;
+      padding: 24px 32px;
+      margin-top: 40px;
+    }
+    .ss-notes__title { font-family: 'Cinzel', serif; color: #ffe060; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .ss-notes ul { list-style: none; padding: 0; margin: 0; }
+    .ss-notes li { color: #b0a890; font-size: 0.85rem; padding: 4px 0; line-height: 1.6; }
+    .ss-notes li::before { content: "· "; color: #7a6030; }
+    .ss-notes li strong { color: var(--text-bright); }
+
+    .ss-line-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 24px; padding: 14px 32px;
+      background: #06C755; color: #fff;
+      font-size: 0.95rem; font-weight: 700;
+      border-radius: 4px; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .ss-line-btn:hover { background: #05b34c; transform: translateY(-2px); }
+
+    .ss-back {
+      display: block; text-align: center; margin-top: 40px; padding: 14px;
+      color: #ffe060; font-size: 0.9rem; text-decoration: none;
+      border: 1px solid rgba(212,168,32,0.2); border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .ss-back:hover { background: rgba(212,168,32,0.08); }
+
+    @media (max-width: 720px) {
+      .ss-cards { grid-template-columns: 1fr; }
+      .ss-intro, .ss-notes { padding: 20px; }
+      .ss-card__amount { font-size: 2.2rem; }
+      .ss-card__reward { flex-direction: column; text-align: center; }
+      .ss-oath { padding: 28px 20px; }
+    }
+  </style>
+  <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+  <header id="site-header"><div class="header-inner container"><a href="../index.html" class="site-logo"><img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂"><span class="logo-text">噬魂天堂</span></a><a href="checkin-wall.html" class="nav-btn" style="color:var(--soul-bright,#b040ff);border-color:var(--soul);margin-left:8px;font-size:0.78rem;">◈ 打卡牆</a><nav class="site-nav"><a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a><a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a><div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><span class="nav-sponsor-wrap"><a href="sponsor.html" class="nav-btn">贊助說明</a><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-coin">💰</span><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✧</span><span class="nav-sponsor-sparkle">✦</span></span><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button></nav><button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button></div><div class="mobile-nav" id="mobile-nav"><a href="download.html">遊戲下載</a><a href="news.html">最新公告</a><a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a></div></header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — LEGEND REWARD</p>
+    <h1 class="page-hero__title">單筆滿額<span>傳說贈禮</span></h1>
+    <p class="page-hero__sub">GM 的誠意，值得你的信任</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 活動說明</p>
+    <div class="ss-intro">
+      噬魂天堂的每一份贊助，GM 都銘記在心。<br>
+      為回饋最堅定的支持者，<strong>單筆贊助達到指定金額</strong>，即刻贈送<em>傳說級</em>寶箱。<br>
+      這不是普通的獎勵 —— 是 GM 對每一位勇士最真摯的感謝。<br>
+      <strong>你的支持，成就了噬魂天堂的每一天。</strong>
+    </div>
+
+    <p class="fp-heading">◈ 傳說贈禮內容</p>
+
+    <div class="ss-cards">
+
+      <!-- $20,000 傳說變身卡 -->
+      <div class="ss-card">
+        <span class="ss-card__badge">LEGEND</span>
+        <div class="ss-card__header">
+          <div class="ss-card__threshold">SINGLE PURCHASE</div>
+          <div class="ss-card__amount">$20,000</div>
+          <div class="ss-card__label">單筆滿額即贈</div>
+        </div>
+        <div class="ss-card__divider"></div>
+        <div class="ss-card__reward">
+          <div class="ss-card__icon-wrap">
+            <div class="ss-card__icon-glow"></div>
+            <img src="../assets/images/item-20518.png" alt="傳說變身卡寶箱" loading="lazy">
+          </div>
+          <div class="ss-card__reward-info">
+            <div class="ss-card__reward-rarity">◆ LEGENDARY</div>
+            <div class="ss-card__reward-name">傳說變身卡寶箱</div>
+            <div class="ss-card__reward-desc">開啟後可獲得傳說級變身卡，化身為傳說中的強大存在，戰場上令敵人聞風喪膽。</div>
+            <div class="ss-card__reward-qty">x1</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- $25,000 傳說娃娃卡 -->
+      <div class="ss-card">
+        <span class="ss-card__badge">LEGEND</span>
+        <div class="ss-card__header">
+          <div class="ss-card__threshold">SINGLE PURCHASE</div>
+          <div class="ss-card__amount">$25,000</div>
+          <div class="ss-card__label">單筆滿額即贈</div>
+        </div>
+        <div class="ss-card__divider"></div>
+        <div class="ss-card__reward">
+          <div class="ss-card__icon-wrap">
+            <div class="ss-card__icon-glow"></div>
+            <img src="../assets/images/item-20523.png" alt="傳說娃娃卡寶箱" loading="lazy">
+          </div>
+          <div class="ss-card__reward-info">
+            <div class="ss-card__reward-rarity">◆ LEGENDARY</div>
+            <div class="ss-card__reward-name">傳說娃娃卡寶箱</div>
+            <div class="ss-card__reward-desc">開啟後可獲得傳說級娃娃卡，召喚傳說守護靈，為你的征途注入不可撼動的力量。</div>
+            <div class="ss-card__reward-qty">x1</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 莊嚴宣言 -->
+    <div class="ss-oath">
+      <div class="ss-oath__icon">⚔</div>
+      <div class="ss-oath__title">GM 的承諾</div>
+      <div class="ss-oath__text">
+        噬魂天堂沒有親友、沒有後門。<br>
+        每一份贊助都用在<strong>伺服器維運</strong>與<strong>遊戲內容優化</strong>。<br>
+        你不是在消費 —— 你是在<strong>守護這個世界</strong>。<br>
+        <span class="ss-oath__highlight">你的信任，就是噬魂天堂最強的武器</span>
+      </div>
+    </div>
+
+    <div class="ss-notes">
+      <p class="ss-notes__title">NOTICE</p>
+      <ul>
+        <li><strong>單筆計算：</strong>以單次贊助金額為準，不與其他筆合併計算</li>
+        <li><strong>不限次數：</strong>每次單筆達標皆可領取，多次贊助多次贈送</li>
+        <li>贊助後請透過官方 LINE 提供截圖申請，經確認後發放至遊戲信箱</li>
+        <li>贈送道具同時計入當期 VIP 紅利</li>
+      </ul>
+      <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="ss-line-btn">
+        <span>LINE</span> 聯繫客服領取
+      </a>
+    </div>
+
+    <a href="events.html" class="ss-back">&#9650; 返回活動列表</a>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2026 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div>
+    <div style="max-width:1080px;margin:0 auto;padding:12px 24px 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <a href="https://lin.ee/UbLA1Dq" target="_blank" rel="noopener" style="color:var(--gold-dim);font-size:12px;letter-spacing:1.2px;font-weight:600;text-shadow:0 0 10px rgba(201,169,110,0.36);text-decoration:none;">阿柴美工 LINE @323rffot 美工找我~</a>
+      <a href="https://www.gamex123.com/lineage.html" target="_blank" rel="noopener" style="display:inline-flex;opacity:0.82;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.82'">
+        <img src="../assets/images/private-server-123.gif" alt="私服123" style="display:block;width:78px;height:auto;" loading="lazy">
+      </a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
