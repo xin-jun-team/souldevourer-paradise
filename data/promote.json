@@ -1,0 +1,9 @@
+{
+  "monthly_value": "$4,650",
+  "monthly_coins": "1,395",
+  "live_rewards": [
+    { "hours": "1 HR", "diamonds": 60, "coins": 10, "buff": "BUFF推廣勳章(1HR)" },
+    { "hours": "2 HR", "diamonds": 120, "coins": 20, "buff": "BUFF推廣勳章(3HR)" },
+    { "hours": "3 HR", "diamonds": 150, "coins": 35, "buff": "BUFF推廣勳章(3HR)" }
+  ]
+}

@@ -10,77 +10,204 @@ public_folder: /assets/uploads
 
 locale: zh_Hant
 
+slug:
+  encoding: unicode
+  clean_accents: false
+
 collections:
+  # ═══════════════════════════════════
+  # 第一組：網站內容管理
+  # ═══════════════════════════════════
   - name: site_data
-    label: 網站內容管理
+    label: 📋 網站內容管理
+    description: 管理公告、活動、推廣、贊助等前台內容
     editor:
       preview: true
     files:
 
+      # ── 最新公告 ──
       - name: announcements
-        label: 最新公告 / 更新紀錄
+        label: 📢 最新公告 / 更新紀錄
         file: data/home.json
+        description: 管理首頁跑馬燈公告與最新消息列表
         fields:
           - name: announcements
-            label: 首頁公告（跑馬燈）
+            label: 首頁跑馬燈公告
+            label_singular: 公告
             widget: list
+            summary: "{{fields.date}} — {{fields.text}}"
             collapsed: true
+            add_to_top: true
             fields:
               - { name: text, label: 公告內容, widget: string }
               - { name: date, label: 日期, widget: string, hint: "格式：2025/08/01" }
 
           - name: updates
             label: 最新消息列表
+            label_singular: 消息
             widget: list
+            summary: "【{{fields.tag}}】{{fields.title}} ({{fields.date}})"
             collapsed: true
+            add_to_top: true
             fields:
               - { name: title, label: 標題, widget: string }
-              - { name: tag, label: 分類標籤, widget: select, options: ["公告", "活動", "更新", "維護", "緊急"], default: "公告" }
+              - name: tag
+                label: 分類標籤
+                widget: select
+                options:
+                  - { label: "📢 公告", value: "公告" }
+                  - { label: "🎉 活動", value: "活動" }
+                  - { label: "🔄 更新", value: "更新" }
+                  - { label: "🔧 維護", value: "維護" }
+                  - { label: "🚨 緊急", value: "緊急" }
+                default: "公告"
               - { name: date, label: 日期, widget: string, hint: "格式：2025/08/01" }
               - { name: link, label: 連結（選填）, widget: string, required: false, hint: "點擊後前往的頁面，如 event-line-gift.html" }
 
+      # ── 活動管理 ──
       - name: events
-        label: 活動管理
+        label: 🎯 活動管理
         file: data/events.json
+        description: 管理進行中活動與即將推出的活動
         fields:
           - name: active
             label: 進行中活動
+            label_singular: 活動
             widget: list
+            summary: "【{{fields.tag}}】{{fields.title}}"
             collapsed: true
             fields:
               - { name: title, label: 活動名稱, widget: string }
               - { name: desc, label: 活動說明, widget: text }
               - { name: date_label, label: 日期說明, widget: string, hint: "如：即日起 · 每帳號限領一次" }
-              - { name: link, label: 詳情連結, widget: string, hint: "如：event-line-gift.html，留空則不可點擊", required: false }
-              - { name: tag, label: 活動標籤, widget: select, options: ["長期活動", "互動活動", "全民活動", "限時活動"], default: "長期活動" }
-              - { name: tag_style, label: 標籤樣式, widget: select, options: ["permanent", "active", "coming"], default: "permanent" }
+              - { name: link, label: 詳情連結（選填）, widget: string, hint: "如：event-line-gift.html，留空則不可點擊", required: false }
+              - name: tag
+                label: 活動標籤
+                widget: select
+                options:
+                  - { label: "🔒 長期活動", value: "長期活動" }
+                  - { label: "⚡ 互動活動", value: "互動活動" }
+                  - { label: "🌍 全民活動", value: "全民活動" }
+                  - { label: "⏰ 限時活動", value: "限時活動" }
+                default: "長期活動"
+              - name: tag_style
+                label: 標籤顏色
+                widget: select
+                options:
+                  - { label: "🟢 綠色（長期）", value: "permanent" }
+                  - { label: "🟢 亮綠（進行中）", value: "active" }
+                  - { label: "🔵 藍色（即將開始）", value: "coming" }
+                default: "permanent"
               - { name: link_text, label: 按鈕文字, widget: string, default: "查看詳情", required: false }
 
           - name: upcoming
             label: 即將推出
+            label_singular: 預告
             widget: list
+            summary: "{{fields.title}}"
             collapsed: true
             required: false
             fields:
               - { name: title, label: 活動名稱, widget: string }
               - { name: desc, label: 說明, widget: text, required: false }
 
-      - name: site_settings
-        label: 網站設定
+      # ── 推廣設定 ──
+      - name: promote_settings
+        label: 📣 推文推廣設定
+        file: data/promote.json
+        description: 管理推文獎勵、直播獎勵等推廣相關數值
+        fields:
+          - name: monthly_value
+            label: 月度總價值（藍鑽）
+            widget: string
+            default: "$4,650"
+          - name: monthly_coins
+            label: 月度推廣幣
+            widget: string
+            default: "1,395"
+          - name: live_rewards
+            label: 直播獎勵表
+            label_singular: 時段
+            widget: list
+            summary: "{{fields.hours}} → 藍鑽{{fields.diamonds}} / 推廣幣{{fields.coins}}"
+            fields:
+              - { name: hours, label: 直播時數, widget: string, hint: "如：1 HR" }
+              - { name: diamonds, label: 藍鑽, widget: number }
+              - { name: coins, label: 推廣幣, widget: number }
+              - { name: buff, label: BUFF勳章, widget: string, required: false }
+
+      # ── 贊助設定 ──
+      - name: sponsor_settings
+        label: 💰 贊助相關設定
+        file: data/sponsor.json
+        description: 管理贊助金額、VIP等級、首儲內容
+        fields:
+          - name: first_sponsor
+            label: 首儲贈送內容
+            label_singular: 道具
+            widget: list
+            summary: "{{fields.name}} ×{{fields.qty}}"
+            fields:
+              - { name: name, label: 道具名稱, widget: string }
+              - { name: qty, label: 數量, widget: number }
+              - { name: icon_id, label: 圖示ID, widget: string, required: false, hint: "對應 assets/images/item-{ID}.png" }
+          - name: single_sponsor
+            label: 單筆滿額贈送
+            label_singular: 門檻
+            widget: list
+            summary: "滿 ${{fields.amount}} → {{fields.reward}}"
+            fields:
+              - { name: amount, label: 金額門檻, widget: number }
+              - { name: reward, label: 贈送道具, widget: string }
+              - { name: icon_id, label: 圖示ID, widget: string, required: false }
+
+  # ═══════════════════════════════════
+  # 第二組：網站系統設定
+  # ═══════════════════════════════════
+  - name: site_settings
+    label: ⚙️ 網站系統設定
+    description: 伺服器資訊、連結、彈窗等全站設定
+    editor:
+      preview: true
+    files:
+
+      - name: general
+        label: 🏠 基本資訊
         file: data/site.json
+        description: 伺服器名稱、狀態、版本、連結
         fields:
           - { name: server_name, label: 伺服器名稱, widget: string, default: "噬魂天堂" }
-          - { name: server_status, label: 伺服器狀態, widget: select, options: ["準備中", "即將開服", "火熱開服中", "維護中"], default: "準備中" }
+          - name: server_status
+            label: 伺服器狀態
+            widget: select
+            options:
+              - { label: "🔵 準備中", value: "準備中" }
+              - { label: "🟡 即將開服", value: "即將開服" }
+              - { label: "🟢 火熱開服中", value: "火熱開服中" }
+              - { label: "🔴 維護中", value: "維護中" }
+            default: "準備中"
           - { name: launch_date, label: 開服日期, widget: string, default: "08/01 (五) 20:00" }
-          - { name: version, label: 版本, widget: string, default: "3.81 天M版" }
-          - { name: line_official, label: LINE 官方客服, widget: string, default: "https://lin.ee/vdvDMCq" }
-          - { name: line_community, label: LINE 社群連結, widget: string, default: "https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ" }
+          - { name: version, label: 遊戲版本, widget: string, default: "3.81 天M版" }
+          - { name: line_official, label: LINE 官方客服連結, widget: string, default: "https://lin.ee/vdvDMCq" }
+          - { name: line_community, label: LINE 社群連結, widget: string }
           - name: popup
-            label: 彈窗公告（選填）
+            label: 彈窗公告
             widget: object
             collapsed: true
-            required: false
             fields:
-              - { name: enabled, label: 啟用彈窗, widget: boolean, default: false }
+              - { name: enabled, label: 啟用彈窗, widget: boolean, default: false, hint: "開啟後訪客進入首頁會看到彈窗" }
               - { name: title, label: 彈窗標題, widget: string, required: false }
               - { name: content, label: 彈窗內容, widget: text, required: false }
+          - name: rates
+            label: 伺服器倍率
+            widget: object
+            collapsed: true
+            fields:
+              - { name: exp, label: 經驗倍率, widget: string, default: "10倍" }
+              - { name: gold, label: 金幣倍率, widget: string, default: "3倍" }
+              - { name: drop, label: 掉寶倍率, widget: string, default: "2倍" }
+              - { name: enhance, label: 強化倍率, widget: string, default: "2倍" }
+              - { name: justice, label: 正義倍率, widget: string, default: "3倍" }
+              - { name: weight, label: 負重倍率, widget: string, default: "4倍" }
+              - { name: pet, label: 寵物倍率, widget: string, default: "5倍" }
+              - { name: max_level, label: 等級上限, widget: string, default: "52等" }
