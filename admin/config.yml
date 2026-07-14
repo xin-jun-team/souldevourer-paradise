@@ -1,0 +1,86 @@
+backend:
+  name: github
+  repo: xin-jun-team/souldevourer-paradise
+  branch: main
+  base_url: https://souldevourer-cms-oauth.pages.dev
+  auth_endpoint: /auth
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+locale: zh_Hant
+
+collections:
+  - name: site_data
+    label: 網站內容管理
+    editor:
+      preview: false
+    files:
+
+      - name: announcements
+        label: 最新公告 / 更新紀錄
+        file: data/home.json
+        fields:
+          - name: announcements
+            label: 首頁公告（跑馬燈）
+            widget: list
+            collapsed: true
+            fields:
+              - { name: text, label: 公告內容, widget: string }
+              - { name: date, label: 日期, widget: string, hint: "格式：2025/08/01" }
+
+          - name: updates
+            label: 最新消息列表
+            widget: list
+            collapsed: true
+            fields:
+              - { name: title, label: 標題, widget: string }
+              - { name: tag, label: 分類標籤, widget: select, options: ["公告", "活動", "更新", "維護", "緊急"], default: "公告" }
+              - { name: date, label: 日期, widget: string, hint: "格式：2025/08/01" }
+              - { name: link, label: 連結（選填）, widget: string, required: false, hint: "點擊後前往的頁面，如 event-line-gift.html" }
+
+      - name: events
+        label: 活動管理
+        file: data/events.json
+        fields:
+          - name: active
+            label: 進行中活動
+            widget: list
+            collapsed: true
+            fields:
+              - { name: title, label: 活動名稱, widget: string }
+              - { name: desc, label: 活動說明, widget: text }
+              - { name: date_label, label: 日期說明, widget: string, hint: "如：即日起 · 每帳號限領一次" }
+              - { name: link, label: 詳情連結, widget: string, hint: "如：event-line-gift.html，留空則不可點擊", required: false }
+              - { name: tag, label: 活動標籤, widget: select, options: ["長期活動", "互動活動", "全民活動", "限時活動"], default: "長期活動" }
+              - { name: tag_style, label: 標籤樣式, widget: select, options: ["permanent", "active", "coming"], default: "permanent" }
+              - { name: link_text, label: 按鈕文字, widget: string, default: "查看詳情", required: false }
+
+          - name: upcoming
+            label: 即將推出
+            widget: list
+            collapsed: true
+            required: false
+            fields:
+              - { name: title, label: 活動名稱, widget: string }
+              - { name: desc, label: 說明, widget: text, required: false }
+
+      - name: site_settings
+        label: 網站設定
+        file: data/site.json
+        fields:
+          - { name: server_name, label: 伺服器名稱, widget: string, default: "噬魂天堂" }
+          - { name: server_status, label: 伺服器狀態, widget: select, options: ["準備中", "即將開服", "火熱開服中", "維護中"], default: "準備中" }
+          - { name: launch_date, label: 開服日期, widget: string, default: "08/01 (五) 20:00" }
+          - { name: version, label: 版本, widget: string, default: "3.81 天M版" }
+          - { name: line_official, label: LINE 官方客服, widget: string, default: "https://lin.ee/vdvDMCq" }
+          - { name: line_community, label: LINE 社群連結, widget: string, default: "https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ" }
+          - name: popup
+            label: 彈窗公告（選填）
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: enabled, label: 啟用彈窗, widget: boolean, default: false }
+              - { name: title, label: 彈窗標題, widget: string, required: false }
+              - { name: content, label: 彈窗內容, widget: text, required: false }

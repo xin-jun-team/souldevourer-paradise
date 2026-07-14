@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>噬魂天堂 — 後台管理</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0a0610; color: #e0d8c8; min-height: 100vh; }
+
+    /* 密語門檻 */
+    #gate {
+      display: flex; align-items: center; justify-content: center; min-height: 100vh;
+      background: radial-gradient(ellipse at 50% 30%, #1a0e2e 0%, #0a0610 70%);
+    }
+    .gate-box {
+      background: linear-gradient(135deg, #14102a, #0e0a1c);
+      border: 1px solid rgba(212,168,32,0.3); border-radius: 8px;
+      padding: 48px 40px; text-align: center; max-width: 400px; width: 90%;
+    }
+    .gate-box h1 { font-size: 1.4rem; color: #ffe060; margin-bottom: 8px; letter-spacing: 0.1em; }
+    .gate-box p { font-size: 0.85rem; color: #8a7a60; margin-bottom: 28px; }
+    .gate-input {
+      width: 100%; padding: 14px 16px; background: #0a0610; border: 1px solid #2a1f40;
+      border-radius: 4px; color: #e0d8c8; font-size: 1rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .gate-input:focus { border-color: rgba(212,168,32,0.6); }
+    .gate-btn {
+      width: 100%; padding: 14px; margin-top: 16px; background: linear-gradient(135deg, #d4a820, #a08018);
+      border: none; border-radius: 4px; color: #0a0610; font-size: 1rem; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.08em; transition: opacity 0.2s;
+    }
+    .gate-btn:hover { opacity: 0.9; }
+    .gate-error { color: #ef5350; font-size: 0.82rem; margin-top: 12px; display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- 密語驗證門 -->
+  <div id="gate">
+    <div class="gate-box">
+      <h1>噬魂天堂</h1>
+      <p>後台管理系統 · 請輸入管理密語</p>
+      <input type="password" id="gatePass" class="gate-input" placeholder="管理密語" autofocus>
+      <button onclick="verifyGate()" class="gate-btn">進入後台</button>
+      <div id="gateError" class="gate-error">密語錯誤，請重新輸入</div>
+    </div>
+  </div>
+
+  <script>
+    // 預設密語 hash（密語：souldevourer2025）
+    // SHA-256 of "souldevourer-admin:souldevourer2025"
+    var ADMIN_HASH = 'c2640cd3cc3eee77f5d9aa99ffe55b2f807208aa3e67df151fa7a42c7af9a1d1';
+
+    // 檢查是否要鎖定
+    if (location.search.includes('lock')) {
+      localStorage.removeItem('sd_admin_gate');
+      // 清除後重導到不含 ?lock 的 URL
+      location.href = location.pathname;
+    }
+
+    // 檢查是否已驗證
+    (function() {
+      var saved = localStorage.getItem('sd_admin_gate');
+      if (saved === ADMIN_HASH) {
+        loadCMS();
+      }
+    })();
+
+    async function sha256(text) {
+      var data = new TextEncoder().encode(text);
+      var buf = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+    }
+
+    async function verifyGate() {
+      var pass = document.getElementById('gatePass').value;
+      var hash = await sha256('souldevourer-admin:' + pass);
+      if (hash === ADMIN_HASH) {
+        localStorage.setItem('sd_admin_gate', hash);
+        loadCMS();
+      } else {
+        document.getElementById('gateError').style.display = 'block';
+      }
+    }
+
+    // Enter 鍵提交
+    document.getElementById('gatePass').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') verifyGate();
+    });
+
+    function loadCMS() {
+      document.getElementById('gate').style.display = 'none';
+      var script = document.createElement('script');
+      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      document.body.appendChild(script);
+    }
+  </script>
+
+</body>
+</html>

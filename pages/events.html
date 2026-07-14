@@ -83,104 +83,13 @@
 
   <main class="fp-wrap">
 
-    <!-- ═══ 進行中活動 ═══ -->
+    <!-- 進行中活動（JSON 驅動） -->
     <p class="ev-cat-title">◆ 進行中活動</p>
-    <div class="ev-grid">
+    <div class="ev-grid" id="evActive"></div>
 
-      <a href="event-line-gift.html" class="ev-link">
-        <div class="ev-link__head">
-          <span class="ev-link__tag ev-link__tag--permanent">長期活動</span>
-          <div class="ev-link__title">LINE 社群新手禮包</div>
-        </div>
-        <div class="ev-link__body">
-          <div class="ev-link__desc">加入 LINE 社群，截圖官網並提供帳號即可領取名譽貨幣、巧克力蛋糕、象牙塔治癒藥水等豐厚獎勵。</div>
-          <div class="ev-link__date">即日起 · 每帳號限領一次</div>
-          <div class="ev-link__arrow">查看詳情</div>
-        </div>
-      </a>
-
-      <!-- [隱藏] 每日 BOSS 挑戰 — BOSS裝備尚未開放 -->
-
-      <a href="event-first-sponsor.html" class="ev-link">
-        <div class="ev-link__head">
-          <span class="ev-link__tag ev-link__tag--permanent">長期活動</span>
-          <div class="ev-link__title">首儲贈送</div>
-        </div>
-        <div class="ev-link__body">
-          <div class="ev-link__desc">首次贊助即贈送<strong style="color:#ce93d8;">噬魂魔核</strong>、<strong style="color:#64b5f6;">稀有變身卡寶箱</strong>、<strong style="color:#ffe060;">名譽貨幣</strong>等豐厚好禮！</div>
-          <div class="ev-link__date">即日起 · 每人限領一次</div>
-          <div class="ev-link__arrow">查看詳情</div>
-        </div>
-      </a>
-
-      <a href="event-single-sponsor.html" class="ev-link">
-        <div class="ev-link__head">
-          <span class="ev-link__tag ev-link__tag--permanent">長期活動</span>
-          <div class="ev-link__title">單筆滿額 · 傳說贈禮</div>
-        </div>
-        <div class="ev-link__body">
-          <div class="ev-link__desc">單筆贊助滿 <strong style="color:#ffe060;">$20,000</strong> 贈傳說變身卡寶箱、滿 <strong style="color:#ffe060;">$25,000</strong> 贈傳說娃娃卡寶箱，不限次數！</div>
-          <div class="ev-link__date">即日起 · 單筆達標即贈 · 不限次數</div>
-          <div class="ev-link__arrow">查看詳情</div>
-        </div>
-      </a>
-
-      <a href="event-sponsor-gift.html" class="ev-link">
-        <div class="ev-link__head">
-          <span class="ev-link__tag ev-link__tag--permanent">長期活動</span>
-          <div class="ev-link__title">累計贊助禮包</div>
-        </div>
-        <div class="ev-link__body">
-          <div class="ev-link__desc">贊助累計達標即可領取豐厚禮包，共 6 階段（$1,000 ~ $30,000），含變身卡、製作秘笈、升階石等稀有道具。</div>
-          <div class="ev-link__date">即日起 · 每階段限領一次</div>
-          <div class="ev-link__arrow">查看詳情</div>
-        </div>
-      </a>
-
-      <a href="checkin-wall.html" class="ev-link">
-        <div class="ev-link__head">
-          <span class="ev-link__tag ev-link__tag--active">互動活動</span>
-          <div class="ev-link__title">靈魂打卡牆 ── 留言抽藍鑽</div>
-        </div>
-        <div class="ev-link__body">
-          <div class="ev-link__desc">在打卡牆留下你的靈魂印記，官方定期自動抽出幸運勇者，獎勵可能是<strong style="color:#90caf9;">藍鑽</strong>！每人最多 3 次留言，有好獎也有爛獎，歡迎來碰運氣～</div>
-          <div class="ev-link__date">即日起 · 每人限留 3 次 · 須加入官方 LINE</div>
-          <div class="ev-link__arrow">前往打卡</div>
-        </div>
-      </a>
-
-      <a href="event-milestone.html" class="ev-link">
-        <div class="ev-link__head">
-          <span class="ev-link__tag ev-link__tag--active">全民活動</span>
-          <div class="ev-link__title">人數里程碑 ── 全服放福利</div>
-        </div>
-        <div class="ev-link__body">
-          <div class="ev-link__desc">
-            伺服器人數達標，<strong style="color:#90caf9;">每位玩家</strong>都有獎！<br>
-            <strong style="color:#ffe060;">滿 50 人：每人 500 藍鑽</strong> · <strong style="color:#ff8a80;">滿 100 人：每人 1,000 藍鑽</strong>
-          </div>
-          <div class="ev-link__date">即日起 · 達標即發 · 每人限領一次</div>
-          <div class="ev-link__arrow">查看詳情</div>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- ═══ 即將推出 ═══ -->
+    <!-- 即將推出 -->
     <p class="ev-cat-title">◈ 即將推出</p>
-    <div class="ev-grid">
-
-      <div class="ev-link" style="opacity:0.6;cursor:default;">
-        <div class="ev-link__head">
-          <span class="ev-link__tag ev-link__tag--coming">敬請期待</span>
-          <div class="ev-link__title">更多精彩活動籌備中...</div>
-        </div>
-        <div class="ev-link__body">
-          <div class="ev-link__desc">噬魂天堂持續為你準備全新活動內容，敬請關注官網與 LINE 社群公告。</div>
-        </div>
-      </div>
-
-    </div>
+    <div class="ev-grid" id="evUpcoming"></div>
 
   </main>
 
@@ -192,5 +101,58 @@
       </div>
     </footer>
   <script src="../assets/js/main.js"></script>
+  <script>
+    (async function() {
+      try {
+        var res = await fetch('../data/events.json');
+        var data = await res.json();
+
+        // 進行中活動
+        var activeEl = document.getElementById('evActive');
+        var activeItems = data.active || [];
+        if (activeItems.length) {
+          activeEl.innerHTML = activeItems.map(function(ev) {
+            var tag = ev.tag || '長期活動';
+            var style = ev.tag_style || 'permanent';
+            var linkText = ev.link_text || '查看詳情';
+            var inner =
+              '<div class="ev-link__head">' +
+                '<span class="ev-link__tag ev-link__tag--' + style + '">' + tag + '</span>' +
+                '<div class="ev-link__title">' + ev.title + '</div>' +
+              '</div>' +
+              '<div class="ev-link__body">' +
+                '<div class="ev-link__desc">' + ev.desc + '</div>' +
+                '<div class="ev-link__date">' + (ev.date_label || '') + '</div>' +
+                (ev.link ? '<div class="ev-link__arrow">' + linkText + '</div>' : '') +
+              '</div>';
+            if (ev.link) {
+              return '<a href="' + ev.link + '" class="ev-link">' + inner + '</a>';
+            } else {
+              return '<div class="ev-link" style="cursor:default;">' + inner + '</div>';
+            }
+          }).join('');
+        }
+
+        // 即將推出
+        var upEl = document.getElementById('evUpcoming');
+        var upItems = data.upcoming || [];
+        if (upItems.length) {
+          upEl.innerHTML = upItems.map(function(ev) {
+            return '<div class="ev-link" style="opacity:0.6;cursor:default;">' +
+              '<div class="ev-link__head">' +
+                '<span class="ev-link__tag ev-link__tag--coming">敬請期待</span>' +
+                '<div class="ev-link__title">' + ev.title + '</div>' +
+              '</div>' +
+              '<div class="ev-link__body">' +
+                '<div class="ev-link__desc">' + (ev.desc || '') + '</div>' +
+              '</div>' +
+            '</div>';
+          }).join('');
+        }
+      } catch(e) {
+        document.getElementById('evActive').innerHTML = '<p style="color:#6a6080;padding:20px;">活動載入失敗，請重新整理頁面。</p>';
+      }
+    })();
+  </script>
 </body>
 </html>

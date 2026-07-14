@@ -1,0 +1,64 @@
+{
+  "active": [
+    {
+      "title": "LINE 社群新手禮包",
+      "desc": "加入 LINE 社群，截圖官網並提供帳號即可領取名譽貨幣、巧克力蛋糕、象牙塔治癒藥水等豐厚獎勵。",
+      "date_label": "即日起 · 每帳號限領一次",
+      "link": "event-line-gift.html",
+      "tag": "長期活動",
+      "tag_style": "permanent",
+      "link_text": "查看詳情"
+    },
+    {
+      "title": "首儲贈送",
+      "desc": "首次贊助即贈送噬魂魔核、稀有變身卡寶箱、名譽貨幣等豐厚好禮！",
+      "date_label": "即日起 · 每人限領一次",
+      "link": "event-first-sponsor.html",
+      "tag": "長期活動",
+      "tag_style": "permanent",
+      "link_text": "查看詳情"
+    },
+    {
+      "title": "單筆滿額 · 傳說贈禮",
+      "desc": "單筆贊助滿 $20,000 贈傳說變身卡寶箱、滿 $25,000 贈傳說娃娃卡寶箱，不限次數！",
+      "date_label": "即日起 · 單筆達標即贈 · 不限次數",
+      "link": "event-single-sponsor.html",
+      "tag": "長期活動",
+      "tag_style": "permanent",
+      "link_text": "查看詳情"
+    },
+    {
+      "title": "累計贊助禮包",
+      "desc": "贊助累計達標即可領取豐厚禮包，共 6 階段（$1,000 ~ $30,000），含變身卡、製作秘笈、升階石等稀有道具。",
+      "date_label": "即日起 · 每階段限領一次",
+      "link": "event-sponsor-gift.html",
+      "tag": "長期活動",
+      "tag_style": "permanent",
+      "link_text": "查看詳情"
+    },
+    {
+      "title": "靈魂打卡牆 ── 留言抽藍鑽",
+      "desc": "在打卡牆留下你的靈魂印記，官方定期自動抽出幸運勇者，獎勵可能是藍鑽！每人最多 3 次留言，有好獎也有爛獎，歡迎來碰運氣～",
+      "date_label": "即日起 · 每人限留 3 次 · 須加入官方 LINE",
+      "link": "checkin-wall.html",
+      "tag": "互動活動",
+      "tag_style": "active",
+      "link_text": "前往打卡"
+    },
+    {
+      "title": "人數里程碑 ── 全服放福利",
+      "desc": "伺服器人數達標，每位玩家都有獎！滿 50 人：每人 500 藍鑽 · 滿 100 人：每人 1,000 藍鑽",
+      "date_label": "即日起 · 達標即發 · 每人限領一次",
+      "link": "event-milestone.html",
+      "tag": "全民活動",
+      "tag_style": "active",
+      "link_text": "查看詳情"
+    }
+  ],
+  "upcoming": [
+    {
+      "title": "更多精彩活動籌備中...",
+      "desc": "噬魂天堂持續為你準備全新活動內容，敬請關注官網與 LINE 社群公告。"
+    }
+  ]
+}
