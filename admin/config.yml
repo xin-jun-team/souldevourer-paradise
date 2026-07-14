@@ -14,7 +14,7 @@ collections:
   - name: site_data
     label: 網站內容管理
     editor:
-      preview: false
+      preview: true
     files:
 
       - name: announcements
