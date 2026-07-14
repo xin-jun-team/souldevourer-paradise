@@ -2,7 +2,7 @@ backend:
   name: github
   repo: xin-jun-team/souldevourer-paradise
   branch: main
-  base_url: https://souldevourer-cms-oauth.pages.dev
+  base_url: https://souldevourer-cms-oauth.zoo2955313.workers.dev
   auth_endpoint: /auth
 
 media_folder: assets/uploads
