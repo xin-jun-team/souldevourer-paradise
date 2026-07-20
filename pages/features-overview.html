@@ -97,6 +97,106 @@
     .sys-card__arrow::after { content: '→'; color: var(--gold); }
     .sys-card:hover .sys-card__arrow { color: var(--gold); }
     .sys-card:hover .sys-card__arrow::after { color: var(--gold-bright); }
+
+    /* 福利大反饋 */
+    .welfare-banner {
+      margin-top: 48px;
+      background: linear-gradient(160deg, #1a0a08 0%, #2a0c14 40%, #1a0818 100%);
+      border: 1px solid #5a2020;
+      border-radius: 2px;
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .welfare-banner::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, #ff4444, #ffcc00, #ff4444, transparent);
+    }
+    .welfare-banner__badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #cc0000, #ff3333);
+      color: #fff;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    .welfare-banner__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      color: #ffe060;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      text-shadow: 0 0 20px rgba(255,224,96,0.3);
+    }
+    .welfare-banner__highlight {
+      display: flex; align-items: center; gap: 16px;
+      margin: 20px 0;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #1e0a18 0%, #2a1020 100%);
+      border: 1px solid #4a2030;
+      border-radius: 2px;
+    }
+    .welfare-banner__icon {
+      width: 56px; height: 56px;
+      flex-shrink: 0;
+      image-rendering: pixelated;
+    }
+    .welfare-banner__amount {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: #ff6666;
+      text-shadow: 0 0 16px rgba(255,102,102,0.4);
+    }
+    .welfare-banner__amount span {
+      color: #ffe060;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.9em;
+    }
+    .welfare-banner__sub {
+      font-size: 0.88rem;
+      color: #ffcc88;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+    .welfare-banner__desc {
+      font-size: 0.92rem;
+      color: #ffd6a0;
+      line-height: 1.8;
+      margin: 16px 0 20px;
+      letter-spacing: 0.05em;
+    }
+    .welfare-banner__rules {
+      padding: 14px 18px;
+      background: #120808;
+      border: 1px solid #3a1818;
+      border-radius: 2px;
+    }
+    .welfare-banner__rules-title {
+      font-size: 0.75rem;
+      color: #ff6666;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+    .welfare-banner__rules li {
+      font-size: 0.78rem;
+      color: #cc9999;
+      line-height: 1.7;
+      list-style: none;
+      padding-left: 14px;
+      position: relative;
+    }
+    .welfare-banner__rules li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: #ff4444;
+    }
   </style>
 <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
 </head>
@@ -333,6 +433,35 @@
         <div class="sys-card__desc">擊殺每日 BOSS，收集材料打造傳說套裝。建議成群結隊，切勿一意孤行！</div>
       </a>
 
+    </div>
+
+    <!-- ═══════════════════════ 福利大反饋 ═══════════════════════ -->
+    <div class="welfare-banner">
+      <div class="welfare-banner__badge">✦ 限定福利</div>
+      <div class="welfare-banner__title">福利大反饋</div>
+
+      <div class="welfare-banner__highlight">
+        <img src="../assets/images/item-7084.png" alt="商城鑽" class="welfare-banner__icon">
+        <div>
+          <div class="welfare-banner__amount">3,000 <span>商城鑽</span></div>
+          <div class="welfare-banner__sub">每人每週免費領取 · 回饋每位勇士</div>
+        </div>
+      </div>
+
+      <div class="welfare-banner__desc">
+        噬魂天堂不只給裝備、給副本——<strong style="color:#ffe060;">連商城鑽都直接送。</strong><br>
+        每週登入即可領取 3,000 商城鑽，想買什麼自己挑，讓你買得開心、玩得盡興。<br>
+        這不是限時活動，這是噬魂對每位玩家的<strong style="color:#ff6666;">長期承諾。</strong>
+      </div>
+
+      <div class="welfare-banner__rules">
+        <div class="welfare-banner__rules-title">⚠ 領取須知</div>
+        <ul>
+          <li>每人每週限領一份，週一 00:00 重置</li>
+          <li>嚴禁使用不同 LINE 帳號重複領取</li>
+          <li>若經查實違規，將<strong style="color:#ff6666;">永久取消領取資格</strong></li>
+        </ul>
+      </div>
     </div>
 
   </main>
