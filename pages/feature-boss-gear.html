@@ -74,7 +74,77 @@
     .boss-drop { background:rgba(212,168,32,0.06); border:1px solid rgba(212,168,32,0.15); padding:3px 10px; border-radius:2px; font-size:0.75rem; color:var(--text-bright); display:flex; align-items:center; gap:6px; }
     .boss-drop__img { width:20px; height:20px; image-rendering:pixelated; }
 
-    @media(max-width:600px) { .bg-grid,.boss-grid { grid-template-columns:1fr; } }
+    /* 祝福能力 */
+    .bless-banner {
+      position: relative;
+      margin-bottom: 36px;
+      padding: 28px 28px 24px;
+      background: linear-gradient(135deg, #1a1408 0%, #12080a 40%, #0c0818 100%);
+      border: 2px solid rgba(212,168,32,0.4);
+      overflow: hidden;
+    }
+    .bless-banner::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent 5%, #d4a820, #ffe060, #d4a820, transparent 95%);
+    }
+    .bless-banner::after {
+      content: '';
+      position: absolute; top: 0; right: 0; width: 200px; height: 100%;
+      background: radial-gradient(ellipse at 100% 50%, rgba(212,168,32,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .bless-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #8b6914, #d4a820);
+      color: #1a0a08;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.25em;
+      padding: 4px 16px;
+      margin-bottom: 14px;
+    }
+    .bless-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 900;
+      color: #ffe060;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      text-shadow: 0 0 18px rgba(255,224,96,0.25);
+    }
+    .bless-desc {
+      font-size: 0.85rem;
+      color: #d4b880;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .bless-stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .bless-stat {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 20px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(212,168,32,0.25);
+      min-width: 120px;
+    }
+    .bless-stat__label {
+      font-size: 0.78rem;
+      color: #a08860;
+      white-space: nowrap;
+    }
+    .bless-stat__val {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .bless-stat__val--pos { color: #ffe060; text-shadow: 0 0 8px rgba(255,224,96,0.3); }
+    .bless-stat__val--neg { color: #ff8080; }
+
+    @media(max-width:600px) { .bg-grid,.boss-grid { grid-template-columns:1fr; } .bless-stats { flex-direction:column; } }
   </style>
 <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
 </head>
@@ -97,6 +167,29 @@
     <div style="background:#1a0a10;border:2px solid rgba(239,83,80,0.5);border-radius:2px;padding:16px 20px;margin-bottom:24px;text-align:center;">
       <div style="font-size:1.1rem;font-weight:900;color:#ef5350;letter-spacing:0.1em;">⚠️ 建議成群結隊！！！切勿一意孤行 ⚠️</div>
       <div style="font-size:0.85rem;color:var(--text-dim);margin-top:6px;">BOSS 戰力強大，單人挑戰風險極高，請組隊前往挑戰！</div>
+    </div>
+
+    <!-- ═══ 祝福能力加成 ═══ -->
+    <div class="bless-banner">
+      <div class="bless-badge">BOSS EXCLUSIVE</div>
+      <div class="bless-title">◈ 祝福能力加成</div>
+      <div class="bless-desc">
+        BOSS 裝備專屬強化——透過祝福突破裝備極限，讓你的戰力更上一層樓！
+      </div>
+      <div class="bless-stats">
+        <div class="bless-stat">
+          <span class="bless-stat__label">HP</span>
+          <span class="bless-stat__val bless-stat__val--pos">+250</span>
+        </div>
+        <div class="bless-stat">
+          <span class="bless-stat__label">防禦</span>
+          <span class="bless-stat__val bless-stat__val--neg">-3</span>
+        </div>
+        <div class="bless-stat">
+          <span class="bless-stat__label">體質</span>
+          <span class="bless-stat__val bless-stat__val--pos">+1</span>
+        </div>
+      </div>
     </div>
 
     <p class="fp-heading">◆ 系統說明</p>
@@ -266,20 +359,6 @@
           <span class="bg-setfx__tag">魔防 +20</span>
           <span class="bg-setfx__tag bg-setfx__tag--special">魔法命中 +5</span>
         </div>
-      </div>
-    </div>
-
-    <!-- ═══ 祝福道具 ═══ -->
-    <p class="fp-heading">✦ 祝福道具 — 更強、更猛、更上一層樓！</p>
-    <div class="bg-setfx" style="border-color:rgba(212,168,32,0.4);background:linear-gradient(160deg,#1a1408,#0c0818 50%,#1a1008);">
-      <div class="bg-setfx__title" style="color:#ffe060;">◈ 祝福能力加成</div>
-      <div style="font-size:0.88rem;color:#e0c0a0;line-height:1.8;margin-bottom:14px;">
-        BOSS 裝備可透過祝福獲得額外能力提升，讓你的戰力再突破極限！
-      </div>
-      <div class="bg-setfx__stats">
-        <span class="bg-setfx__tag" style="background:rgba(212,168,32,0.12);border-color:rgba(212,168,32,0.35);color:#ffe060;">HP +250</span>
-        <span class="bg-setfx__tag" style="background:rgba(255,80,80,0.08);border-color:rgba(255,80,80,0.25);color:#ff8080;">防禦 -3</span>
-        <span class="bg-setfx__tag" style="background:rgba(212,168,32,0.12);border-color:rgba(212,168,32,0.35);color:#ffe060;">體 +1</span>
       </div>
     </div>
 
