@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
     .welfare-hero-box {
-      text-align: center;
-      padding: 36px 24px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 32px 36px;
       margin-bottom: 36px;
       background: linear-gradient(135deg, #1a0a08 0%, #2a0c14 40%, #1a0818 100%);
       border: 1px solid #4a2030;
@@ -23,11 +25,29 @@
       position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, transparent, #ff4444, #ffcc00, #ff4444, transparent);
     }
-    .welfare-hero-icon {
-      width: 64px; height: 64px;
-      image-rendering: pixelated;
-      margin-bottom: 16px;
+    .welfare-hero-icon-wrap {
+      flex-shrink: 0;
+      width: 100px; height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle, rgba(255,100,100,0.15) 0%, transparent 70%);
+      border: 1px solid #4a2030;
+      border-radius: 8px;
+      position: relative;
     }
+    .welfare-hero-icon-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 10px;
+      background: radial-gradient(circle, rgba(255,200,60,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .welfare-hero-icon {
+      width: 56px; height: 56px;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 0 12px rgba(255,200,60,0.5));
+    }
+    .welfare-hero-text { flex: 1; }
     .welfare-hero-amount {
       font-family: 'Cinzel', serif;
       font-size: clamp(2rem, 5vw, 3rem);
@@ -45,7 +65,10 @@
       font-size: 1rem;
       color: #ffcc88;
       letter-spacing: 0.1em;
-      margin-top: 10px;
+      margin-top: 8px;
+    }
+    @media (max-width: 520px) {
+      .welfare-hero-box { flex-direction: column; text-align: center; padding: 28px 20px; }
     }
     .welfare-rule-card {
       background: #120808;
@@ -105,9 +128,13 @@
 
     <!-- 核心獎勵展示 -->
     <div class="welfare-hero-box">
-      <img src="../assets/images/item-7084.png" alt="商城鑽" class="welfare-hero-icon">
-      <div class="welfare-hero-amount">3,000 <span>商城鑽</span></div>
-      <div class="welfare-hero-sub">每人每週免費領取</div>
+      <div class="welfare-hero-icon-wrap">
+        <img src="../assets/images/item-7084.png" alt="商城鑽" class="welfare-hero-icon">
+      </div>
+      <div class="welfare-hero-text">
+        <div class="welfare-hero-amount">3,000 <span>商城鑽</span></div>
+        <div class="welfare-hero-sub">每人每週免費領取 · 回饋每位勇士</div>
+      </div>
     </div>
 
     <p class="fp-heading">◆ 福利說明</p>
