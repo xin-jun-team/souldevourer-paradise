@@ -229,29 +229,35 @@
     }
 
     /* ── 頂部統計列 ── */
-    .nlog-stats {
+    .nlog-filter {
       display: flex;
       justify-content: center;
-      gap: 32px;
+      gap: 10px;
       padding: 24px 0 40px;
       flex-wrap: wrap;
     }
-    .nlog-stat {
-      text-align: center;
-    }
-    .nlog-stat-num {
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
+    .nlog-filter-btn {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.78rem;
       font-weight: 700;
-      color: var(--gold-bright);
-      text-shadow: 0 0 16px var(--gold-glow);
-      display: block;
-    }
-    .nlog-stat-label {
-      font-size: 0.72rem;
+      padding: 8px 20px;
+      border: 1px solid #2a1848;
+      background: rgba(120,0,200,0.06);
       color: var(--text-dim);
-      letter-spacing: 0.12em;
-      margin-top: 2px;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      transition: all 0.25s;
+    }
+    .nlog-filter-btn:hover {
+      border-color: var(--soul);
+      color: var(--text-bright);
+      background: rgba(120,0,200,0.12);
+    }
+    .nlog-filter-btn.is-active {
+      border-color: var(--gold-dim);
+      color: var(--gold-bright);
+      background: rgba(212,168,32,0.1);
+      box-shadow: 0 0 12px rgba(212,168,32,0.15);
     }
 
     /* ── 裝飾性頂部分隔線 ── */
@@ -335,24 +341,13 @@
   <main class="fp-wrap">
     <div class="nlog-container">
 
-      <!-- 統計列 -->
-      <div class="nlog-stats">
-        <div class="nlog-stat">
-          <span class="nlog-stat-num">1</span>
-          <span class="nlog-stat-label">更新次數</span>
-        </div>
-        <div class="nlog-stat">
-          <span class="nlog-stat-num">5</span>
-          <span class="nlog-stat-label">技能調整</span>
-        </div>
-        <div class="nlog-stat">
-          <span class="nlog-stat-num">2</span>
-          <span class="nlog-stat-label">問題修復</span>
-        </div>
-        <div class="nlog-stat">
-          <span class="nlog-stat-num">2</span>
-          <span class="nlog-stat-label">新增內容</span>
-        </div>
+      <!-- 改動查詢 -->
+      <div class="nlog-filter">
+        <button class="nlog-filter-btn is-active" data-filter="all">全部</button>
+        <button class="nlog-filter-btn" data-filter="skill">技能調整</button>
+        <button class="nlog-filter-btn" data-filter="fix">問題修復</button>
+        <button class="nlog-filter-btn" data-filter="new">新增內容</button>
+        <button class="nlog-filter-btn" data-filter="balance">數值平衡</button>
       </div>
 
       <div class="nlog-divider"></div>
@@ -439,5 +434,18 @@
     </footer>
 
   <script src="../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll('.nlog-filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.nlog-filter-btn').forEach(function(b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        var f = btn.dataset.filter;
+        document.querySelectorAll('.nlog-section').forEach(function(sec) {
+          if (f === 'all') { sec.style.display = ''; }
+          else { sec.style.display = sec.classList.contains('nlog-section--' + f) ? '' : 'none'; }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
