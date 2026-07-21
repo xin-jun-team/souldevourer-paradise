@@ -10,57 +10,290 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
   <style>
-    .news-list { max-width: 800px; margin: 0 auto; }
-    .news-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 18px 20px;
-      background: linear-gradient(160deg, #14102a 0%, #0c0818 100%);
-      border: 1px solid #1e1630;
-      margin-bottom: 10px;
-      transition: border-color 0.2s, transform 0.2s;
-      text-decoration: none;
+    /* ═══ 更新歷程 nlog- 前綴 ═══ */
+
+    .nlog-container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      position: relative;
     }
-    .news-item:hover {
-      border-color: var(--gold-dim);
-      transform: translateX(4px);
+
+    /* ── 時間軸主軸線 ── */
+    .nlog-timeline {
+      position: relative;
+      padding-left: 60px;
     }
-    .news-item__meta {
+    .nlog-timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--soul) 0%, var(--gold-dim) 50%, var(--soul-dim) 100%);
+      box-shadow: 0 0 12px var(--soul-glow);
+    }
+
+    /* ── 日期卡片 ── */
+    .nlog-entry {
+      position: relative;
+      margin-bottom: 48px;
+    }
+
+    /* 時間軸圓點 */
+    .nlog-entry::before {
+      content: '';
+      position: absolute;
+      left: -42px;
+      top: 28px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--soul-bright);
+      border: 3px solid var(--bg-base);
+      box-shadow: 0 0 16px var(--soul-glow), 0 0 6px var(--soul);
+      z-index: 2;
+    }
+
+    /* 連接圓點到卡片的橫線 */
+    .nlog-entry::after {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 34px;
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--soul) 0%, rgba(120,0,200,0.1) 100%);
+    }
+
+    .nlog-card {
+      background: linear-gradient(160deg, #14102a 0%, #0c0818 80%, #0a0612 100%);
+      border: 1px solid #2a1848;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .nlog-card:hover {
+      border-color: var(--soul);
+      box-shadow: 0 0 30px rgba(120,0,200,0.15), 0 4px 20px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ── 卡片標頭 ── */
+    .nlog-card-header {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 4px;
-      flex-shrink: 0;
-      min-width: 72px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 24px;
+      background: linear-gradient(90deg, rgba(120,0,200,0.12) 0%, rgba(120,0,200,0.02) 100%);
+      border-bottom: 1px solid #1e1630;
     }
-    .news-item__tag {
-      font-size: 0.62rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 2px;
-      letter-spacing: 0.08em;
-    }
-    .news-item__tag--活動 { background: rgba(0,200,100,0.15); border: 1px solid rgba(0,200,100,0.3); color: #80cbc4; }
-    .news-item__tag--公告 { background: rgba(212,168,32,0.12); border: 1px solid rgba(212,168,32,0.3); color: #ffe060; }
-    .news-item__date {
+
+    .nlog-date {
       font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      color: var(--gold-dim);
-    }
-    .news-item__title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 0.92rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text-bright);
-      line-height: 1.7;
-      letter-spacing: 0.04em;
+      color: var(--gold-bright);
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 20px var(--gold-glow);
+      line-height: 1;
     }
-    .news-empty {
+    .nlog-date-sub {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.82rem;
+      color: var(--text);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ── 標籤膠囊 ── */
+    .nlog-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .nlog-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .nlog-tag--update {
+      background: rgba(120,0,200,0.2);
+      border: 1px solid rgba(176,64,255,0.4);
+      color: #d088ff;
+    }
+    .nlog-tag--system {
+      background: rgba(40,100,220,0.15);
+      border: 1px solid rgba(80,140,255,0.35);
+      color: #80b4ff;
+    }
+    .nlog-tag--event {
+      background: rgba(0,200,100,0.12);
+      border: 1px solid rgba(0,220,120,0.3);
+      color: #60e8a0;
+    }
+    .nlog-tag--fix {
+      background: rgba(220,160,0,0.12);
+      border: 1px solid rgba(220,180,40,0.3);
+      color: #ffe060;
+    }
+
+    /* ── 卡片內容 ── */
+    .nlog-card-body {
+      padding: 24px;
+    }
+
+    /* ── 分類小標題 ── */
+    .nlog-section {
+      margin-bottom: 24px;
+    }
+    .nlog-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .nlog-section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff4b8;
+      padding: 8px 14px;
+      margin-bottom: 12px;
+      border-left: 4px solid var(--soul-bright);
+      background: linear-gradient(90deg, rgba(120,0,200,0.1) 0%, transparent 100%);
+      letter-spacing: 0.06em;
+    }
+    /* 不同分類不同左邊框顏色 */
+    .nlog-section--skill .nlog-section-title {
+      border-left-color: #b040ff;
+      background: linear-gradient(90deg, rgba(120,0,200,0.1) 0%, transparent 100%);
+    }
+    .nlog-section--fix .nlog-section-title {
+      border-left-color: #508cff;
+      background: linear-gradient(90deg, rgba(40,100,220,0.08) 0%, transparent 100%);
+    }
+    .nlog-section--new .nlog-section-title {
+      border-left-color: #60e8a0;
+      background: linear-gradient(90deg, rgba(0,200,100,0.08) 0%, transparent 100%);
+    }
+    .nlog-section--balance .nlog-section-title {
+      border-left-color: #ffe060;
+      background: linear-gradient(90deg, rgba(220,180,40,0.08) 0%, transparent 100%);
+    }
+
+    /* ── 項目列表 ── */
+    .nlog-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nlog-list li {
+      position: relative;
+      padding: 8px 0 8px 24px;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.7;
+      border-bottom: 1px solid rgba(30,22,48,0.6);
+      transition: background 0.2s;
+    }
+    .nlog-list li:last-child {
+      border-bottom: none;
+    }
+    .nlog-list li:hover {
+      background: rgba(120,0,200,0.04);
+    }
+    .nlog-list li::before {
+      content: '◈';
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      color: var(--soul-bright);
+      font-size: 0.6rem;
+      line-height: 1.7;
+      opacity: 0.7;
+    }
+
+    /* ── 項目中的強調文字 ── */
+    .nlog-highlight {
+      color: var(--gold-bright);
+      font-weight: 600;
+    }
+    .nlog-em {
+      color: #d088ff;
+      font-weight: 600;
+    }
+
+    /* ── 頂部統計列 ── */
+    .nlog-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 24px 0 40px;
+      flex-wrap: wrap;
+    }
+    .nlog-stat {
       text-align: center;
-      padding: 60px 0;
-      color: #5a4020;
-      font-size: 0.9rem;
+    }
+    .nlog-stat-num {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      text-shadow: 0 0 16px var(--gold-glow);
+      display: block;
+    }
+    .nlog-stat-label {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 0.12em;
+      margin-top: 2px;
+    }
+
+    /* ── 裝飾性頂部分隔線 ── */
+    .nlog-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--soul) 30%, var(--gold-dim) 50%, var(--soul) 70%, transparent 100%);
+      margin-bottom: 10px;
+      box-shadow: 0 0 10px var(--soul-glow);
+    }
+
+    /* ── 響應式 ── */
+    @media (max-width: 640px) {
+      .nlog-timeline {
+        padding-left: 30px;
+      }
+      .nlog-timeline::before {
+        left: 8px;
+      }
+      .nlog-entry::before {
+        left: -26px;
+        width: 10px;
+        height: 10px;
+      }
+      .nlog-entry::after {
+        left: -16px;
+        width: 16px;
+      }
+      .nlog-card-header {
+        padding: 16px 18px;
+      }
+      .nlog-date {
+        font-size: 1.2rem;
+      }
+      .nlog-card-body {
+        padding: 18px;
+      }
+      .nlog-stats {
+        gap: 20px;
+      }
+      .nlog-stat-num {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
@@ -100,8 +333,83 @@
   </div>
 
   <main class="fp-wrap">
-    <div class="news-list" id="newsList">
-      <div class="news-empty">載入中⋯</div>
+    <div class="nlog-container">
+
+      <!-- 統計列 -->
+      <div class="nlog-stats">
+        <div class="nlog-stat">
+          <span class="nlog-stat-num">1</span>
+          <span class="nlog-stat-label">更新次數</span>
+        </div>
+        <div class="nlog-stat">
+          <span class="nlog-stat-num">5</span>
+          <span class="nlog-stat-label">技能調整</span>
+        </div>
+        <div class="nlog-stat">
+          <span class="nlog-stat-num">2</span>
+          <span class="nlog-stat-label">問題修復</span>
+        </div>
+        <div class="nlog-stat">
+          <span class="nlog-stat-num">2</span>
+          <span class="nlog-stat-label">新增內容</span>
+        </div>
+      </div>
+
+      <div class="nlog-divider"></div>
+
+      <!-- ═══ 時間軸 ═══ -->
+      <div class="nlog-timeline">
+
+        <!-- ────── 07/21 封測更新 ────── -->
+        <div class="nlog-entry">
+          <div class="nlog-card">
+            <div class="nlog-card-header">
+              <div>
+                <div class="nlog-date">07 / 21</div>
+                <div class="nlog-date-sub">封測更新內容</div>
+              </div>
+              <div class="nlog-tags">
+                <span class="nlog-tag nlog-tag--update">更新</span>
+                <span class="nlog-tag nlog-tag--system">系統</span>
+                <span class="nlog-tag nlog-tag--event">活動</span>
+              </div>
+            </div>
+            <div class="nlog-card-body">
+
+              <!-- 技能書掉率調整 -->
+              <div class="nlog-section nlog-section--skill">
+                <div class="nlog-section-title">⚔ 技能書掉率調整</div>
+                <ul class="nlog-list">
+                  <li>上調 <span class="nlog-em">三重矢</span>、<span class="nlog-em">衝擊之暈</span>、<span class="nlog-em">聖結界</span>、<span class="nlog-em">魂體轉換</span>、<span class="nlog-em">雙重破壞</span> 掉落機率</li>
+                </ul>
+              </div>
+
+              <!-- 系統修復 -->
+              <div class="nlog-section nlog-section--fix">
+                <div class="nlog-section-title">🔧 系統修復</div>
+                <ul class="nlog-list">
+                  <li>修復 <span class="nlog-highlight">神話變身</span> 合成機率</li>
+                  <li>修復 <span class="nlog-highlight">BOSS 裝備</span> 祝福效果</li>
+                </ul>
+              </div>
+
+              <!-- 新增內容 -->
+              <div class="nlog-section nlog-section--new">
+                <div class="nlog-section-title">✦ 新增內容</div>
+                <ul class="nlog-list">
+                  <li>新增 <span class="nlog-highlight">福利大反饋</span> — 每人週週領 <span class="nlog-em">3,000 商城鑽</span></li>
+                  <li>新增 <span class="nlog-highlight">1,000~30,000 累計禮包</span></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ────── END 07/21 ────── -->
+
+      </div>
+      <!-- END nlog-timeline -->
+
     </div>
   </main>
 
@@ -131,44 +439,5 @@
     </footer>
 
   <script src="../assets/js/main.js"></script>
-  <script>
-    (async function() {
-      var list = document.getElementById('newsList');
-      try {
-        var res = await fetch('../data/home.json');
-        var data = await res.json();
-        var items = data.updates || [];
-        if (!items.length) {
-          list.innerHTML = '<div class="news-empty">暫無更新紀錄</div>';
-          return;
-        }
-        list.innerHTML = items.map(function(item, i) {
-          var tagClass = item.tag === '活動' ? '活動' : '公告';
-          var detailsHtml = '';
-          if (item.details && item.details.length) {
-            detailsHtml = '<div class="news-details" id="news-detail-' + i + '" style="display:none;padding:12px 20px 18px;border-top:1px solid #1e1630;font-size:0.85rem;color:#d0b880;line-height:2;">' +
-              '<ol style="margin:0;padding-left:20px;">' +
-              item.details.map(function(d) { return '<li>' + d + '</li>'; }).join('') +
-              '</ol></div>';
-          }
-          var toggle = item.details && item.details.length ?
-            ' onclick="event.preventDefault();var d=document.getElementById(\'news-detail-' + i + '\');d.style.display=d.style.display===\'none\'?\'block\':\'none\';"' : '';
-          return '<div class="news-item" style="cursor:pointer;flex-direction:column;gap:0;"' + toggle + '>' +
-            '<div style="display:flex;align-items:center;gap:16px;padding:0 0 0 0;width:100%;">' +
-              '<div class="news-item__meta">' +
-                '<span class="news-item__tag news-item__tag--' + tagClass + '">' + (item.tag || '公告') + '</span>' +
-                '<span class="news-item__date">' + (item.date || '') + '</span>' +
-              '</div>' +
-              '<div class="news-item__title" style="flex:1;">' + (item.title || '') + '</div>' +
-              (item.details && item.details.length ? '<span style="color:var(--gold-dim);font-size:0.75rem;">▼</span>' : '') +
-            '</div>' +
-            detailsHtml +
-          '</div>';
-        }).join('');
-      } catch(e) {
-        list.innerHTML = '<div class="news-empty">公告載入失敗</div>';
-      }
-    })();
-  </script>
 </body>
 </html>
