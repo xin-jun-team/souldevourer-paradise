@@ -442,6 +442,22 @@
                 </div>
               </div>
 
+              <div class="vid-row" style="background:#0c0818;border:1px solid #1e1630;cursor:pointer;transition:border-color 0.2s;" onclick="var p=this.querySelector('.vid-player');var a=this.querySelector('.vid-arrow');if(p.style.display==='none'){p.style.display='block';a.textContent='▲';this.style.borderColor='rgba(212,168,32,0.4)';}else{p.style.display='none';a.textContent='▼';this.style.borderColor='#1e1630';var v=p.querySelector('video');if(v)v.pause();}">
+                <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;">
+                  <span style="font-size:1.4rem;">⚔</span>
+                  <div style="flex:1;">
+                    <div style="font-family:'Noto Serif TC',serif;font-size:0.95rem;font-weight:700;color:var(--text-bright);">裝備直升懶人包</div>
+                    <div style="font-size:0.75rem;color:var(--gold-dim);margin-top:2px;">一次搞懂裝備升級路線，少走冤枉路</div>
+                  </div>
+                  <span class="vid-arrow" style="color:var(--gold-dim);font-size:0.8rem;">▼</span>
+                </div>
+                <div class="vid-player" style="display:none;padding:0 18px 18px;">
+                  <video controls playsinline preload="metadata" style="width:100%;max-height:300px;border-radius:4px;border:1px solid #2a1f40;background:#04030a;object-fit:contain;" onclick="event.stopPropagation();">
+                    <source src="assets/videos/equip-guide.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+
             </div>
           </div>
 
