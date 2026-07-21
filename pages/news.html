@@ -142,15 +142,28 @@
           list.innerHTML = '<div class="news-empty">暫無更新紀錄</div>';
           return;
         }
-        list.innerHTML = items.map(function(item) {
+        list.innerHTML = items.map(function(item, i) {
           var tagClass = item.tag === '活動' ? '活動' : '公告';
-          return '<a href="' + '#' + '" class="news-item">' +
-            '<div class="news-item__meta">' +
-              '<span class="news-item__tag news-item__tag--' + tagClass + '">' + (item.tag || '公告') + '</span>' +
-              '<span class="news-item__date">' + (item.date || '') + '</span>' +
+          var detailsHtml = '';
+          if (item.details && item.details.length) {
+            detailsHtml = '<div class="news-details" id="news-detail-' + i + '" style="display:none;padding:12px 20px 18px;border-top:1px solid #1e1630;font-size:0.85rem;color:#d0b880;line-height:2;">' +
+              '<ol style="margin:0;padding-left:20px;">' +
+              item.details.map(function(d) { return '<li>' + d + '</li>'; }).join('') +
+              '</ol></div>';
+          }
+          var toggle = item.details && item.details.length ?
+            ' onclick="event.preventDefault();var d=document.getElementById(\'news-detail-' + i + '\');d.style.display=d.style.display===\'none\'?\'block\':\'none\';"' : '';
+          return '<div class="news-item" style="cursor:pointer;flex-direction:column;gap:0;"' + toggle + '>' +
+            '<div style="display:flex;align-items:center;gap:16px;padding:0 0 0 0;width:100%;">' +
+              '<div class="news-item__meta">' +
+                '<span class="news-item__tag news-item__tag--' + tagClass + '">' + (item.tag || '公告') + '</span>' +
+                '<span class="news-item__date">' + (item.date || '') + '</span>' +
+              '</div>' +
+              '<div class="news-item__title" style="flex:1;">' + (item.title || '') + '</div>' +
+              (item.details && item.details.length ? '<span style="color:var(--gold-dim);font-size:0.75rem;">▼</span>' : '') +
             '</div>' +
-            '<div class="news-item__title">' + (item.title || '') + '</div>' +
-          '</a>';
+            detailsHtml +
+          '</div>';
         }).join('');
       } catch(e) {
         list.innerHTML = '<div class="news-empty">公告載入失敗</div>';
