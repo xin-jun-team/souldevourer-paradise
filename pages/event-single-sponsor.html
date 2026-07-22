@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>單筆滿額贈送 — 噬魂天堂</title>
+  <title>單筆贊助贈禮 — 噬魂天堂</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
@@ -271,6 +271,74 @@
     }
     .ss-back:hover { background: rgba(212,168,32,0.08); }
 
+    /* ── A區列表卡片 ── */
+    .ss-card-list {
+      list-style: none;
+      padding: 16px 28px 28px;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .ss-card-list li {
+      color: #d8d0c0;
+      font-size: 0.88rem;
+      padding: 5px 0;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(212,168,32,0.08);
+    }
+    .ss-card-list li:last-child { border-bottom: none; }
+    .ss-card-list li::before {
+      content: "◇ ";
+      color: #d4a820;
+      font-size: 0.7rem;
+    }
+
+    /* Badge 顏色變體 */
+    .ss-card__badge--gray {
+      background: rgba(160,160,160,0.15);
+      border-color: rgba(160,160,160,0.4);
+      color: #c0c0c0;
+    }
+    .ss-card__badge--blue {
+      background: rgba(80,140,255,0.15);
+      border-color: rgba(80,140,255,0.4);
+      color: #80b8ff;
+    }
+    .ss-card__badge--purple {
+      background: rgba(160,80,255,0.15);
+      border-color: rgba(160,80,255,0.4);
+      color: #c080ff;
+    }
+    .ss-card__badge--red {
+      background: rgba(255,80,80,0.15);
+      border-color: rgba(255,80,80,0.4);
+      color: #ff8080;
+    }
+    .ss-card__badge--gold {
+      background: rgba(255,200,0,0.2);
+      border-color: rgba(255,200,0,0.5);
+      color: #ffe060;
+      box-shadow: 0 0 12px rgba(255,200,0,0.15);
+    }
+
+    /* A/B 區分隔線 */
+    .ss-zone-divider {
+      max-width: 960px;
+      margin: 48px auto;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(122,0,204,0.5), rgba(212,168,32,0.5), rgba(122,0,204,0.5), transparent);
+    }
+
+    /* 區域說明小字 */
+    .ss-zone-desc {
+      text-align: center;
+      color: #b0a080;
+      font-size: 0.88rem;
+      margin-top: -8px;
+      margin-bottom: 32px;
+      letter-spacing: 0.05em;
+    }
+
     @media (max-width: 720px) {
       .ss-cards { grid-template-columns: 1fr; }
       .ss-intro, .ss-notes { padding: 20px; }
@@ -291,21 +359,151 @@
 
   <div class="page-hero">
     <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — LEGEND REWARD</p>
-    <h1 class="page-hero__title">單筆滿額<span>傳說贈禮</span></h1>
-    <p class="page-hero__sub">GM 的誠意，值得你的信任</p>
+    <h1 class="page-hero__title">單筆贊助<span>贈禮</span></h1>
+    <p class="page-hero__sub">你的支持就是最強的武器</p>
   </div>
 
   <main class="fp-wrap">
 
     <p class="fp-heading">◆ 活動說明</p>
     <div class="ss-intro">
-      噬魂天堂的每一份贊助，GM 都銘記在心。<br>
-      為回饋最堅定的支持者，<strong>單筆贊助達到指定金額</strong>，即刻贈送<em>傳說級</em>寶箱。<br>
-      這不是普通的獎勵 —— 是 GM 對每一位勇士最真摯的感謝。<br>
-      <strong>你的支持，成就了噬魂天堂的每一天。</strong>
+      單筆贊助贈禮分為 <strong>A區</strong> 與 <strong>B區</strong> 兩種機制：<br><br>
+      <strong>▸ A區（$1,999 ~ $5,999）</strong>：只拿最高匹配的<em>一包</em>，不疊加。<br>
+      　例如贊助 $6,999 → 只拿 $5,999 那包<br><br>
+      <strong>▸ B區（$10,000 ~ $30,000）</strong>：可疊加，達標的<em>都拿</em>。<br>
+      　例如贊助 $15,000 → 拿 $10,000 + $15,000 兩包<br><br>
+      <strong>▸ A區 + B區可同時觸發。</strong><br>
+      　例如贊助 $15,000 → A區 $5,999 + B區 $10,000 + B區 $15,000，<em>三包全拿</em>
     </div>
 
-    <p class="fp-heading">◈ 傳說贈禮內容</p>
+    <!-- ══════════ A 區 ══════════ -->
+    <p class="fp-heading">◈ A區 · 單筆禮包（$1,999 ~ $5,999）</p>
+    <p class="ss-zone-desc">僅獲得對應金額最高檔的一包</p>
+
+    <div class="ss-cards">
+
+      <!-- A區 $1,999 -->
+      <div class="ss-card">
+        <span class="ss-card__badge ss-card__badge--gray">TIER 1</span>
+        <div class="ss-card__header">
+          <div class="ss-card__threshold">SINGLE PURCHASE</div>
+          <div class="ss-card__amount">$1,999</div>
+          <div class="ss-card__label">單筆禮包</div>
+        </div>
+        <div class="ss-card__divider"></div>
+        <ul class="ss-card-list">
+          <li>高級製作秘笈 x1</li>
+          <li>300% 經驗藥水(刻印) x10</li>
+          <li>(2階) 200% 經驗藥水(刻印) x10</li>
+          <li>對盔甲施法的卷軸 x5</li>
+          <li>受祝福的對盔甲施法的卷軸 x2</li>
+          <li>受詛咒的對盔甲施法的卷軸 x2</li>
+          <li>對武器施法的卷軸 x3</li>
+          <li>受祝福的對武器施法的卷軸 x1</li>
+          <li>受詛咒的對武器施法的卷軸 x1</li>
+        </ul>
+      </div>
+
+      <!-- A區 $2,999 -->
+      <div class="ss-card">
+        <span class="ss-card__badge ss-card__badge--blue">TIER 2</span>
+        <div class="ss-card__header">
+          <div class="ss-card__threshold">SINGLE PURCHASE</div>
+          <div class="ss-card__amount">$2,999</div>
+          <div class="ss-card__label">單筆禮包</div>
+        </div>
+        <div class="ss-card__divider"></div>
+        <ul class="ss-card-list">
+          <li>高級製作秘笈 x2</li>
+          <li>稀有製作秘笈 x1</li>
+          <li>300% 經驗藥水(刻印) x15</li>
+          <li>(2階) 200% 經驗藥水(刻印) x15</li>
+          <li>對盔甲施法的卷軸 x10</li>
+          <li>受祝福的對盔甲施法的卷軸 x3</li>
+          <li>受詛咒的對盔甲施法的卷軸 x3</li>
+          <li>對武器施法的卷軸 x5</li>
+          <li>受祝福的對武器施法的卷軸 x2</li>
+          <li>受詛咒的對武器施法的卷軸 x2</li>
+        </ul>
+      </div>
+
+      <!-- A區 $3,999 -->
+      <div class="ss-card">
+        <span class="ss-card__badge ss-card__badge--purple">TIER 3</span>
+        <div class="ss-card__header">
+          <div class="ss-card__threshold">SINGLE PURCHASE</div>
+          <div class="ss-card__amount">$3,999</div>
+          <div class="ss-card__label">單筆禮包</div>
+        </div>
+        <div class="ss-card__divider"></div>
+        <ul class="ss-card-list">
+          <li>高級製作秘笈 x3</li>
+          <li>稀有製作秘笈 x2</li>
+          <li>300% 經驗藥水(刻印) x20</li>
+          <li>(2階) 200% 經驗藥水(刻印) x20</li>
+          <li>對盔甲施法的卷軸 x15</li>
+          <li>受祝福的對盔甲施法的卷軸 x4</li>
+          <li>受詛咒的對盔甲施法的卷軸 x4</li>
+          <li>對武器施法的卷軸 x7</li>
+          <li>受祝福的對武器施法的卷軸 x3</li>
+          <li>受詛咒的對武器施法的卷軸 x3</li>
+        </ul>
+      </div>
+
+      <!-- A區 $4,999 -->
+      <div class="ss-card">
+        <span class="ss-card__badge ss-card__badge--red">TIER 4</span>
+        <div class="ss-card__header">
+          <div class="ss-card__threshold">SINGLE PURCHASE</div>
+          <div class="ss-card__amount">$4,999</div>
+          <div class="ss-card__label">單筆禮包</div>
+        </div>
+        <div class="ss-card__divider"></div>
+        <ul class="ss-card-list">
+          <li>高級製作秘笈 x4</li>
+          <li>稀有製作秘笈 x3</li>
+          <li>300% 經驗藥水(刻印) x25</li>
+          <li>(2階) 200% 經驗藥水(刻印) x25</li>
+          <li>對盔甲施法的卷軸 x20</li>
+          <li>受祝福的對盔甲施法的卷軸 x5</li>
+          <li>受詛咒的對盔甲施法的卷軸 x5</li>
+          <li>對武器施法的卷軸 x9</li>
+          <li>受祝福的對武器施法的卷軸 x4</li>
+          <li>受詛咒的對武器施法的卷軸 x4</li>
+        </ul>
+      </div>
+
+      <!-- A區 $5,999 -->
+      <div class="ss-card">
+        <span class="ss-card__badge ss-card__badge--gold">TIER 5</span>
+        <div class="ss-card__header">
+          <div class="ss-card__threshold">SINGLE PURCHASE</div>
+          <div class="ss-card__amount">$5,999</div>
+          <div class="ss-card__label">單筆禮包 · 最高檔</div>
+        </div>
+        <div class="ss-card__divider"></div>
+        <ul class="ss-card-list">
+          <li>高級製作秘笈 x4</li>
+          <li>稀有製作秘笈 x3</li>
+          <li>300% 經驗藥水(刻印) x30</li>
+          <li>(2階) 200% 經驗藥水(刻印) x30</li>
+          <li>對盔甲施法的卷軸 x25</li>
+          <li>受祝福的對盔甲施法的卷軸 x6</li>
+          <li>受詛咒的對盔甲施法的卷軸 x6</li>
+          <li>對武器施法的卷軸 x11</li>
+          <li>受祝福的對武器施法的卷軸 x5</li>
+          <li>受詛咒的對武器施法的卷軸 x5</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- A/B 區分隔線 -->
+    <div class="ss-zone-divider"></div>
+
+    <!-- ══════════ B 區 ══════════ -->
+    <p class="fp-heading">◈ B區 · 滿額贈禮（$10,000 ~ $30,000）</p>
+    <p class="ss-zone-desc">達標金額全部領取，可疊加</p>
 
     <div class="ss-cards">
 
