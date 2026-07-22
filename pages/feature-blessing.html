@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>裝備祝福屬性 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .bless-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    .bless-card {
+      background: linear-gradient(160deg, #14102a 0%, #0c0818 60%, #100820 100%);
+      border: 1px solid #2a1848;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .bless-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(212,168,32,0.15), 0 0 20px rgba(122,0,204,0.1);
+    }
+    .bless-card__head {
+      display: flex; align-items: center; gap: 14px;
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid #1e1630;
+      background: linear-gradient(90deg, rgba(212,168,32,0.06) 0%, transparent 100%);
+    }
+    .bless-card__icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #1e1040, #150e28);
+      border: 1px solid #3a2a50;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(212,168,32,0.1);
+    }
+    .bless-card__icon img {
+      width: 32px; height: 32px;
+      image-rendering: pixelated;
+    }
+    .bless-card__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--text-bright);
+      letter-spacing: 0.08em;
+    }
+    .bless-card__en {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem; color: var(--gold-dim);
+      letter-spacing: 0.12em; margin-top: 2px;
+    }
+    .bless-card__body {
+      padding: 16px 20px 20px;
+    }
+    .bless-stat {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #1a1228;
+      font-size: 0.88rem;
+    }
+    .bless-stat:last-child { border-bottom: none; }
+    .bless-stat__k { color: var(--text-dim); }
+    .bless-stat__v { font-family: 'Cinzel', serif; font-weight: 700; }
+    .bless-stat__v--pos { color: #ffe060; text-shadow: 0 0 8px rgba(255,224,96,0.2); }
+    .bless-stat__v--neg { color: #ff8080; }
+    .bless-stat__v--blue { color: #90caf9; }
+
+    .bless-note {
+      background: rgba(212,168,32,0.05);
+      border-left: 3px solid var(--gold-dim);
+      padding: 14px 18px;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .bless-note strong { color: var(--text-bright); }
+  </style>
+  <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
+</head>
+<body>
+  <div class="float-sidebar">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line" style="color:#06C755;border-color:#06C755;box-shadow:-2px 0 10px rgba(6,199,85,0.25);"><span class="float-icon" style="font-size:0.9rem;font-weight:700;">LINE</span><span class="float-label">社群</span></a>
+    <a href="sponsor.html" class="float-btn float-btn--sponsor"><span class="float-icon">✤</span><span class="float-label">贊助</span></a>
+    <a href="download.html" class="float-btn float-btn--download"><span class="float-icon">↓</span><span class="float-label">下載</span></a>
+  </div>
+
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span></a><a href="checkin-wall.html" class="nav-btn" style="color:var(--soul-bright,#b040ff);border-color:var(--soul);margin-left:8px;font-size:0.78rem;">◈ 打卡牆</a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><span class="nav-sponsor-wrap"><a href="sponsor.html" class="nav-btn">贊助說明</a><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-coin">💰</span><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✧</span><span class="nav-sponsor-sparkle">✦</span></span><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — BLESSING</p>
+    <h1 class="page-hero__title">裝備<span>祝福屬性</span></h1>
+    <p class="page-hero__sub">透過祝福卷軸，讓你的裝備突破極限</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 系統說明</p>
+    <div class="fp-intro">
+      使用祝福卷軸可為裝備附加<strong>額外屬性加成</strong>，依照裝備部位使用對應的祝福卷軸，每件裝備均可獲得永久強化效果。
+    </div>
+
+    <p class="fp-heading">◈ 祝福卷軸一覽</p>
+
+    <div class="bless-grid">
+
+      <!-- 對武器祝福的卷軸 -->
+      <div class="bless-card">
+        <div class="bless-card__head">
+          <div class="bless-card__icon"><img src="../assets/images/item-7675.png" alt="武器祝福" loading="lazy"></div>
+          <div>
+            <div class="bless-card__title">對武器祝福的卷軸</div>
+            <div class="bless-card__en">WEAPON BLESSING</div>
+          </div>
+        </div>
+        <div class="bless-card__body">
+          <div class="bless-stat"><span class="bless-stat__k">額外攻擊</span><span class="bless-stat__v bless-stat__v--pos">+2</span></div>
+          <div class="bless-stat"><span class="bless-stat__k">魔杖類魔攻</span><span class="bless-stat__v bless-stat__v--pos">+2</span></div>
+        </div>
+      </div>
+
+      <!-- 對防具祝福的卷軸 -->
+      <div class="bless-card">
+        <div class="bless-card__head">
+          <div class="bless-card__icon"><img src="../assets/images/item-7673.png" alt="防具祝福" loading="lazy"></div>
+          <div>
+            <div class="bless-card__title">對防具祝福的卷軸</div>
+            <div class="bless-card__en">ARMOR BLESSING</div>
+          </div>
+        </div>
+        <div class="bless-card__body">
+          <div class="bless-stat"><span class="bless-stat__k">HP</span><span class="bless-stat__v bless-stat__v--pos">+20</span></div>
+          <div class="bless-stat"><span class="bless-stat__k">防禦</span><span class="bless-stat__v bless-stat__v--neg">-1</span></div>
+        </div>
+      </div>
+
+      <!-- 對飾品祝福的卷軸 -->
+      <div class="bless-card">
+        <div class="bless-card__head">
+          <div class="bless-card__icon"><img src="../assets/images/item-7673.png" alt="飾品祝福" loading="lazy"></div>
+          <div>
+            <div class="bless-card__title">對飾品祝福的卷軸</div>
+            <div class="bless-card__en">ACCESSORY BLESSING</div>
+          </div>
+        </div>
+        <div class="bless-card__body">
+          <div class="bless-stat"><span class="bless-stat__k">MP</span><span class="bless-stat__v bless-stat__v--blue">+10</span></div>
+          <div class="bless-stat"><span class="bless-stat__k">魔法防禦</span><span class="bless-stat__v bless-stat__v--blue">+2</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bless-note">
+      ⚠️ 祝福卷軸可從 <strong>每日 BOSS</strong> 掉落取得，亦可透過贊助禮包獲得。<br>
+      ⚠️ 每件裝備可使用一次祝福卷軸，效果為<strong>永久加成</strong>。
+    </div>
+
+    <!-- 上下頁導覽 -->
+    <div class="fp-pager">
+      <a href="features-overview.html" class="fp-pager__btn">
+        <span class="fp-pager__arrow">←</span>
+        <div><span class="fp-pager__dir">PREV</span><span class="fp-pager__name">系統列表</span></div>
+      </a>
+      <div class="fp-pager__center"><a href="features-overview.html" class="fp-pager__back">▲ 返回系統列表</a></div>
+      <a href="features-overview.html" class="fp-pager__btn fp-pager__btn--next">
+        <div><span class="fp-pager__dir">NEXT</span><span class="fp-pager__name">系統列表</span></div>
+        <span class="fp-pager__arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2026 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div>
+    <div style="max-width:1080px;margin:0 auto;padding:12px 24px 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <a href="https://lin.ee/UbLA1Dq" target="_blank" rel="noopener" style="color:var(--gold-dim);font-size:12px;letter-spacing:1.2px;font-weight:600;text-shadow:0 0 10px rgba(201,169,110,0.36);text-decoration:none;">美工設計：阿柴美工 · LINE ID:@323rffot</a>
+      <a href="https://www.gamex123.com/lineage.html" target="_blank" rel="noopener" style="display:inline-flex;opacity:0.82;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.82'">
+        <img src="../assets/images/private-server-123.gif" alt="私服123" style="display:block;width:78px;height:auto;" loading="lazy">
+      </a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
