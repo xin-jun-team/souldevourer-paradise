@@ -97,6 +97,111 @@
     .item-card__arrow::after { content: '→'; color: var(--gold); }
     .item-card:hover .item-card__arrow { color: var(--gold); }
     .item-card:hover .item-card__arrow::after { color: var(--gold-bright); }
+
+    /* 古老電視外框 */
+    .retro-tv {
+      max-width: 640px;
+      margin: 0 auto 48px;
+      position: relative;
+    }
+    .retro-tv__frame {
+      background: linear-gradient(160deg, #3a2a1a 0%, #2a1c10 30%, #1e1208 60%, #3a2a1a 100%);
+      border-radius: 24px;
+      padding: 32px 32px 20px;
+      box-shadow:
+        inset 0 2px 4px rgba(255,220,150,0.08),
+        inset 0 -2px 4px rgba(0,0,0,0.5),
+        0 8px 40px rgba(0,0,0,0.6),
+        0 0 0 3px #1a1008,
+        0 0 0 6px #2a1c10;
+      position: relative;
+    }
+    /* 木紋質感 */
+    .retro-tv__frame::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 24px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent, transparent 8px,
+        rgba(0,0,0,0.03) 8px, rgba(0,0,0,0.03) 9px
+      );
+      pointer-events: none;
+    }
+    .retro-tv__screen-wrap {
+      background: #0a0a0a;
+      border-radius: 14px;
+      border: 3px solid #1a1208;
+      overflow: hidden;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.8), inset 0 0 8px rgba(120,0,200,0.15);
+      position: relative;
+    }
+    /* CRT 掃描線效果 */
+    .retro-tv__screen-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 2px,
+        rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+      border-radius: 12px;
+    }
+    .retro-tv__video {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      background: #04030a;
+    }
+    /* 底部控制面板 */
+    .retro-tv__panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 8px 0;
+    }
+    .retro-tv__knobs {
+      display: flex; gap: 12px;
+    }
+    .retro-tv__knob {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #5a4a30, #2a1c10);
+      border: 2px solid #1a1008;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,220,150,0.1);
+    }
+    .retro-tv__brand {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      color: #5a4a30;
+      letter-spacing: 0.2em;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+    }
+    .retro-tv__label {
+      text-align: center;
+      margin-top: 12px;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.85rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.1em;
+    }
+    .retro-tv__led {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #40ff40;
+      box-shadow: 0 0 6px #40ff40, 0 0 12px rgba(64,255,64,0.3);
+      animation: retro-blink 3s ease-in-out infinite;
+    }
+    @keyframes retro-blink {
+      0%, 90%, 100% { opacity: 1; }
+      95% { opacity: 0.3; }
+    }
+    @media (max-width: 680px) {
+      .retro-tv__frame { padding: 20px 20px 14px; border-radius: 16px; }
+      .retro-tv__screen-wrap { border-radius: 10px; }
+    }
   </style>
 <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
 </head>
@@ -144,6 +249,29 @@
   </div>
 
   <main class="item-wrap">
+
+    <!-- 裝備直升懶人包影片 -->
+    <div class="retro-tv">
+      <div class="retro-tv__frame">
+        <div class="retro-tv__screen-wrap">
+          <video class="retro-tv__video" controls playsinline preload="metadata" poster="../assets/images/thumb-equip.jpg">
+            <source src="../assets/videos/equip-guide.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="retro-tv__panel">
+          <div class="retro-tv__knobs">
+            <div class="retro-tv__knob"></div>
+            <div class="retro-tv__knob"></div>
+          </div>
+          <div class="retro-tv__brand">SOUL DEVOURER TV</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="retro-tv__led"></div>
+            <div class="retro-tv__knob"></div>
+          </div>
+        </div>
+      </div>
+      <div class="retro-tv__label">▶ 裝備直升懶人包 — 一次搞懂升級路線</div>
+    </div>
 
     <!-- 裝備類 -->
     <p class="item-section-title">◆ 裝備類</p>
