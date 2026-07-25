@@ -61,6 +61,51 @@
       <span class="float-label">客服</span>
     </a>
   </div>
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span></a><a href="checkin-wall.html" class="nav-btn" style="color:var(--soul-bright,#b040ff);border-color:var(--soul);margin-left:8px;font-size:0.78rem;">◈ 打卡牆</a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><span class="nav-sponsor-wrap"><a href="sponsor.html" class="nav-btn">贊助說明</a><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-coin">💰</span><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✧</span><span class="nav-sponsor-sparkle">✦</span></span><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — DOLLS</p>
+    <h1 class="page-hero__title">娃娃<span>介紹</span></h1>
+    <p class="page-hero__sub">召喚娃娃陪同冒險，獲得被動屬性加成</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <!-- 系統說明 -->
+    <h2 class="fp-heading">娃娃系統</h2>
+    <p class="fp-intro">使用<strong>娃娃石</strong>召喚娃娃，提供持續性被動屬性加成。收集並組合特定娃娃可觸發<strong>收藏加成效果</strong>，進一步強化角色能力。娃娃共分為一般、高級、稀有、英雄、傳說、神話、唯一七個稀有度等級。</p>
+
+    <!-- ── 合成升階機率 ── -->
+    <h2 class="fp-heading">◈ 合成升階機率</h2>
+    <div style="overflow-x:auto;margin-bottom:32px;">
+      <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+        <thead><tr><th style="background:linear-gradient(90deg,rgba(212,168,32,0.2),rgba(212,168,32,0.08));color:var(--gold-dim);font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.1em;padding:10px 12px;border:1px solid #2a1f40;">升階方向</th><th style="background:linear-gradient(90deg,rgba(212,168,32,0.2),rgba(212,168,32,0.08));color:var(--gold-dim);font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.1em;padding:10px 12px;border:1px solid #2a1f40;">成功機率</th></tr></thead>
+        <tbody>
+          <tr><td style="background:#0e0a1c;padding:8px 12px;border:1px solid #1e1630;color:var(--text-bright);font-weight:700;">⚪ 一般 → 🟢 高級</td><td style="background:#0e0a1c;padding:8px 12px;border:1px solid #1e1630;color:#69f0ae;font-family:'Cinzel',serif;font-weight:700;">80%</td></tr>
+          <tr><td style="background:#100c1e;padding:8px 12px;border:1px solid #1e1630;color:var(--text-bright);font-weight:700;">🟢 高級 → 🔵 稀有</td><td style="background:#100c1e;padding:8px 12px;border:1px solid #1e1630;color:#82b1ff;font-family:'Cinzel',serif;font-weight:700;">50%</td></tr>
+          <tr><td style="background:#0e0a1c;padding:8px 12px;border:1px solid #1e1630;color:var(--text-bright);font-weight:700;">🔵 稀有 → 🔴 英雄</td><td style="background:#0e0a1c;padding:8px 12px;border:1px solid #1e1630;color:#ff8a80;font-family:'Cinzel',serif;font-weight:700;">35%</td></tr>
+          <tr><td style="background:#100c1e;padding:8px 12px;border:1px solid #1e1630;color:var(--text-bright);font-weight:700;">🔴 英雄 → 🟣 傳說</td><td style="background:#100c1e;padding:8px 12px;border:1px solid #1e1630;color:#d0a0ff;font-family:'Cinzel',serif;font-weight:700;">18%</td></tr>
+          <tr><td style="background:#0e0a1c;padding:8px 12px;border:1px solid #1e1630;color:var(--text-bright);font-weight:700;">🟣 傳說 → 👑 神話</td><td style="background:#0e0a1c;padding:8px 12px;border:1px solid #1e1630;color:#6a6080;font-family:'Cinzel',serif;font-weight:700;"><span style="font-size:0.85rem;color:#ef5350;font-family:'Noto Serif TC',serif;">尚未開放</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <!-- ⚪ 一般娃娃 -->
     <div class="d-sec d-sec--gen">
       <span>⚪ 一般娃娃</span>
