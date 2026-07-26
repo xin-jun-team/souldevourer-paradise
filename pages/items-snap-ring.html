@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>史奈普戒指 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* ── SNAP RING 專用樣式 ── */
+    .sr-hero { text-align:center; padding:60px 20px 40px; }
+    .sr-hero__title { font-family:'Noto Serif TC',serif; font-weight:900; font-size:2.2rem; color:#fff4b8; letter-spacing:0.12em; margin-bottom:8px; text-shadow:0 0 30px rgba(212,168,32,0.3); }
+    .sr-hero__sub { color:#a07840; font-size:0.92rem; letter-spacing:0.08em; }
+
+    .sr-wrap { max-width:960px; margin:0 auto; padding:0 20px 80px; }
+
+    /* 強化規則區塊 */
+    .sr-rule-box { background:#0e0a1c; border:1px solid rgba(212,168,32,0.25); border-top:3px solid #cc0000; border-radius:2px; padding:24px 28px; margin-bottom:40px; }
+    .sr-rule-box h2 { margin:0 0 12px; color:var(--gold-dim); font-family:'Noto Serif TC',serif; font-size:1.05rem; letter-spacing:0.1em; }
+    .sr-rule-box .sr-warning { background:rgba(204,0,0,0.1); border:1px solid rgba(204,0,0,0.3); border-radius:2px; padding:12px 16px; margin-bottom:18px; color:#ff6b6b; font-size:0.88rem; line-height:1.7; }
+    .sr-rule-box .sr-warning strong { color:#ff2424; }
+
+    .sr-rate-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 32px; }
+    .sr-rate-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #1e1630; font-size:0.85rem; }
+    .sr-rate-row__label { color:var(--text-dim); }
+    .sr-rate-row__val { font-weight:700; font-family:'Cinzel',serif; }
+    .sr-rate-row__val--high { color:#69f0ae; }
+    .sr-rate-row__val--mid { color:#ffd740; }
+    .sr-rate-row__val--low { color:#ff6b6b; }
+
+    /* 戒指概覽卡片 */
+    .sr-overview { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:48px; }
+    @media (max-width:768px) { .sr-overview { grid-template-columns:1fr; } }
+
+    .sr-ov-card { background:#0e0a1c; border:1px solid #1e1630; border-radius:2px; padding:20px; text-align:center; transition:border-color 0.2s; }
+    .sr-ov-card:hover { border-color:var(--gold-dim); }
+    .sr-ov-card__icon { font-size:2rem; margin-bottom:8px; }
+    .sr-ov-card__name { font-family:'Noto Serif TC',serif; font-weight:700; font-size:1rem; margin-bottom:6px; letter-spacing:0.06em; }
+    .sr-ov-card__desc { font-size:0.82rem; color:var(--text-dim); line-height:1.6; }
+    .sr-ov-card--wisdom .sr-ov-card__name { color:#82b1ff; }
+    .sr-ov-card--defense .sr-ov-card__name { color:#69f0ae; }
+    .sr-ov-card--hero .sr-ov-card__name { color:#ff8a80; }
+
+    /* 詳細表格區 */
+    .sr-detail { margin-bottom:48px; }
+    .sr-detail__heading { font-family:'Noto Serif TC',serif; font-weight:700; font-size:1rem; letter-spacing:0.08em; padding:12px 18px; margin:0; border-radius:2px 2px 0 0; }
+    .sr-detail--wisdom .sr-detail__heading { background:rgba(130,177,255,0.12); color:#82b1ff; border:1px solid rgba(130,177,255,0.25); border-bottom:none; }
+    .sr-detail--defense .sr-detail__heading { background:rgba(105,240,174,0.1); color:#69f0ae; border:1px solid rgba(105,240,174,0.25); border-bottom:none; }
+    .sr-detail--hero .sr-detail__heading { background:rgba(255,107,107,0.12); color:#ff8a80; border:1px solid rgba(255,107,107,0.3); border-bottom:none; }
+
+    .sr-table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+    .sr-table th { background:linear-gradient(90deg, rgba(212,168,32,0.15) 0%, rgba(212,168,32,0.05) 100%); color:var(--gold-dim); font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.1em; padding:10px 14px; border:1px solid #2a1f40; text-align:left; }
+    .sr-table td { background:#0e0a1c; padding:10px 14px; border:1px solid #1e1630; color:var(--text-dim); line-height:1.6; }
+    .sr-table tr:nth-child(even) td { background:#100c1e; }
+    .sr-table tr:hover td { background:#16102a; }
+    .sr-table td:first-child { color:#ffcc80; font-weight:700; white-space:nowrap; text-align:center; width:70px; }
+    .sr-table tr:last-child td:first-child { color:#ff9800; font-weight:900; }
+    .sr-table tr:last-child td { background:rgba(255,152,0,0.06); }
+
+    .sr-detail--wisdom .sr-table th { background:linear-gradient(90deg, rgba(130,177,255,0.15) 0%, rgba(130,177,255,0.04) 100%); color:#82b1ff; border-color:#1a1a2a; }
+    .sr-detail--wisdom .sr-table td { border-color:#10101e; }
+    .sr-detail--defense .sr-table th { background:linear-gradient(90deg, rgba(105,240,174,0.12) 0%, rgba(105,240,174,0.04) 100%); color:#69f0ae; border-color:#1a2a1a; }
+    .sr-detail--defense .sr-table td { border-color:#101e10; }
+    .sr-detail--hero .sr-table th { background:linear-gradient(90deg, rgba(255,107,107,0.15) 0%, rgba(255,107,107,0.04) 100%); color:#ff8a80; border-color:#2a1a1a; }
+    .sr-detail--hero .sr-table td { border-color:#1e1010; }
+
+    .stat-up { color:#69f0ae; }
+    .stat-down { color:#ff6b6b; }
+    .stat-special { color:#ce93d8; }
+  </style>
+  <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
+</head>
+<body>
+  <div class="float-sidebar float-sidebar--left">
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-sponsor.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61z"/></svg></span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-download.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+  <div class="float-sidebar float-sidebar--right">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-community.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></span>
+      <span class="float-label">社群</span>
+    </a>
+    <a href="https://lin.ee/XuVhcl6" target="_blank" class="float-btn float-btn--line-cs">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-service.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.08-1.31A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm2.07-5.75l-.9.92C11.45 11.9 11 12.5 11 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H6c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg></span>
+      <span class="float-label">客服</span>
+    </a>
+  </div>
+
+  <header id="header"></header>
+
+  <div class="sr-hero">
+    <h1 class="sr-hero__title">💍 史奈普戒指</h1>
+    <p class="sr-hero__sub">三種戒指 ✦ 最多可配戴兩個 ✦ 強化至 +8 ✦ 失敗即消失</p>
+  </div>
+
+  <div class="sr-wrap">
+
+    <!-- ── 強化規則 ── -->
+    <div class="sr-rule-box">
+      <h2>📜 強化規則與機率</h2>
+      <div class="sr-warning">
+        <strong>⚠ 強化失敗時，戒指會直接消失。</strong><br>
+        請各位勇者謹慎評估，確認可承受風險後再進行強化。
+      </div>
+      <div class="sr-rate-grid">
+        <div class="sr-rate-row"><span class="sr-rate-row__label">+0 → +1</span><span class="sr-rate-row__val sr-rate-row__val--high">75%</span></div>
+        <div class="sr-rate-row"><span class="sr-rate-row__label">+4 → +5</span><span class="sr-rate-row__val sr-rate-row__val--low">33%</span></div>
+        <div class="sr-rate-row"><span class="sr-rate-row__label">+1 → +2</span><span class="sr-rate-row__val sr-rate-row__val--high">65%</span></div>
+        <div class="sr-rate-row"><span class="sr-rate-row__label">+5 → +6</span><span class="sr-rate-row__val sr-rate-row__val--low">25%</span></div>
+        <div class="sr-rate-row"><span class="sr-rate-row__label">+2 → +3</span><span class="sr-rate-row__val sr-rate-row__val--mid">50%</span></div>
+        <div class="sr-rate-row"><span class="sr-rate-row__label">+6 → +7</span><span class="sr-rate-row__val sr-rate-row__val--low">20%</span></div>
+        <div class="sr-rate-row"><span class="sr-rate-row__label">+3 → +4</span><span class="sr-rate-row__val sr-rate-row__val--mid">40%</span></div>
+        <div class="sr-rate-row"><span class="sr-rate-row__label">+7 → +8</span><span class="sr-rate-row__val sr-rate-row__val--low">15%</span></div>
+      </div>
+    </div>
+
+    <!-- ── 三種戒指概覽 ── -->
+    <div class="sr-overview">
+      <div class="sr-ov-card sr-ov-card--wisdom">
+        <div class="sr-ov-card__icon">✨</div>
+        <div class="sr-ov-card__name">史奈普的智慧戒指</div>
+        <div class="sr-ov-card__desc">智力 / 回魔型<br>適合法系職業與需要魔攻、魔力恢復的角色</div>
+      </div>
+      <div class="sr-ov-card sr-ov-card--defense">
+        <div class="sr-ov-card__icon">🛡️</div>
+        <div class="sr-ov-card__name">史奈普的防禦戒指</div>
+        <div class="sr-ov-card__desc">魔防 / 減傷型<br>適合重視生存、藥水恢復與傷害減免的角色</div>
+      </div>
+      <div class="sr-ov-card sr-ov-card--hero">
+        <div class="sr-ov-card__icon">⚔️</div>
+        <div class="sr-ov-card__name">史奈普的英雄戒指</div>
+        <div class="sr-ov-card__desc">近遠攻型<br>適合物理輸出職業，提升近距離與遠距離傷害、命中與爆擊</div>
+      </div>
+    </div>
+
+    <!-- ── 智慧戒指 ── -->
+    <div class="sr-detail sr-detail--wisdom">
+      <h3 class="sr-detail__heading">✨ 史奈普的智慧戒指 — 能力表</h3>
+      <table class="sr-table">
+        <thead><tr><th>強化值</th><th>獲得能力</th></tr></thead>
+        <tbody>
+          <tr><td>+0</td><td><span class="stat-down">防禦 -1</span>，<span class="stat-up">魔力恢復 +1</span>，<span class="stat-up">負重 +250</span></td></tr>
+          <tr><td>+1</td><td><span class="stat-down">防禦 -2</span>，<span class="stat-up">魔力恢復 +2</span>，<span class="stat-up">負重 +250</span></td></tr>
+          <tr><td>+2</td><td><span class="stat-down">防禦 -3</span>，<span class="stat-up">魔力恢復 +2</span>，<span class="stat-up">負重 +250</span></td></tr>
+          <tr><td>+3</td><td><span class="stat-down">防禦 -4</span>，<span class="stat-up">魔力恢復 +3</span>，<span class="stat-up">負重 +250</span></td></tr>
+          <tr><td>+4</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">魔力恢復 +3</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +2</span>，<span class="stat-special">魔攻 +1</span></td></tr>
+          <tr><td>+5</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">魔力恢復 +3</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +2</span>，<span class="stat-special">魔攻 +1</span>，<span class="stat-special">抗暈眩 +2</span></td></tr>
+          <tr><td>+6</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">魔力恢復 +4</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +3</span>，<span class="stat-special">魔攻 +2</span>，<span class="stat-special">抗暈眩 +5</span></td></tr>
+          <tr><td>+7</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">魔力恢復 +5</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +3</span>，<span class="stat-special">魔攻 +3</span>，<span class="stat-special">抗暈眩 +7</span></td></tr>
+          <tr><td>+8 頂</td><td><span class="stat-down">防禦 -6</span>，<span class="stat-up">魔力恢復 +7</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +4</span>，<span class="stat-special">魔攻 +5</span>，<span class="stat-special">抗暈眩 +9</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── 防禦戒指 ── -->
+    <div class="sr-detail sr-detail--defense">
+      <h3 class="sr-detail__heading">🛡️ 史奈普的防禦戒指 — 能力表</h3>
+      <table class="sr-table">
+        <thead><tr><th>強化值</th><th>獲得能力</th></tr></thead>
+        <tbody>
+          <tr><td>+0</td><td><span class="stat-down">防禦 -1</span>，<span class="stat-up">MR +1</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +2</span></td></tr>
+          <tr><td>+1</td><td><span class="stat-down">防禦 -2</span>，<span class="stat-up">MR +2</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +2</span></td></tr>
+          <tr><td>+2</td><td><span class="stat-down">防禦 -3</span>，<span class="stat-up">MR +3</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +3</span></td></tr>
+          <tr><td>+3</td><td><span class="stat-down">防禦 -4</span>，<span class="stat-up">MR +4</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +3</span></td></tr>
+          <tr><td>+4</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">MR +5</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +4</span></td></tr>
+          <tr><td>+5</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">MR +6</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +4</span>，<span class="stat-special">傷害減免 +1</span>，<span class="stat-special">抗暈眩 +2</span></td></tr>
+          <tr><td>+6</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">MR +7</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +5</span>，<span class="stat-special">傷害減免 +2</span>，<span class="stat-special">抗暈眩 +5</span></td></tr>
+          <tr><td>+7</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">MR +8</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +5</span>，<span class="stat-special">傷害減免 +3</span>，<span class="stat-special">抗暈眩 +7</span></td></tr>
+          <tr><td>+8 頂</td><td><span class="stat-down">防禦 -6</span>，<span class="stat-up">MR +9</span>，<span class="stat-up">負重 +250</span>，<span class="stat-up">藥水恢復 +6</span>，<span class="stat-special">傷害減免 +5</span>，<span class="stat-special">抗暈眩 +9</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── 英雄戒指 ── -->
+    <div class="sr-detail sr-detail--hero">
+      <h3 class="sr-detail__heading">⚔️ 史奈普的英雄戒指 — 能力表</h3>
+      <table class="sr-table">
+        <thead><tr><th>強化值</th><th>獲得能力</th></tr></thead>
+        <tbody>
+          <tr><td>+0</td><td><span class="stat-down">防禦 -1</span>，<span class="stat-up">HP +10</span>，<span class="stat-up">負重 +250</span></td></tr>
+          <tr><td>+1</td><td><span class="stat-down">防禦 -2</span>，<span class="stat-up">HP +15</span>，<span class="stat-up">負重 +250</span></td></tr>
+          <tr><td>+2</td><td><span class="stat-down">防禦 -3</span>，<span class="stat-up">HP +15</span>，<span class="stat-up">負重 +250</span></td></tr>
+          <tr><td>+3</td><td><span class="stat-down">防禦 -4</span>，<span class="stat-up">HP +20</span>，<span class="stat-up">負重 +250</span></td></tr>
+          <tr><td>+4</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">HP +20</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +2</span>，<span class="stat-special">近/遠戰傷害 +1</span>，<span class="stat-special">近/遠命中 +1</span></td></tr>
+          <tr><td>+5</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">HP +25</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +2</span>，<span class="stat-special">近/遠戰傷害 +2</span>，<span class="stat-special">近/遠命中 +1</span>，<span class="stat-special">抗暈眩 +2</span></td></tr>
+          <tr><td>+6</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">HP +30</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +3</span>，<span class="stat-special">近/遠戰傷害 +2</span>，<span class="stat-special">近/遠命中 +2</span>，<span class="stat-special">抗暈眩 +5</span></td></tr>
+          <tr><td>+7</td><td><span class="stat-down">防禦 -5</span>，<span class="stat-up">HP +40</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +3</span>，<span class="stat-special">近/遠戰傷害 +3</span>，<span class="stat-special">近/遠命中 +3</span>，<span class="stat-special">抗暈眩 +7</span></td></tr>
+          <tr><td>+8 頂</td><td><span class="stat-down">防禦 -6</span>，<span class="stat-up">HP +50</span>，<span class="stat-up">負重 +250</span>，<span class="stat-special">爆擊 +4</span>，<span class="stat-special">近/遠戰傷害 +5</span>，<span class="stat-special">近/遠命中 +5</span>，<span class="stat-special">抗暈眩 +9</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>© 2025 噬魂天堂 SOUL DEVOURER · LINEAGE — 本伺服器為非營利私人伺服器</p>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
