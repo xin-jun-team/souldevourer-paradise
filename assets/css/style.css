@@ -2024,7 +2024,6 @@ body {
   .footer-top { flex-direction: column; align-items: flex-start; gap: 20px; }
   .footer-links { gap: 8px; }
   .newbie-layout { grid-template-columns: 1fr; }
-  .float-sidebar { display: none; }
   .hero-logo-img img { max-width: 100%; }
 }
 
@@ -2302,37 +2301,68 @@ body {
   .statusbar-cells { min-width: 520px; }
 }
 
+/* ── 平板版縮小懸浮按鈕 ── */
+@media (max-width: 860px) {
+  .float-btn {
+    width: 64px;
+    height: 68px;
+    border-radius: 8px 0 0 8px;
+    padding: 0 0 6px;
+  }
+  .float-sidebar--left .float-btn { border-radius: 0 8px 8px 0; }
+  .float-icon svg { width: 24px; height: 24px; }
+  .float-label { font-size: 0.68rem; }
+  .float-btn:hover,
+  .float-sidebar--left .float-btn:hover { width: 74px; }
+  .float-btn-bg { opacity: 0.35; }
+}
+
 /* ── 手機版底部按鈕替代懸浮側欄 ── */
 @media (max-width: 640px) {
-  .float-sidebar {
+  .float-sidebar,
+  .float-sidebar--left,
+  .float-sidebar--right {
     display: flex !important;
     position: fixed;
     bottom: 0;
-    right: auto;
     left: 0;
+    right: auto;
     top: auto;
-    width: 100%;
+    transform: none;
     flex-direction: row;
     gap: 0;
     z-index: 900;
+    background: rgba(10, 6, 20, 0.98);
+  }
+  .float-sidebar--left {
+    width: 50%;
+    left: 0;
+    border-top: 1px solid var(--gold-dim);
+  }
+  .float-sidebar--right {
+    width: 50%;
+    left: 50%;
     border-top: 1px solid var(--gold-dim);
   }
   .float-btn {
     flex: 1;
-    height: 52px;
-    width: auto;
-    border: none;
-    border-right: 1px solid rgba(212,168,32,0.15);
-    border-radius: 0;
+    height: 56px;
+    width: auto !important;
+    border: none !important;
+    border-right: 1px solid rgba(212,168,32,0.15) !important;
+    border-radius: 0 !important;
     flex-direction: row;
-    gap: 6px;
+    gap: 5px;
     font-size: 0.72rem;
+    padding: 0;
+    justify-content: center;
   }
-  .float-btn:last-child { border-right: none; }
-  .float-icon { font-size: 1rem; }
-  .float-label { font-size: 0.65rem; }
-  /* 底部留空間給 bottom bar */
-  footer#site-footer { padding-bottom: 60px; }
+  .float-btn:last-child { border-right: none !important; }
+  .float-btn:hover { width: auto !important; }
+  .float-btn-bg { display: none; }
+  .float-icon svg { width: 20px; height: 20px; }
+  .float-label { font-size: 0.68rem; font-weight: 600; }
+  footer#site-footer { padding-bottom: 64px; }
 }
 
 /* ── 減少動畫偏好支援 ── */
