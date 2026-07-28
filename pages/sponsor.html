@@ -603,28 +603,43 @@
     <div id="sec-payment" class="sponsor-section-title">💳 付款方式</div>
     <style>
     @keyframes spon-shimmer{0%{left:-100%}100%{left:200%}}
-    .pay-card--shine{position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
-    .pay-card--shine:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,0.4)}
-    .pay-card--shine::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);animation:spon-shimmer 3s ease-in-out infinite;pointer-events:none}
-    .pay-card--gold{border-color:rgba(212,168,32,0.35) !important}
-    .pay-card--gold::after{background:linear-gradient(90deg,transparent,rgba(255,215,0,0.08),transparent) !important}
-    .pay-card--line-gm{border-color:rgba(6,199,85,0.35) !important}
-    .pay-card--line-gm::after{background:linear-gradient(90deg,transparent,rgba(6,199,85,0.08),transparent) !important;animation-delay:1.5s}
+    @keyframes spon-pulse{0%,100%{box-shadow:0 0 12px rgba(212,168,32,0.2)}50%{box-shadow:0 0 28px rgba(212,168,32,0.4)}}
+    @keyframes spon-pulse-green{0%,100%{box-shadow:0 0 12px rgba(6,199,85,0.2)}50%{box-shadow:0 0 28px rgba(6,199,85,0.4)}}
+    .spon-pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:52px}
+    @media(max-width:600px){.spon-pay-grid{grid-template-columns:1fr}}
+    .spon-pay-card{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;padding:28px 24px;border-radius:8px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;cursor:pointer}
+    .spon-pay-card:hover{transform:translateY(-4px)}
+    .spon-pay-card::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);animation:spon-shimmer 2.5s ease-in-out infinite;pointer-events:none}
+    .spon-pay-card__icon{font-size:2.4rem;margin-bottom:14px;filter:drop-shadow(0 0 10px currentColor)}
+    .spon-pay-card__name{font-family:'Noto Serif TC',serif;font-size:1.1rem;font-weight:900;letter-spacing:2px;margin-bottom:6px}
+    .spon-pay-card__sub{font-size:0.78rem;margin-bottom:14px;opacity:0.7;line-height:1.5}
+    .spon-pay-card__btn{display:inline-block;padding:10px 32px;border-radius:4px;font-size:0.88rem;font-weight:700;letter-spacing:2px;transition:filter .2s}
+    .spon-pay-card:hover .spon-pay-card__btn{filter:brightness(1.15)}
+    /* 金流卡 */
+    .spon-pay--gold{background:linear-gradient(160deg,#1a1408,#0f0a04);border:2px solid rgba(212,168,32,0.5);animation:spon-pulse 3s ease-in-out infinite}
+    .spon-pay--gold::after{background:linear-gradient(90deg,transparent,rgba(255,215,0,0.1),transparent) !important}
+    .spon-pay--gold .spon-pay-card__name{color:#ffe060}
+    .spon-pay--gold .spon-pay-card__sub{color:#c9a040}
+    .spon-pay--gold .spon-pay-card__btn{background:linear-gradient(135deg,#b8860b,#d4a017);color:#0a0514;box-shadow:0 4px 16px rgba(212,168,32,0.3)}
+    /* LINE卡 */
+    .spon-pay--line{background:linear-gradient(160deg,#0a1a0e,#04100a);border:2px solid rgba(6,199,85,0.5);animation:spon-pulse-green 3s ease-in-out infinite;animation-delay:1.5s}
+    .spon-pay--line::after{background:linear-gradient(90deg,transparent,rgba(6,199,85,0.1),transparent) !important;animation-delay:1.2s}
+    .spon-pay--line .spon-pay-card__name{color:#4ade80}
+    .spon-pay--line .spon-pay-card__sub{color:#2e9e50}
+    .spon-pay--line .spon-pay-card__btn{background:linear-gradient(135deg,#06c755,#05a847);color:#fff;box-shadow:0 4px 16px rgba(6,199,85,0.3)}
     </style>
-    <div class="pay-grid">
-      <a href="https://web-hosts.net/%E5%99%AC%E9%AD%82%E5%A4%A9%E5%A0%82.html" target="_blank" class="pay-card pay-card--shine pay-card--gold" style="text-decoration:none;cursor:pointer;">
-        <span class="pay-card__icon">🏦</span>
-        <div>
-          <div class="pay-card__name">金流平台付款 <span style="font-size:0.75rem;color:var(--gold);font-weight:700;">(24H自助贊助)</span></div>
-          <div class="pay-card__desc">系統產生付款連結，支援 ATM 等多種方式</div>
-        </div>
+    <div class="spon-pay-grid">
+      <a href="https://web-hosts.net/%E5%99%AC%E9%AD%82%E5%A4%A9%E5%A0%82.html" target="_blank" class="spon-pay-card spon-pay--gold">
+        <div class="spon-pay-card__icon">🏦</div>
+        <div class="spon-pay-card__name">金流平台付款（24H自助贊助）</div>
+        <div class="spon-pay-card__sub">全天候自助贊助，系統自動產生付款連結<br>支援 ATM、超商代碼、信用卡等多種方式</div>
+        <div class="spon-pay-card__btn">立即前往贊助 →</div>
       </a>
-      <a href="https://lin.ee/p8o1unp" target="_blank" class="pay-card pay-card--shine pay-card--line-gm" style="text-decoration:none;cursor:pointer;">
-        <span class="pay-card__icon">💬</span>
-        <div>
-          <div class="pay-card__name">其他贊助管道</div>
-          <div class="pay-card__desc">如有特殊需求，請聯絡官方客服洽詢</div>
-        </div>
+      <a href="https://lin.ee/p8o1unp" target="_blank" class="spon-pay-card spon-pay--line">
+        <div class="spon-pay-card__icon">💬</div>
+        <div class="spon-pay-card__name">其他贊助管道</div>
+        <div class="spon-pay-card__sub">如有特殊需求或大額贊助<br>請聯絡官方客服為您專人服務</div>
+        <div class="spon-pay-card__btn">聯絡官方客服 →</div>
       </a>
     </div>
 
