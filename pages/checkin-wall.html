@@ -1134,7 +1134,7 @@
       e.preventDefault();
       var gameId = document.getElementById('wallId').value.trim();
       var message = document.getElementById('wallMsg').value.trim();
-      if (!gameId || !message) return;
+      if (!gameId || !message) { alert('請填寫遊戲 ID 和留言內容！'); return; }
 
       // 蜜罐檢查（機器人會填這個欄位）
       if (document.getElementById('wallHp').value) return;
