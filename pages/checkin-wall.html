@@ -664,6 +664,24 @@
       line-height: 1.6;
     }
 
+    /* ── 歷期分組 ── */
+    .wall-round-group { margin-bottom: 16px; }
+    .wall-round-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; padding: 10px 14px; cursor: pointer;
+      background: linear-gradient(90deg, rgba(212,168,32,0.1) 0%, transparent 100%);
+      border: 1px solid rgba(212,168,32,0.2); border-left: 3px solid var(--gold);
+      font-family: 'Noto Serif TC', serif; font-size: 0.88rem; font-weight: 700;
+      color: #ffe060; letter-spacing: 0.08em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .wall-round-toggle:hover { background: rgba(212,168,32,0.15); border-color: rgba(212,168,32,0.4); }
+    .wall-round-toggle .toggle-arrow { font-size: 0.7rem; color: #a07840; transition: transform 0.3s; }
+    .wall-round-toggle.open .toggle-arrow { transform: rotate(180deg); }
+    .wall-round-body { overflow: hidden; transition: max-height 0.35s ease; }
+    .wall-round-body.collapsed { max-height: 0 !important; }
+    .wall-round-count { font-size: 0.7rem; color: #a07840; font-weight: 400; margin-left: 8px; }
+
     /* ── 手機 ── */
     @media (max-width: 600px) {
       .wall-form__row { flex-direction: column; }
@@ -774,11 +792,10 @@
   <div class="wall-winners-wrap">
     <div class="wall-winners" id="wallWinners">
       <div class="wall-winners__header">
-        <div class="wall-winners__title">◆ 得獎公告</div>
-        <div class="wall-winners__round" id="winnersRound"></div>
+        <div class="wall-winners__title">◆ 歷期得獎公告</div>
       </div>
       <div id="winnersList">
-        <div class="wall-winners__empty">尚未開獎，敬請期待下一期抽獎！</div>
+          <div class="wall-winners__empty">尚未開獎，敬請期待下一期抽獎！</div>
       </div>
       <div class="wall-winners__note">
         ※ 得獎者請於公告後 7 日內透過官方 LINE 領獎，逾期視同放棄。<br>
@@ -1009,23 +1026,54 @@
 
     function renderWinners(winners) {
       var listEl = document.getElementById('winnersList');
-      var roundEl = document.getElementById('winnersRound');
       if (!winners || !winners.length) {
         listEl.innerHTML = '<div class="wall-winners__empty">尚未開獎，敬請期待下一期抽獎！</div>';
-        roundEl.textContent = '';
         return;
       }
-      var latestRound = winners[winners.length - 1].round || '';
-      var latestWinners = winners.filter(function(w) { return w.round === latestRound; });
-      roundEl.textContent = latestRound;
-      listEl.innerHTML = latestWinners.map(function(w, i) {
-        return '<div class="wall-winners__item">' +
-          '<span class="wall-winners__rank">' + (i + 1) + '</span>' +
-          '<span class="wall-winners__id">' + esc(w.gameId || '') + '</span>' +
-          '<span class="wall-winners__prize">' + esc(w.prize || '') + '</span>' +
-          '<span class="wall-winners__date">' + fmtTime(w.time) + '</span>' +
+
+      // 按期數分組，保持順序
+      var rounds = [];
+      var roundMap = {};
+      for (var i = 0; i < winners.length; i++) {
+        var r = winners[i].round || '未分類';
+        if (!roundMap[r]) {
+          roundMap[r] = [];
+          rounds.push(r);
+        }
+        roundMap[r].push(winners[i]);
+      }
+
+      // 最新期在最上面
+      rounds.reverse();
+
+      listEl.innerHTML = rounds.map(function(round, idx) {
+        var items = roundMap[round];
+        var isLatest = idx === 0;
+        var itemsHtml = items.map(function(w, i) {
+          return '<div class="wall-winners__item">' +
+            '<span class="wall-winners__rank">' + (i + 1) + '</span>' +
+            '<span class="wall-winners__id">' + esc(w.gameId || '') + '</span>' +
+            '<span class="wall-winners__prize">' + esc(w.prize || '') + '</span>' +
+            '<span class="wall-winners__date">' + fmtTime(w.time) + '</span>' +
+          '</div>';
+        }).join('');
+
+        return '<div class="wall-round-group">' +
+          '<div class="wall-round-toggle' + (isLatest ? ' open' : '') + '" onclick="toggleRound(this)">' +
+            '<span>' + esc(round) + '<span class="wall-round-count">（' + items.length + ' 名）</span></span>' +
+            '<span class="toggle-arrow">▼</span>' +
+          '</div>' +
+          '<div class="wall-round-body' + (isLatest ? '' : ' collapsed') + '">' +
+            itemsHtml +
+          '</div>' +
         '</div>';
       }).join('');
+    }
+
+    function toggleRound(el) {
+      var body = el.nextElementSibling;
+      el.classList.toggle('open');
+      body.classList.toggle('collapsed');
     }
 
     function loadMessages() {
