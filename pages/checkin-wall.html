@@ -939,20 +939,37 @@
       } catch(e) { return ''; }
     }
 
-    // 計算某日期所屬的週日~週六梯次
+    // 計算某日期所屬的期數（以每週日 18:00 為分界）
+    // 第一期：到 08/02(日) 18:00
+    // 第二期：08/02 18:01 ~ 08/09 18:00
+    // 第三期：08/09 18:01 ~ 08/16 18:00 ...依此類推
+    var FIRST_DRAW_TIME = new Date('2026-08-02T18:00:00+08:00').getTime();
+    var WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
     function getBatch(dateStr) {
       var d = new Date(dateStr);
       if (isNaN(d)) return null;
-      var day = d.getDay(); // 0=Sun
-      var sun = new Date(d); sun.setDate(d.getDate() - day);
-      var sat = new Date(sun); sat.setDate(sun.getDate() + 6);
+      var t = d.getTime();
       var fmt = function(dt) {
         return String(dt.getMonth()+1).padStart(2,'0') + '/' + String(dt.getDate()).padStart(2,'0');
       };
-      return { key: fmt(sun) + '-' + fmt(sat), start: sun.getTime(), label: fmt(sun) + ' — ' + fmt(sat) };
+
+      if (t <= FIRST_DRAW_TIME) {
+        // 第一期：所有在首次抽獎前的留言
+        var endDate = new Date(FIRST_DRAW_TIME);
+        return { key: 'round-1', start: 0, label: '第一期 — 截止 ' + fmt(endDate) + ' 18:00' };
+      }
+
+      // 第N期：每7天一期
+      var elapsed = t - FIRST_DRAW_TIME;
+      var roundIdx = Math.floor(elapsed / WEEK_MS) + 2; // 第二期起
+      var roundStart = FIRST_DRAW_TIME + (roundIdx - 2) * WEEK_MS;
+      var roundEnd = roundStart + WEEK_MS;
+      var startDate = new Date(roundStart);
+      var endDate2 = new Date(roundEnd);
+      return { key: 'round-' + roundIdx, start: roundStart, label: '第' + roundIdx + '期 — ' + fmt(startDate) + ' ~ ' + fmt(endDate2) + ' 18:00' };
     }
 
-    // 取得當前梯次 key
     function currentBatchKey() {
       var b = getBatch(new Date().toISOString());
       return b ? b.key : '';
