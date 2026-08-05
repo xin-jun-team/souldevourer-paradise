@@ -86,6 +86,87 @@
       margin-top: 16px;
     }
     .ver-notice strong { color: #ffe060; }
+
+    /* ── 雙服倍率並排框架 ── */
+    .ver-dual-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 768px) {
+      .ver-dual-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* 噬魂天堂風格（紫魂） */
+    .ver-panel-soul {
+      background: linear-gradient(160deg, #14102a 0%, #0c0818 100%);
+      border: 2px solid rgba(176,64,255,0.3);
+      border-radius: 4px;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(120,0,200,0.08);
+    }
+    .ver-panel-soul .ver-panel__header {
+      background: linear-gradient(90deg, rgba(120,0,200,0.2) 0%, rgba(120,0,200,0.05) 100%);
+      border-bottom: 1px solid rgba(176,64,255,0.25);
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .ver-panel-soul .ver-panel__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem; font-weight: 900;
+      color: #d088ff; letter-spacing: 0.12em;
+      text-shadow: 0 0 12px rgba(176,64,255,0.3);
+    }
+    .ver-panel-soul .ver-panel__body { padding: 16px 20px; }
+    .ver-panel-soul .ver-badge {
+      background: linear-gradient(135deg, #1c1030 0%, #180e28 100%);
+      border-color: rgba(176,64,255,0.15);
+    }
+
+    /* 帝王服風格（金尊） */
+    .ver-panel-emperor {
+      background: linear-gradient(160deg, #1a1408 0%, #120e04 100%);
+      border: 2px solid rgba(212,168,32,0.4);
+      border-radius: 4px;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(212,168,32,0.1);
+    }
+    .ver-panel-emperor .ver-panel__header {
+      background: linear-gradient(90deg, rgba(212,168,32,0.2) 0%, rgba(212,168,32,0.05) 100%);
+      border-bottom: 1px solid rgba(212,168,32,0.3);
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .ver-panel-emperor .ver-panel__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem; font-weight: 900;
+      color: #ffe060; letter-spacing: 0.12em;
+      text-shadow: 0 0 12px rgba(212,168,32,0.4);
+    }
+    .ver-panel-emperor .ver-panel__body { padding: 16px 20px; }
+    .ver-panel-emperor .ver-badge {
+      background: linear-gradient(135deg, #1a1408 0%, #14100a 100%);
+      border-color: rgba(212,168,32,0.2);
+    }
+    .ver-panel-emperor .ver-badge__val {
+      color: #ff6b6b;
+    }
+
+    .ver-panel-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .ver-panel__version-tag {
+      text-align: center;
+      font-size: 0.72rem;
+      color: #5a4a30;
+      padding: 8px 0 0;
+      letter-spacing: 0.1em;
+    }
   </style>
 <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
 </head>
@@ -141,64 +222,89 @@
 
   <main class="fp-wrap">
 
-    <!-- 噬魂天堂 倍率 -->
+    <!-- 雙服倍率並排 -->
     <div class="ver-section">
-      <p class="ver-heading">💎 噬魂天堂 — 基礎倍率</p>
-      <div class="ver-grid">
-        <div class="ver-badge">
-          <span class="ver-badge__label">遊戲版本</span>
-          <span class="ver-badge__val">3.81 內掛版</span>
-        </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">經驗倍率</span>
-          <span class="ver-badge__val">3 倍</span>
-          <span class="ver-badge__note">內掛倍率：1 倍</span>
-        </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">金幣倍率</span>
-          <span class="ver-badge__val">1 倍</span>
-        </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">掉落倍率</span>
-          <span class="ver-badge__val">1 倍</span>
-        </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">武防強化</span>
-          <span class="ver-badge__val">2 倍</span>
-        </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">正義倍率</span>
-          <span class="ver-badge__val">3 倍</span>
-        </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">負重倍率</span>
-          <span class="ver-badge__val">4 倍</span>
-        </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">寵物經驗</span>
-          <span class="ver-badge__val">3 倍</span>
-        </div>
-      </div>
-    </div>
+      <p class="ver-heading">💎 基礎倍率與版本</p>
 
-    <!-- 帝王服 倍率 -->
-    <div class="ver-section">
-      <p class="ver-heading">👑 帝王服 — 基礎倍率</p>
-      <div class="ver-grid">
-        <div class="ver-badge">
-          <span class="ver-badge__label">經驗倍率</span>
-          <span class="ver-badge__val" style="color:#ff6b6b;">5 倍</span>
+      <div class="ver-dual-wrap">
+
+        <!-- 噬魂天堂（紫魂風格） -->
+        <div class="ver-panel-soul">
+          <div class="ver-panel__header">
+            <span style="font-size:1.2rem;">💀</span>
+            <span class="ver-panel__title">噬魂天堂</span>
+          </div>
+          <div class="ver-panel__body">
+            <div class="ver-panel-grid">
+              <div class="ver-badge">
+                <span class="ver-badge__label">遊戲版本</span>
+                <span class="ver-badge__val">3.81 內掛版</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">經驗倍率</span>
+                <span class="ver-badge__val">3 倍</span>
+                <span class="ver-badge__note">內掛倍率：1 倍</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">金幣倍率</span>
+                <span class="ver-badge__val">1 倍</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">掉落倍率</span>
+                <span class="ver-badge__val">1 倍</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">武防強化</span>
+                <span class="ver-badge__val">2 倍</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">正義倍率</span>
+                <span class="ver-badge__val">3 倍</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">負重倍率</span>
+                <span class="ver-badge__val">4 倍</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">寵物經驗</span>
+                <span class="ver-badge__val">3 倍</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">金幣倍率</span>
-          <span class="ver-badge__val" style="color:#ff6b6b;">2 倍</span>
+
+        <!-- 帝王服（金尊風格） -->
+        <div class="ver-panel-emperor">
+          <div class="ver-panel__header">
+            <span style="font-size:1.2rem;">👑</span>
+            <span class="ver-panel__title">帝王服</span>
+          </div>
+          <div class="ver-panel__body">
+            <div class="ver-panel-grid">
+              <div class="ver-badge">
+                <span class="ver-badge__label">遊戲版本</span>
+                <span class="ver-badge__val">3.81 內掛版</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">經驗倍率</span>
+                <span class="ver-badge__val">5 倍</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">金幣倍率</span>
+                <span class="ver-badge__val">2 倍</span>
+              </div>
+              <div class="ver-badge">
+                <span class="ver-badge__label">掉落倍率</span>
+                <span class="ver-badge__val">2 倍</span>
+              </div>
+            </div>
+            <div class="ver-panel__version-tag">依兩服進度差距，倍率將滾動式調整</div>
+          </div>
         </div>
-        <div class="ver-badge">
-          <span class="ver-badge__label">掉落倍率</span>
-          <span class="ver-badge__val" style="color:#ff6b6b;">2 倍</span>
-        </div>
+
       </div>
-      <div class="ver-notice">💡 <strong>依兩服進度差距，倍率將滾動式調整</strong>，實際倍率以公告為準。</div>
+
+      <div class="ver-notice">💡 <strong>實際倍率以公告為準</strong>，官方持續觀察後台數據滾動式調整。</div>
     </div>
 
     <!-- 角色素質與等級限制 -->
