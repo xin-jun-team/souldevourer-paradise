@@ -362,6 +362,17 @@ document.addEventListener('DOMContentLoaded', loadHomeData);
     { title:'轉職服務', path:'pages/class-change.html', keywords:'轉職 簡易轉職 完整轉職 職業 轉換 技能 裝備' },
     { title:'紅利幣', path:'pages/feature-bonus-coin.html', keywords:'紅利 VIP 馬德里 商城 萬能藥 不朽 體力恢復劑 永久名譽 永久巧克力' },
     { title:'累計贊助禮包', path:'pages/event-sponsor-gift.html', keywords:'贊助 禮包 累計 噬魂同歡慶 噬魂崛起 噬魂征途 噬魂霸主 噬魂之父 噬魂至尊 傳說變身 傳說娃娃' },
+    { title:'神奇扭蛋', path:'pages/items-gacha.html', keywords:'神奇扭蛋 扭蛋 gacha 神奇徽章 PVP傷害 PVP減免 魔攻 奇物商 推廣商人 代幣 特殊大獎 保底' },
+    { title:'威力彩選號', path:'pages/items-hexagram.html', keywords:'威力彩 選號 抽抽樂 升階石 徽章 hexagram' },
+    { title:'神獸之卵', path:'pages/items-horse.html', keywords:'神獸 坐騎 之卵 抽抽樂 獸魂升階石 雕像升級石 horse' },
+    { title:'聖物系統', path:'pages/items-relic.html', keywords:'聖物 聖物成長藥劑 傲慢之塔 近戰 遠程 法師 甘地 阿吐巴 那魯加 升階 relic' },
+    { title:'四龍之魔眼', path:'pages/items-dragon-eye.html', keywords:'四龍 魔眼 龍之魔眼 dragon eye' },
+    { title:'夜間福利', path:'pages/feature-night-welfare.html', keywords:'夜間 福利 龍族後裔 英雄製作秘笈 對盔甲施法 對武器施法' },
+    { title:'打卡牆', path:'pages/checkin-wall.html', keywords:'打卡 打卡牆 抽獎 留言 靈魂刻印' },
+    { title:'貴賓通行證', path:'pages/items-vip.html', keywords:'貴賓 VIP 通行證' },
+    { title:'主線指南書', path:'pages/items-quest-medal.html', keywords:'主線 指南書 任務 勳章 quest medal' },
+    { title:'戰勳徽章', path:'pages/items-battle-badge.html', keywords:'戰勳 徽章 battle badge' },
+    { title:'蠟燭系統', path:'pages/items-candle.html', keywords:'蠟燭 candle 火焰' },
   ];
 
   // 判斷是否在 pages/ 子目錄
