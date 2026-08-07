@@ -167,6 +167,31 @@
       padding: 8px 0 0;
       letter-spacing: 0.1em;
     }
+
+    /* 後追福利橫幅 */
+    .ver-emperor-promo {
+      background: linear-gradient(90deg, rgba(255,180,0,0.18) 0%, rgba(255,100,0,0.10) 100%);
+      border: 1px solid rgba(255,180,0,0.35);
+      border-radius: 3px;
+      padding: 10px 16px;
+      margin-bottom: 10px;
+      text-align: center;
+      animation: ver-promo-pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes ver-promo-pulse {
+      0%, 100% { border-color: rgba(255,180,0,0.35); box-shadow: 0 0 8px rgba(255,180,0,0.08); }
+      50% { border-color: rgba(255,180,0,0.6); box-shadow: 0 0 16px rgba(255,180,0,0.15); }
+    }
+    .ver-emperor-promo__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.88rem; font-weight: 900;
+      color: #ffcc00; letter-spacing: 0.1em;
+      text-shadow: 0 0 10px rgba(255,200,0,0.3);
+    }
+    .ver-emperor-promo__sub {
+      font-size: 0.72rem; color: #cc9944;
+      margin-top: 4px; letter-spacing: 0.06em;
+    }
   </style>
 <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
 </head>
@@ -280,6 +305,10 @@
             <span class="ver-panel__title">帝王服</span>
           </div>
           <div class="ver-panel__body">
+            <div class="ver-emperor-promo">
+              <div class="ver-emperor-promo__title">👑 後追福利 · 倍率加倍中</div>
+              <div class="ver-emperor-promo__sub">08/20 恢復本服同倍率</div>
+            </div>
             <div class="ver-panel-grid">
               <div class="ver-badge">
                 <span class="ver-badge__label">遊戲版本</span>
@@ -287,34 +316,41 @@
               </div>
               <div class="ver-badge">
                 <span class="ver-badge__label">經驗倍率</span>
-                <span class="ver-badge__val">5 倍</span>
+                <span class="ver-badge__val">10 倍</span>
+                <span class="ver-badge__note">原 5 倍 ×2</span>
               </div>
               <div class="ver-badge">
                 <span class="ver-badge__label">金幣倍率</span>
-                <span class="ver-badge__val">2 倍</span>
+                <span class="ver-badge__val">4 倍</span>
+                <span class="ver-badge__note">原 2 倍 ×2</span>
               </div>
               <div class="ver-badge">
                 <span class="ver-badge__label">掉落倍率</span>
-                <span class="ver-badge__val">2 倍</span>
+                <span class="ver-badge__val">4 倍</span>
+                <span class="ver-badge__note">原 2 倍 ×2</span>
               </div>
               <div class="ver-badge">
                 <span class="ver-badge__label">武防強化</span>
-                <span class="ver-badge__val">2 倍</span>
+                <span class="ver-badge__val">4 倍</span>
+                <span class="ver-badge__note">原 2 倍 ×2</span>
               </div>
               <div class="ver-badge">
                 <span class="ver-badge__label">正義倍率</span>
-                <span class="ver-badge__val">3 倍</span>
+                <span class="ver-badge__val">6 倍</span>
+                <span class="ver-badge__note">原 3 倍 ×2</span>
               </div>
               <div class="ver-badge">
                 <span class="ver-badge__label">負重倍率</span>
-                <span class="ver-badge__val">4 倍</span>
+                <span class="ver-badge__val">8 倍</span>
+                <span class="ver-badge__note">原 4 倍 ×2</span>
               </div>
               <div class="ver-badge">
                 <span class="ver-badge__label">寵物經驗</span>
-                <span class="ver-badge__val">3 倍</span>
+                <span class="ver-badge__val">6 倍</span>
+                <span class="ver-badge__note">原 3 倍 ×2</span>
               </div>
             </div>
-            <div class="ver-panel__version-tag">依兩服進度差距，倍率將滾動式調整</div>
+            <div class="ver-panel__version-tag">後追福利期間，08/20 後恢復本服同倍率</div>
           </div>
         </div>
 
