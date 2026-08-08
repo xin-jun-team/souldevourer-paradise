@@ -62,6 +62,15 @@
       "tag": "全民活動",
       "tag_style": "active",
       "link_text": "查看詳情"
+    },
+    {
+      "title": "八八節感恩回饋 👨‍👧‍👦",
+      "desc": "慶祝父親節！活動期間單筆贊助滿 $8,888，加碼贈送 8 張「祝福強化卷軸」── 爸氣十足，強化不手軟！（可與單筆滿額贈禮、累計贊助禮包同時計算）",
+      "date_label": "08/08 ~ 08/16 · 單筆達標即贈",
+      "tag": "限時活動",
+      "tag_style": "active",
+      "link": "event-fathers-day.html",
+      "link_text": "查看詳情"
     }
   ],
   "upcoming": [

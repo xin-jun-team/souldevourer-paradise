@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>八八節感恩回饋 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* ══════════════════════════════
+       八八節活動 — 金色威嚴主題
+       ══════════════════════════════ */
+
+    /* ── 主視覺 Hero ── */
+    .fd-hero {
+      position: relative;
+      text-align: center;
+      padding: 72px 32px 56px;
+      margin-bottom: 56px;
+      overflow: hidden;
+    }
+    .fd-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 50% 20%, rgba(212,168,32,0.12) 0%, transparent 100%),
+        radial-gradient(ellipse 300px 300px at 20% 80%, rgba(122,0,204,0.06) 0%, transparent 100%),
+        radial-gradient(ellipse 300px 300px at 80% 80%, rgba(122,0,204,0.06) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    /* 頂部金色裝飾線 */
+    .fd-hero__ornament {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      margin-bottom: 28px; position: relative;
+    }
+    .fd-hero__ornament-line {
+      width: 80px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,168,32,0.6));
+    }
+    .fd-hero__ornament-line:last-child {
+      background: linear-gradient(90deg, rgba(212,168,32,0.6), transparent);
+    }
+    .fd-hero__ornament-diamond {
+      color: #d4a820; font-size: 0.6rem; opacity: 0.8;
+      animation: fd-diamond-pulse 4s ease-in-out infinite;
+    }
+    @keyframes fd-diamond-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+    .fd-hero__icon {
+      font-size: 4rem; margin-bottom: 20px;
+      filter: drop-shadow(0 0 24px rgba(212,168,32,0.5));
+      position: relative;
+      animation: fd-float 6s ease-in-out infinite;
+    }
+    @keyframes fd-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .fd-hero__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 2.2rem; font-weight: 900;
+      color: #ffe060;
+      letter-spacing: 0.25em;
+      text-shadow: 0 0 30px rgba(255,224,96,0.5), 0 4px 16px rgba(0,0,0,0.8);
+      margin-bottom: 16px; position: relative;
+    }
+    .fd-hero__subtitle {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem; font-weight: 500;
+      color: #e8d090;
+      letter-spacing: 0.15em;
+      line-height: 1.9;
+      margin-bottom: 32px; position: relative;
+    }
+    .fd-hero__date-wrap {
+      display: inline-flex; align-items: center; gap: 20px;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, rgba(212,168,32,0.12) 0%, rgba(122,0,204,0.06) 100%);
+      border: 1px solid rgba(212,168,32,0.35);
+      border-radius: 2px;
+      position: relative;
+    }
+    .fd-hero__date {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: #ffe060;
+      letter-spacing: 0.2em;
+    }
+    .fd-hero__date-sep {
+      color: rgba(212,168,32,0.4); font-size: 1.2rem;
+    }
+    .fd-hero__date-label {
+      font-size: 0.72rem; color: #b0a060;
+      letter-spacing: 0.1em; margin-top: 6px;
+    }
+
+    /* ── 核心獎勵區 ── */
+    .fd-reward-stage {
+      position: relative;
+      max-width: 820px; margin: 0 auto 48px;
+      background: linear-gradient(160deg, #1a1408 0%, #0e0a04 40%, #14080a 100%);
+      border: 2px solid rgba(212,168,32,0.45);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.4s;
+    }
+    .fd-reward-stage:hover {
+      box-shadow: 0 0 60px rgba(212,168,32,0.15), 0 16px 48px rgba(0,0,0,0.5);
+    }
+    /* 頂部金條 */
+    .fd-reward-stage::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent 5%, #c8a020, #ffe060, #ffe888, #ffe060, #c8a020, transparent 95%);
+    }
+    /* 背景光暈 */
+    .fd-reward-stage::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 180px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(212,168,32,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .fd-reward__header {
+      text-align: center;
+      padding: 44px 32px 24px;
+      position: relative; z-index: 1;
+    }
+    .fd-reward__condition-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem; font-weight: 700;
+      color: #a09060;
+      letter-spacing: 0.2em;
+      margin-bottom: 10px;
+    }
+    .fd-reward__amount {
+      font-family: 'Cinzel', serif;
+      font-size: 3.6rem; font-weight: 700;
+      color: #ffe060;
+      text-shadow: 0 0 28px rgba(255,224,96,0.5), 0 4px 12px rgba(0,0,0,0.8);
+      line-height: 1; margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+    .fd-reward__amount-sub {
+      font-size: 0.88rem;
+      color: #c8b070;
+      letter-spacing: 0.1em;
+    }
+
+    .fd-reward__divider {
+      height: 1px; margin: 0 40px;
+      background: linear-gradient(90deg, transparent, rgba(212,168,32,0.35), transparent);
+    }
+
+    .fd-reward__body {
+      display: flex; align-items: center; gap: 28px;
+      padding: 36px 44px 44px;
+      position: relative; z-index: 1;
+    }
+
+    .fd-reward__item-frame {
+      position: relative;
+      width: 100px; height: 100px;
+      flex-shrink: 0;
+    }
+    /* 外圈旋轉光環 */
+    .fd-reward__item-ring {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,168,32,0.2);
+      animation: fd-ring-spin 20s linear infinite;
+    }
+    .fd-reward__item-ring::before {
+      content: ''; position: absolute;
+      top: -2px; left: 50%; width: 4px; height: 4px;
+      background: #ffe060; border-radius: 50%;
+      box-shadow: 0 0 8px #ffe060;
+      transform: translateX(-50%);
+    }
+    @keyframes fd-ring-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* 內圈光暈 */
+    .fd-reward__item-glow {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,168,32,0.3) 0%, transparent 70%);
+      animation: fd-glow-pulse 3s ease-in-out infinite;
+    }
+    @keyframes fd-glow-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.12); }
+    }
+    .fd-reward__item-frame img {
+      position: relative;
+      width: 100px; height: 100px;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 0 12px rgba(212,168,32,0.5));
+      z-index: 1;
+    }
+
+    .fd-reward__item-info { flex: 1; }
+    .fd-reward__item-tag {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem; font-weight: 700;
+      color: #ffe060;
+      letter-spacing: 0.15em;
+      padding: 3px 12px;
+      background: rgba(212,168,32,0.15);
+      border: 1px solid rgba(212,168,32,0.35);
+      border-radius: 2px;
+      margin-bottom: 8px;
+    }
+    .fd-reward__item-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.4rem; font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 16px rgba(255,255,255,0.15);
+      margin-bottom: 10px;
+    }
+    .fd-reward__item-desc {
+      font-size: 0.88rem;
+      color: #c8b890;
+      line-height: 1.9;
+    }
+    .fd-reward__item-desc strong { color: #ffe060; }
+    .fd-reward__item-qty-inline {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: #ff8a80;
+      text-shadow: 0 0 12px rgba(255,138,128,0.4);
+      margin-left: 6px;
+    }
+
+    /* ── 三重獎勵區 ── */
+    .fd-triple {
+      max-width: 820px; margin: 0 auto 48px;
+      position: relative;
+    }
+    .fd-triple__title-wrap {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .fd-triple__title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.15rem; font-weight: 900;
+      color: #ffe060;
+      letter-spacing: 0.2em;
+      text-shadow: 0 0 16px rgba(255,224,96,0.3);
+    }
+    .fd-triple__subtitle {
+      font-size: 0.82rem;
+      color: #a09060;
+      margin-top: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    .fd-triple__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .fd-triple__card {
+      position: relative;
+      background: linear-gradient(160deg, #14102a 0%, #0c0818 100%);
+      border: 1px solid #2a1f40;
+      border-radius: 4px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .fd-triple__card:hover {
+      border-color: rgba(212,168,32,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(122,0,204,0.1);
+    }
+    .fd-triple__card-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem; font-weight: 700;
+      line-height: 1; margin-bottom: 8px;
+    }
+    .fd-triple__card:nth-child(1) .fd-triple__card-num { color: #ff8a80; }
+    .fd-triple__card:nth-child(2) .fd-triple__card-num { color: #ffe060; }
+    .fd-triple__card:nth-child(3) .fd-triple__card-num { color: #80cbc4; }
+    .fd-triple__card-label {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .fd-triple__card-desc {
+      font-size: 0.78rem;
+      color: #a098b0;
+      line-height: 1.7;
+    }
+    .fd-triple__card-desc strong { color: #e0d8c8; }
+
+    /* 卡片間的 + 號 */
+    .fd-triple__plus {
+      display: none;
+    }
+
+    /* 連接箭頭 */
+    .fd-triple__arrow {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.2rem;
+      color: rgba(212,168,32,0.4);
+      letter-spacing: 0.3em;
+    }
+
+    /* ── 範例計算 ── */
+    .fd-example {
+      max-width: 820px; margin: 0 auto 48px;
+      background: linear-gradient(160deg, #1a0e28 0%, #0c0818 100%);
+      border: 1px solid rgba(122,0,204,0.25);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .fd-example__header {
+      padding: 16px 28px;
+      background: rgba(122,0,204,0.08);
+      border-bottom: 1px solid rgba(122,0,204,0.15);
+    }
+    .fd-example__header-text {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.88rem; font-weight: 700;
+      color: #c080ff;
+      letter-spacing: 0.1em;
+    }
+    .fd-example__body { padding: 24px 28px; }
+    .fd-example__scenario {
+      font-size: 0.95rem; font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .fd-example__scenario em {
+      font-style: normal; color: #ffe060;
+    }
+    .fd-example__list {
+      list-style: none; padding: 0; margin: 0;
+    }
+    .fd-example__list li {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 0;
+      font-size: 0.88rem; color: #c8b890;
+    }
+    .fd-example__list li::before {
+      content: '→';
+      color: #d4a820;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .fd-example__list li strong { color: #fff; }
+    .fd-example__list li span { color: #ff8a80; font-weight: 700; }
+
+    /* ── 注意事項 ── */
+    .fd-notes {
+      max-width: 820px; margin: 0 auto 40px;
+      background: #120e22;
+      border: 1px solid rgba(212,168,32,0.15);
+      border-radius: 2px;
+      padding: 28px 32px;
+    }
+    .fd-notes__title {
+      font-family: 'Cinzel', serif;
+      color: #ffe060;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 14px;
+    }
+    .fd-notes ul { list-style: none; padding: 0; margin: 0; }
+    .fd-notes li {
+      color: #b0a890;
+      font-size: 0.85rem;
+      padding: 5px 0;
+      line-height: 1.7;
+    }
+    .fd-notes li::before { content: "· "; color: #7a6030; }
+    .fd-notes li strong { color: #e0d8c8; }
+    .fd-notes li em { color: #ff8a80; font-style: normal; font-weight: 700; }
+
+    .fd-line-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 24px; padding: 14px 36px;
+      background: #06C755; color: #fff;
+      font-size: 0.95rem; font-weight: 700;
+      border-radius: 4px; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 16px rgba(6,199,85,0.2);
+    }
+    .fd-line-btn:hover { background: #05b34c; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(6,199,85,0.3); }
+
+    .fd-back {
+      display: block;
+      max-width: 820px; margin: 0 auto;
+      text-align: center;
+      padding: 14px;
+      color: #ffe060; font-size: 0.9rem; text-decoration: none;
+      border: 1px solid rgba(212,168,32,0.2); border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .fd-back:hover { background: rgba(212,168,32,0.08); }
+
+    /* ── RWD ── */
+    @media (max-width: 720px) {
+      .fd-hero { padding: 48px 20px 40px; }
+      .fd-hero__title { font-size: 1.6rem; letter-spacing: 0.15em; }
+      .fd-hero__subtitle { font-size: 0.92rem; }
+      .fd-reward__header { padding: 32px 20px 20px; }
+      .fd-reward__amount { font-size: 2.6rem; }
+      .fd-reward__body { flex-direction: column; text-align: center; padding: 28px 24px 32px; }
+      .fd-triple__cards { grid-template-columns: 1fr; gap: 12px; }
+      .fd-example__body { padding: 20px; }
+      .fd-notes { padding: 20px; }
+    }
+  </style>
+  <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
+</head>
+<body>
+  <div class="float-sidebar float-sidebar--left">
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-sponsor.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61z"/></svg></span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-download.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+  <div class="float-sidebar float-sidebar--right">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-community.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></span>
+      <span class="float-label">社群</span>
+    </a>
+    <a href="https://lin.ee/XuVhcl6" target="_blank" class="float-btn float-btn--line-cs">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-service.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.08-1.31A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm2.07-5.75l-.9.92C11.45 11.9 11 12.5 11 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H6c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg></span>
+      <span class="float-label">客服</span>
+    </a>
+  </div>
+  <header id="site-header"><div class="header-inner container"><a href="../index.html" class="site-logo"><img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂"><span class="logo-text">噬魂天堂</span></a><a href="checkin-wall.html" class="nav-btn" style="color:var(--soul-bright,#b040ff);border-color:var(--soul);margin-left:8px;font-size:0.78rem;">◈ 打卡牆</a><nav class="site-nav"><a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a><a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a><div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><span class="nav-sponsor-wrap"><a href="sponsor.html" class="nav-btn">贊助說明</a><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-coin">💰</span><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✧</span><span class="nav-sponsor-sparkle">✦</span></span><a href="secret-shop.html" class="nav-btn" style="color:#ce93d8;font-size:0.82rem;">神秘商店</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button></nav><button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button></div><div class="mobile-nav" id="mobile-nav"><a href="download.html">遊戲下載</a><a href="news.html">最新公告</a><a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a><a href="secret-shop.html" style="color:#ce93d8;">神秘商店</a></div></header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — FATHER'S DAY 2026</p>
+    <h1 class="page-hero__title">八八節<span>感恩回饋</span></h1>
+    <p class="page-hero__sub">爸氣十足，強化不手軟</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <!-- ══════ 主視覺 ══════ -->
+    <div class="fd-hero">
+      <div class="fd-hero__ornament">
+        <span class="fd-hero__ornament-line"></span>
+        <span class="fd-hero__ornament-diamond">◆</span>
+        <span class="fd-hero__ornament-line" style="transform:scaleX(-1)"></span>
+      </div>
+      <div class="fd-hero__icon">👨‍👧‍👦</div>
+      <div class="fd-hero__title">八八佳節 · 爸氣加碼</div>
+      <div class="fd-hero__subtitle">
+        每一位在噬魂世界裡扛傷搶王、熬夜練等的勇者<br>
+        都值得一份來自官方的敬意 —— 這次，換我們罩你
+      </div>
+      <div class="fd-hero__date-wrap">
+        <div>
+          <div class="fd-hero__date">08.08</div>
+          <div class="fd-hero__date-label">START</div>
+        </div>
+        <span class="fd-hero__date-sep">—</span>
+        <div>
+          <div class="fd-hero__date">08.16</div>
+          <div class="fd-hero__date-label">END</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ 核心獎勵 ══════ -->
+    <p class="fp-heading">◆ 活動內容</p>
+
+    <div class="fd-reward-stage">
+      <div class="fd-reward__header">
+        <div class="fd-reward__condition-label">SINGLE PURCHASE REQUIRED</div>
+        <div class="fd-reward__amount">$8,888</div>
+        <div class="fd-reward__amount-sub">活動期間 · 單筆贊助滿額即贈 · 不限次數</div>
+      </div>
+      <div class="fd-reward__divider"></div>
+      <div class="fd-reward__body">
+        <div class="fd-reward__item-frame">
+          <div class="fd-reward__item-ring"></div>
+          <div class="fd-reward__item-glow"></div>
+          <img src="../assets/images/item-6058.png" alt="祝福強化卷軸" loading="lazy">
+        </div>
+        <div class="fd-reward__item-info">
+          <span class="fd-reward__item-tag">BLESSED SCROLL</span>
+          <div class="fd-reward__item-name">祝福強化卷軸 <span class="fd-reward__item-qty-inline">×8</span></div>
+          <div class="fd-reward__item-desc">
+            受神聖祝福的強化卷軸，大幅提升武器與防具的強化成功率。<br>
+            失敗不爆裝、成功率拉滿 —— <strong>八八節限定，一次給你 8 張</strong>，讓你的裝備直接起飛。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ 三重獎勵 ══════ -->
+    <div class="fd-triple">
+      <div class="fd-triple__title-wrap">
+        <div class="fd-triple__title">✦ 一筆贊助 · 三重收穫 ✦</div>
+        <div class="fd-triple__subtitle">本活動贊助金額可與以下活動同時計算，獎勵全部疊加</div>
+      </div>
+
+      <div class="fd-triple__cards">
+        <div class="fd-triple__card">
+          <div class="fd-triple__card-num">01</div>
+          <div class="fd-triple__card-label">八八節限定</div>
+          <div class="fd-triple__card-desc">
+            單筆滿 $8,888<br>
+            <strong>祝福強化卷軸 ×8</strong>
+          </div>
+        </div>
+        <div class="fd-triple__card">
+          <div class="fd-triple__card-num">02</div>
+          <div class="fd-triple__card-label">單筆滿額贈禮</div>
+          <div class="fd-triple__card-desc">
+            同筆金額觸發<br>
+            <strong>傳說寶箱 · 秘笈 · 變形箱</strong>
+          </div>
+        </div>
+        <div class="fd-triple__card">
+          <div class="fd-triple__card-num">03</div>
+          <div class="fd-triple__card-label">累計贊助禮包</div>
+          <div class="fd-triple__card-desc">
+            金額同步累計<br>
+            <strong>推進下一階段里程碑</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ 範例 ══════ -->
+    <div class="fd-example">
+      <div class="fd-example__header">
+        <span class="fd-example__header-text">◈ 實際範例</span>
+      </div>
+      <div class="fd-example__body">
+        <div class="fd-example__scenario">
+          活動期間單筆贊助 <em>$10,000</em>，你將一次獲得：
+        </div>
+        <ul class="fd-example__list">
+          <li><strong>八八節加碼</strong>：祝福強化卷軸 <span>×8</span></li>
+          <li><strong>單筆滿額 $10,000</strong>：傳說變身卡寶箱 <span>×1</span></li>
+          <li><strong>累計贊助</strong>：同步累積至對應階段，達標再領禮包</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ══════ 注意事項 ══════ -->
+    <div class="fd-notes">
+      <p class="fd-notes__title">NOTICE</p>
+      <ul>
+        <li><strong>活動期間：</strong>2026/08/08 ~ 2026/08/16，逾期不補發</li>
+        <li><strong>單筆計算：</strong>以單次贊助金額為準，不與其他筆合併</li>
+        <li><strong>不限次數：</strong>活動期間每次單筆達標皆可領取，多次贊助多次贈送</li>
+        <li>贊助後請透過 <strong>官方 LINE</strong> 提供截圖申請，經確認後發放至遊戲信箱</li>
+        <li>本活動獎勵與<em>「單筆滿額贈禮」</em>、<em>「累計贊助禮包」</em>可同時計算</li>
+        <li>本活動最終解釋權歸噬魂天堂官方所有</li>
+      </ul>
+      <a href="https://lin.ee/XuVhcl6" target="_blank" class="fd-line-btn">
+        <span>LINE</span> 聯繫客服領取
+      </a>
+    </div>
+
+    <a href="events.html" class="fd-back">▲ 返回活動列表</a>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2026 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div>
+    <div style="max-width:1080px;margin:0 auto;padding:12px 24px 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <a href="https://lin.ee/UbLA1Dq" target="_blank" rel="noopener" style="color:var(--gold-dim);font-size:12px;letter-spacing:1.2px;font-weight:600;text-shadow:0 0 10px rgba(201,169,110,0.36);text-decoration:none;">阿柴美工 LINE @323rffot 美工找我~</a>
+      <a href="https://www.gamex123.com/lineage.html" target="_blank" rel="noopener" style="display:inline-flex;opacity:0.82;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.82'">
+        <img src="../assets/images/private-server-123.gif" alt="私服123" style="display:block;width:78px;height:auto;" loading="lazy">
+      </a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
