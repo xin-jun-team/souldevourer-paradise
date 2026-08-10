@@ -373,6 +373,8 @@ document.addEventListener('DOMContentLoaded', loadHomeData);
     { title:'主線指南書', path:'pages/items-quest-medal.html', keywords:'主線 指南書 任務 勳章 quest medal' },
     { title:'戰勳徽章', path:'pages/items-battle-badge.html', keywords:'戰勳 徽章 battle badge' },
     { title:'蠟燭系統', path:'pages/items-candle.html', keywords:'蠟燭 candle 火焰' },
+    { title:'職業之力', path:'pages/feature-job-power.html', keywords:'職業之力 殷海薩 屠龍者 席琳 神射 暗影 元素 精靈 王族 騎士 法師 妖精 黑暗妖精 龍鬥士 幻術師 戰士 西方失敗 升階' },
+    { title:'赫卡特卡片', path:'pages/items-hecate.html', keywords:'赫卡特 卡片 攻擊 防禦 夜月之力 強化 西方失敗 hecate' },
   ];
 
   // 判斷是否在 pages/ 子目錄
