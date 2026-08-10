@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>法師召喚系統 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    html, body { overflow-x: hidden; }
+
+    /* ── 特殊強化三卡 ── */
+    .sm-buff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .sm-buff {
+      position: relative;
+      background: linear-gradient(160deg, #14102a 0%, #0c0818 100%);
+      border: 1px solid #1e1630;
+      border-radius: 4px;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .sm-buff:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212,168,32,0.4);
+    }
+    .sm-buff::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 0; right: 0;
+      height: 2px;
+    }
+    .sm-buff--atk::before { background: linear-gradient(90deg, transparent, #4080ff, transparent); }
+    .sm-buff--def::before { background: linear-gradient(90deg, transparent, #40c070, transparent); }
+    .sm-buff--mag::before { background: linear-gradient(90deg, transparent, #c060ff, transparent); }
+
+    .sm-buff__icon {
+      font-size: 2.2rem;
+      flex-shrink: 0;
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(212,168,32,0.06);
+      border: 1px solid rgba(212,168,32,0.15);
+      border-radius: 4px;
+    }
+    .sm-buff__info { flex: 1; }
+    .sm-buff__name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem; font-weight: 900;
+      color: #e0d8c8;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .sm-buff--mag .sm-buff__name { color: #d0a0ff; }
+    .sm-buff--def .sm-buff__name { color: #80d8a0; }
+    .sm-buff--atk .sm-buff__name { color: #80b0ff; }
+    .sm-buff__desc {
+      font-size: 0.82rem;
+      color: #a09880;
+      line-height: 1.6;
+    }
+    .sm-buff__desc strong { color: #ffe060; }
+
+    .sm-buff__tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem; font-weight: 700;
+      color: #ffe060;
+      letter-spacing: 0.12em;
+      padding: 2px 8px;
+      background: rgba(212,168,32,0.1);
+      border: 1px solid rgba(212,168,32,0.25);
+      border-radius: 2px;
+      position: absolute;
+      top: 14px; right: 14px;
+    }
+
+    /* ── 戒指提示 ── */
+    .sm-ring-note {
+      background: #12100a;
+      border: 1px solid rgba(212,168,32,0.25);
+      border-radius: 4px;
+      padding: 16px 22px;
+      margin-bottom: 40px;
+      font-size: 0.85rem;
+      color: #c8b880;
+      line-height: 1.7;
+    }
+    .sm-ring-note strong { color: #ffe060; }
+
+    /* ── BOSS 掉落網格 ── */
+    .sm-boss-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+    .sm-boss-tag {
+      padding: 7px 14px;
+      background: #100e1e;
+      border: 1px solid #2a1f40;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      color: #c0b8a8;
+      transition: border-color 0.2s;
+    }
+    .sm-boss-tag:hover {
+      border-color: rgba(122,0,204,0.4);
+      color: #e0d8c8;
+    }
+
+    /* ── 需求表格 ── */
+    .sm-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 48px; }
+    .sm-table {
+      width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 700px;
+    }
+    .sm-table th {
+      background: linear-gradient(90deg, rgba(212,168,32,0.14) 0%, rgba(212,168,32,0.04) 100%);
+      color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.66rem;
+      letter-spacing: 0.1em; padding: 10px 14px; border: 1px solid #2a1f40; text-align: center;
+    }
+    .sm-table th:first-child { text-align: left; }
+    .sm-table td {
+      background: #0c0a14; padding: 9px 14px; border: 1px solid #1a1428; color: #b0a890; text-align: center;
+    }
+    .sm-table td:first-child { color: #d8d0c0; font-weight: 600; text-align: left; }
+    .sm-table tr:nth-child(even) td { background: #0e0c18; }
+    .sm-table tr:hover td { background: #141020; }
+
+    /* 終極三行特殊底色 */
+    .sm-table tr.sm-row--mag td { background: rgba(160,80,255,0.06); }
+    .sm-table tr.sm-row--mag td:first-child { color: #d0a0ff; }
+    .sm-table tr.sm-row--def td { background: rgba(40,160,80,0.06); }
+    .sm-table tr.sm-row--def td:first-child { color: #80d8a0; }
+    .sm-table tr.sm-row--atk td { background: rgba(60,120,255,0.06); }
+    .sm-table tr.sm-row--atk td:first-child { color: #80b0ff; }
+
+    .sm-val { color: #ffe060; font-weight: 700; font-family: 'Cinzel', serif; }
+    .sm-val--red { color: #ff6b6b; font-weight: 700; font-family: 'Cinzel', serif; }
+
+    /* ── 導覽 ── */
+    .sm-back {
+      display: block; max-width: 820px; margin: 0 auto;
+      text-align: center; padding: 14px;
+      color: #c8b880; font-size: 0.9rem; text-decoration: none;
+      border: 1px solid rgba(212,168,32,0.15); border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .sm-back:hover { background: rgba(212,168,32,0.05); }
+
+    @media (max-width: 720px) {
+      .sm-buff-grid { grid-template-columns: 1fr; }
+      .sm-table { font-size: 0.75rem; }
+      .sm-table th, .sm-table td { padding: 7px 8px; }
+    }
+  </style>
+  <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
+</head>
+<body>
+  <div class="float-sidebar float-sidebar--left">
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-sponsor.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61z"/></svg></span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-download.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+  <div class="float-sidebar float-sidebar--right">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-community.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></span>
+      <span class="float-label">社群</span>
+    </a>
+    <a href="https://lin.ee/XuVhcl6" target="_blank" class="float-btn float-btn--line-cs">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-service.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.08-1.31A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm2.07-5.75l-.9.92C11.45 11.9 11 12.5 11 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H6c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg></span>
+      <span class="float-label">客服</span>
+    </a>
+  </div>
+  <header id="site-header"><div class="header-inner container"><a href="../index.html" class="site-logo"><img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂"><span class="logo-text">噬魂天堂</span></a><a href="checkin-wall.html" class="nav-btn" style="color:var(--soul-bright,#b040ff);border-color:var(--soul);margin-left:8px;font-size:0.78rem;">◈ 打卡牆</a><nav class="site-nav"><a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a><a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a><div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><span class="nav-sponsor-wrap"><a href="sponsor.html" class="nav-btn">贊助說明</a><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-coin">💰</span><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✧</span><span class="nav-sponsor-sparkle">✦</span></span><a href="secret-shop.html" class="nav-btn" style="color:#ce93d8;font-size:0.82rem;">神秘商店</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button></nav><button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button></div><div class="mobile-nav" id="mobile-nav"><a href="download.html">遊戲下載</a><a href="news.html">最新公告</a><a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a><a href="secret-shop.html" style="color:#ce93d8;">神秘商店</a></div></header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — SUMMON SYSTEM</p>
+    <h1 class="page-hero__title">法師<span>召喚系統</span></h1>
+    <p class="page-hero__sub">喚醒忠僕，以魅力駕馭萬獸</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">◆ 系統說明</p>
+    <div class="fp-intro">
+      法師可透過召喚魔法呼喚各式召喚獸參戰，隨角色等級與魅力提升可解鎖更強大的召喚對象。<br>
+      穿戴<strong>【召喚控制戒指】</strong>後，終極三大召喚獸將獲得<strong>特殊強化加成</strong>，戰力大幅躍升。
+    </div>
+
+    <!-- ═══ 特殊強化 ═══ -->
+    <p class="fp-heading">✦ 召喚獸特殊強化</p>
+
+    <div class="sm-ring-note">
+      以下三隻終極召喚獸需穿戴<strong>【召喚控制戒指】</strong>方可觸發特殊強化效果。戒指由世界 BOSS 機率掉落。
+    </div>
+
+    <div class="sm-buff-grid">
+      <div class="sm-buff sm-buff--mag">
+        <span class="sm-buff__tag">BUFF</span>
+        <div class="sm-buff__icon">🔮</div>
+        <div class="sm-buff__info">
+          <div class="sm-buff__name">變形怪</div>
+          <div class="sm-buff__desc">上調<strong>魔法攻擊係數</strong>，法術輸出顯著提升</div>
+        </div>
+      </div>
+      <div class="sm-buff sm-buff--def">
+        <span class="sm-buff__tag">BUFF</span>
+        <div class="sm-buff__icon">🛡️</div>
+        <div class="sm-buff__info">
+          <div class="sm-buff__name">巨大牛人</div>
+          <div class="sm-buff__desc">上調<strong>整體防禦係數</strong>，坦度大幅強化</div>
+        </div>
+      </div>
+      <div class="sm-buff sm-buff--atk">
+        <span class="sm-buff__tag">BUFF</span>
+        <div class="sm-buff__icon">⚔️</div>
+        <div class="sm-buff__info">
+          <div class="sm-buff__name">黑豹</div>
+          <div class="sm-buff__desc">上調<strong>物理攻擊係數</strong>，近戰撕裂力倍增</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 戒指掉落 ═══ -->
+    <p class="fp-heading">💍 召喚控制戒指掉落首領</p>
+
+    <div class="sm-boss-grid">
+      <span class="sm-boss-tag">烽火死亡騎士</span>
+      <span class="sm-boss-tag">獨角獸</span>
+      <span class="sm-boss-tag">鐮刀死神</span>
+      <span class="sm-boss-tag">林德拜爾</span>
+      <span class="sm-boss-tag">安塔瑞斯</span>
+      <span class="sm-boss-tag">法利昂</span>
+      <span class="sm-boss-tag">巴拉卡斯</span>
+      <span class="sm-boss-tag">底比斯 賀洛斯</span>
+      <span class="sm-boss-tag">底比斯 阿努比斯</span>
+      <span class="sm-boss-tag">吉爾塔斯</span>
+      <span class="sm-boss-tag">杰弗雷庫(雄)</span>
+      <span class="sm-boss-tag">杰弗雷庫(雌)</span>
+      <span class="sm-boss-tag">沙蟲</span>
+      <span class="sm-boss-tag">白面金毛玉藻前</span>
+      <span class="sm-boss-tag">白面金毛九尾狐</span>
+      <span class="sm-boss-tag">白面金毛殺生石</span>
+      <span class="sm-boss-tag">巨大食人花</span>
+      <span class="sm-boss-tag">歪曲的潔尼斯女王</span>
+      <span class="sm-boss-tag">混沌</span>
+      <span class="sm-boss-tag">死亡</span>
+      <span class="sm-boss-tag">墮落</span>
+      <span class="sm-boss-tag">炎魔</span>
+      <span class="sm-boss-tag">火焰之影</span>
+      <span class="sm-boss-tag">沉睡的巴拉卡斯</span>
+      <span class="sm-boss-tag">恐怖的巴拉卡斯</span>
+      <span class="sm-boss-tag">巨型骷髏</span>
+      <span class="sm-boss-tag">變異實驗體</span>
+    </div>
+
+    <!-- ═══ 需求表格 ═══ -->
+    <p class="fp-heading">📋 召喚需求與數量對照表</p>
+
+    <div class="sm-table-wrap">
+      <table class="sm-table">
+        <thead>
+          <tr>
+            <th>召喚怪物</th>
+            <th>等級需求</th>
+            <th>魅力獎勵</th>
+            <th>最低魅力</th>
+            <th>魅力需求</th>
+            <th>最大數量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>哈伯哥布林 / 艾多倫 / 安普</td>
+            <td><span class="sm-val">28</span></td>
+            <td>6</td><td>8</td><td>8</td>
+            <td><span class="sm-val--red">5</span></td>
+          </tr>
+          <tr>
+            <td>甘地妖魔 / 都達瑪拉妖魔 / 妖魔巡守</td>
+            <td><span class="sm-val">32</span></td>
+            <td>6</td><td>8</td><td>8</td>
+            <td><span class="sm-val--red">5</span></td>
+          </tr>
+          <tr>
+            <td>狂野毒牙 / 狂野之毒 / 狂野之魔</td>
+            <td><span class="sm-val">36</span></td>
+            <td>6</td><td>8</td><td>8</td>
+            <td><span class="sm-val--red">5</span></td>
+          </tr>
+          <tr>
+            <td>食人妖精 / 食人妖精王 / 冰人</td>
+            <td><span class="sm-val">40</span></td>
+            <td>6</td><td>8</td><td>8</td>
+            <td><span class="sm-val--red">5</span></td>
+          </tr>
+          <tr>
+            <td>狂暴蜥蜴人 / 重裝蜥蜴人 / 高等蜥蜴人</td>
+            <td><span class="sm-val">44</span></td>
+            <td>6</td><td>8</td><td>8</td>
+            <td><span class="sm-val--red">5</span></td>
+          </tr>
+          <tr>
+            <td>火蜥蜴 / 火焰戰士 / 火焰弓箭手</td>
+            <td><span class="sm-val">48</span></td>
+            <td>6</td><td>8</td><td>8</td>
+            <td><span class="sm-val--red">5</span></td>
+          </tr>
+          <tr>
+            <td>魔熊 / 魔狼 / 魔蝙蝠</td>
+            <td><span class="sm-val">52</span></td>
+            <td>6</td><td>8</td><td>8</td>
+            <td><span class="sm-val--red">5</span></td>
+          </tr>
+          <tr>
+            <td>巨大守護螞蟻 / 強化白螞蟻 / 巨大強化白螞蟻</td>
+            <td><span class="sm-val">56</span></td>
+            <td>6</td><td>8</td><td><span class="sm-val">10</span></td>
+            <td><span class="sm-val--red">4</span></td>
+          </tr>
+          <tr>
+            <td>地獄奴隸 / 闇精靈王 / 食腐獸</td>
+            <td><span class="sm-val">60</span></td>
+            <td>6</td><td>8</td><td><span class="sm-val">12</span></td>
+            <td><span class="sm-val--red">3</span></td>
+          </tr>
+          <tr>
+            <td>地獄束縛犬</td>
+            <td><span class="sm-val">64</span></td>
+            <td>6</td><td><span class="sm-val">14</span></td><td><span class="sm-val">20</span></td>
+            <td><span class="sm-val--red">2</span></td>
+          </tr>
+          <tr class="sm-row--mag">
+            <td>變形怪</td>
+            <td><span class="sm-val">68</span></td>
+            <td>0</td><td><span class="sm-val">36</span></td><td>0</td>
+            <td><span class="sm-val--red">1</span></td>
+          </tr>
+          <tr class="sm-row--def">
+            <td>巨大牛人</td>
+            <td><span class="sm-val">72</span></td>
+            <td>0</td><td><span class="sm-val">36</span></td><td>0</td>
+            <td><span class="sm-val--red">1</span></td>
+          </tr>
+          <tr class="sm-row--atk">
+            <td>黑豹</td>
+            <td><span class="sm-val">72</span></td>
+            <td>0</td><td><span class="sm-val">44</span></td><td>0</td>
+            <td><span class="sm-val--red">1</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 導覽 -->
+    <div class="fp-pager">
+      <div></div>
+      <div class="fp-pager__center"><a href="features-overview.html" class="fp-pager__back">▲ 返回系統列表</a></div>
+      <div></div>
+    </div>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2026 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div>
+    <div style="max-width:1080px;margin:0 auto;padding:12px 24px 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <a href="https://lin.ee/UbLA1Dq" target="_blank" rel="noopener" style="color:var(--gold-dim);font-size:12px;letter-spacing:1.2px;font-weight:600;text-shadow:0 0 10px rgba(201,169,110,0.36);text-decoration:none;">阿柴美工 LINE @323rffot 美工找我~</a>
+      <a href="https://www.gamex123.com/lineage.html" target="_blank" rel="noopener" style="display:inline-flex;opacity:0.82;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.82'">
+        <img src="../assets/images/private-server-123.gif" alt="私服123" style="display:block;width:78px;height:auto;" loading="lazy">
+      </a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

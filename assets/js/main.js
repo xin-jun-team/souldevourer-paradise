@@ -375,6 +375,7 @@ document.addEventListener('DOMContentLoaded', loadHomeData);
     { title:'蠟燭系統', path:'pages/items-candle.html', keywords:'蠟燭 candle 火焰' },
     { title:'職業之力', path:'pages/feature-job-power.html', keywords:'職業之力 殷海薩 屠龍者 席琳 神射 暗影 元素 精靈 王族 騎士 法師 妖精 黑暗妖精 龍鬥士 幻術師 戰士 西方失敗 升階' },
     { title:'赫卡特卡片', path:'pages/items-hecate.html', keywords:'赫卡特 卡片 攻擊 防禦 夜月之力 強化 西方失敗 hecate' },
+    { title:'法師召喚系統', path:'pages/feature-summon.html', keywords:'召喚 法師 變形怪 巨大牛人 黑豹 召喚控制戒指 魅力 summon' },
   ];
 
   // 判斷是否在 pages/ 子目錄
