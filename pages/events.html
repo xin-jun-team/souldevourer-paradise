@@ -36,6 +36,10 @@
     .ev-link:hover .ev-link__arrow { color:var(--gold); }
     .ev-link:hover .ev-link__arrow::after { color:var(--gold-bright); }
     .ev-link__date { font-size:0.7rem; color:var(--gold-dim); font-family:'Cinzel',serif; margin-top:4px; }
+    /* 活動結束：卡片框變暗 */
+    .ev-link--ended { opacity:0.5; filter:grayscale(0.6); border-color:rgba(255,255,255,0.06) !important; background:rgba(10,8,16,0.9); }
+    .ev-link--ended:hover { transform:none; box-shadow:none; border-color:rgba(255,255,255,0.06) !important; }
+    .ev-link__tag--ended { background:rgba(120,120,120,0.18); border:1px solid rgba(150,150,150,0.35); color:#9a9a9a; }
 
     .ev-cat-title {
       font-family:'Noto Serif TC',serif; font-size:1rem; font-weight:700;
@@ -134,6 +138,7 @@
             var tag = ev.tag || '長期活動';
             var style = ev.tag_style || 'permanent';
             var linkText = ev.link_text || '查看詳情';
+            var cardCls = ev.ended ? 'ev-link ev-link--ended' : 'ev-link';
             var inner =
               '<div class="ev-link__head">' +
                 '<span class="ev-link__tag ev-link__tag--' + style + '">' + tag + '</span>' +
@@ -145,9 +150,9 @@
                 (ev.link ? '<div class="ev-link__arrow">' + linkText + '</div>' : '') +
               '</div>';
             if (ev.link) {
-              return '<a href="' + ev.link + '" class="ev-link">' + inner + '</a>';
+              return '<a href="' + ev.link + '" class="' + cardCls + '">' + inner + '</a>';
             } else {
-              return '<div class="ev-link" style="cursor:default;">' + inner + '</div>';
+              return '<div class="' + cardCls + '" style="cursor:default;">' + inner + '</div>';
             }
           }).join('');
         }
