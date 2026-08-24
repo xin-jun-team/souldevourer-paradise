@@ -763,7 +763,7 @@
     <div class="wall-banner">
       <div class="wall-banner__title">◈ 歡迎來到靈魂打卡牆</div>
       <div class="wall-banner__text">
-        歡迎在底下留言唷～<strong>每週日 18:00</strong> 抽出幸運玩家！本次抽獎為 <strong style="color:#ff4040;">08/30 (日)</strong>。<br>
+        歡迎在底下留言唷～<strong>每週日 18:00</strong> 抽出幸運玩家！本次抽獎為 <strong style="color:#ff4040;"><span class="nextDrawDate">08/30 (日)</span></strong>。<br>
         <span class="wall-banner__fun">想抽好獎？先留個言再說，沒留言的人是不會中獎的 ^^</span>
       </div>
 
@@ -802,7 +802,7 @@
       <div class="wall-rules__title">◈ 打卡抽獎活動辦法</div>
       <ul class="wall-rules__list">
         <li>在打卡牆留下你的靈魂印記，每期抽 <strong>5 名</strong></li>
-        <li>本次抽獎：<strong style="color:#ff4040;">08/30 (日)</strong>，固定<strong>每週日 18:00 抽獎 + 打卡牆重置</strong></li>
+        <li>本次抽獎：<strong style="color:#ff4040;"><span class="nextDrawDate">08/30 (日)</span></strong>，固定<strong>每週日 18:00 抽獎 + 打卡牆重置</strong></li>
         <li>每人最多留言 <strong>3 次</strong>（是「每人」不是「每隻帳號」）</li>
         <li>領獎資格：須加入<strong>官方 LINE</strong> 並已申請 <strong>LINE 禮包</strong></li>
         <li>每次抽獎每人僅限領取一次，重複者依序順延下一位</li>
@@ -1050,6 +1050,21 @@
       }).join('');
     }
     renderPrizeList();
+
+    // 自動顯示下一個週日 18:00 抽獎日
+    function fillNextDraw() {
+      var now = new Date();
+      var d = new Date(); d.setHours(18, 0, 0, 0);
+      var add = (7 - d.getDay()) % 7;
+      if (add === 0 && now.getTime() > d.getTime()) add = 7;
+      d.setDate(d.getDate() + add);
+      var mm = (d.getMonth() + 1 < 10 ? '0' : '') + (d.getMonth() + 1);
+      var dd = (d.getDate() < 10 ? '0' : '') + d.getDate();
+      var txt = mm + '/' + dd + ' (日)';
+      var els = document.querySelectorAll('.nextDrawDate');
+      for (var i = 0; i < els.length; i++) els[i].textContent = txt;
+    }
+    fillNextDraw();
 
     function renderWinners(winners) {
       var listEl = document.getElementById('winnersList');
