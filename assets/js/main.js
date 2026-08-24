@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', loadHomeData);
 ───────────────────────────────── */
 (function () {
   var searchData = [
-    // { title:'龍珠系統', path:'pages/feature-dragon-ball.html', keywords:'龍珠 龍族之血 神龍之羽 神龍錢包 缺角的羽毛 強化 1星 2星 3星 4星 5星 6星 7星 飛龍 dragon ball' },
+    // { title:'七龍珠', path:'pages/feature-dragon-ball.html', keywords:'龍珠 龍族之血 神龍之羽 神龍錢包 缺角的羽毛 強化 1星 2星 3星 4星 5星 6星 7星 飛龍 dragon ball' },
     { title:'轉生系統', path:'pages/feature-reborn.html', keywords:'轉生 1轉 2轉 3轉 劍術領域 魔幻深淵 海王 神射手 魔導師 劍盾師 魔劍師 波賽頓 精靈祝福 源力動能 金剛不壞 逍遙劍仙 轉生證明 菜蟲' },
     // { title:'BOSS 裝備', path:'pages/feature-boss-gear.html', keywords:'BOSS 哈們 龍王敖丙 千手觀音 喬巴 毒蟲 水龍 聖靈 賊鹿 套裝 伏爾甘 女神的眼淚' },
     { title:'噬魂魔核', path:'pages/feature-soul-core.html', keywords:'噬魂魔核 碎片 合成 核心材料 soul core 35% 成功率' },
