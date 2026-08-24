@@ -773,18 +773,9 @@
           <span style="background:linear-gradient(135deg,#d4a820,#a07818);color:#fff;font-size:0.72rem;font-weight:700;padding:4px 12px;letter-spacing:0.15em;">每期 5 名</span>
           <span style="color:#ffe060;font-size:1.1rem;font-weight:900;letter-spacing:0.08em;">本期獎勵</span>
         </div>
-        <div style="font-size:0.85rem;line-height:1.9;">
-          <div style="color:#ff4040;font-weight:700;">頭獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">(活動) 亞丁黃冠 (30日)</div>
-          <div style="color:#b040ff;font-weight:700;margin-top:6px;">貳獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">防爆卷箱子 ×2</div>
-          <div style="color:#64b5f6;font-weight:700;margin-top:6px;">參獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">防爆卷箱子 ×1</div>
-          <div style="color:#69f0ae;font-weight:700;margin-top:6px;">肆獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">夜月之力 ×5</div>
-          <div style="color:#ffe060;font-weight:700;margin-top:6px;">伍獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">職業變形箱 (3日)</div>
-        </div>
+        <div style="font-size:0.85rem;line-height:1.9;" id="prizeList"></div>
+        <!-- ★★★ 每期只改這一行：獎品唯一來源（網頁＋外掛都讀這裡）★★★ -->
+        <script id="prize-data" type="application/json">["【頭獎】情人戒指 ×1","【貳獎】噬魂鑽 ×1000","【參獎】噬魂鑽 ×500","【肆獎】天幣 500 萬","【伍獎】天幣 300 萬"]</script>
       </div>
     </div>
   </div>
@@ -1041,6 +1032,24 @@
 
       grid.innerHTML = html;
     }
+
+    // 本期獎勵清單：讀 prize-data 自動渲染（唯一來源）
+    function renderPrizeList() {
+      var el = document.getElementById('prizeList');
+      var dataEl = document.getElementById('prize-data');
+      if (!el || !dataEl) return;
+      var colors = ['#ff4040', '#b040ff', '#64b5f6', '#69f0ae', '#ffe060'];
+      var data;
+      try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
+      el.innerHTML = data.map(function(s, i) {
+        var m = String(s).match(/^【(.+?)】\s*(.*)$/);
+        var label = m ? m[1] : ('第' + (i + 1) + '獎');
+        var name = m ? m[2] : s;
+        return '<div style="color:' + (colors[i] || '#ffe060') + ';font-weight:700;' + (i ? 'margin-top:6px;' : '') + '">' + label + '</div>' +
+               '<div style="color:#e0d0b0;padding-left:14px;">' + name + '</div>';
+      }).join('');
+    }
+    renderPrizeList();
 
     function renderWinners(winners) {
       var listEl = document.getElementById('winnersList');
