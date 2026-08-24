@@ -340,6 +340,7 @@ document.addEventListener('DOMContentLoaded', loadHomeData);
     { title:'噬魂魔核', path:'pages/feature-soul-core.html', keywords:'噬魂魔核 碎片 合成 核心材料 soul core 35% 成功率' },
     { title:'王族專屬裝備', path:'pages/feature-royal-gear.html', keywords:'王族 魅力王族 專屬 royal' },
     { title:'職業特殊技能', path:'pages/feature-skills.html', keywords:'技能 王者之劍 霸體 狂襲 精靈之暈 力場 復仇 衝暈' },
+    { title:'高技獲取途徑', path:'pages/feature-high-skill.html', keywords:'高技 高技碎片箱 自選 取得 途徑 烈焰之魂 碎裂的烈焰之魂 大地屏障 精準射擊 反擊屏障 破壞盔甲 流星雨 究極光裂術 究極光裂 神奇扭蛋 BOSS 掉落 技能 high skill' },
     { title:'每日任務', path:'pages/feature-daily-quest.html', keywords:'每日任務 噬魂禮盒 噬魂棒棒糖 兌換 騎士洞穴 古魯丁 龍之谷 精靈墓穴 地底湖 烽火戰場 支配之塔 夢幻之島 遺忘之島' },
     { title:'寵物系統', path:'pages/feature-pet.html', keywords:'寵物 進化 捕捉 寵物之島 項圈' },
     { title:'威望系統', path:'pages/feature-prestige.html', keywords:'威望 稱號 積分 擊殺 掠奪' },
