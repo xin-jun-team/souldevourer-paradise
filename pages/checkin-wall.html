@@ -763,7 +763,7 @@
     <div class="wall-banner">
       <div class="wall-banner__title">◈ 歡迎來到靈魂打卡牆</div>
       <div class="wall-banner__text">
-        歡迎在底下留言唷～<strong>每週日 18:00</strong> 抽出幸運玩家！本次抽獎為 <strong style="color:#ff4040;">08/23 (日)</strong>。<br>
+        歡迎在底下留言唷～<strong>每週日 18:00</strong> 抽出幸運玩家！本次抽獎為 <strong style="color:#ff4040;" class="nextDrawDate">載入中…</strong>。<br>
         <span class="wall-banner__fun">想抽好獎？先留個言再說，沒留言的人是不會中獎的 ^^</span>
       </div>
 
@@ -773,18 +773,7 @@
           <span style="background:linear-gradient(135deg,#d4a820,#a07818);color:#fff;font-size:0.72rem;font-weight:700;padding:4px 12px;letter-spacing:0.15em;">每期 5 名</span>
           <span style="color:#ffe060;font-size:1.1rem;font-weight:900;letter-spacing:0.08em;">本期獎勵</span>
         </div>
-        <div style="font-size:0.85rem;line-height:1.9;">
-          <div style="color:#ff4040;font-weight:700;">頭獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">(活動) 亞丁黃冠 (30日)</div>
-          <div style="color:#b040ff;font-weight:700;margin-top:6px;">貳獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">防爆卷箱子 ×2</div>
-          <div style="color:#64b5f6;font-weight:700;margin-top:6px;">參獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">防爆卷箱子 ×1</div>
-          <div style="color:#69f0ae;font-weight:700;margin-top:6px;">肆獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">夜月之力 ×5</div>
-          <div style="color:#ffe060;font-weight:700;margin-top:6px;">伍獎</div>
-          <div style="color:#e0d0b0;padding-left:14px;">職業變形箱 (3日)</div>
-        </div>
+        <div style="font-size:0.85rem;line-height:1.9;" id="prizeList"></div>
       </div>
     </div>
   </div>
@@ -811,7 +800,7 @@
       <div class="wall-rules__title">◈ 打卡抽獎活動辦法</div>
       <ul class="wall-rules__list">
         <li>在打卡牆留下你的靈魂印記，每期抽 <strong>5 名</strong></li>
-        <li>本次抽獎：<strong style="color:#ff4040;">08/23 (日)</strong>，固定<strong>每週日 18:00 抽獎 + 打卡牆重置</strong></li>
+        <li>本次抽獎：<strong style="color:#ff4040;" class="nextDrawDate">載入中…</strong>，固定<strong>每週日 18:00 抽獎 + 打卡牆重置</strong></li>
         <li>每人最多留言 <strong>3 次</strong>（是「每人」不是「每隻帳號」）</li>
         <li>領獎資格：須加入<strong>官方 LINE</strong> 並已申請 <strong>LINE 禮包</strong></li>
         <li>每次抽獎每人僅限領取一次，重複者依序順延下一位</li>
@@ -1042,6 +1031,38 @@
       grid.innerHTML = html;
     }
 
+    // ★ 唯一獎品來源：改這裡，清單與抽獎結果會自動同步 ★
+    var PRIZES = [
+      { label:'頭獎', color:'#ff4040', name:'情人戒指 ×1' },
+      { label:'貳獎', color:'#b040ff', name:'噬魂鑽 ×1000' },
+      { label:'參獎', color:'#64b5f6', name:'噬魂鑽 ×500' },
+      { label:'肆獎', color:'#69f0ae', name:'天幣 500 萬' },
+      { label:'伍獎', color:'#ffe060', name:'天幣 300 萬' }
+    ];
+    function renderPrizeList() {
+      var el = document.getElementById('prizeList');
+      if (!el) return;
+      el.innerHTML = PRIZES.map(function(p, i) {
+        return '<div style="color:' + p.color + ';font-weight:700;' + (i ? 'margin-top:6px;' : '') + '">' + p.label + '</div>' +
+               '<div style="color:#e0d0b0;padding-left:14px;">' + p.name + '</div>';
+      }).join('');
+    }
+    // 自動顯示下一個週日 18:00 抽獎日
+    function fillNextDraw() {
+      var now = new Date();
+      var d = new Date(); d.setHours(18, 0, 0, 0);
+      var add = (7 - d.getDay()) % 7;
+      if (add === 0 && now.getTime() > d.getTime()) add = 7;
+      d.setDate(d.getDate() + add);
+      var mm = (d.getMonth() + 1 < 10 ? '0' : '') + (d.getMonth() + 1);
+      var dd = (d.getDate() < 10 ? '0' : '') + d.getDate();
+      var txt = mm + '/' + dd + ' (日)';
+      var els = document.querySelectorAll('.nextDrawDate');
+      for (var i = 0; i < els.length; i++) els[i].textContent = txt;
+    }
+    renderPrizeList();
+    fillNextDraw();
+
     function renderWinners(winners) {
       var listEl = document.getElementById('winnersList');
       if (!winners || !winners.length) {
@@ -1068,10 +1089,11 @@
         var items = roundMap[round];
         var isLatest = idx === 0;
         var itemsHtml = items.map(function(w, i) {
+          var prizeTxt = PRIZES[i] ? PRIZES[i].name : (w.prize || '');
           return '<div class="wall-winners__item">' +
             '<span class="wall-winners__rank">' + (i + 1) + '</span>' +
             '<span class="wall-winners__id">' + esc(w.gameId || '') + '</span>' +
-            '<span class="wall-winners__prize">' + esc(w.prize || '') + '</span>' +
+            '<span class="wall-winners__prize">' + esc(prizeTxt) + '</span>' +
             '<span class="wall-winners__date">' + fmtTime(w.time) + '</span>' +
           '</div>';
         }).join('');
