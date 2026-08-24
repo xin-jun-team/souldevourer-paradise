@@ -38,6 +38,19 @@
       border-left: 3px solid var(--gold-dim);
     }
     .feat-section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-dim), transparent); }
+    .hs-note { background:#0e0a1c; border:1px solid #2a1f40; border-left:3px solid var(--gold); border-radius:4px; padding:16px 20px; margin-bottom:20px; }
+    .hs-note__title { font-family:'Noto Serif TC',serif; font-weight:900; color:var(--gold-bright,#ffe060); margin-bottom:8px; letter-spacing:0.06em; }
+    .hs-note ul { margin:0; padding-left:20px; }
+    .hs-note li { color:var(--text,#e8d090); font-size:0.9rem; line-height:1.95; }
+    .hs-note li strong { color:var(--gold-bright,#ffe060); }
+    .hs-tablewrap { overflow-x:auto; margin-bottom:44px; }
+    .hs-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+    .hs-table th { background:linear-gradient(90deg,rgba(212,168,32,0.18),rgba(212,168,32,0.05)); color:var(--gold-bright,#ffe060); font-family:'Cinzel',serif; letter-spacing:0.08em; padding:12px 16px; border:1px solid #2a1f40; text-align:left; }
+    .hs-table td { padding:12px 16px; border:1px solid #1e1630; color:var(--text,#e8d090); line-height:1.75; vertical-align:top; }
+    .hs-table td:first-child { color:var(--gold-bright,#ffe060); font-weight:700; white-space:nowrap; font-family:'Noto Serif TC',serif; }
+    .hs-table tr:nth-child(odd) td { background:#0e0a1c; }
+    .hs-table tr:nth-child(even) td { background:#100c1e; }
+    @media(max-width:600px){ .hs-table td:first-child{white-space:normal} }
 
     /* 系統卡片 */
     .sys-grid {
@@ -385,6 +398,35 @@
         <div class="sys-card__desc">擊殺每日 BOSS，收集材料打造傳說套裝。建議成群結隊，切勿一意孤行！</div>
       </a>
 
+    </div>
+
+    <p class="feat-section-title">⚡ 高技獲取途徑</p>
+
+    <div class="hs-note">
+      <div class="hs-note__title">🎁 高技碎片箱（自選）取得方式</div>
+      <ul>
+        <li>擊殺 <strong>各樓層 BOSS</strong> 皆有機率掉落</li>
+        <li>指定 BOSS 掉落：<strong>哈們、龍王敖丙、千手觀音、喬巴</strong> → 高技碎片箱（自選）</li>
+        <li><strong>神奇扭蛋</strong>：機率開出</li>
+      </ul>
+    </div>
+
+    <div class="hs-tablewrap">
+      <table class="hs-table">
+        <thead><tr><th>高技 / 碎片</th><th>掉落 BOSS 來源</th></tr></thead>
+        <tbody>
+          <tr><td>烈焰之魂</td><td>不死鳥、冥法軍王．海露拜、長老．巴陸德、杰弗雷庫(雄)、杰弗雷庫(雌)</td></tr>
+          <tr><td>碎裂的烈焰之魂</td><td>不死鳥、冥法軍王．海露拜、長老．巴陸德、吉爾塔斯</td></tr>
+          <tr><td>碎裂的大地屏障</td><td>長老．巴洛斯、吉爾塔斯、阿勒尼亞、不死的木乃伊王</td></tr>
+          <tr><td>精準射擊</td><td>白面金毛玉藻前、白面金毛九尾狐、巨型骷髏</td></tr>
+          <tr><td>反擊屏障</td><td>底比斯 賀洛斯、底比斯 阿努比斯、黑暗的騎士范德、炎魔、龍王敖丙</td></tr>
+          <tr><td>碎裂的反擊屏障</td><td>黑暗的騎士范德、炎魔</td></tr>
+          <tr><td>破壞盔甲</td><td>沙蟲</td></tr>
+          <tr><td>流星雨</td><td>不死鳥、深淵之主、惡魔、巴拉卡斯、長老．巴陸德、冰魔、吉爾塔斯、歪曲的潔尼斯女王</td></tr>
+          <tr><td>究極光裂術</td><td>鐮刀死神、瑪依奴夏門的鑽石高崙、吉爾塔斯</td></tr>
+          <tr><td>碎裂的究極光裂術</td><td>鐮刀死神、巴拉卡斯、瑪依奴夏門的鑽石高崙</td></tr>
+        </tbody>
+      </table>
     </div>
 
   </main>
