@@ -63,3 +63,34 @@
 
 ## 寵物系統 icon
 - 項圈：item-1617.png（已備好，等寵物頁面更新時使用）
+
+---
+
+## 影片專案（souldevourer-promo）
+
+### 路徑
+- Remotion 專案：`Desktop\souldevourer-promo\`
+- 影片定案：`Desktop\克勞德影片生成定案\噬魂天堂-影片系列\`
+- 文宣/提詞：`Desktop\噬魂文宣\`
+- 詳細規範：`Desktop\souldevourer-promo\CLAUDE.md`
+
+### 角色 IP（4 角色）
+| 角色 | 定位 | 閉嘴/張嘴/特殊 |
+|------|------|----------------|
+| 衰仔 | 被電被坑受害者 | char-loser / char-loser-talk / char-loser-down |
+| 怒哥 | 暴怒掀桌人體炸彈 | char-angry / char-angry-rage / char-angry-flip |
+| 無嗑 | 噬魂代言Chad嗆人 | char-chad / char-chad-talk / char-chad-point |
+| GM 闇 | 裁決者中二傲嬌 | char-gm / char-gm-talk / char-gm-ban |
+
+### 製作規範速查
+- 格式：16:9（1920x1080）
+- 時長：10s / 15s / 20s / 短劇25-40s
+- Pika LOGO：`frames-logo-fix/`（678x544，contain）
+- 語音：Gemini TTS，衰仔Orus/怒哥Fenrir/無嗑Charon/GM Kore，抱怨角色1.25x加速
+- 特效：閃光≤0.4、文字縮放≤2x、不旋轉、震動≤0.3s
+- 文案：聳動中二白話嗆人
+- **角色演出規則：角色先出現→文字才出現、文字不重疊、誰講話誰動嘴、一次只一人說話**
+
+### 遊戲修改歷程
+- 路徑：`Desktop\天堂更新檔\TEST2030修改歷程.txt`
+- 格式規則：見 memory `reference_lineage_notepad_format.md`

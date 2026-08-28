@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>愛情永存 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .fs-section { max-width: 860px; margin: 0 auto 48px; }
+    .fs-intro {
+      background: #120e22;
+      border: 1px solid rgba(212,168,32,0.2);
+      border-radius: 2px;
+      padding: 28px 32px;
+      color: #e0d8c8;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .fs-intro strong { color: #ffe060; }
+
+    .fs-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .fs-item {
+      display: flex; align-items: center; gap: 14px;
+      background: linear-gradient(160deg, #14102a 0%, #0e0a1c 100%);
+      border: 1px solid #2a1f40; border-radius: 4px;
+      padding: 16px 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .fs-item:hover { border-color: rgba(212,168,32,0.5); transform: translateY(-2px); }
+    .fs-item img { width: 44px; height: 44px; image-rendering: pixelated; flex-shrink: 0; }
+    .fs-item__name { font-family: 'Noto Serif TC', serif; font-size: 0.9rem; font-weight: 700; color: var(--text-bright); }
+    .fs-item__qty { font-size: 0.82rem; color: #ffe060; margin-top: 2px; }
+    .fs-item__id { font-size: 0.7rem; color: #6a6080; margin-top: 1px; font-family: 'Cinzel', serif; }
+
+    .fs-notes {
+      background: #120e22;
+      border: 1px solid rgba(212,168,32,0.15);
+      border-radius: 2px;
+      padding: 24px 32px;
+      margin-top: 48px;
+    }
+    .fs-notes__title { font-family: 'Cinzel', serif; color: #ffe060; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .fs-notes ul { list-style: none; padding: 0; margin: 0; }
+    .fs-notes li { color: #b0a890; font-size: 0.85rem; padding: 4px 0; line-height: 1.6; }
+    .fs-notes li::before { content: "· "; color: #7a6030; }
+
+    .fs-line-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 24px; padding: 14px 32px;
+      background: #06C755; color: #fff;
+      font-size: 0.95rem; font-weight: 700;
+      border-radius: 4px; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .fs-line-btn:hover { background: #05b34c; transform: translateY(-2px); }
+
+    .fs-back {
+      display: block; text-align: center; margin-top: 40px; padding: 14px;
+      color: #ffe060; font-size: 0.9rem; text-decoration: none;
+      border: 1px solid rgba(212,168,32,0.2); border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .fs-back:hover { background: rgba(212,168,32,0.08); }
+
+    @media (max-width: 720px) {
+      .fs-items { grid-template-columns: 1fr; }
+      .fs-intro, .fs-notes { padding: 20px; }
+    }
+  </style>
+  <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
+</head>
+<body>
+  <div class="float-sidebar float-sidebar--left">
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-sponsor.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61z"/></svg></span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-download.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+  <div class="float-sidebar float-sidebar--right">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-community.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></span>
+      <span class="float-label">社群</span>
+    </a>
+    <a href="https://lin.ee/XuVhcl6" target="_blank" class="float-btn float-btn--line-cs">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-service.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.08-1.31A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm2.07-5.75l-.9.92C11.45 11.9 11 12.5 11 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H6c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg></span>
+      <span class="float-label">客服</span>
+    </a>
+  </div>
+  <header id="site-header"><div class="header-inner container"><a href="../index.html" class="site-logo"><img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂"><span class="logo-text">噬魂天堂</span></a><a href="checkin-wall.html" class="nav-btn" style="color:var(--soul-bright,#b040ff);border-color:var(--soul);margin-left:8px;font-size:0.78rem;">◈ 打卡牆</a><nav class="site-nav"><a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a><a href="news.html" class="nav-btn">最新公告</a><a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a><div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a></div></div><a href="promote.html" class="nav-btn">推文推廣</a><span class="nav-sponsor-wrap"><a href="sponsor.html" class="nav-btn">贊助說明</a><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-coin">💰</span><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✧</span><span class="nav-sponsor-sparkle">✦</span></span><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button></nav><button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button></div><div class="mobile-nav" id="mobile-nav"><a href="download.html">遊戲下載</a><a href="news.html">最新公告</a><a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a></div></header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — LOVE ETERNAL</p>
+    <h1 class="page-hero__title">愛情<span>永存</span></h1>
+    <p class="page-hero__sub">紀念愛情的偉大航道</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <div style="max-width:600px;margin:0 auto 30px;text-align:center;padding:13px 24px;background:linear-gradient(90deg,rgba(204,0,0,.14),rgba(255,77,109,.1),rgba(204,0,0,.14));border:1px solid #3a2030;border-radius:2px;">
+      <span style="color:#ff8a9c;font-family:'Noto Serif TC',serif;font-weight:700;letter-spacing:0.12em;">💖 永久活動 · 長期開放</span>
+    </div>
+
+    <p class="fp-heading">◆ 活動說明</p>
+    <div class="fs-intro">
+      紀念愛情的偉大航道 💍 —— 活動期間<strong>單筆贊助滿額</strong>，即可獲得「<strong>情人戒指</strong>」一枚，銘刻你與最愛之人的永恆誓約。<br>
+      <strong>每組帳號限領一次。</strong>
+    </div>
+
+    <style>
+      .le-showcase{position:relative;max-width:540px;margin:8px auto 40px;padding:56px 32px 46px;text-align:center;overflow:hidden;
+        background:radial-gradient(ellipse 72% 55% at 50% 36%,rgba(255,77,109,.18),transparent 68%),linear-gradient(160deg,#1c0e1c 0%,#0c0818 58%,#160a1e 100%);
+        border:1px solid #3a2030;border-radius:4px;box-shadow:0 22px 64px -30px rgba(204,0,0,.55),inset 0 1px 0 rgba(255,224,96,.12)}
+      .le-showcase::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#cc0000,#ffe060,#ff4d6d,#ffe060,#cc0000,transparent)}
+      .le-halo{position:absolute;top:26px;left:50%;width:220px;height:220px;margin-left:-110px;border-radius:50%;pointer-events:none;
+        background:radial-gradient(circle,rgba(255,77,109,.4),rgba(212,168,32,.16) 46%,transparent 70%);animation:leHalo 3s ease-in-out infinite}
+      @keyframes leHalo{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.16)}}
+      .le-ring-ico{position:relative;font-size:5.4rem;line-height:1;margin-bottom:18px;
+        filter:drop-shadow(0 0 18px rgba(255,77,109,.75)) drop-shadow(0 0 34px rgba(212,168,32,.5));animation:leBob 3.6s ease-in-out infinite}
+      @keyframes leBob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-9px) rotate(4deg)}}
+      .le-ring-name{position:relative;font-family:'Noto Serif TC',serif;font-weight:900;font-size:1.85rem;letter-spacing:.16em;
+        background:linear-gradient(90deg,#ffe060,#ff4d6d,#ffe060);-webkit-background-clip:text;background-clip:text;color:transparent;
+        filter:drop-shadow(0 0 12px rgba(255,77,109,.5))}
+      .le-ring-sub{position:relative;font-size:.85rem;color:#e6a6b6;margin-top:10px;letter-spacing:.1em}
+      .le-heart{position:absolute;color:rgba(255,77,109,.55);pointer-events:none;animation:leFloat linear infinite}
+      @keyframes leFloat{0%{transform:translateY(30px) scale(.5);opacity:0}18%{opacity:.85}100%{transform:translateY(-150px) scale(1.1);opacity:0}}
+      .le-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;max-width:640px;margin:0 auto 36px}
+      .le-stat{position:relative;background:linear-gradient(160deg,#1a0e1c,#0c0818);border:1px solid #3a2030;border-radius:4px;padding:20px 16px;text-align:center;
+        transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden}
+      .le-stat::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#ffe060,transparent);opacity:.55}
+      .le-stat:hover{transform:translateY(-5px);border-color:#ff4d6d;box-shadow:0 14px 30px -14px rgba(204,0,0,.65)}
+      .le-stat__ico{font-size:1.6rem;margin-bottom:8px;filter:drop-shadow(0 0 8px rgba(255,77,109,.55))}
+      .le-stat__key{font-size:.78rem;color:#e8d090;letter-spacing:.1em;margin-bottom:6px}
+      .le-stat__val{font-family:'Cinzel',serif;font-weight:700;font-size:1.55rem;line-height:1;
+        background:linear-gradient(90deg,#ffe060,#ff8a9c);-webkit-background-clip:text;background-clip:text;color:transparent}
+    </style>
+
+    <div class="le-showcase">
+      <div class="le-halo"></div>
+      <span class="le-heart" style="left:12%;bottom:18px;font-size:1rem;animation-duration:4.2s;animation-delay:0s">♥</span>
+      <span class="le-heart" style="left:83%;bottom:8px;font-size:1.5rem;animation-duration:5.4s;animation-delay:1.1s">♥</span>
+      <span class="le-heart" style="left:28%;bottom:0;font-size:.8rem;animation-duration:4.8s;animation-delay:2s">♥</span>
+      <span class="le-heart" style="left:66%;bottom:22px;font-size:1.15rem;animation-duration:5.8s;animation-delay:.6s">♥</span>
+      <span class="le-heart" style="left:48%;bottom:6px;font-size:.9rem;animation-duration:5s;animation-delay:3s">♥</span>
+      <div class="le-ring-ico">💍</div>
+      <div class="le-ring-name">情人戒指</div>
+      <div class="le-ring-sub">單筆贊助滿額贈 · 每組帳號限領一次</div>
+    </div>
+
+    <p class="fp-heading">◈ 能力資訊</p>
+    <div class="le-stats">
+      <div class="le-stat"><div class="le-stat__ico">❤️</div><div class="le-stat__key">HP</div><div class="le-stat__val">+777</div></div>
+      <div class="le-stat"><div class="le-stat__ico">💠</div><div class="le-stat__key">MP</div><div class="le-stat__val">+77</div></div>
+      <div class="le-stat"><div class="le-stat__ico">🧪</div><div class="le-stat__key">藥水恢復</div><div class="le-stat__val">+2</div></div>
+      <div class="le-stat"><div class="le-stat__ico">⚡</div><div class="le-stat__key">體力回復</div><div class="le-stat__val">+1</div></div>
+      <div class="le-stat"><div class="le-stat__ico">✨</div><div class="le-stat__key">魔力回復</div><div class="le-stat__val">+2</div></div>
+    </div>
+
+    <div class="fs-notes">
+      <p class="fs-notes__title">NOTICE</p>
+      <ul>
+        <li>每組帳號限領一次</li>
+        <li>單筆贊助滿額後請聯繫官方 LINE 客服申請領取</li>
+        <li>經確認後直接發放至遊戲信箱</li>
+      </ul>
+      <a href="https://lin.ee/XuVhcl6" target="_blank" class="fs-line-btn">
+        <span>LINE</span> 聯繫客服領取
+      </a>
+    </div>
+
+    <a href="events.html" class="fs-back">&#9650; 返回活動列表</a>
+
+  </main>
+
+  <footer id="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂"><div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div></div><nav class="footer-links"><a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span><a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span><a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span><a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span><a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a></nav></div><div class="footer-copy"><div class="footer-copy__line"></div><p>© 2026 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div></div>
+    <div style="max-width:1080px;margin:0 auto;padding:12px 24px 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <a href="https://lin.ee/UbLA1Dq" target="_blank" rel="noopener" style="color:var(--gold-dim);font-size:12px;letter-spacing:1.2px;font-weight:600;text-shadow:0 0 10px rgba(201,169,110,0.36);text-decoration:none;">阿柴美工 LINE @323rffot 美工找我~</a>
+      <a href="https://www.gamex123.com/lineage.html" target="_blank" rel="noopener" style="display:inline-flex;opacity:0.82;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.82'">
+        <img src="../assets/images/private-server-123.gif" alt="私服123" style="display:block;width:78px;height:auto;" loading="lazy">
+      </a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
