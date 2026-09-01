@@ -73,24 +73,6 @@
       "link_text": "查看詳情"
     },
     {
-      "title": "亞丁之父叛變 ⚔",
-      "desc": "父親節爆走的亞丁之父叛變啦！擊殺 BOSS 掠奪豐富獎池！",
-      "date_label": "08/10 ~ 08/31 維修前 · 限時討伐",
-      "tag": "限時活動",
-      "tag_style": "active",
-      "link": "event-aden-father.html",
-      "link_text": "查看獎勵"
-    },
-    {
-      "title": "赫卡特強化禮包",
-      "desc": "一包搞定赫卡特強化所需材料，夜月之力 + 祝福卷軸 + 防爆卷箱，超值組合！",
-      "date_label": "即日起 · $499 / 包",
-      "tag": "限定禮包",
-      "tag_style": "active",
-      "link": "event-hecate-pack.html",
-      "link_text": "查看內容"
-    },
-    {
       "title": "浪漫七夕情人夜 💕",
       "desc": "星河為證 · 定情永恆！活動怪物掉落愛情狗糧、愛情巧克力，可兌換情人戒指、亞丁黃冠等豪華好禮，與最愛之人共赴七夕盛宴。",
       "date_label": "08/28 18:00 維修前 · 已結束",
@@ -117,6 +99,26 @@
       "tag": "活動結束",
       "tag_style": "ended",
       "ended": true
+    },
+    {
+      "title": "亞丁之父叛變 ⚔",
+      "desc": "父親節爆走的亞丁之父叛變啦！擊殺 BOSS 掠奪豐富獎池！",
+      "date_label": "08/10 ~ 08/31 維修前 · 已結束",
+      "tag": "活動結束",
+      "tag_style": "ended",
+      "ended": true,
+      "link": "event-aden-father.html",
+      "link_text": "查看詳情"
+    },
+    {
+      "title": "赫卡特強化禮包",
+      "desc": "一包搞定赫卡特強化所需材料，夜月之力 + 祝福卷軸 + 防爆卷箱，超值組合！",
+      "date_label": "$499 / 包 · 已結束",
+      "tag": "活動結束",
+      "tag_style": "ended",
+      "ended": true,
+      "link": "event-hecate-pack.html",
+      "link_text": "查看詳情"
     }
   ],
   "upcoming": [
