@@ -67,6 +67,18 @@
 
     .boss-tier-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
     .boss-tier-tag{background:#0e0a1c;padding:4px 12px;border-radius:15px;font-size:.82em;font-weight:700}
+
+    /* 世界 BOSS 出生一覽表 */
+    .boss-spawn-wrap{overflow-x:auto;border:1px solid #2a1f40;border-radius:8px;background:#0e0a1c;margin-bottom:12px}
+    .boss-spawn-table{width:100%;border-collapse:collapse;font-size:.9em;min-width:420px}
+    .boss-spawn-table thead th{background:linear-gradient(90deg,rgba(212,168,32,0.22),rgba(212,168,32,0.06));color:#ffe060;font-family:'Noto Serif TC',serif;font-weight:700;letter-spacing:1px;padding:12px 18px;text-align:left;border-bottom:1px solid rgba(212,168,32,0.3)}
+    .boss-spawn-table tbody td{padding:11px 18px;border-bottom:1px solid #2a1f40;vertical-align:middle}
+    .boss-spawn-table tbody tr:nth-child(even) td{background:#120e24}
+    .boss-spawn-table tbody tr:hover td{background:#1c1030}
+    .boss-spawn-table .bs-time{font-family:'Cinzel',serif;font-weight:700;color:#ffe060;white-space:nowrap}
+    .boss-spawn-table .bs-name{color:#fff4b8;font-weight:700;font-size:1.02em}
+    .boss-spawn-table .bs-loc{color:#a09080}
+    .boss-spawn-table .bs-loc--special{color:#69f0ae}
   </style>
 <link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
 </head>
@@ -121,12 +133,37 @@
 
   <!-- 固定錨點選單 -->
   <div class="boss-anchor-nav" id="bossAnchorNav">
+    <a href="#section-worldboss" class="boss-anchor-btn">◈ 世界BOSS出生</a>
     <a href="#section-collection" class="boss-anchor-btn">◆ BOSS 收藏</a>
     <!-- <a href="#section-schedule" class="boss-anchor-btn">◈ 登場時刻表</a> -->
     <a href="#section-drops" class="boss-anchor-btn">⚔ 各等級掉落物</a>
   </div>
 
   <main class="fp-wrap" style="padding-top:40px;padding-bottom:80px">
+
+    <!-- ══ SECTION: 世界 BOSS 出生一覽表 ══ -->
+    <div id="section-worldboss" style="scroll-margin-top:100px">
+      <p class="fp-heading">◈ 世界 BOSS 出生一覽表</p>
+      <div class="fp-intro">
+        各大世界 BOSS 於<strong>固定時間</strong>準時降臨指定地點，把握時機集結挑戰、掠奪豐厚獎勵！
+      </div>
+      <div class="boss-spawn-wrap">
+        <table class="boss-spawn-table">
+          <thead>
+            <tr><th style="width:22%">時間</th><th style="width:38%">名稱</th><th style="width:40%">地點</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bs-time">10:00</td><td class="bs-name">哈們</td><td class="bs-loc bs-loc--special">▸ 專屬 BOSS 地圖</td></tr>
+            <tr><td class="bs-time">14:00</td><td class="bs-name">龍王敖炳</td><td class="bs-loc bs-loc--special">▸ 專屬 BOSS 地圖</td></tr>
+            <tr><td class="bs-time">19:00</td><td class="bs-name">千手觀音</td><td class="bs-loc bs-loc--special">▸ 專屬 BOSS 地圖</td></tr>
+            <tr><td class="bs-time">20:00</td><td class="bs-name">烽火死亡騎士</td><td class="bs-loc">▸ 烽火戰場</td></tr>
+            <tr><td class="bs-time">21:00</td><td class="bs-name">喬巴</td><td class="bs-loc bs-loc--special">▸ 專屬 BOSS 地圖</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="boss-divider" data-label="BOSS COLLECTION">
 
     <!-- ══ SECTION 0: BOSS 收藏 ══ -->
     <div id="section-collection" style="scroll-margin-top:100px">
@@ -589,7 +626,7 @@
   // 錨點選單 active 狀態
   (function(){
     var btns = document.querySelectorAll('.boss-anchor-btn');
-    var sections = ['section-collection','section-drops'].map(function(id){ return document.getElementById(id); });
+    var sections = ['section-worldboss','section-collection','section-drops'].map(function(id){ return document.getElementById(id); });
     function update(){
       var scroll = window.scrollY + 120;
       var active = 0;
