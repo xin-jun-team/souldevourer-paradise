@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>龍印魔石 — 噬魂天堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 職業卡片 */
+    .job-card {
+      background: linear-gradient(135deg, #130a2a 0%, #0c0818 55%, #14082a 100%);
+      border:1px solid #1e1630; border-radius:2px;
+      overflow:hidden; margin-bottom:20px;
+    }
+    .job-card__head {
+      background: linear-gradient(90deg, rgba(140,0,200,0.14) 0%, rgba(140,0,200,0.05) 45%, transparent 100%);
+      border-bottom: 1px solid rgba(140,0,200,0.2);
+      padding:16px 22px; display:flex; align-items:center; gap:16px;
+    }
+    .job-card__icon { flex-shrink:0; width:64px; height:64px; background:#150e28; border:1px solid #3a2a50; border-radius:2px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .job-card__icon img { width:100%; height:100%; object-fit:contain; image-rendering:pixelated; }
+    .job-card__meta { flex:1; }
+    .job-card__name { font-family:'Noto Serif TC',serif; font-size:1rem; font-weight:900; color:var(--text-bright); letter-spacing:0.12em; margin-bottom:3px; }
+    .job-card__power { font-family:'Cinzel',serif; font-size:0.72rem; color:var(--gold); letter-spacing:0.15em; }
+    .job-card__desc { font-size:0.82rem; color:var(--text-dim); margin-left:auto; max-width:360px; line-height:1.6; text-align:right; }
+    .job-card__desc strong { color:#ffe060; }
+
+    /* 數值表 */
+    .job-table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+    .job-table th { background: linear-gradient(90deg, rgba(212,168,32,0.16) 0%, rgba(212,168,32,0.06) 100%); color:var(--gold-dim); font-family:'Cinzel',serif; font-size:0.66rem; letter-spacing:0.1em; padding:9px 14px; border:1px solid #2a1f40; text-align:center; }
+    .job-table th:first-child { text-align:left; }
+    .job-table td { background:#0e0a1c; padding:8px 14px; border:1px solid #1e1630; color:var(--text-dim); text-align:center; }
+    .job-table td:first-child { color:var(--text-bright); font-weight:700; font-family:'Cinzel',serif; font-size:0.78rem; text-align:left; }
+    .job-table tr:nth-child(even) td { background:#100c1e; }
+    .job-table tr:hover td { background:#16102a; }
+    .job-table tr:last-child td { background:#18102e; }
+    .job-table tr:last-child td:first-child { color:var(--gold); }
+    .val { color:#ffe060; font-weight:700; font-family:'Cinzel',serif; }
+    .rate { font-family:'Cinzel',serif; font-weight:700; font-size:0.82rem; }
+    .rate--100 { color:#4cff7c; }
+    .rate--90  { color:#7cff60; }
+    .rate--80  { color:#b0e040; }
+    .rate--70  { color:#e0c040; }
+    .rate--60  { color:#ff8040; }
+    .rate-bar { display:inline-block; height:4px; border-radius:2px; vertical-align:middle; margin-left:6px; }
+    .rate-bar--100 { width:48px; background:linear-gradient(90deg,#4cff7c,#2ecc71); }
+    .rate-bar--90  { width:43px; background:linear-gradient(90deg,#7cff60,#5cb85c); }
+    .rate-bar--80  { width:38px; background:linear-gradient(90deg,#b0e040,#9acd32); }
+    .rate-bar--70  { width:33px; background:linear-gradient(90deg,#e0c040,#d4a820); }
+    .rate-bar--60  { width:29px; background:linear-gradient(90deg,#ff8040,#e06030); }
+    .rate--50  { color:#ff5a3c; }
+    .rate--40  { color:#ff4040; }
+    .rate-bar--50 { width:24px; background:linear-gradient(90deg,#ff5a3c,#d04020); }
+    .rate-bar--40 { width:19px; background:linear-gradient(90deg,#ff4040,#c03030); }
+
+    @media (max-width:600px) { .job-card__desc { display:none; } }
+  </style>
+<link rel="icon" type="image/jpeg" href="../assets/images/logo-circle.jpg">
+</head>
+<body>
+
+  <div class="float-sidebar float-sidebar--left">
+    <a href="sponsor.html" class="float-btn float-btn--sponsor">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-sponsor.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61z"/></svg></span>
+      <span class="float-label">贊助</span>
+    </a>
+    <a href="download.html" class="float-btn float-btn--download">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-download.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></span>
+      <span class="float-label">下載</span>
+    </a>
+  </div>
+  <div class="float-sidebar float-sidebar--right">
+    <a href="https://line.me/ti/g2/Mmxl5liuldIL1Zz0V0g_uOn_wGrU-CXiyZajuQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="float-btn float-btn--line">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-community.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></span>
+      <span class="float-label">社群</span>
+    </a>
+    <a href="https://lin.ee/XuVhcl6" target="_blank" class="float-btn float-btn--line-cs">
+      <span class="float-btn-bg" style="background-image:url('../assets/images/float-service.jpg')"></span>
+      <span class="float-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.08-1.31A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm2.07-5.75l-.9.92C11.45 11.9 11 12.5 11 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H6c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg></span>
+      <span class="float-label">客服</span>
+    </a>
+  </div>
+
+  <header id="site-header">
+    <div class="header-inner container">
+      <a href="../index.html" class="site-logo">
+        <img src="../assets/images/logo-circle.jpg" class="logo-icon" alt="噬魂天堂">
+        <span class="logo-text">噬魂天堂</span></a><a href="checkin-wall.html" class="nav-btn" style="color:var(--soul-bright,#b040ff);border-color:var(--soul);margin-left:8px;font-size:0.78rem;">◈ 打卡牆</a>
+      <nav class="site-nav">
+        <a href="download.html" class="nav-btn nav-btn--primary">遊戲下載</a>
+        <a href="news.html" class="nav-btn">最新公告</a>
+        <a href="events.html" class="nav-btn">活動資訊</a><a href="features-overview.html" class="nav-btn">遊戲特色</a><a href="version.html" class="nav-btn">版本設定</a><a href="items-overview.html" class="nav-btn">裝備道具</a><a href="boss-guide.html" class="nav-btn">BOSS介紹</a>
+        <div class="nav-dropdown"><button class="nav-dropdown__toggle">服務專區</button><div class="nav-dropdown__menu"><a href="disclaimer.html">免責聲明</a><a href="rules.html">遊戲規章</a><a href="class-change.html">轉職介紹</a></div></div>
+        <a href="promote.html" class="nav-btn">推文推廣</a><span class="nav-sponsor-wrap"><a href="sponsor.html" class="nav-btn">贊助說明</a><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-coin">💰</span><span class="nav-sponsor-coin">🪙</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✦</span><span class="nav-sponsor-sparkle">✧</span><span class="nav-sponsor-sparkle">✦</span></span><a href="secret-shop.html" class="nav-btn" style="color:#ce93d8;font-size:0.82rem;">神秘商店</a><button class="search-toggle" aria-label="搜尋">◈ 搜尋</button>
+      </nav>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="download.html">遊戲下載</a><a href="news.html">最新公告</a>
+      <a href="events.html">活動資訊</a><a href="features-overview.html">遊戲特色</a><a href="version.html">版本設定</a><a href="items-overview.html">裝備道具</a><a href="boss-guide.html">BOSS介紹</a><span class="mobile-group-label">▸ 服務專區</span><a href="disclaimer.html" class="mobile-sub">免責聲明</a><a href="rules.html" class="mobile-sub">遊戲規章</a><a href="class-change.html" class="mobile-sub">轉職介紹</a><a href="promote.html">推文推廣</a><a href="sponsor.html">贊助說明</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">SOUL DEVOURER · LINEAGE — DRAGON SEAL</p>
+    <h1 class="page-hero__title">龍印<span>魔石</span></h1>
+    <p class="page-hero__sub">四大職業專屬 · 逐階強化成長</p>
+  </div>
+
+  <main class="fp-wrap">
+
+    <p class="fp-heading">🐉 龍印魔石介紹</p>
+    <div class="fp-intro">
+      龍印魔石依<strong>職業別</strong>提供專屬屬性加成，共 <strong>0 ～ 9 階</strong>，9 階為頂級。<br>
+      使用<strong>【龍印魔石強化卷軸】</strong>進行強化；<strong>強化失敗裝備不消失、不退階</strong>，可持續累積卷軸挑戰更高階。<br>
+      龍印石製作請洽 <strong>「道具製作」</strong> → <strong>「龍印製作」</strong>。<br>
+      <strong>【龍印魔石強化卷軸】</strong>取得方式：<strong>活動獲取</strong>、<strong>推文兌換</strong>。
+    </div>
+
+    <p class="fp-heading">✨ 強化成功率</p>
+    <div class="job-card"><table class="job-table">
+      <thead><tr><th>強化階段</th><th>成功機率</th></tr></thead>
+      <tbody>
+          <tr><td>0 ➔ 1</td><td><span class="rate" style="color:#4cff7c">10%</span></td></tr>
+          <tr><td>1 ➔ 2</td><td><span class="rate" style="color:#4cff7c">8%</span></td></tr>
+          <tr><td>2 ➔ 3</td><td><span class="rate" style="color:#4cff7c">6%</span></td></tr>
+          <tr><td>3 ➔ 4</td><td><span class="rate" style="color:#ffb74d">4%</span></td></tr>
+          <tr><td>4 ➔ 5</td><td><span class="rate" style="color:#ffb74d">2%</span></td></tr>
+          <tr><td>5 ➔ 6</td><td><span class="rate" style="color:#ff5252">1%</span></td></tr>
+          <tr><td>6 ➔ 7</td><td><span class="rate" style="color:#ff5252">0.4%</span></td></tr>
+          <tr><td>7 ➔ 8</td><td><span class="rate" style="color:#ff5252">0.2%</span></td></tr>
+          <tr><td>8 ➔ 9</td><td><span class="rate" style="color:#ff5252">0.1%</span></td></tr></tbody>
+    </table></div>
+
+        <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__meta">
+          <div class="job-card__name">⚔️ 龍印魔石（鬥士）</div>
+          <div class="job-card__power">DRAGON SEAL</div>
+        </div>
+        <div class="job-card__desc">以體力與近距強化為主的前排職業。<strong>9 階為頂級</strong>。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階級</th><th>獲得能力</th></tr></thead>
+        <tbody>
+          <tr><td>0 階</td><td style="text-align:left;color:var(--text-bright)">體力 +10</td></tr>
+          <tr><td>1 階</td><td style="text-align:left;color:var(--text-bright)">體力 +20</td></tr>
+          <tr><td>2 階</td><td style="text-align:left;color:var(--text-bright)">體力 +30</td></tr>
+          <tr><td>3 階</td><td style="text-align:left;color:var(--text-bright)">體力 +40</td></tr>
+          <tr><td>4 階</td><td style="text-align:left;color:var(--text-bright)">體力 +50</td></tr>
+          <tr><td>5 階</td><td style="text-align:left;color:var(--text-bright)">體力 +50、近距離命中 +1</td></tr>
+          <tr><td>6 階</td><td style="text-align:left;color:var(--text-bright)">體力 +70、近距離命中 +1、體力回復量 +1</td></tr>
+          <tr><td>7 階</td><td style="text-align:left;color:var(--text-bright)">體力 +70、近距離攻擊 +1、近距離命中 +1、體力回復 +2</td></tr>
+          <tr><td>8 階</td><td style="text-align:left;color:var(--text-bright)">體力 +90、近距離攻擊 +1、近距離命中 +2、體力回復 +3</td></tr>
+          <tr><td>9 階（頂）</td><td style="text-align:left;color:var(--text-bright)">體力 +120、近距離攻擊 +3、近距離命中 +3、體力回復 +6、力量 +1</td></tr></tbody>
+      </table>
+    </div>
+
+        <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__meta">
+          <div class="job-card__name">🏹 龍印魔石（弓手）</div>
+          <div class="job-card__power">DRAGON SEAL</div>
+        </div>
+        <div class="job-card__desc">兼顧體力、魔力與遠距輸出的職業。<strong>9 階為頂級</strong>。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階級</th><th>獲得能力</th></tr></thead>
+        <tbody>
+          <tr><td>0 階</td><td style="text-align:left;color:var(--text-bright)">體力 +5、魔力 +3</td></tr>
+          <tr><td>1 階</td><td style="text-align:left;color:var(--text-bright)">體力 +10、魔力 +6</td></tr>
+          <tr><td>2 階</td><td style="text-align:left;color:var(--text-bright)">體力 +15、魔力 +9</td></tr>
+          <tr><td>3 階</td><td style="text-align:left;color:var(--text-bright)">體力 +20、魔力 +12</td></tr>
+          <tr><td>4 階</td><td style="text-align:left;color:var(--text-bright)">體力 +25、魔力 +15</td></tr>
+          <tr><td>5 階</td><td style="text-align:left;color:var(--text-bright)">體力 +25、魔力 +15、遠距離命中 +1</td></tr>
+          <tr><td>6 階</td><td style="text-align:left;color:var(--text-bright)">體力 +35、魔力 +20、遠距離命中 +1、體力回復量 +1</td></tr>
+          <tr><td>7 階</td><td style="text-align:left;color:var(--text-bright)">體力 +35、魔力 +23、遠距離攻擊 +1、遠距離命中 +1、體力回復 +1</td></tr>
+          <tr><td>8 階</td><td style="text-align:left;color:var(--text-bright)">體力 +40、魔力 +30、遠距離攻擊 +1、遠距離命中 +2、體力回復 +2、魔力回復 +2</td></tr>
+          <tr><td>9 階（頂）</td><td style="text-align:left;color:var(--text-bright)">體力 +60、魔力 +43、遠距離攻擊 +3、遠距離命中 +3、體力回復 +3、魔力回復 +3、敏捷 +1</td></tr></tbody>
+      </table>
+    </div>
+
+        <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__meta">
+          <div class="job-card__name">🔮 龍印魔石（賢者）</div>
+          <div class="job-card__power">DRAGON SEAL</div>
+        </div>
+        <div class="job-card__desc">專精魔力與魔攻的後排職業。<strong>9 階為頂級</strong>。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階級</th><th>獲得能力</th></tr></thead>
+        <tbody>
+          <tr><td>0 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +10</td></tr>
+          <tr><td>1 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +20</td></tr>
+          <tr><td>2 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +30</td></tr>
+          <tr><td>3 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +40</td></tr>
+          <tr><td>4 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +50</td></tr>
+          <tr><td>5 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +50、魔力回復量 +1</td></tr>
+          <tr><td>6 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +55、魔力回復量 +1</td></tr>
+          <tr><td>7 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +55、魔攻 +1、魔力回復 +2</td></tr>
+          <tr><td>8 階</td><td style="text-align:left;color:var(--text-bright)">魔力 +60、魔攻 +1、魔力回復 +3</td></tr>
+          <tr><td>9 階（頂）</td><td style="text-align:left;color:var(--text-bright)">魔力 +70、魔攻 +3、魔力回復 +5、智力 +1</td></tr></tbody>
+      </table>
+    </div>
+
+        <div class="job-card">
+      <div class="job-card__head">
+        <div class="job-card__meta">
+          <div class="job-card__name">🛡️ 龍印魔石（衝鋒）</div>
+          <div class="job-card__power">DRAGON SEAL</div>
+        </div>
+        <div class="job-card__desc">以魔防與減傷換取生存的坦位職業。<strong>9 階為頂級</strong>。</div>
+      </div>
+      <table class="job-table">
+        <thead><tr><th>階級</th><th>獲得能力</th></tr></thead>
+        <tbody>
+          <tr><td>0 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -1</td></tr>
+          <tr><td>1 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -2</td></tr>
+          <tr><td>2 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -3</td></tr>
+          <tr><td>3 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -4</td></tr>
+          <tr><td>4 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -5</td></tr>
+          <tr><td>5 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -5、魔法防禦 +1</td></tr>
+          <tr><td>6 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -5、魔法防禦 +6</td></tr>
+          <tr><td>7 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -5、魔法防禦 +9</td></tr>
+          <tr><td>8 階</td><td style="text-align:left;color:var(--text-bright)">防禦 -5、魔法防禦 +15、傷害減免 +2、昏迷耐性 +2</td></tr>
+          <tr><td>9 階（頂）</td><td style="text-align:left;color:var(--text-bright)">防禦 -5、魔法防禦 +21、傷害減免 +4、昏迷耐性 +5、體質 +1</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="fp-pager">
+      <a href="features-overview.html" class="fp-pager__btn">
+        <span class="fp-pager__arrow">←</span>
+        <div><span class="fp-pager__dir">BACK</span><span class="fp-pager__name">特色介紹</span></div>
+      </a>
+      <div class="fp-pager__center"><a href="features-overview.html" class="fp-pager__back">▲ 返回系統列表</a></div>
+      <div></div>
+    </div>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-circle.jpg" class="footer-logo-icon" alt="噬魂天堂">
+          <div class="footer-brand-text"><span class="logo-text">噬魂天堂</span></div>
+        </div>
+        <nav class="footer-links">
+          <a href="features-overview.html" class="footer-link"><span class="footer-link__icon">⚔</span>特色介紹</a><span class="footer-link-sep">·</span>
+          <a href="rules.html" class="footer-link"><span class="footer-link__icon">◆</span>遊戲規章</a><span class="footer-link-sep">·</span>
+          <a href="sponsor.html" class="footer-link"><span class="footer-link__icon">✤</span>贊助須知</a><span class="footer-link-sep">·</span>
+          <a href="disclaimer.html" class="footer-link"><span class="footer-link__icon">†</span>免責聲明</a><span class="footer-link-sep">·</span>
+          <a href="contact.html" class="footer-link"><span class="footer-link__icon">✉</span>聯絡我們</a>
+        </nav>
+      </div>
+      <div class="footer-copy"><div class="footer-copy__line"></div><p>© 2026 噬魂天堂 · 本遊戲限 18 歲以上玩家參與 · 遊戲有成癮性，請節制遊玩 · 本站與 NC Soft 官方無任何關聯</p></div>
+    </div>
+        <div style="max-width:1080px;margin:0 auto;padding:12px 24px 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <a href="https://lin.ee/UbLA1Dq" target="_blank" rel="noopener" style="color:var(--gold-dim);font-size:12px;letter-spacing:1.2px;font-weight:600;text-shadow:0 0 10px rgba(201,169,110,0.36);text-decoration:none;">阿柴美工 LINE @323rffot 美工找我~</a>
+        <a href="https://www.gamex123.com/lineage.html" target="_blank" rel="noopener" style="display:inline-flex;opacity:0.82;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.82'">
+          <img src="../assets/images/private-server-123.gif" alt="私服123" style="display:block;width:78px;height:auto;" loading="lazy">
+        </a>
+      </div>
+    </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
