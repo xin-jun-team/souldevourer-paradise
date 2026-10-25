@@ -366,6 +366,7 @@ document.addEventListener('DOMContentLoaded', loadHomeData);
     { title:'神奇扭蛋', path:'pages/items-gacha.html', keywords:'神奇扭蛋 扭蛋 gacha 神奇徽章 PVP傷害 PVP減免 魔攻 奇物商 推廣商人 代幣 特殊大獎 保底' },
     { title:'威力彩選號', path:'pages/items-hexagram.html', keywords:'威力彩 選號 抽抽樂 升階石 徽章 hexagram' },
     { title:'神獸之卵', path:'pages/items-horse.html', keywords:'神獸 坐騎 之卵 抽抽樂 獸魂升階石 雕像升級石 horse' },
+    { title:'裝備祝福屬性', path:'pages/feature-blessing.html', keywords:'祝福 卷軸 武器字首 字首能力 武器強化卡 近戰武器強化卡 遠攻武器強化卡 魔攻武器強化卡 強化機率 轉換屬性 對武器祝福 對防具祝福 對飾品祝福 bless' },
     { title:'光之肩甲', path:'pages/items-light-shoulder.html', keywords:'光之肩甲 光之力量肩甲 光之敏捷肩甲 光之智力肩甲 特殊飾品 肩甲 時空裂痕 提卡爾 杰弗雷庫 安定值 強化 light shoulder' },
     { title:'聖物系統', path:'pages/items-relic.html', keywords:'聖物 聖物成長藥劑 傲慢之塔 近戰 遠程 法師 甘地 阿吐巴 那魯加 升階 relic' },
     { title:'四龍之魔眼', path:'pages/items-dragon-eye.html', keywords:'四龍 魔眼 龍之魔眼 dragon eye' },
