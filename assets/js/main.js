@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', loadHomeData);
     { title:'武器介紹', path:'pages/items-weapons.html', keywords:'武器 單手劍 雙手劍 弓 矛 法杖 雙刀 修練者 超特製 戰神 英雄 死亡騎士 風刃 冥皇 強化珠 屬性 魔武' },
     { title:'防具介紹', path:'pages/items-armor.html', keywords:'防具 頭盔 盔甲 手套 長靴 斗篷 盾牌 內衣 脛甲 項鍊 腰帶 戒指 耳環 武官 迅捷 神官 死亡騎士 守護者 惡魔 真冥皇 火焰之影 艾歐丁 旅人防禦耳環' },
     { title:'活動資訊', path:'pages/events.html', keywords:'活動 LINE 禮包 新手 BOSS挑戰 八八節 父親節 亞丁之父 赫卡特禮包' },
-    { title:'遊戲下載', path:'pages/download.html', keywords:'下載 安裝 登入器 系統需求' },
+    { title:'遊戲下載', path:'pages/download.html', keywords:'下載 安裝 登入器 系統需求 合併專用補丁 補丁 道具彩圖 喝水檔 抗字閃' },
     { title:'版本設定', path:'pages/version.html', keywords:'版本 倍率 經驗 掉落 金幣 多開 萬能藥' },
     { title:'贊助說明', path:'pages/sponsor.html', keywords:'贊助 藍鑽 儲值' },
     { title:'遊戲規章', path:'pages/rules.html', keywords:'規則 規章 禁止 外掛 處罰' },
