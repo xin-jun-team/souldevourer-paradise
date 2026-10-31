@@ -1,19 +1,19 @@
 {
   "active": [
     {
-      "title": "11月累積贊助禮包 🎁",
-      "desc": "依累積贊助金額領取光棍禮盒（$1,000～$30,000），越高檔內容越豐厚！另有額外「預購禮包」獎勵。",
-      "date_label": "累積贊助 即日起 ~ 11/30 · 預購禮包 即日起 ~ 10/31",
-      "link": "event-nov-sponsor.html",
+      "title": "11月光棍節慶 🛒",
+      "desc": "狩獵【活動怪物】黃金光棍仔、挑戰【活動BOSS】黃金癡漢，收集狗仔相機向光棍大師兌換好禮！",
+      "date_label": "10/31 18:00 ～ 11/30 18:00 維修前",
+      "link": "event-nov-singles.html",
       "tag": "限時活動",
       "tag_style": "active",
       "link_text": "查看詳情"
     },
     {
-      "title": "🎉 十月國慶同慶",
-      "desc": "雙十國慶！挑戰國慶BOSS「萊爾校長」、狩獵國慶怪，收集「腐敗的宣言」向尊貴王室兌換台灣NO.1掛飾等好禮。",
-      "date_label": "10/01 ~ 10/31 18:00 維修前",
-      "link": "event-national-day.html",
+      "title": "11月累積贊助禮包 🎁",
+      "desc": "依累積贊助金額領取光棍禮盒（$1,000～$30,000），越高檔內容越豐厚！另有額外「預購禮包」獎勵。",
+      "date_label": "累積贊助 即日起 ~ 11/30 · 預購禮包 即日起 ~ 10/31",
+      "link": "event-nov-sponsor.html",
       "tag": "限時活動",
       "tag_style": "active",
       "link_text": "查看詳情"
@@ -71,6 +71,16 @@
       "tag": "全民活動",
       "tag_style": "active",
       "link_text": "查看詳情"
+    },
+    {
+      "title": "🎉 十月國慶同慶",
+      "desc": "雙十國慶！挑戰國慶BOSS「萊爾校長」、狩獵國慶怪，收集「腐敗的宣言」向尊貴王室兌換台灣NO.1掛飾等好禮。",
+      "date_label": "10/01 ~ 10/31 18:00 維修前 · 已結束",
+      "link": "event-national-day.html",
+      "tag": "活動結束",
+      "tag_style": "ended",
+      "link_text": "查看詳情",
+      "ended": true
     },
     {
       "title": "10月國慶累積贊助禮包 🎉",
