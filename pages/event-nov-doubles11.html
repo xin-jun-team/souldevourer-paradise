@@ -77,10 +77,6 @@
       font-size:2.4rem;line-height:1;
       filter:drop-shadow(0 0 10px rgba(212,168,32,0.5));
     }
-    .choice-card__label{
-      font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;
-      color:var(--gold-dim);text-transform:uppercase;
-    }
     .choice-card__name{
       font-family:'Noto Serif TC',serif;font-size:1rem;font-weight:900;
       color:var(--text-bright);letter-spacing:0.08em;line-height:1.4;
@@ -90,8 +86,8 @@
       color:#ffe060;
     }
     .choice-or{
-      display:flex;align-items:center;justify-content:center;
-      width:48px;flex-shrink:0;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:6px;width:56px;flex-shrink:0;
       background:linear-gradient(180deg,transparent,rgba(212,168,32,0.08),transparent);
       border-top:1px solid rgba(212,168,32,0.2);border-bottom:1px solid rgba(212,168,32,0.2);
       position:relative;
@@ -106,10 +102,17 @@
       box-shadow:0 0 12px rgba(212,168,32,0.2);
       z-index:1;
     }
+    .choice-or__label{
+      font-family:'Noto Serif TC',serif;font-size:0.6rem;font-weight:700;
+      color:var(--gold-dim);letter-spacing:0.1em;
+      writing-mode:vertical-rl;text-orientation:mixed;
+      white-space:nowrap;
+    }
     @media(max-width:520px){
       .choice-wrap{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
-      .choice-or{height:40px;width:100%;
+      .choice-or{flex-direction:row;height:48px;width:100%;
         border:none;border-left:1px solid rgba(212,168,32,0.2);border-right:1px solid rgba(212,168,32,0.2);}
+      .choice-or__label{writing-mode:horizontal-tb;}
     }
 
     /* 條件說明框 */
@@ -191,16 +194,15 @@
           <div class="choice-wrap">
             <div class="choice-card">
               <div class="choice-card__icon">⚑</div>
-              <div class="choice-card__label">二選一 · 自選</div>
               <div class="choice-card__name">戰場勳章</div>
               <div class="choice-card__qty">× 1</div>
             </div>
             <div class="choice-or">
+              <div class="choice-or__label">二選一・自選</div>
               <div class="choice-or__badge">OR</div>
             </div>
             <div class="choice-card">
               <div class="choice-card__icon">⚔</div>
-              <div class="choice-card__label">二選一 · 自選</div>
               <div class="choice-card__name">PVP 貨幣</div>
               <div class="choice-card__qty">5,000 個</div>
             </div>
